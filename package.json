@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bit/reactstrap.reactstrap.button": "^7.1.0",
-    "@bit/reactstrap.reactstrap.button-group": "^7.1.0",
-    "@bit/reactstrap.reactstrap.button-toolbar": "^7.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

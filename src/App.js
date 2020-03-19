@@ -19,7 +19,7 @@ import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 //Components
-import LanguageButtons from './components/LanguageButtons';
+// import LanguageButtons from './components/LanguageButtons';
 
 import './App.scss';
 
@@ -27,7 +27,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        <LanguageButtons />
+        {/* <LanguageButtons /> */}
         <div className="flex-spread">
           <div className="nav-pill">
             <Link to="/">Startsida</Link>
