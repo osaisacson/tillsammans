@@ -2,6 +2,56 @@
 
 Organising assistance for self-isolated risk groups of corona/covid-19
 
+Uses React.js/Node.js/Hooks/Redux, firebase for db and deploys with Heroku.
+
+Find the latest live version at:
+
+### https://tillsammans.herokuapp.com/
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
+
+Once your changes are merged (see work work workin and build build buildin section below) you and everyone else will see them live at http://tillsammans.herokuapp.com
+
+### Tools
+
+If this is your first rodeo, here's the from scratch setup you'll need:
+
+1. Code editor: Download visual studio from here https://code.visualstudio.com/ - this will let you add html and styles.
+2. Terminal: Download iTerm from https://iterm2.com/ - this will let you install the project and add any extras (if needed).
+3. A GitHub account: https://github.com/ - this will let you clone a copy of the project to your own machine, and also let you push changes to the central repository, which will then be merged into the live version at http://tillsammans.herokuapp.com
+
+### Prerequisites
+
+You'll need to install Git and Node.js on your machine to get crackin.
+
+Open your terminal.
+
+First check if you have all the prerequisites and that they are good and well, write:
+
+```
+git --version
+node --version
+npm --version
+```
+
+...if the above gets any errors then fix them through the relevant solution below:
+
+#### Git - for version control
+
+```
+git --version
+```
+
+...if you don’t have git installed already, this will prompt you to install it.
+
+#### Node.js
+
+```
+brew install node
+```
+
 ### Original setup - get the latest code for the website
 
 This you only need to do once, when you're first starting to work on the project. After that, you'll have a folder with the code on your computer and will keep it up to date through the 'pull' commands given in the 'Work work workin' section. Don't worry about it now.
@@ -73,7 +123,7 @@ GitHub works in a way that lets you push your changes in a separate branch to a 
 
 This is how you create a separate branch, add changes to it and then request to have your changes intergrated into the master branch:
 
-1.  Check that you've got the latest version of the remote master branch (always do this. muy importante. If you don't first pull down the latest version of master then you'll be making a new branch off of old code, and get pesky 'merge conflicts'), and then create a new branch of master:
+1.  Check that you've got the latest version of the remote master branch (always do this. muy importante. If you don't first pull down the latest version of master then you'll be making a new branch off of old code, and get pesky merge conflicts), and then create a new branch of master:
 
 ```
 
@@ -90,16 +140,11 @@ git checkout -b name-of-your-new-branch (creates a new branch identical to the l
 ```
 
 cd tillsammans (ls and cd .. until you're in the tillsammans folder)
-npm run dev (this starts both the client and server, and opens up a http://localhost:3000 window in your browser to see the client)
-to see the loopback API manually open http://localhost:3001/explorer
+npm run (this opens up a http://localhost:3000 window in your browser)
 
 ```
 
-4. Make changes to the code in visual studio code. NOTE: only make changes in client_src folder, not in the client folder. The client folder is where the build lives when we are ready for that. All the work gets done in client_src.
-   Main interesting folders are:
-   /client_src/src/App.js - this is the wrapper for the whole page
-   /client_src/src/components/Blog.js - this is where you enter entries for the blog, also check out the other components in this folder.
-   /client_src/src/sass/main.scss - this is where the styles live
+4. Make changes to the code in visual studio code.
 
 5. Once you're done with your changes to the code, push them to GitHub like this:
 
