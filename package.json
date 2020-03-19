@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bit/reactstrap.reactstrap.button": "^7.1.0",
+    "@bit/reactstrap.reactstrap.button-group": "^7.1.0",
+    "@bit/reactstrap.reactstrap.button-toolbar": "^7.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "argon-design-system-react": "^1.1.0",
+    "bootstrap": "^4.4.1",
+    "node-sass": "^4.13.1",
     "react": "^16.13.0",
+    "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
@@ -31,5 +38,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "bit": {
+    "env": {},
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
   }
 }

@@ -7,39 +7,57 @@ import {
   useRouteMatch,
   useParams
 } from 'react-router-dom';
+
+//All screens
 import Home from './screens/Home';
-import Apply from './screens/Apply';
-import Volunteer from './screens/Volunteer';
+//User screens
+import Apply from './screens/users/Apply';
+import Volunteer from './screens/users/Volunteer';
+//Admin screens
+import Admin from './screens/admin/Admin';
+import Orders from './screens/admin/Orders';
+import Volunteers from './screens/admin/Volunteers';
+import Groups from './screens/admin/Groups';
+//Components
+import LanguageButtons from './components/LanguageButtons';
+
+import './App.scss';
 
 export default function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
+        <LanguageButtons />
+        <div className="flex-spread">
+          <div className="nav-pill">
             <Link to="/">Startsida</Link>
-          </li>
-          {/* <li>
-            <Link to="/apply">Ansök om assistans</Link>
-          </li>
-          <li>
-            <Link to="/volunteer">Jag vill bli voluntär</Link>
-          </li> */}
-          {/* <li>
-            <Link to="/topics">Topics</Link>
-          </li> */}
-        </ul>
-
+          </div>
+          <div className="nav-pill">
+            <Link to="/admin">Admin</Link>
+          </div>
+        </div>
         <Switch>
-          <Route path="/apply">
+          {/* För användare */}
+          <Route path="/ansök-om-assistans">
             <Apply />
           </Route>
-          <Route path="/volunteer">
+          <Route path="/bli-voluntär">
             <Volunteer />
           </Route>
-          {/* <Route path="/topics">
-            <Topics />
-          </Route> */}
+          {/* För admin */}
+          <Route path="/admin">
+            <Admin />
+          </Route>
+          <Route path="/beställningar">
+            <Orders />
+          </Route>
+          <Route path="/voluntärer">
+            <Volunteers />
+          </Route>
+          <Route path="/grupper">
+            <Groups />
+          </Route>
+          {/* För alla */}
           <Route path="/">
             <Home />
           </Route>
@@ -48,40 +66,3 @@ export default function App() {
     </Router>
   );
 }
-//Example of nested navigation
-// function Topics() {
-//   let match = useRouteMatch();
-
-//   return (
-//     <div>
-//       <h2>Topics</h2>
-
-//       <ul>
-//         <li>
-//           <Link to={`${match.url}/components`}>Components</Link>
-//         </li>
-//         <li>
-//           <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
-//         </li>
-//       </ul>
-
-//       {/* The Topics page has its own <Switch> with more routes
-//           that build on the /topics URL path. You can think of the
-//           2nd <Route> here as an "index" page for all topics, or
-//           the page that is shown when no topic is selected */}
-//       <Switch>
-//         <Route path={`${match.path}/:topicId`}>
-//           <Topic />
-//         </Route>
-//         <Route path={match.path}>
-//           <h3>Please select a topic.</h3>
-//         </Route>
-//       </Switch>
-//     </div>
-//   );
-// }
-
-// function Topic() {
-//   let { topicId } = useParams();
-//   return <h3>Requested topic ID: {topicId}</h3>;
-// }
