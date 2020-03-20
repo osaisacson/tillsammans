@@ -19,27 +19,8 @@ const Row = ({ title, contact, phone, email }) => (
   Table component written as an ES6 class
 */
 
-export default function GroupTable() {
-  const [groupData, setGroupData] = useState([
-    {
-      title: 'Egnahemsfabriken',
-      contact: 'Anna Berglund',
-      phone: '0703248591',
-      email: 'anna.berglund@egnahemsfabriken.se'
-    },
-    {
-      title: 'Svenska Kyrkan Tjörn',
-      contact: 'Björn Borg',
-      phone: '0739029381',
-      email: 'bjorn.borg@svenskakyrkan.se'
-    },
-    {
-      title: 'Almö gård',
-      contact: 'Annika Lantz',
-      phone: '0702455627',
-      email: 'annika.lantz@almogard.se'
-    }
-  ]);
+export default function GroupTable(props) {
+  const [groupData, setGroupData] = useState(props.groupData);
 
   const compareBy = key => {
     return function(a, b) {
