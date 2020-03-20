@@ -8,11 +8,21 @@ import OrdersTable from '../../components/tables/OrdersTable';
 export default function Orders() {
   const newOrders = [
     {
-      datum: '2020-04-02',
+      datum: '2020-03-24',
       typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
+      beskrivning: 'Sclorem Ipsum',
       tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
+      telefon: '0711248591',
+      email: 'ooo.ooo@ooooo.oo',
+      address: 'Näs 19',
+      postkod: '46173'
+    },
+    {
+      datum: '2020-04-01',
+      typ: 'Ärende',
+      beskrivning: 'Morem Ipsum',
+      tidsrymd: 'Upp till två dagar',
+      telefon: '0703118591',
       email: 'ooo.ooo@ooooo.oo',
       address: 'Näs 19',
       postkod: '47173'
@@ -20,9 +30,9 @@ export default function Orders() {
     {
       datum: '2020-04-02',
       typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
+      beskrivning: 'Arem Ipsum',
       tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
+      telefon: '0703998591',
       email: 'ooo.ooo@ooooo.oo',
       address: 'Näs 19',
       postkod: '47173'
@@ -30,9 +40,19 @@ export default function Orders() {
     {
       datum: '2020-04-02',
       typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
+      beskrivning: 'Cerum Ipsum',
       tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
+      telefon: '0703211591',
+      email: 'ooo.ooo@ooooo.oo',
+      address: 'Näs 19',
+      postkod: '47273'
+    },
+    {
+      datum: '2020-03-30',
+      typ: 'Ärende',
+      beskrivning: 'Xerum Ipsum',
+      tidsrymd: 'Upp till två dagar',
+      telefon: '0703242191',
       email: 'ooo.ooo@ooooo.oo',
       address: 'Näs 19',
       postkod: '47173'
@@ -40,32 +60,12 @@ export default function Orders() {
     {
       datum: '2020-04-02',
       typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
+      beskrivning: 'Lorem Pliplslum',
       tidsrymd: 'Upp till två dagar',
       telefon: '0703248591',
       email: 'ooo.ooo@ooooo.oo',
       address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
+      postkod: '47123'
     }
   ];
 
@@ -78,7 +78,7 @@ export default function Orders() {
       telefon: '0703248591',
       email: 'ooo.ooo@ooooo.oo',
       address: 'Näs 19',
-      postkod: '47173'
+      postkod: '47133'
     },
     {
       datum: '2020-04-02',
