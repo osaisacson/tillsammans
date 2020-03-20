@@ -21,14 +21,6 @@ export default function App() {
     <Router>
       <div className="container">
         <LanguageButtons />
-        <div className="flex-spread">
-          <div className="nav-pill">
-            <Link to="/">Startsida</Link>
-          </div>
-          <div className="nav-pill">
-            <Link to="/admin">Admin</Link>
-          </div>
-        </div>
         <Switch>
           {/* För användare */}
           <Route path="/ansök-om-assistans">
@@ -55,6 +47,14 @@ export default function App() {
             <Home />
           </Route>
         </Switch>
+        <div className="flex-spread">
+          <div className="nav-pill">
+            <Link to="/">Startsida</Link>
+          </div>
+          <div className="nav-pill">
+            <Link to="/admin">Admin</Link>
+          </div>
+        </div>
       </div>
     </Router>
   );
