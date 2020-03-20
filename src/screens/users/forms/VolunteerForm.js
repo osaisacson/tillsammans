@@ -41,7 +41,7 @@ const SelectTime = React.forwardRef(({ label, register }, ref) => (
   </Form.Group>
 ));
 
-export default function Application() {
+export default function VolunteerForm() {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => {
     console.log(data);
@@ -52,23 +52,24 @@ export default function Application() {
   return (
     <div className="form">
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Vad behöver du hjälp med</h3>
-        <SelectTask label="val" ref={register} />
-
-        <h3>Beskriv så väl du kan</h3>
-        <Form.Group controlId="t-1">
-          <Form.Control
-            as="textarea"
-            rows="3"
-            name="description"
-            placeholder="Inköpslista, övrig information..."
-            ref={register}
-          />
-        </Form.Group>
-
-        <h3>Hur länge kan du vänta?</h3>
-        <SelectTime label="tidsram" ref={register} />
-
+        <Form.Row>
+          <Col>
+            <Input
+              label="Förnamn"
+              register={register}
+              errorKey={errors.Förnamn}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              label="Efternamn"
+              register={register}
+              errorKey={errors.Efternamn}
+              required
+            />
+          </Col>
+        </Form.Row>
         <h3>Var når vi dig?</h3>
         <Form.Row>
           <Col>
@@ -90,13 +91,37 @@ export default function Application() {
             />
           </Col>
         </Form.Row>
+        <h3>Var bor du?</h3>
+        <Form.Row>
+          <Col>
+            <Input
+              label="Address"
+              register={register}
+              errorKey={errors.Address}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              label="Postkod"
+              register={register}
+              errorKey={errors.Postkod}
+              required
+            />
+          </Col>
+        </Form.Row>
 
-        <Input
-          label="Address"
-          register={register}
-          errorKey={errors.Address}
-          required
-        />
+        <h3>Skriv en kort beskrivning av dig själv</h3>
+        <Form.Group controlId="t-1">
+          <Form.Control
+            as="textarea"
+            rows="3"
+            name="description"
+            // defaultValue={'tidigare värde'} Såhär fixar vi edit form senare
+            placeholder="Jag har inget körkort men en cykel och väldigt starka ben..."
+            ref={register}
+          />
+        </Form.Group>
 
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka

@@ -1,5 +1,7 @@
 import React from 'react';
-import Application from './forms/application';
+
+//Components
+import HelpForm from './forms/HelpForm';
 import MainHeader from './../../components/MainHeader';
 
 export default function Apply() {
@@ -7,7 +9,7 @@ export default function Apply() {
     <>
       <MainHeader />
       <div className="page-layout">
-        <Application />
+        <HelpForm />
       </div>
     </>
   );

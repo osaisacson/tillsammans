@@ -7,25 +7,25 @@ export default function Home() {
   return (
     <>
       <MainHeader useLarge={true} />
+      <h6 className="centered">Välj det som stämmer på dig:</h6>
       <div className="page-layout">
-        <p>Välj det som stämmer på dig:</p>
-
         <div className="flex-column centered">
-          <Link to="/ansök-om-assistans">
+          <Link to={`/ansök-om-assistans`}>
             <IconButton
               text={
                 'Jag är sjuk och självisolerar mig för att inte smitta andra'
               }
             />
           </Link>
-          <Link to="/ansök-om-assistans">
+          <Link to={`/ansök-om-assistans`}>
             <IconButton
               text={
                 'Jag är riskgrupp och självisolerar mig för att inte bli smittad'
               }
             />
           </Link>
-          <Link to="/bli-voluntär">
+          <Link to={`/bli-voluntär/`}>
+            {' '}
             <IconButton text={'Jag vill bli voluntär'} />
           </Link>
         </div>
