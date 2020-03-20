@@ -5,28 +5,77 @@ export default function LanguageButtons() {
   return (
     <>
       <ButtonGroup toggle>
-        <Button type="radio" name="radio" defaultChecked value="1">
+        <Button
+          size="sm"
+          variant="dark"
+          type="radio"
+          name="radio"
+          defaultChecked
+          value="1"
+        >
           Svenska
         </Button>
-        <Button type="radio" name="radio" value="2">
+        <Button
+          size="sm"
+          variant="outline-dark"
+          type="radio"
+          name="radio"
+          value="2"
+        >
           Engelska
         </Button>
-        <Button type="radio" name="radio" value="3">
+        <Button
+          size="sm"
+          variant="outline-dark"
+          type="radio"
+          name="radio"
+          value="3"
+        >
           Finska
         </Button>
-        <Button type="radio" name="radio" value="4">
+        <Button
+          size="sm"
+          variant="outline-dark"
+          type="radio"
+          name="radio"
+          value="4"
+        >
           Arabiska
         </Button>
-        <Button type="radio" name="radio" value="5">
+        <Button
+          size="sm"
+          variant="outline-dark"
+          type="radio"
+          name="radio"
+          value="5"
+        >
           Polska
         </Button>
-        <Button type="radio" name="radio" value="6">
+        <Button
+          size="sm"
+          variant="outline-dark"
+          type="radio"
+          name="radio"
+          value="6"
+        >
           Kurdiska
         </Button>
-        <Button type="radio" name="radio" value="7">
+        <Button
+          size="sm"
+          variant="outline-dark"
+          type="radio"
+          name="radio"
+          value="7"
+        >
           Spanska
         </Button>
-        <Button type="radio" name="radio" value="8">
+        <Button
+          size="sm"
+          variant="outline-secondary"
+          type="radio"
+          name="radio"
+          value="8"
+        >
           Fler val
         </Button>
       </ButtonGroup>

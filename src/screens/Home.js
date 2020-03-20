@@ -6,7 +6,7 @@ import MainHeader from './../components/MainHeader';
 export default function Home() {
   return (
     <>
-      <MainHeader />
+      <MainHeader useLarge={true} />
       <div className="page-layout">
         <p>Välj det som stämmer på dig:</p>
 
