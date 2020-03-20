@@ -1,28 +1,35 @@
 import React from 'react';
-import Button from '@bit/reactstrap.reactstrap.button';
-import ButtonGroup from '@bit/reactstrap.reactstrap.button-group';
-import ButtonToolbar from '@bit/reactstrap.reactstrap.button-toolbar';
-
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 export default function LanguageButtons() {
   return (
-    <div>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-      />
-
-      <ButtonToolbar>
-        <ButtonGroup className="centered">
-          <Button>Svenska</Button>
-          <Button>Engelska</Button>
-          <Button>Finska</Button>
-          <Button>Arabiska</Button>
-          <Button>Polska</Button>
-          <Button>Kurdiska</Button>
-          <Button>Spanska</Button>
-          <Button>Fler val</Button>
-        </ButtonGroup>
-      </ButtonToolbar>
-    </div>
+    <>
+      <ButtonGroup toggle>
+        <Button type="radio" name="radio" defaultChecked value="1">
+          Svenska
+        </Button>
+        <Button type="radio" name="radio" value="2">
+          Engelska
+        </Button>
+        <Button type="radio" name="radio" value="3">
+          Finska
+        </Button>
+        <Button type="radio" name="radio" value="4">
+          Arabiska
+        </Button>
+        <Button type="radio" name="radio" value="5">
+          Polska
+        </Button>
+        <Button type="radio" name="radio" value="6">
+          Kurdiska
+        </Button>
+        <Button type="radio" name="radio" value="7">
+          Spanska
+        </Button>
+        <Button type="radio" name="radio" value="8">
+          Fler val
+        </Button>
+      </ButtonGroup>
+    </>
   );
 }

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 //All screens
 import Home from './screens/Home';
@@ -19,7 +12,7 @@ import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 //Components
-// import LanguageButtons from './components/LanguageButtons';
+import LanguageButtons from './components/LanguageButtons';
 
 import './App.scss';
 
@@ -27,7 +20,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        {/* <LanguageButtons /> */}
+        <LanguageButtons />
         <div className="flex-spread">
           <div className="nav-pill">
             <Link to="/">Startsida</Link>
