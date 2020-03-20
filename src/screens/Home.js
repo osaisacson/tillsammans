@@ -34,7 +34,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="nav-pill">
+      <div className="nav-pill float-right">
         <Link to="/admin">Admin</Link>
       </div>
     </>

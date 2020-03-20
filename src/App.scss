@@ -18,15 +18,19 @@ body {
 }
 
 //Helpers
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
 .centered {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-spread {
@@ -34,6 +38,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+
+
 
 //Sections
 .page-layout {
