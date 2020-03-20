@@ -8,9 +8,8 @@ export default function Volunteer() {
   return (
     <>
       <MainHeader />
+      <h6 className="form-title">BLI VOLUNTÄR</h6>
       <div className="page-layout">
-        <h5 className="centered">Bli Voluntär</h5>
-
         <VolunteerForm />
       </div>
     </>
