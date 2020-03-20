@@ -11,8 +11,6 @@ import Admin from './screens/admin/Admin';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
-//Components
-import LanguageButtons from './components/LanguageButtons';
 
 import './App.scss';
 
@@ -20,7 +18,6 @@ export default function App() {
   return (
     <Router>
       <div className="container">
-        <LanguageButtons />
         <Switch>
           {/* För användare */}
           <Route path="/ansök-om-assistans">
@@ -47,14 +44,6 @@ export default function App() {
             <Home />
           </Route>
         </Switch>
-        <div className="flex-spread">
-          <div className="nav-pill">
-            <Link to="/">Startsida</Link>
-          </div>
-          <div className="nav-pill">
-            <Link to="/admin">Admin</Link>
-          </div>
-        </div>
       </div>
     </Router>
   );
