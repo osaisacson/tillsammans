@@ -235,8 +235,8 @@ export default function Orders() {
           <OrdersTable ordersData={activeOrders} />
         </Tab>
         <Tab
-          eventKey="inaktiva"
-          title={`Inaktiva (${doneOrders.length ? doneOrders.length : 0})`}
+          eventKey="klara"
+          title={`Klara (${doneOrders.length ? doneOrders.length : 0})`}
         >
           <OrdersTable ordersData={doneOrders} />
         </Tab>
