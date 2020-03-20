@@ -3,7 +3,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 export default function LanguageButtons() {
   return (
-    <>
+    <div className="centered">
       <ButtonGroup toggle>
         <Button
           size="sm"
@@ -79,6 +79,6 @@ export default function LanguageButtons() {
           Fler val
         </Button>
       </ButtonGroup>
-    </>
+    </div>
   );
 }
