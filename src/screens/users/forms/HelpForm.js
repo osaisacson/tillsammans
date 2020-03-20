@@ -21,19 +21,21 @@ const Input = ({ label, register, required, placeholder, errorKey }) => (
 );
 
 const SelectTask = React.forwardRef(({ label, register }, ref) => (
-  <Form.Group controlId="s-1">
-    {/* <label>{label}</label> */}
-    <Form.Control as="select" name={label} ref={ref}>
-      <option value="ärende">Ett ärende</option>
-      <option value="övrigt">Övrigt</option>
-    </Form.Control>
-  </Form.Group>
+  <>
+    <Form.Group controlId={label}>
+      {/* <label>{label}</label> */}
+      <Form.Control as="select" name={label} ref={ref} required>
+        <option value="ärende">Ett ärende</option>
+        <option value="övrigt">Övrigt</option>
+      </Form.Control>
+    </Form.Group>
+  </>
 ));
 
 const SelectTime = React.forwardRef(({ label, register }, ref) => (
-  <Form.Group controlId="s-2">
+  <Form.Group controlId={label}>
     {/* <label>{label}</label> */}
-    <Form.Control as="select" name={label} ref={ref}>
+    <Form.Control as="select" name={label} ref={ref} required>
       <option value="tvådagar">Upp till två dagar</option>
       <option value="vecka">Upp till en vecka</option>
       <option value="fort">Så snabbt som möjligt</option>
@@ -60,7 +62,7 @@ export default function HelpForm() {
           <Form.Control
             as="textarea"
             rows="3"
-            name="description"
+            name="Beskrivning"
             // defaultValue={'tidigare värde'} Såhär fixar vi edit form senare
             placeholder="Inköpslista, övrig information..."
             ref={register}

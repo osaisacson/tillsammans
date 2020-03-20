@@ -20,27 +20,6 @@ const Input = ({ label, register, required, placeholder, errorKey }) => (
   </>
 );
 
-const SelectTask = React.forwardRef(({ label, register }, ref) => (
-  <Form.Group controlId="s-1">
-    {/* <label>{label}</label> */}
-    <Form.Control as="select" name={label} ref={ref}>
-      <option value="ärende">Ett ärende</option>
-      <option value="övrigt">Övrigt</option>
-    </Form.Control>
-  </Form.Group>
-));
-
-const SelectTime = React.forwardRef(({ label, register }, ref) => (
-  <Form.Group controlId="s-2">
-    {/* <label>{label}</label> */}
-    <Form.Control as="select" name={label} ref={ref}>
-      <option value="tvådagar">Upp till två dagar</option>
-      <option value="vecka">Upp till en vecka</option>
-      <option value="fort">Så snabbt som möjligt</option>
-    </Form.Control>
-  </Form.Group>
-));
-
 export default function VolunteerForm() {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => {
@@ -116,7 +95,7 @@ export default function VolunteerForm() {
           <Form.Control
             as="textarea"
             rows="3"
-            name="description"
+            name="Beskrivning"
             // defaultValue={'tidigare värde'} Såhär fixar vi edit form senare
             placeholder="Jag har inget körkort men en cykel och väldigt starka ben..."
             ref={register}
