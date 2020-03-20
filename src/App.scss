@@ -13,7 +13,6 @@ html {
 
 body {
   margin: auto;
-  width: fit-content;
   background-color: transparent !important;
   padding: 15px;
 }
@@ -38,8 +37,6 @@ body {
 
 //Sections
 .page-layout {
-  @extend .flex-column;
-  @extend .centered;
   background-color: rgba(255, 255, 255, .6) !important;
   padding: 10px;
   margin: 10px 0;
@@ -144,3 +141,11 @@ body {
 .table {
   text-align: left;
 }
+
+//Bootstrap overrides
+.btn {
+  white-space: normal;
+}
+
+//Media queries
+// @media (min-width: @screen-sm-min) { body {} }

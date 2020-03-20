@@ -19,7 +19,7 @@ import './App.scss';
 export default function App() {
   return (
     <Router>
-      <div>
+      <div className="container">
         <LanguageButtons />
         <div className="flex-spread">
           <div className="nav-pill">

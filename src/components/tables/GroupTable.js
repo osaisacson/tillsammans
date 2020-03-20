@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-/* 
-  Row component written as a simple function:
-  https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components
-  
-  Any components that do not have state should be written this way,
-  see: https://medium.com/@housecor/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc
-*/
+
 const Row = ({ title, contact, phone, email }) => (
   <tr>
     <td>{title}</td>
@@ -14,10 +8,6 @@ const Row = ({ title, contact, phone, email }) => (
     <td>{email}</td>
   </tr>
 );
-
-/*
-  Table component written as an ES6 class
-*/
 
 export default function GroupTable(props) {
   const [groupData, setGroupData] = useState(props.groupData);
@@ -39,8 +29,8 @@ export default function GroupTable(props) {
   const rows = groupData.map(rowData => <Row {...rowData} />);
 
   return (
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
+    <div className="table-responsive">
+      <table className="table table-bordered">
         <thead>
           <tr>
             <th onClick={() => sortBy('title')}>Gruppnamn</th>

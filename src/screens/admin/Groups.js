@@ -3,7 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 //Components
-import GroupTable from './../../components/items/GroupTable';
+import GroupTable from '../../components/tables/GroupTable';
 
 export default function Groups() {
   const newGroups = [
