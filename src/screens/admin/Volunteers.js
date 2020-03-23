@@ -1,85 +1,23 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import VolunteersDummyData from './../../DummyData/VolunteersDummyData';
 
 //Components
 import VolunteersTable from '../../components/tables/VolunteersTable';
 
 export default function Volunteers() {
-  const newVolunteers = [
-    {
-      datum: '2020-04-02',
-      förnamn: 'Karin',
-      efternamn: 'Hansson',
-      beskrivning: 'Jag blev frisk förra veckan och skulle vilja hjälpa till.',
-      email: 'karin.hansson@gmail.com',
-      telefon: '0702141538',
-      address: 'Näs 22',
-      postkod: '47173',
-      grupp: 'Egnahemsfabriken'
-    },
-    {
-      datum: '2020-04-02',
-      förnamn: 'Karin',
-      efternamn: 'Hansson',
-      beskrivning: 'Jag blev frisk förra veckan och skulle vilja hjälpa till.',
-      email: 'karin.hansson@gmail.com',
-      telefon: '0702141538',
-      address: 'Näs 22',
-      postkod: '47173',
-      grupp: 'Egnahemsfabriken'
-    }
-  ];
+  const newVolunteers = VolunteersDummyData.filter(
+    data => data.status === 'ny'
+  );
 
-  const activeVolunteers = [
-    {
-      datum: '2020-04-02',
-      förnamn: 'Karin',
-      efternamn: 'Hansson',
-      beskrivning: 'Jag blev frisk förra veckan och skulle vilja hjälpa till.',
-      email: 'karin.hansson@gmail.com',
-      telefon: '0702141538',
-      address: 'Näs 22',
-      postkod: '47173',
-      grupp: 'Egnahemsfabriken'
-    },
-    {
-      datum: '2020-04-02',
-      förnamn: 'Karin',
-      efternamn: 'Hansson',
-      beskrivning: 'Jag blev frisk förra veckan och skulle vilja hjälpa till.',
-      email: 'karin.hansson@gmail.com',
-      telefon: '0702141538',
-      address: 'Näs 22',
-      postkod: '47173',
-      grupp: 'Egnahemsfabriken'
-    },
-    {
-      datum: '2020-04-02',
-      förnamn: 'Karin',
-      efternamn: 'Hansson',
-      beskrivning: 'Jag blev frisk förra veckan och skulle vilja hjälpa till.',
-      email: 'karin.hansson@gmail.com',
-      telefon: '0702141538',
-      address: 'Näs 22',
-      postkod: '47173',
-      grupp: 'Egnahemsfabriken'
-    }
-  ];
+  const contactedVolunteers = VolunteersDummyData.filter(
+    data => data.status === 'kontaktad'
+  );
 
-  const inactiveVolunteers = [
-    {
-      datum: '2020-04-02',
-      förnamn: 'Karin',
-      efternamn: 'Hansson',
-      beskrivning: 'Jag blev frisk förra veckan och skulle vilja hjälpa till.',
-      email: 'karin.hansson@gmail.com',
-      telefon: '0702141538',
-      address: 'Näs 22',
-      postkod: '47173',
-      grupp: 'Egnahemsfabriken'
-    }
-  ];
+  const activeVolunteers = VolunteersDummyData.filter(
+    data => data.status === 'aktiv'
+  );
 
   return (
     <div className="page-layout">
@@ -88,11 +26,17 @@ export default function Volunteers() {
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
           eventKey="nya"
-          title={`Nya voluntärer (${
-            newVolunteers.length ? newVolunteers.length : 0
-          })`}
+          title={`Nya (${newVolunteers.length ? newVolunteers.length : 0})`}
         >
           <VolunteersTable volunteerData={newVolunteers} />
+        </Tab>
+        <Tab
+          eventKey="kontaktada"
+          title={`Kontaktade (${
+            contactedVolunteers.length ? contactedVolunteers.length : 0
+          })`}
+        >
+          <VolunteersTable volunteerData={contactedVolunteers} />
         </Tab>
         <Tab
           eventKey="aktiva"
@@ -101,14 +45,6 @@ export default function Volunteers() {
           })`}
         >
           <VolunteersTable volunteerData={activeVolunteers} />
-        </Tab>
-        <Tab
-          eventKey="inaktiva"
-          title={`Inaktiva (${
-            inactiveVolunteers.length ? inactiveVolunteers.length : 0
-          })`}
-        >
-          <VolunteersTable volunteerData={inactiveVolunteers} />
         </Tab>
       </Tabs>
     </div>

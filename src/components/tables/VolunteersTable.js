@@ -1,31 +1,66 @@
 import React, { useState } from 'react';
 
-const Row = ({
-  datum,
-  förnamn,
-  efternamn,
-  beskrivning,
-  email,
-  telefon,
-  address,
-  postkod,
-  grupp
-}) => (
-  <tr>
-    <td>{datum}</td>
-    <td>{förnamn}</td>
-    <td>{efternamn}</td>
-    <td>{beskrivning}</td>
-    <td>{email}</td>
-    <td>{telefon}</td>
-    <td>{address}</td>
-    <td>{postkod}</td>
-    <td>{grupp}</td>
-  </tr>
-);
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 export default function VolunteersTable(props) {
   const [volunteerData, setVolunteerData] = useState(props.volunteerData);
+  const [value, setValue] = useState([1, 3]);
+  const handleChange = val => setValue(val);
+
+  const Row = ({
+    datum,
+    förnamn,
+    efternamn,
+    beskrivning,
+    email,
+    telefon,
+    address,
+    postkod,
+    grupp,
+    status
+  }) => (
+    <tr>
+      <td>{datum}</td>
+      <td>{förnamn}</td>
+      <td>{efternamn}</td>
+      <td>{beskrivning}</td>
+      <td>{email}</td>
+      <td>{telefon}</td>
+      <td>{address}</td>
+      <td>{postkod}</td>
+      <td>{grupp}</td>
+      <td>
+        <ButtonGroup aria-label="set status" size="sm">
+          <Button
+            active={status === 'ny'}
+            onClick={() => console.log('TODO: this should set status as "ny"')}
+            variant="secondary"
+          >
+            Ny
+          </Button>
+          <Button
+            active={status === 'kontaktad'}
+            onClick={() =>
+              console.log('TODO: this should set status as "kontaktad"')
+            }
+            variant="secondary"
+          >
+            Kontaktad
+          </Button>
+          <Button
+            active={status === 'aktiv'}
+            onClick={() =>
+              console.log('TODO: this should set status as "aktiv"')
+            }
+            variant="secondary"
+          >
+            Aktiv
+          </Button>
+        </ButtonGroup>
+      </td>
+    </tr>
+  );
 
   const compareBy = key => {
     return function(a, b) {
@@ -57,6 +92,7 @@ export default function VolunteersTable(props) {
             <th onClick={() => sortBy('address')}>Address</th>
             <th onClick={() => sortBy('postkod')}>Postkod</th>
             <th onClick={() => sortBy('grupp')}>Grupp</th>
+            <th>Sätt status</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
