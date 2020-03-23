@@ -33,7 +33,17 @@
       integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
       crossorigin="anonymous"
     />
-    <title>React App</title>
+    <title>Tillsammans</title>
+    <!--The below lets us send email to our helasverigetillsammans@gmail.com account -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function() {
+        emailjs.init('user_4Co1pkpSd3IPWCrj3wq7K');
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
