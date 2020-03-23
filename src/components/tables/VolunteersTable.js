@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
 export default function VolunteersTable(props) {
   const [volunteerData, setVolunteerData] = useState(props.volunteerData);
-  const [value, setValue] = useState([1, 3]);
-  const handleChange = val => setValue(val);
 
   const Row = ({
     datum,

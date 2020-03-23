@@ -1,16 +1,57 @@
 import React, { useState } from 'react';
-
-const Row = ({ title, contact, phone, email }) => (
-  <tr>
-    <td>{title}</td>
-    <td>{contact}</td>
-    <td>{phone}</td>
-    <td>{email}</td>
-  </tr>
-);
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 export default function GroupTable(props) {
   const [groupData, setGroupData] = useState(props.groupData);
+
+  const Row = ({
+    gruppnamn,
+    kontakt,
+    telefon,
+    email,
+    address,
+    postkod,
+    status
+  }) => (
+    <tr>
+      <td>{gruppnamn}</td>
+      <td>{kontakt}</td>
+      <td>{telefon}</td>
+      <td>{email}</td>
+      <td>{address}</td>
+      <td>{postkod}</td>
+      <td>
+        <ButtonGroup aria-label="set status" size="sm">
+          <Button
+            active={status === 'ny'}
+            onClick={() => console.log('TODO: this should set status as "ny"')}
+            variant="secondary"
+          >
+            Ny
+          </Button>
+          <Button
+            active={status === 'aktiv'}
+            onClick={() =>
+              console.log('TODO: this should set status as "aktiv"')
+            }
+            variant="secondary"
+          >
+            Aktiv
+          </Button>
+          <Button
+            active={status === 'inaktiv'}
+            onClick={() =>
+              console.log('TODO: this should set status as "inaktiv"')
+            }
+            variant="secondary"
+          >
+            Inaktiv
+          </Button>
+        </ButtonGroup>
+      </td>
+    </tr>
+  );
 
   const compareBy = key => {
     return function(a, b) {
@@ -33,10 +74,12 @@ export default function GroupTable(props) {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th onClick={() => sortBy('title')}>Gruppnamn</th>
-            <th onClick={() => sortBy('contact')}>Kontakt</th>
-            <th onClick={() => sortBy('phone')}>Telefonnummer</th>
+            <th onClick={() => sortBy('gruppnamn')}>Gruppnamn</th>
+            <th onClick={() => sortBy('kontakt')}>Kontakt</th>
+            <th onClick={() => sortBy('telefon')}>Telefonnummer</th>
             <th onClick={() => sortBy('email')}>Email</th>
+            <th onClick={() => sortBy('address')}>Address</th>
+            <th onClick={() => sortBy('postkod')}>Postkod</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

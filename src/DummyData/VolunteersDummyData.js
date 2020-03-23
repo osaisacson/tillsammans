@@ -1,4 +1,4 @@
-import Volunteer from './../models/volunteers';
+import Volunteer from '../models/volunteer';
 
 const VOLUNTEERS = [
   new Volunteer(

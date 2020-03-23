@@ -1,29 +1,70 @@
 import React, { useState } from 'react';
-
-const Row = ({
-  datum,
-  typ,
-  beskrivning,
-  tidsrymd,
-  telefon,
-  email,
-  address,
-  postkod
-}) => (
-  <tr>
-    <td>{datum}</td>
-    <td>{typ}</td>
-    <td>{beskrivning}</td>
-    <td>{tidsrymd}</td>
-    <td>{telefon}</td>
-    <td>{email}</td>
-    <td>{address}</td>
-    <td>{postkod}</td>
-  </tr>
-);
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 export default function OrdersTable(props) {
   const [ordersData, setOrdersData] = useState(props.ordersData);
+
+  const Row = ({
+    datum,
+    typ,
+    beskrivning,
+    tidsrymd,
+    telefon,
+    email,
+    address,
+    postkod,
+    status
+  }) => (
+    <tr>
+      <td>{datum}</td>
+      <td>{typ}</td>
+      <td>{beskrivning}</td>
+      <td>{tidsrymd}</td>
+      <td>{telefon}</td>
+      <td>{email}</td>
+      <td>{address}</td>
+      <td>{postkod}</td>
+      <td>
+        <ButtonGroup aria-label="set status" size="sm">
+          <Button
+            active={status === 'ny'}
+            onClick={() => console.log('TODO: this should set status as "ny"')}
+            variant="secondary"
+          >
+            Ny
+          </Button>
+          <Button
+            active={status === 'aktiv'}
+            onClick={() =>
+              console.log('TODO: this should set status as "aktiv"')
+            }
+            variant="secondary"
+          >
+            Aktiv
+          </Button>
+          <Button
+            active={status === 'klar'}
+            onClick={() =>
+              console.log('TODO: this should set status as "klar"')
+            }
+            variant="secondary"
+          >
+            Klar
+          </Button>
+          <Button
+            active={status === 'inaktiv'}
+            onClick={() =>
+              console.log('TODO: this should set status as "inaktiv"')
+            }
+            variant="secondary"
+          >
+            Inaktiv
+          </Button>
+        </ButtonGroup>
+      </td>
+    </tr>
+  );
 
   const compareBy = key => {
     return function(a, b) {
@@ -54,6 +95,7 @@ export default function OrdersTable(props) {
             <th onClick={() => sortBy('email')}>Email</th>
             <th onClick={() => sortBy('address')}>Address</th>
             <th onClick={() => sortBy('postkod')}>Postkod</th>
+            <th onClick={() => sortBy('status')}>Status</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

@@ -1,50 +1,20 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import GroupsDummyData from './../../DummyData/GroupsDummyData';
 
 //Components
 import GroupTable from '../../components/tables/GroupTable';
 
+const newGroups = GroupsDummyData.filter(data => data.status === 'ny');
+
+const activeGroups = GroupsDummyData.filter(data => data.status === 'aktiv');
+
+const inactiveGroups = GroupsDummyData.filter(
+  data => data.status === 'inaktiv'
+);
+
 export default function Groups() {
-  const newGroups = [
-    {
-      title: 'XGruppen',
-      contact: 'Xavier Mes',
-      phone: '070334591',
-      email: 'xavier.mes@yahoo.se'
-    }
-  ];
-
-  const activeGroups = [
-    {
-      title: 'Egnahemsfabriken',
-      contact: 'Anna Berglund',
-      phone: '0703248591',
-      email: 'anna.berglund@egnahemsfabriken.se'
-    },
-    {
-      title: 'Svenska Kyrkan Tjörn',
-      contact: 'Björn Borg',
-      phone: '0739029381',
-      email: 'bjorn.borg@svenskakyrkan.se'
-    },
-    {
-      title: 'Almö gård',
-      contact: 'Annika Lantz',
-      phone: '0702455627',
-      email: 'annika.lantz@almogard.se'
-    }
-  ];
-
-  const inactiveGroups = [
-    {
-      title: 'Näsgruppen',
-      contact: 'Åsa Isacson',
-      phone: '0701438591',
-      email: 'asa@gmail.com'
-    }
-  ];
-
   return (
     <div className="page-layout">
       <h2>Grupper</h2>

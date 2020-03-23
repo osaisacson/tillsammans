@@ -1,219 +1,21 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import OrdersDummyData from './../../DummyData/OrdersDummyData';
 
 //Components
 import OrdersTable from '../../components/tables/OrdersTable';
 
 export default function Orders() {
-  const newOrders = [
-    {
-      datum: '2020-03-24',
-      typ: 'Ärende',
-      beskrivning: 'Sclorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0711248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '46173'
-    },
-    {
-      datum: '2020-04-01',
-      typ: 'Ärende',
-      beskrivning: 'Morem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703118591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Arem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703998591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Cerum Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703211591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47273'
-    },
-    {
-      datum: '2020-03-30',
-      typ: 'Ärende',
-      beskrivning: 'Xerum Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703242191',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Pliplslum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47123'
-    }
-  ];
+  const newOrders = OrdersDummyData.filter(data => data.status === 'ny');
 
-  const activeOrders = [
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47133'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    }
-  ];
+  const activeOrders = OrdersDummyData.filter(data => data.status === 'aktiv');
 
-  const doneOrders = [
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    },
-    {
-      datum: '2020-04-02',
-      typ: 'Ärende',
-      beskrivning: 'Lorem Ipsum',
-      tidsrymd: 'Upp till två dagar',
-      telefon: '0703248591',
-      email: 'ooo.ooo@ooooo.oo',
-      address: 'Näs 19',
-      postkod: '47173'
-    }
-  ];
+  const doneOrders = OrdersDummyData.filter(data => data.status === 'klar');
+
+  const inactiveOrders = OrdersDummyData.filter(
+    data => data.status === 'inaktiv'
+  );
 
   return (
     <div className="page-layout">
@@ -239,6 +41,14 @@ export default function Orders() {
           title={`Klara (${doneOrders.length ? doneOrders.length : 0})`}
         >
           <OrdersTable ordersData={doneOrders} />
+        </Tab>
+        <Tab
+          eventKey="inaktiv"
+          title={`Inaktiva (${
+            inactiveOrders.length ? inactiveOrders.length : 0
+          })`}
+        >
+          <OrdersTable ordersData={inactiveOrders} />
         </Tab>
       </Tabs>
     </div>
