@@ -19,7 +19,7 @@ export default function Admin() {
           <Tab title="Beställningar" eventKey="first">
             <Orders />
           </Tab>
-          <Tab title="Voluntärer" eventKey="second">
+          <Tab title="Volontärer" eventKey="second">
             <Volunteers />
           </Tab>
           <Tab title="Grupper" eventKey="third">

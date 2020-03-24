@@ -21,7 +21,7 @@ export default function Volunteers() {
 
   return (
     <div className="page-layout">
-      <h2>Voluntärer</h2>
+      <h2>Volontärer</h2>
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab

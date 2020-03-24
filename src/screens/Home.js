@@ -31,9 +31,8 @@ export default function Home() {
               }
             />
           </Link>
-          <Link to={`/bli-voluntär/`}>
-            {' '}
-            <IconButton text={'Jag är frisk och vill bli voluntär'} />
+          <Link to={`/bli-volontär/`}>
+            <IconButton text={'Jag är frisk och vill bli volontär'} />
           </Link>
         </div>
       </div>

@@ -48,7 +48,7 @@ export default function App() {
             <Route path="/ansök-om-assistans">
               <Apply />
             </Route>
-            <Route path="/bli-voluntär">
+            <Route path="/bli-volontär">
               <Volunteer />
             </Route>
             {/* För admin */}
@@ -64,7 +64,7 @@ export default function App() {
             <Route path="/beställningar">
               <Orders />
             </Route>
-            <Route path="/voluntärer">
+            <Route path="/volontärer">
               <Volunteers />
             </Route>
             <Route path="/grupper">
