@@ -330,6 +330,11 @@ h6 {
   background-color: $primary-color-light;
 }
 
+.btn:hover {
+  background-color: $primary-color-dark;
+  border-color: $primary-color-dark;
+}
+
 //Media queries
 @media only screen and (max-width: 980px) {
   body {
