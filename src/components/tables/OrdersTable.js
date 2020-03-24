@@ -80,7 +80,7 @@ export default function OrdersTable(props) {
     setOrdersData(arrayCopy);
   };
 
-  const rows = ordersData.map(rowData => <Row {...rowData} />);
+  const rows = ordersData.map(rowData => <Row key={rowData.id} {...rowData} />);
 
   return (
     <div className="table-responsive">

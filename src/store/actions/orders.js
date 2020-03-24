@@ -11,7 +11,7 @@ export const fetchOrders = () => {
     // const userId = getState().auth.userId;
     try {
       const response = await fetch(
-        'https://tillsammans-1ad95.firebaseio.com/orders.json'
+        'https://sverige-tillsammans.firebaseio.com/orders.json'
       );
 
       if (!response.ok) {
@@ -57,8 +57,8 @@ export const deleteOrder = orderId => {
   return async (dispatch, getState) => {
     // const token = getState().auth.token; //TODO: set up authorisation of admin
     const response = await fetch(
-      `https://tillsammans-1ad95.firebaseio.com/orders/${orderId}.json`,
-      // `https://tillsammans-1ad95.firebaseio.com/orders/${orderId}.json?auth=${token}`,
+      `https://sverige-tillsammans.firebaseio.com/orders/${orderId}.json`,
+      // `https://sverige-tillsammans.firebaseio.com/orders/${orderId}.json?auth=${token}`,
       {
         method: 'DELETE'
       }
@@ -83,6 +83,20 @@ export const createOrder = (
   postkod
 ) => {
   return async (dispatch, getState) => {
+    console.log('------createOrder was triggered-------');
+    console.log('received data:');
+    console.log('typ:', typ);
+    console.log('beskrivning:', beskrivning);
+    console.log('tidsrymd:', tidsrymd);
+    console.log('telefon:', telefon);
+    console.log('förnamn:', förnamn);
+    console.log('efternamn:', efternamn);
+    console.log('email:', email);
+    console.log('address:', address);
+    console.log('postkod:', postkod);
+    console.log('postkod:', postkod);
+    console.log('---------');
+
     // any async code you want!
     // const token = getState().auth.token;
     // const userId = getState().auth.userId;
@@ -90,8 +104,8 @@ export const createOrder = (
     const setGrupp = 'ingen ännu';
     const setStatus = 'ohanterad';
     const response = await fetch(
-      `https://tillsammans-1ad95.firebaseio.com/orders.json`,
-      // `https://tillsammans-1ad95.firebaseio.com/orders.json?auth=${token}`,
+      `https://sverige-tillsammans.firebaseio.com/orders.json`,
+      // `https://sverige-tillsammans.firebaseio.com/orders.json?auth=${token}`,
       {
         method: 'POST',
         headers: {
@@ -115,6 +129,8 @@ export const createOrder = (
     );
 
     const resData = await response.json();
+    console.log('resData efter post/fetch firebase:', resData);
+    console.log('-------------------END-----------');
 
     dispatch({
       type: CREATE_ORDER,
@@ -154,8 +170,8 @@ export const updateOrder = (
   return async (dispatch, getState) => {
     // const token = getState().auth.token;
     const response = await fetch(
-      `https://tillsammans-1ad95.firebaseio.com/orders/${id}.json`,
-      // `https://tillsammans-1ad95.firebaseio.com/orders/${id}.json?auth=${token}`,
+      `https://sverige-tillsammans.firebaseio.com/orders/${id}.json`,
+      // `https://sverige-tillsammans.firebaseio.com/orders/${id}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {

@@ -6,6 +6,7 @@ export default function GroupTable(props) {
   const [groupData, setGroupData] = useState(props.groupData);
 
   const Row = ({
+    id,
     gruppnamn,
     kontakt,
     telefon,
@@ -14,7 +15,7 @@ export default function GroupTable(props) {
     postkod,
     status
   }) => (
-    <tr>
+    <tr key={id}>
       <td>{gruppnamn}</td>
       <td>{kontakt}</td>
       <td>{telefon}</td>
@@ -67,7 +68,7 @@ export default function GroupTable(props) {
     setGroupData(arrayCopy);
   };
 
-  const rows = groupData.map(rowData => <Row {...rowData} />);
+  const rows = groupData.map(rowData => <Row key={rowData.id} {...rowData} />);
 
   return (
     <div className="table-responsive">

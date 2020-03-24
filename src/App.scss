@@ -7,6 +7,8 @@ $primary-color: #3d0099;
 $primary-color-dark: darken($primary-color, 10%); 
 $primary-color-medium: lighten($primary-color, 10%); 
 $primary-color-light: lighten($primary-color, 35%); 
+$sub-color: grey;
+$main-color: black;
 
 
 html { 
@@ -49,11 +51,113 @@ body {
 }
 
 
-//Sections
+//SECTIONS
 .page-layout {
   background-color: rgba(255, 255, 255, .6) !important;
   padding: 10px;
   margin: 10px 0;
+}
+
+//Sign in
+.sign-in {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.custom-button {
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 12px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+
+    &:hover {
+      background-color: #357ae8;
+      border: none;
+    }
+  }
+}
+
+
+
+@mixin shrinkLabel {
+  top: -14px;
+  font-size: 12px;
+  color: $main-color;
+}
+
+.group {
+  position: relative;
+  margin: 45px 0;
+
+  .form-input {
+    background: none;
+    background-color: white;
+    color: $sub-color;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sub-color;
+    margin: 25px 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ .form-input-label {
+      @include shrinkLabel();
+    }
+  }
+
+  input[type='password'] {
+    letter-spacing: 0.3em;
+  }
+
+  .form-input-label {
+    color: $sub-color;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 300ms ease all;
+
+    &.shrink {
+      @include shrinkLabel();
+    }
+  }
 }
 
 //Components

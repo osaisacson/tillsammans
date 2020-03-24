@@ -1,6 +1,10 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+//Dummydata
 import OrdersDummyData from './../../DummyData/OrdersDummyData';
 
 //Components
@@ -17,40 +21,47 @@ export default function Orders() {
     data => data.status === 'inaktiv'
   );
 
+  //Getting data from firestore
+  const firestore = firebase.firestore();
+  const getCollectionFromFirestoreTest = firestore.collection('/users');
+
   return (
-    <div className="page-layout">
-      <h2>Beställningar</h2>
-      <p>Sortera genom att trycka på titlarna</p>
-      <Tabs defaultActiveKey="nya" id="0">
-        <Tab
-          eventKey="nya"
-          title={`Nya beställningar (${
-            newOrders.length ? newOrders.length : 0
-          })`}
-        >
-          <OrdersTable ordersData={newOrders} />
-        </Tab>
-        <Tab
-          eventKey="aktiva"
-          title={`Aktiva (${activeOrders.length ? activeOrders.length : 0})`}
-        >
-          <OrdersTable ordersData={activeOrders} />
-        </Tab>
-        <Tab
-          eventKey="klara"
-          title={`Klara (${doneOrders.length ? doneOrders.length : 0})`}
-        >
-          <OrdersTable ordersData={doneOrders} />
-        </Tab>
-        <Tab
-          eventKey="inaktiv"
-          title={`Inaktiva (${
-            inactiveOrders.length ? inactiveOrders.length : 0
-          })`}
-        >
-          <OrdersTable ordersData={inactiveOrders} />
-        </Tab>
-      </Tabs>
-    </div>
+    console.log('testFirestore: ', getCollectionFromFirestoreTest),
+    (
+      <div className="page-layout">
+        <h2>Beställningar</h2>
+        <p>Sortera genom att trycka på titlarna</p>
+        <Tabs defaultActiveKey="nya" id="0">
+          <Tab
+            eventKey="nya"
+            title={`Nya beställningar (${
+              newOrders.length ? newOrders.length : 0
+            })`}
+          >
+            <OrdersTable ordersData={newOrders} />
+          </Tab>
+          <Tab
+            eventKey="aktiva"
+            title={`Aktiva (${activeOrders.length ? activeOrders.length : 0})`}
+          >
+            <OrdersTable ordersData={activeOrders} />
+          </Tab>
+          <Tab
+            eventKey="klara"
+            title={`Klara (${doneOrders.length ? doneOrders.length : 0})`}
+          >
+            <OrdersTable ordersData={doneOrders} />
+          </Tab>
+          <Tab
+            eventKey="inaktiv"
+            title={`Inaktiva (${
+              inactiveOrders.length ? inactiveOrders.length : 0
+            })`}
+          >
+            <OrdersTable ordersData={inactiveOrders} />
+          </Tab>
+        </Tabs>
+      </div>
+    )
   );
 }

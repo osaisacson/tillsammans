@@ -17,6 +17,7 @@ import Apply from './screens/users/Apply';
 import Volunteer from './screens/users/Volunteer';
 //Admin screens
 import Admin from './screens/admin/Admin';
+import SignInPage from './screens/admin/SignInPage';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
@@ -52,6 +53,9 @@ export default function App() {
             {/* För admin */}
             <Route path="/admin">
               <Admin />
+            </Route>
+            <Route path="/sign-in">
+              <SignInPage />
             </Route>
             <Route path="/beställningar">
               <Orders />

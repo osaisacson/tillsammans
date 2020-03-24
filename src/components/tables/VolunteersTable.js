@@ -73,7 +73,9 @@ export default function VolunteersTable(props) {
     setVolunteerData(arrayCopy);
   };
 
-  const rows = volunteerData.map(rowData => <Row {...rowData} />);
+  const rows = volunteerData.map(rowData => (
+    <Row key={rowData.id} {...rowData} />
+  ));
 
   return (
     <div className="table-responsive">
