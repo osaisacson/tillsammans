@@ -81,7 +81,7 @@ class HelpForm extends React.Component {
     return (
       <div className="form">
         <Form onSubmit={this.addUser}>
-          <h3>Vad behöver du hjälp med</h3>
+          <h3>Vad behöver du hjälp med?</h3>
           <Form.Group controlId={'typ'}>
             <Form.Control
               as="select"
@@ -91,12 +91,14 @@ class HelpForm extends React.Component {
               required
             >
               <option value="inget val">Välj typ</option>
-              <option value="Ett ärende">Ett ärende</option>
-              <option value="Övrigt">Övrigt</option>
+              <option value="Handla/Hämta mat">Handla/Hämta mat</option>
+              <option value="Handla/Hämta annat">Handla/Hämta annat</option>
+              <option value="Prata">Prata</option>
+              <option value="Annat ärende">Utföra annat ärende</option>
             </Form.Control>
           </Form.Group>
 
-          <h3>Beskriv så väl du kan</h3>
+          <h3>Beskriv (så väl du kan) vad beställningen innebär</h3>
           <Form.Group controlId="t-1">
             <Form.Control
               as="textarea"
@@ -105,7 +107,7 @@ class HelpForm extends React.Component {
               value={this.state.beskrivning}
               onChange={this.updateInput}
               // defaultValue={'tidigare värde'} Såhär fixar vi edit form senare
-              placeholder="Inköpslista, övrig information..."
+              placeholder="Inköpslista, önskad butik eller annan information om din beställning."
             />
           </Form.Group>
 
@@ -118,9 +120,12 @@ class HelpForm extends React.Component {
               onChange={this.updateInput}
               required
             >
-              <option value="tvådagar">Upp till två dagar</option>
-              <option value="vecka">Upp till en vecka</option>
-              <option value="fort">Så snabbt som möjligt</option>
+              <option value="Inget val">Välj</option>
+              <option value="Max en dag">Max en dag</option>
+              <option value="Upp till två dagar">Upp till två dagar</option>
+              <option value="Upp till två dagar">Upp till tre dagar</option>
+              <option value="Upp till tre dagar">Upp till tre dagar</option>
+              <option value="Ta det när det går">Ta det när det går</option>
             </Form.Control>
           </Form.Group>
 
@@ -139,7 +144,7 @@ class HelpForm extends React.Component {
                 label="email"
                 value={this.state.email}
                 onChange={this.updateInput}
-                placeholder="e-post"
+                placeholder="E-post (frivilligt)"
                 type="email"
                 required
               />

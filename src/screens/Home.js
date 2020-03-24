@@ -14,6 +14,9 @@ export default function Home() {
       <h6 className="centered">Välj det som stämmer på dig:</h6>
       <div className="page-layout">
         <div className="flex-column centered">
+          <div className="blurb">
+            Upprätthåll din karantän, beställ volontärhjälp här!
+          </div>
           <Link to={`/ansök-om-assistans`}>
             <IconButton
               text={
@@ -30,13 +33,13 @@ export default function Home() {
           </Link>
           <Link to={`/bli-voluntär/`}>
             {' '}
-            <IconButton text={'Jag vill bli voluntär'} />
+            <IconButton text={'Jag är frisk och vill bli voluntär'} />
           </Link>
         </div>
       </div>
-      <div className="nav-pill float-right">
+      {/* <div className="nav-pill float-right">
         <Link to="/admin">Admin</Link>
-      </div>
+      </div> */}
     </>
   );
 }

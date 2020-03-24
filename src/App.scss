@@ -28,6 +28,12 @@ body {
   padding: 15px;
 }
 
+h6 {
+  font-size: 1.1;
+}
+
+
+
 //Helpers
 .centered {
   align-items: center;
@@ -161,6 +167,21 @@ body {
 }
 
 //Components
+.blurb {
+  position: absolute;
+  left: 140px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 140px;
+  padding: 10px;
+  height: 140px;
+  text-align: center;
+  transform: rotate(-5deg);
+  font-size: 14px;
+}
+
 .start-main-header {
   display: flex;
   flex-direction: column;
@@ -251,12 +272,12 @@ body {
 .form {
 
   h3 {
-    font-size: 15px;
+    font-size: 1.1rem;
     font-weight: 600;
   }
 
   h4 {
-    font-size: 15px;
+    font-size: 1.1rem;
     font-style: italic;
     text-align: center;
   }
@@ -292,8 +313,17 @@ body {
 
 //Bootstrap overrides
 .btn {
+  font-size: 1.1rem;
   white-space: normal;
 }
 
+.btn-block {
+  background-color: $primary-color-light;
+}
+
 //Media queries
-// @media (min-width: @screen-sm-min) { body {} }
+@media only screen and (max-width: 980px) {
+  body {
+    .blurb { display: none} 
+  }
+}
