@@ -168,7 +168,12 @@ h6 {
 
 //Components
 .blurb {
-  color: $primary-color-light;
+  background: $primary-color-light;
+
+	background-image: -webkit-linear-gradient(bottom, rgba(251,236,63,.0) 75%, $primary-color-light 95%);
+  background-image: -moz-linear-gradient(bottom, rgba(251,236,63,.0) 75%, $primary-color-light 95%);
+  background-image: linear-gradient(bottom, rgba(251,236,63,.0) 75%, $primary-color-light 95%);
+  color: #fff;
   font-weight: 500;
   position: absolute;
   top: 41%;
@@ -176,13 +181,13 @@ h6 {
   display: flex;
   align-items: center;
   border-radius: 50%;
-  border: 1px solid $primary-color-light;
   width: 140px;
   padding: 10px;
   height: 140px;
   text-align: center;
   transform: rotate(-5deg);
   font-size: 14px;
+	box-shadow: 0 1px 0px rgba(0,0,0,.55);  
 }
 
 .start-main-header {
