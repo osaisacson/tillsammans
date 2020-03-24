@@ -168,13 +168,14 @@ h6 {
 
 //Components
 .blurb {
+  color: $primary-color-light;
   position: absolute;
   top: 40%;
   left: 140px;
   display: flex;
   align-items: center;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid $primary-color-light;
   width: 140px;
   padding: 10px;
   height: 140px;
