@@ -390,3 +390,15 @@ h2, p {
 @media only screen and (max-width: 980px) {
     .blurb, .language-buttons { display: none} 
 }
+
+@media only screen and (max-width: 400px) {
+  .start-main-header { 
+    h3 {
+      font-size: 28px;
+    }
+    h6 {
+      font-size: 15px;
+    }
+  } 
+}
+
