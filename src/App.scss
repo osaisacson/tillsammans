@@ -188,6 +188,11 @@ body {
   padding-top: 20px;
   padding-bottom: 30px;
 
+  a {
+    color: $main-color;
+    text-decoration: none;
+  }
+
   .flex-side-by-side {
     display: flex;
     align-items: center;
@@ -266,6 +271,14 @@ body {
 .table {
   text-align: left;
   font-size: .8rem;
+
+  .beskrivning {
+    min-width: 400px;
+  }
+   
+  .td {
+    padding: .35rem;
+  }
 
   .btn {
     font-size: .7rem;

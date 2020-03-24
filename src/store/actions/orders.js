@@ -1,4 +1,7 @@
 import Order from './../../models/order';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import moment from 'moment';
 
 export const DELETE_ORDER = 'DELETE_ORDER';
 export const CREATE_ORDER = 'CREATE_ORDER';
@@ -9,42 +12,56 @@ export const fetchOrders = () => {
   return async (dispatch, getState) => {
     // any async code you want!
     // const userId = getState().auth.userId;
+    //Getting data from firestore
+    const firestore = firebase.firestore();
+
     try {
-      const response = await fetch(
-        'https://sverige-tillsammans.firebaseio.com/orders.json'
-      );
-
-      if (!response.ok) {
-        throw new Error('Something went wrong!');
-      }
-
-      const resData = await response.json();
       const loadedOrders = [];
 
-      for (const key in resData) {
-        loadedOrders.push(
-          new Order(
-            key,
-            resData[key].datum,
-            resData[key].typ,
-            resData[key].beskrivning,
-            resData[key].tidsrymd,
-            resData[key].telefon,
-            resData[key].förnamn,
-            resData[key].efternamn,
-            resData[key].email,
-            resData[key].address,
-            resData[key].postkod,
-            resData[key].grupp,
-            resData[key].status
-          )
-        );
-      }
+      firestore
+        .collection('orders')
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            const resData = doc.data();
+            const readableDate = moment(resData.datum).fromNow();
+            // console.log('doc.id: ', doc.id);
+            // console.log('readableDate: ', readableDate);
+            // console.log('resData.typ: ', resData.typ);
+            // console.log('resData.beskrivning: ', resData.beskrivning);
+            // console.log('resData.tidsrymd: ', resData.tidsrymd);
+            // console.log('resData.telefon: ', resData.telefon);
+            // console.log('resData.förnamn: ', resData.förnamn);
+            // console.log('resData.efternamn: ', resData.efternamn);
+            // console.log('resData.email: ', resData.email);
+            // console.log('resData.address: ', resData.address);
+            // console.log('resData.grupp: ', resData.grupp);
+            // console.log('resData.status: ', resData.status);
+            loadedOrders.push(
+              new Order(
+                doc.id,
+                readableDate,
+                resData.typ,
+                resData.beskrivning,
+                resData.tidsrymd,
+                resData.telefon,
+                resData.förnamn,
+                resData.efternamn,
+                resData.email,
+                resData.address,
+                resData.grupp,
+                resData.status
+              )
+            );
+          });
+        });
+
+      console.log('ARRAY OF LOADED ORDERS: ', loadedOrders);
 
       dispatch({
         type: SET_ORDERS,
         orders: loadedOrders
-        // userOrders: loadedOrders.filter(prod => prod.ownerId === userId)
       });
     } catch (err) {
       // send to custom analytics server

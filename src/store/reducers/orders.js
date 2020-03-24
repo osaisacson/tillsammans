@@ -8,7 +8,6 @@ import Order from '../../models/order';
 
 const initialState = {
   availableOrders: []
-  // userOrders: []
 };
 
 export default (state = initialState, action) => {
@@ -30,7 +29,6 @@ export default (state = initialState, action) => {
         action.orderData.efternamn,
         action.orderData.email,
         action.orderData.address,
-        action.orderData.postkod,
         action.orderData.grupp,
         action.orderData.status
       );
@@ -53,7 +51,6 @@ export default (state = initialState, action) => {
         action.orderData.efternamn,
         action.orderData.email,
         action.orderData.address,
-        action.orderData.postkod,
         action.orderData.grupp,
         action.orderData.status
       );

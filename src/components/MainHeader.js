@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Large = () => (
   <div className="start-main-header">
@@ -10,11 +11,13 @@ const Large = () => (
 
 const ForPage = () => (
   <div className="main-header">
-    <div className="flex-side-by-side">
-      <h3>Alla Tillsammans</h3>
-      <h4>TJÖRN</h4>
-    </div>
-    <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
+    <Link to={`/`}>
+      <div className="flex-side-by-side">
+        <h3>Alla Tillsammans</h3>
+        <h4>TJÖRN</h4>
+      </div>
+      <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
+    </Link>
   </div>
 );
 

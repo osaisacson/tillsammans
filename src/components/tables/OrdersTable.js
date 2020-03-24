@@ -13,31 +13,32 @@ export default function OrdersTable(props) {
     telefon,
     email,
     address,
-    postkod,
+    grupp,
     status
   }) => (
     <tr>
       <td>{datum}</td>
       <td>{typ}</td>
-      <td>{beskrivning}</td>
+      <td className="beskrivning">{beskrivning}</td>
       <td>{tidsrymd}</td>
       <td>{telefon}</td>
       <td>{email}</td>
       <td>{address}</td>
-      <td>{postkod}</td>
+      <td>{grupp}</td>
+
       <td>
         <ButtonGroup aria-label="set status" size="sm">
           <Button
-            active={status === 'ny'}
+            active={status === 'ohanterad'}
             onClick={() => console.log('TODO: this should set status as "ny"')}
             variant="secondary"
           >
             Ny
           </Button>
           <Button
-            active={status === 'aktiv'}
+            active={status === 'hanterad'}
             onClick={() =>
-              console.log('TODO: this should set status as "aktiv"')
+              console.log('TODO: this should set status as "hanterad"')
             }
             variant="secondary"
           >
@@ -94,7 +95,7 @@ export default function OrdersTable(props) {
             <th onClick={() => sortBy('telefon')}>Telefon</th>
             <th onClick={() => sortBy('email')}>Email</th>
             <th onClick={() => sortBy('address')}>Address</th>
-            <th onClick={() => sortBy('postkod')}>Postkod</th>
+            <th onClick={() => sortBy('grupp')}>Grupp</th>
             <th onClick={() => sortBy('status')}>Status</th>
           </tr>
         </thead>

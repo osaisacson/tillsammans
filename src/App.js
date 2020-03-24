@@ -21,6 +21,7 @@ import SignInPage from './screens/admin/SignInPage';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
+import Mottaget from './screens/users/Mottaget';
 
 import './App.scss';
 
@@ -56,6 +57,9 @@ export default function App() {
             </Route>
             <Route path="/sign-in">
               <SignInPage />
+            </Route>
+            <Route path="/mottaget">
+              <Mottaget />
             </Route>
             <Route path="/beställningar">
               <Orders />

@@ -1,32 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 
-//Dummydata
-import OrdersDummyData from './../../DummyData/OrdersDummyData';
+import * as ordersActions from '../../store/actions/orders';
 
 //Components
 import OrdersTable from '../../components/tables/OrdersTable';
 
 export default function Orders() {
-  const newOrders = OrdersDummyData.filter(data => data.status === 'ny');
+  const getOrders = useSelector(state => state.orders.availableOrders);
+  const [orders, setOrders] = useState(getOrders);
 
-  const activeOrders = OrdersDummyData.filter(data => data.status === 'aktiv');
+  const newOrders = orders.filter(data => data.status === 'ohanterad');
+  const activeOrders = orders.filter(data => data.status === 'hanterad');
+  const doneOrders = orders.filter(data => data.status === 'klar');
+  const inactiveOrders = orders.filter(data => data.status === 'inaktiv');
 
-  const doneOrders = OrdersDummyData.filter(data => data.status === 'klar');
+  const dispatch = useDispatch();
 
-  const inactiveOrders = OrdersDummyData.filter(
-    data => data.status === 'inaktiv'
-  );
+  const loadOrders = useCallback(async () => {
+    try {
+      await dispatch(ordersActions.fetchOrders());
+    } catch (err) {
+      console.log(err.message);
+    }
+  }, [dispatch]);
 
-  //Getting data from firestore
-  const firestore = firebase.firestore();
-  const getCollectionFromFirestoreTest = firestore.collection('/users');
+  useEffect(() => {
+    loadOrders().then(() => {
+      console.log('Orders are loaded');
+    });
+  }, [dispatch, loadOrders]);
 
   return (
-    console.log('testFirestore: ', getCollectionFromFirestoreTest),
+    console.log('newOrders: ', newOrders),
     (
       <div className="page-layout">
         <h2>Beställningar</h2>

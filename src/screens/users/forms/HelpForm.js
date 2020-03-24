@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import firebase from '../../../firebase/firebase.utils';
+import { Redirect } from 'react-router';
 
 const Input = ({ label, placeholder, value, onChange }) => (
   <>
@@ -28,7 +29,8 @@ class HelpForm extends React.Component {
       förnamn: '',
       efternamn: '',
       email: '',
-      address: ''
+      address: '',
+      redirectToReferrer: false
     };
   }
 
@@ -53,7 +55,8 @@ class HelpForm extends React.Component {
       efternamn: this.state.efternamn,
       email: this.state.email,
       address: this.state.address,
-      datum: new Date(),
+      grupp: 'ingen',
+      datum: new Date().getTime(),
       status: 'ohanterad'
     });
     this.setState({
@@ -64,11 +67,17 @@ class HelpForm extends React.Component {
       förnamn: '',
       efternamn: '',
       email: '',
-      address: ''
+      address: '',
+      redirectToReferrer: true
     });
   };
 
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer === true) {
+      return <Redirect to="/mottaget" />;
+    }
+
     return (
       <div className="form">
         <Form onSubmit={this.addUser}>

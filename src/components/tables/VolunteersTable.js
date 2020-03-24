@@ -21,7 +21,7 @@ export default function VolunteersTable(props) {
       <td>{datum}</td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
-      <td>{beskrivning}</td>
+      <td className="beskrivning">{beskrivning}</td>
       <td>{email}</td>
       <td>{telefon}</td>
       <td>{address}</td>

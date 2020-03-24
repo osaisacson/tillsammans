@@ -10,7 +10,6 @@ class Order {
     efternamn,
     email,
     address,
-    postkod,
     grupp,
     status
   ) {
@@ -24,7 +23,6 @@ class Order {
     this.efternamn = efternamn;
     this.email = email;
     this.address = address;
-    this.postkod = postkod;
     this.grupp = grupp;
     this.status = status;
   }
