@@ -9,7 +9,7 @@ export default function Volunteer() {
     <>
       <MainHeader />
       <h6 className="form-title">BLI VOLONTÄR</h6>
-      <div className="page-layout">
+      <div className="page-layout dark-page">
         <VolunteerForm />
       </div>
     </>

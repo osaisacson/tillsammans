@@ -8,7 +8,7 @@ export default function Apply() {
   return (
     <>
       <MainHeader />
-      <div className="page-layout">
+      <div className="page-layout dark-page">
         <HelpForm />
       </div>
     </>
