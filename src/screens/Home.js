@@ -12,7 +12,7 @@ export default function Home() {
       <LanguageButtons />
       <MainHeader useLarge={true} />
       <h6 className="centered">Välj det som stämmer på dig</h6>
-      <div className="page-layout">
+      <div>
         <div className="flex-column centered">
           <div className="blurb">
             Upprätthåll din karantän, beställ volontärhjälp här!
