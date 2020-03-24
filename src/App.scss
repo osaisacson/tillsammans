@@ -3,10 +3,16 @@
 
 
 //Colors
-$primary-color: #3d0099;
+$primary-color: #421e78;
 $primary-color-dark: darken($primary-color, 10%); 
 $primary-color-medium: lighten($primary-color, 10%); 
 $primary-color-light: lighten($primary-color, 35%); 
+$primary-color-extra-light: lighten($primary-color, 45%); 
+
+$page-background: rgba(17, 19, 77, .3);
+$page-background-contrast: #fff;
+$page-background-contrast-hover: #c0c0c0;
+
 $sub-color: grey;
 $main-color: black;
 
@@ -59,9 +65,25 @@ h6 {
 
 //SECTIONS
 .page-layout {
-  background-color: rgba(255, 255, 255, .8) !important;
+  background-color: $page-background !important;
+  border-radius: 2px;
   padding: 10px;
   margin: 10px 0;
+  border-radius: 2px;
+
+  .nav {
+    a {
+      color: $page-background-contrast;
+    }
+  
+    a:hover {
+      color: $page-background-contrast-hover;
+    }
+  }
+}
+
+h2, p {
+  color: $page-background-contrast;
 }
 
 //Sign in
@@ -255,6 +277,9 @@ h6 {
 .large-icon-button {
   padding: 20px 30px;
   margin: 10px 0;
+  background-color: $primary-color-medium;
+  color: #fff;
+  border-color: $primary-color-medium;
 }
 
 .nav-pill {
@@ -284,12 +309,15 @@ h6 {
   h3 {
     font-size: 1.1rem;
     font-weight: 600;
+    color: $page-background-contrast;
   }
 
   h4 {
     font-size: 1.1rem;
     font-style: italic;
     text-align: center;
+    font-weight: 600;
+    color: $page-background-contrast;
   }
 
   .error-text {
@@ -302,6 +330,7 @@ h6 {
 .table {
   text-align: left;
   font-size: .8rem;
+  background-color: #fff;
 
   .beskrivning {
     min-width: 400px;
@@ -325,15 +354,30 @@ h6 {
 .btn {
   font-size: 1.1rem;
   white-space: normal;
-}
-
-.btn-block {
-  background-color: $primary-color-light;
+  background-color: $primary-color-medium;
+  border-color: $primary-color-medium;
 }
 
 .btn:hover {
   background-color: $primary-color-dark;
   border-color: $primary-color-dark;
+}
+
+.language-buttons {
+  .btn {
+    background-color: transparent;
+    border-color: $main-color;
+    font-size: .9rem;
+  }
+  .btn-dark {
+    color: $main-color;
+    border-color: $main-color;
+    font-weight: 600;
+  }
+}
+
+.nav-pills .nav-link.active {
+  background-color: $primary-color-dark !important;
 }
 
 //Media queries
