@@ -46,7 +46,7 @@ class HelpForm extends React.Component {
     // db.settings({
     //   timestampsInSnapshots: true
     // });
-    const userRef = db.collection('orders').add({
+    db.collection('orders').add({
       typ: this.state.typ,
       beskrivning: this.state.beskrivning,
       tidsrymd: this.state.tidsrymd,
@@ -74,6 +74,7 @@ class HelpForm extends React.Component {
 
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
+    //Redirect to thank you page if form has been submitted
     if (redirectToReferrer === true) {
       return <Redirect to="/mottaget" />;
     }

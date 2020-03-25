@@ -7,7 +7,7 @@ export default function Apply() {
   return (
     <>
       <MainHeader />
-      <div className="page-layout centered">
+      <div className="page-layout dark-page centered">
         <h3>Tack! Vi har mottagit din beställning.</h3>
         <p>
           Vår samordnare kommer att kontakta dig via den email eller telefon du

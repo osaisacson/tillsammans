@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -9,8 +9,7 @@ import * as ordersActions from '../../store/actions/orders';
 import OrdersTable from '../../components/tables/OrdersTable';
 
 export default function Orders() {
-  const getOrders = useSelector(state => state.orders.availableOrders);
-  const [orders, setOrders] = useState(getOrders);
+  const orders = useSelector(state => state.orders.availableOrders);
 
   const newOrders = orders.filter(data => data.status === 'ohanterad');
   const activeOrders = orders.filter(data => data.status === 'hanterad');
@@ -34,7 +33,8 @@ export default function Orders() {
   }, [dispatch, loadOrders]);
 
   return (
-    console.log('newOrders: ', newOrders),
+    console.log('-----Orders page, getting orders from state: ', orders),
+    console.log('-----newOrders: ', newOrders),
     (
       <div className="page-layout">
         <h2>Beställningar</h2>
