@@ -25,7 +25,7 @@ export const fetchOrders = () => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(resData.datum).fromNow();
+            const readableDate = moment(resData.datum).format('L');
             // console.log('doc.id: ', doc.id);
             // console.log('readableDate: ', readableDate);
             // console.log('resData.typ: ', resData.typ);
@@ -57,8 +57,7 @@ export const fetchOrders = () => {
           });
         });
 
-      console.log('ARRAY OF LOADED ORDERS: ', loadedOrders);
-
+      console.log('-----loadedOrders from fetchOrders action: ', loadedOrders);
       dispatch({
         type: SET_ORDERS,
         orders: loadedOrders

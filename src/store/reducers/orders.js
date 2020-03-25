@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case SET_ORDERS:
+      console.log('-----action.orders from SET_ORDERS reducer', action.orders);
       return {
         availableOrders: action.orders
       };
