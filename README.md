@@ -140,7 +140,7 @@ git checkout -b name-of-your-new-branch (creates a new branch identical to the l
 ```
 
 cd tillsammans (ls and cd .. until you're in the tillsammans folder)
-npm run (this opens up a http://localhost:3000 window in your browser)
+npm start (this opens up a http://localhost:3000 window in your browser)
 
 ```
 
@@ -149,8 +149,6 @@ npm run (this opens up a http://localhost:3000 window in your browser)
 5. Once you're done with your changes to the code, push them to GitHub like this:
 
 ```
-(in the first terminal window, not the one you wrote 'npm run dev' in)
-(from client_src) npm run build (this will compile your code and copy it to the client folder)
 git add .
 git commit -m "commit message"
 git push (you'll be prompted to set the upstream branch, use the given suggestion)
