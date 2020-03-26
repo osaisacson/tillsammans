@@ -20,24 +20,13 @@ export default function Groups() {
       <h2>Grupper</h2>
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
-        <Tab
-          eventKey="nya"
-          title={`Nya grupper (${newGroups.length ? newGroups.length : 0})`}
-        >
+        <Tab eventKey="nya" title={'Nya grupper'}>
           <GroupTable groupData={newGroups} />
         </Tab>
-        <Tab
-          eventKey="aktiva"
-          title={`Aktiva (${activeGroups.length ? activeGroups.length : 0})`}
-        >
+        <Tab eventKey="aktiva" title={'Aktiva'}>
           <GroupTable groupData={activeGroups} />
         </Tab>
-        <Tab
-          eventKey="inaktiva"
-          title={`Inaktiva (${
-            inactiveGroups.length ? inactiveGroups.length : 0
-          })`}
-        >
+        <Tab eventKey="inaktiva" title={'Inaktiva '}>
           <GroupTable groupData={inactiveGroups} />
         </Tab>
       </Tabs>

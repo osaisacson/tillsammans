@@ -51,32 +51,16 @@ export default function Orders() {
         <h2>Beställningar</h2>
         <p>Sortera genom att trycka på titlarna</p>
         <Tabs defaultActiveKey="nya" id="0">
-          <Tab
-            eventKey="nya"
-            title={`Nya beställningar (${
-              newOrders.length ? newOrders.length : 0
-            })`}
-          >
+          <Tab eventKey="nya" title={'Nya beställningar '}>
             <OrdersTable ordersData={orders} />
           </Tab>
-          <Tab
-            eventKey="aktiva"
-            title={`Aktiva (${activeOrders.length ? activeOrders.length : 0})`}
-          >
+          <Tab eventKey="aktiva" title={'Aktiva '}>
             <OrdersTable ordersData={activeOrders} />
           </Tab>
-          <Tab
-            eventKey="klara"
-            title={`Klara (${doneOrders.length ? doneOrders.length : 0})`}
-          >
+          <Tab eventKey="klara" title={'Klara '}>
             <OrdersTable ordersData={doneOrders} />
           </Tab>
-          <Tab
-            eventKey="inaktiv"
-            title={`Inaktiva (${
-              inactiveOrders.length ? inactiveOrders.length : 0
-            })`}
-          >
+          <Tab eventKey="inaktiv" title={`Inaktiva `}>
             <OrdersTable ordersData={inactiveOrders} />
           </Tab>
         </Tabs>
