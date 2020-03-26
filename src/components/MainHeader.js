@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 const Large = () => (
   <div className="start-main-header">
     <h3>Alla Tillsammans</h3>
-    <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
-    <h4>TJÖRN</h4>
+    <h6>Upprätthåll din karantän, beställ volontärhjälp här!</h6>
   </div>
 );
 
@@ -14,9 +13,8 @@ const ForPage = () => (
     <Link to={`/`}>
       <div className="flex-side-by-side">
         <h3>Alla Tillsammans</h3>
-        <h4>TJÖRN</h4>
       </div>
-      <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
+      <h6>Upprätthåll din karantän, beställ volontärhjälp här!</h6>
     </Link>
   </div>
 );

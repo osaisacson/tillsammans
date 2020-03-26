@@ -10,16 +10,20 @@ export default function Home() {
   return (
     <>
       <LanguageButtons />
-      <div className="nav-pill float-right">
+
+      <MainHeader useLarge={true} />
+      <div className="nav-pill how-to">
         <Link to="/sahar-funkar-det"> Såhär funkar det...</Link>
       </div>
-      <MainHeader useLarge={true} />
 
       <h6 className="centered">Välj det som stämmer på dig</h6>
       <div>
         <div className="flex-column centered">
           <div className="blurb">
-            Upprätthåll din karantän, beställ volontärhjälp här!
+            <div>
+              <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
+              <h4>TJÖRN</h4>
+            </div>
           </div>
           <Link to={`/ansök-om-assistans`}>
             <IconButton
