@@ -9,9 +9,7 @@ export const UPDATE_ORDER = 'UPDATE_ORDER';
 export const SET_ORDERS = 'SET_ORDERS';
 
 export const fetchOrders = () => {
-  return async (dispatch, getState) => {
-    // any async code you want!
-    // const userId = getState().auth.userId;
+  return async dispatch => {
     //Getting data from firestore
     const firestore = firebase.firestore();
 
@@ -26,18 +24,6 @@ export const fetchOrders = () => {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
             const readableDate = moment(resData.datum).format('L');
-            // console.log('doc.id: ', doc.id);
-            // console.log('readableDate: ', readableDate);
-            // console.log('resData.typ: ', resData.typ);
-            // console.log('resData.beskrivning: ', resData.beskrivning);
-            // console.log('resData.tidsrymd: ', resData.tidsrymd);
-            // console.log('resData.telefon: ', resData.telefon);
-            // console.log('resData.förnamn: ', resData.förnamn);
-            // console.log('resData.efternamn: ', resData.efternamn);
-            // console.log('resData.email: ', resData.email);
-            // console.log('resData.address: ', resData.address);
-            // console.log('resData.grupp: ', resData.grupp);
-            // console.log('resData.status: ', resData.status);
             loadedOrders.push(
               new Order(
                 doc.id,
@@ -57,7 +43,8 @@ export const fetchOrders = () => {
           });
         });
 
-      console.log('-----loadedOrders from fetchOrders action: ', loadedOrders);
+      console.log('loadedOrders: ', loadedOrders);
+
       dispatch({
         type: SET_ORDERS,
         orders: loadedOrders
@@ -68,6 +55,19 @@ export const fetchOrders = () => {
     }
   };
 };
+
+// console.log('doc.id: ', doc.id);
+// console.log('readableDate: ', readableDate);
+// console.log('resData.typ: ', resData.typ);
+// console.log('resData.beskrivning: ', resData.beskrivning);
+// console.log('resData.tidsrymd: ', resData.tidsrymd);
+// console.log('resData.telefon: ', resData.telefon);
+// console.log('resData.förnamn: ', resData.förnamn);
+// console.log('resData.efternamn: ', resData.efternamn);
+// console.log('resData.email: ', resData.email);
+// console.log('resData.address: ', resData.address);
+// console.log('resData.grupp: ', resData.grupp);
+// console.log('resData.status: ', resData.status);
 
 export const deleteOrder = orderId => {
   return async (dispatch, getState) => {

@@ -43,9 +43,6 @@ class HelpForm extends React.Component {
   addUser = e => {
     e.preventDefault();
     const db = firebase.firestore();
-    // db.settings({
-    //   timestampsInSnapshots: true
-    // });
     db.collection('orders').add({
       typ: this.state.typ,
       beskrivning: this.state.beskrivning,
