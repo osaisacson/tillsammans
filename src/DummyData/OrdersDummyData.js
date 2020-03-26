@@ -13,7 +13,7 @@ const ORDERS = [
     'malin.knutsson@gmail.com',
     'Näs 21',
     '',
-    'ny'
+    'ohanterad'
   ),
   new Order(
     'o2',
@@ -27,7 +27,7 @@ const ORDERS = [
     'per.larsson@gmail.com',
     'Näs 8',
     '',
-    'ny'
+    'ohanterad'
   ),
   new Order(
     'o3',
@@ -41,7 +41,7 @@ const ORDERS = [
     'mikael.mansson@gmail.com',
     'Näs 16',
     'Egnahemsfabriken',
-    'aktiv'
+    'hanterad'
   ),
   new Order(
     'o4',
@@ -55,7 +55,7 @@ const ORDERS = [
     'mikael.mansson@gmail.com',
     'Näs 16',
     'Svenska Kyrkan Tjörn',
-    'aktiv'
+    'hanterad'
   ),
   new Order(
     'o5',
@@ -69,7 +69,7 @@ const ORDERS = [
     'mikael.mansson@gmail.com',
     'Näs 16',
     'Egnahemsfabriken',
-    'aktiv'
+    'hanterad'
   ),
   new Order(
     'o6',
@@ -83,7 +83,7 @@ const ORDERS = [
     'molly.mansson@gmail.com',
     'Näs 16',
     'Egnahemsfabriken',
-    'aktiv'
+    'hanterad'
   ),
   new Order(
     'o7',

@@ -1,42 +1,44 @@
-import React, { useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import React, { useEffect, useCallback } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import volunteersDummyData from './../../DummyData/VolunteersDummyData';
 
-import * as volunteersActions from '../../store/actions/volunteers';
+// import * as volunteersActions from '../../store/actions/volunteers';
 
 //Components
 import VolunteersTable from '../../components/tables/VolunteersTable';
 
 export default function Volunteers() {
-  const volunteers = useSelector(state => state.volunteers.availableVolunteers);
+  const volunteers = volunteersDummyData;
+
+  // const volunteers = useSelector(state => state.volunteers.availableVolunteers);
 
   const aVolunteers = volunteers.filter(data => data.status === 'ny');
   const bVolunteers = volunteers.filter(data => data.status === 'fördelad');
   const cVolunteers = volunteers.filter(data => data.status === 'kontaktad');
   const dVolunteers = volunteers.filter(data => data.status === 'pausad');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const loadVolunteers = useCallback(async () => {
-    try {
-      await dispatch(volunteersActions.fetchVolunteers());
-    } catch (err) {
-      console.log(err.message);
-    }
-  }, [dispatch]);
+  // const loadVolunteers = useCallback(async () => {
+  //   try {
+  //     await dispatch(volunteersActions.fetchVolunteers());
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }, [dispatch]);
 
-  useEffect(() => {
-    loadVolunteers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   loadVolunteers();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="page-layout">
       <h2>Volontärer</h2>
-      <p>1. Kontakta x</p>
-      <p>2. Markera som x</p>
-      <p>3. Lorem ipsum</p>
+      <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
           eventKey="nya"

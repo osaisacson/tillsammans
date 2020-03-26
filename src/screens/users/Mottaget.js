@@ -3,7 +3,7 @@ import React from 'react';
 export default function Apply() {
   return (
     <>
-      <div className="page-layout dark-page centered">
+      <div className="page-layout centered">
         <h3>Tack!</h3>
         <p>
           Vår samordnare kommer att kontakta dig via den email eller telefon du

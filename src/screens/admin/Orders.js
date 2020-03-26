@@ -1,35 +1,39 @@
-import React, { useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import React, { useEffect, useCallback } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import ordersDummyData from './../../DummyData/OrdersDummyData';
 
-import * as ordersActions from '../../store/actions/orders';
+// import * as ordersActions from '../../store/actions/orders';
 
 //Components
 import OrdersTable from '../../components/tables/OrdersTable';
 
 export default function Orders() {
-  const orders = useSelector(state => state.orders.availableOrders);
+  const orders = ordersDummyData;
+
+  // const orders = useSelector(state => state.orders.availableOrders);
 
   const newOrders = orders.filter(data => data.status === 'ohanterad');
   const activeOrders = orders.filter(data => data.status === 'hanterad');
   const doneOrders = orders.filter(data => data.status === 'klar');
   const inactiveOrders = orders.filter(data => data.status === 'inaktiv');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const loadOrders = useCallback(async () => {
-    try {
-      await dispatch(ordersActions.fetchOrders());
-    } catch (err) {
-      console.log(err.message);
-    }
-  }, [dispatch]);
+  // const loadOrders = useCallback(async () => {
+  //   try {
+  //     await dispatch(ordersActions.fetchOrders());
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }, [dispatch]);
 
-  useEffect(() => {
-    loadOrders();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   loadOrders();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // useEffect(() => {
   //   loadOrders().then(() => {
