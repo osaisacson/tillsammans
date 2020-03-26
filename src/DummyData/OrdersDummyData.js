@@ -12,7 +12,6 @@ const ORDERS = [
     'Knutsson',
     'malin.knutsson@gmail.com',
     'Näs 21',
-    '47170',
     '',
     'ny'
   ),
@@ -27,7 +26,6 @@ const ORDERS = [
     'Larsson',
     'per.larsson@gmail.com',
     'Näs 8',
-    '47174',
     '',
     'ny'
   ),
@@ -42,7 +40,6 @@ const ORDERS = [
     'Månsson',
     'mikael.mansson@gmail.com',
     'Näs 16',
-    '47179',
     'Egnahemsfabriken',
     'aktiv'
   ),
@@ -57,7 +54,6 @@ const ORDERS = [
     'Månsson',
     'mikael.mansson@gmail.com',
     'Näs 16',
-    '47174',
     'Svenska Kyrkan Tjörn',
     'aktiv'
   ),
@@ -72,7 +68,6 @@ const ORDERS = [
     'Månsson',
     'mikael.mansson@gmail.com',
     'Näs 16',
-    '47176',
     'Egnahemsfabriken',
     'aktiv'
   ),
@@ -87,7 +82,6 @@ const ORDERS = [
     'Månsson',
     'molly.mansson@gmail.com',
     'Näs 16',
-    '47171',
     'Egnahemsfabriken',
     'aktiv'
   ),
@@ -102,7 +96,6 @@ const ORDERS = [
     'Månsson',
     'molly.mansson@gmail.com',
     'Näs 16',
-    '47171',
     'Egnahemsfabriken',
     'klar'
   ),
@@ -117,7 +110,6 @@ const ORDERS = [
     'Månsson',
     'molly.mansson@gmail.com',
     'Näs 16',
-    '47171',
     'Egnahemsfabriken',
     'klar'
   ),
@@ -132,7 +124,6 @@ const ORDERS = [
     'Smith',
     'molly.mansson@gmail.com',
     'Näs 16',
-    '47171',
     'Egnahemsfabriken',
     'klar'
   ),
@@ -147,7 +138,6 @@ const ORDERS = [
     'Månsson',
     'molly.mansson@gmail.com',
     'Näs 16',
-    '47171',
     'Egnahemsfabriken',
     'klar'
   ),
@@ -162,7 +152,6 @@ const ORDERS = [
     'Månsson',
     'molly.mansson@gmail.com',
     'Näs 16',
-    '47170',
     '',
     'inaktiv'
   )

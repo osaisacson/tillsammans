@@ -1,12 +1,8 @@
 import React from 'react';
 
-//Components
-import MainHeader from '../../components/MainHeader';
-
 export default function Apply() {
   return (
     <>
-      <MainHeader />
       <div className="page-layout dark-page centered">
         <h3>Tack!</h3>
         <p>

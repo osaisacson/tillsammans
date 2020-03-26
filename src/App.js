@@ -10,6 +10,9 @@ import ordersReducer from './store/reducers/orders';
 import volunteersReducer from './store/reducers/volunteers';
 // import authReducer from './store/reducers/auth';
 
+//Components
+import MainHeader from './components/MainHeader';
+
 //All screens
 import Home from './screens/Home';
 //User screens
@@ -23,7 +26,6 @@ import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 import Mottaget from './screens/users/Mottaget';
 //Info screens
-import Conditions from './screens/info/Conditions';
 import HowTo from './screens/info/HowTo';
 import Intro from './screens/info/Intro';
 import Network from './screens/info/Network';
@@ -47,6 +49,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <Router>
+        <MainHeader />
+
         <div className="container">
           <Switch>
             {/* För användare */}
@@ -56,9 +60,7 @@ export default function App() {
             <Route path="/bli-volontar">
               <Volunteer />
             </Route>
-            <Route path="/vilkor">
-              <Conditions />
-            </Route>
+            <Route path="/byt-sprak"></Route>
             <Route path="/sahar-funkar-det">
               <HowTo />
             </Route>

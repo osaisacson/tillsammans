@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Large = () => (
-  <div className="start-main-header">
-    <h3>Alla Tillsammans</h3>
-    <h6>Upprätthåll din karantän, beställ volontärhjälp här!</h6>
-  </div>
-);
-
-const ForPage = () => (
-  <div className="main-header">
-    <Link to={`/`}>
-      <div className="flex-side-by-side">
-        <h3>Alla Tillsammans</h3>
-      </div>
-      <h6>Upprätthåll din karantän, beställ volontärhjälp här!</h6>
-    </Link>
-  </div>
-);
-
 export default function MainHeader(props) {
-  return props.useLarge ? <Large /> : <ForPage />;
+  return (
+    <div className="main-header">
+      <div>
+        <div className="alla-tillsammans">
+          <h3 className="bold">Alla Tillsammans</h3>
+          <h3>mot Covid-19</h3>
+        </div>
+        <h2>Civilsamhället i samverkan</h2>
+      </div>
+      <div>
+        <Link to="/sahar-funkar-det"> Såhär funkar det</Link>
+        <Link to="/intro">Vad kan man få hjälp med?</Link>
+        <Link to="/natverk"> Kontakt</Link>
+        <Link to="/vilkor"> Byt språk </Link>
+      </div>
+    </div>
+  );
 }

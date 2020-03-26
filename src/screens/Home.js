@@ -3,19 +3,10 @@ import { Link } from 'react-router-dom';
 
 //Components
 import IconButton from './../components/IconButton';
-import MainHeader from './../components/MainHeader';
-import LanguageButtons from './../components/LanguageButtons';
 
 export default function Home() {
   return (
     <>
-      <LanguageButtons />
-
-      <MainHeader useLarge={true} />
-      <div className="nav-pill how-to">
-        <Link to="/sahar-funkar-det"> Såhär funkar det...</Link>
-      </div>
-
       <h6 className="centered">Välj det som stämmer på dig</h6>
       <div>
         <div className="flex-column centered">
@@ -44,20 +35,10 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="links-bottom-page">
-        <div className="nav-pill">
-          <Link to="/intro">Introduktion</Link>
-        </div>
-        <div className="nav-pill">
-          <Link to="/natverk"> Civilsamhällets volontärnätverk på Tjörn </Link>
-        </div>
-        <div className="nav-pill">
-          <Link to="/vilkor"> Användarvillkor för tjänsten </Link>
-        </div>
-      </div>
-      <div className="nav-pill float-right">
+
+      {/* <div className="nav-pill float-right">
         <Link to="/admin">Admin</Link>
-      </div>
+      </div> */}
     </>
   );
 }
