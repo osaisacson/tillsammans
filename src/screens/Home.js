@@ -13,12 +13,12 @@ export default function Home() {
       </div>
       <div>
         <div className="flex-column centered">
-          <div className="blurb">
+          {/* <div className="blurb">
             <div>
               <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
               <h4>TJÖRN</h4>
             </div>
-          </div>
+          </div> */}
           <Link to={`/ansök-om-assistans`}>
             <IconButton
               text={

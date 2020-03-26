@@ -200,7 +200,7 @@ body {
 /* ------ Components ------*/
 .home-prompt {
   @extend .centered;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.6);
   width: fit-content;
   margin: auto;
   margin-bottom: 30px;
@@ -248,7 +248,7 @@ body {
 }
 
 .main-header-wrapper {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .main-header {
@@ -320,6 +320,7 @@ body {
 .form-title {    
   font-weight: 800;
   font-size: 14px;
+  margin-bottom: 30px;
 }
 
 .large-icon-button {
