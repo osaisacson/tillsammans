@@ -1,15 +1,5 @@
 class Group {
-  constructor(
-    id,
-    datum,
-    gruppnamn,
-    kontakt,
-    telefon,
-    email,
-    address,
-    postkod,
-    status
-  ) {
+  constructor(id, datum, gruppnamn, kontakt, telefon, email, address, status) {
     this.id = id;
     this.datum = datum;
     this.gruppnamn = gruppnamn;
@@ -17,7 +7,6 @@ class Group {
     this.telefon = telefon;
     this.email = email;
     this.address = address;
-    this.postkod = postkod;
     this.status = status;
   }
 }

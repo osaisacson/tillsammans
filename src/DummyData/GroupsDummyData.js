@@ -8,8 +8,7 @@ const GROUPS = [
     '0703494933',
     'karin.hansson@gmail.com',
     'Bergavägen 122',
-    '47176',
-    'aktiv'
+    'ny'
   ),
   new Group(
     'g2',
@@ -19,7 +18,6 @@ const GROUPS = [
     '0724662262',
     'bob.knutsson@gmail.com',
     'Skärhamn 22',
-    '47176',
     'aktiv'
   ),
   new Group(
@@ -30,7 +28,6 @@ const GROUPS = [
     '0753039202',
     'larsullerud_hu@gmail.com',
     'Hjälteby 19',
-    '47172',
     'aktiv'
   ),
   new Group(
@@ -41,7 +38,6 @@ const GROUPS = [
     '0701245662',
     'kalle.karlsson@gmail.com',
     'Långekärr 11',
-    '47174',
     'inaktiv'
   )
 ];
