@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //Reducers
 import ordersReducer from './store/reducers/orders';
 // import groupsReducer from './store/reducers/groups';
-// import volunteersReducer from './store/reducers/volunteers';
+import volunteersReducer from './store/reducers/volunteers';
 // import authReducer from './store/reducers/auth';
 
 //All screens
@@ -32,9 +32,9 @@ import './App.scss';
 
 //Combines all the reducers which manages our redux state. This is where we geet our current state from in the child screens.
 const rootReducer = combineReducers({
-  orders: ordersReducer
+  orders: ordersReducer,
+  volunteers: volunteersReducer
   // groups: groupsReducer,
-  // volunteers: volunteersReducer
   // auth: authReducer
 });
 
