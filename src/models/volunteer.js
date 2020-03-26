@@ -1,27 +1,25 @@
 class Volunteer {
   constructor(
     id,
-    datum,
     förnamn,
     efternamn,
-    beskrivning,
-    email,
     telefon,
+    email,
     address,
-    postkod,
+    beskrivning,
     grupp,
+    datum,
     status
   ) {
     this.id = id;
-    this.datum = datum;
     this.förnamn = förnamn;
     this.efternamn = efternamn;
-    this.beskrivning = beskrivning;
-    this.email = email;
     this.telefon = telefon;
+    this.email = email;
     this.address = address;
-    this.postkod = postkod;
+    this.beskrivning = beskrivning;
     this.grupp = grupp;
+    this.datum = datum;
     this.status = status;
   }
 }

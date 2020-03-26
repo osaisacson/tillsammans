@@ -11,14 +11,10 @@ import VolunteersTable from '../../components/tables/VolunteersTable';
 export default function Volunteers() {
   const volunteers = useSelector(state => state.volunteers.availableVolunteers);
 
-  const newVolunteers = volunteers.filter(data => data.status === 'ohanterad');
-  const activeVolunteers = volunteers.filter(
-    data => data.status === 'hanterad'
-  );
-  const doneVolunteers = volunteers.filter(data => data.status === 'klar');
-  const inactiveVolunteers = volunteers.filter(
-    data => data.status === 'inaktiv'
-  );
+  const aVolunteers = volunteers.filter(data => data.status === 'ny');
+  const bVolunteers = volunteers.filter(data => data.status === 'fördelad');
+  const cVolunteers = volunteers.filter(data => data.status === 'kontaktad');
+  const dVolunteers = volunteers.filter(data => data.status === 'pausad');
 
   const dispatch = useDispatch();
 
@@ -38,29 +34,25 @@ export default function Volunteers() {
   return (
     <div className="page-layout">
       <h2>Volontärer</h2>
-      <p>Sortera genom att trycka på titlarna</p>
+      <p>1. Kontakta x</p>
+      <p>2. Markera som x</p>
+      <p>3. Lorem ipsum</p>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
           eventKey="nya"
-          title={`Nya (${newVolunteers.length ? newVolunteers.length : 0})`}
+          title={`Nya anmälningar`}
+          // title={`Nya anmälningar (${aVolunteers.length ? aVolunteers.length : 0})`}
         >
-          <VolunteersTable volunteerData={newVolunteers} />
+          <VolunteersTable volunteerData={aVolunteers} />
         </Tab>
-        <Tab
-          eventKey="kontaktada"
-          title={`Kontaktade (${
-            contactedVolunteers.length ? contactedVolunteers.length : 0
-          })`}
-        >
-          <VolunteersTable volunteerData={contactedVolunteers} />
+        <Tab eventKey="fördelade" title={'Fördelade för att kontaktas'}>
+          <VolunteersTable volunteerData={bVolunteers} />
         </Tab>
-        <Tab
-          eventKey="aktiva"
-          title={`Aktiva (${
-            activeVolunteers.length ? activeVolunteers.length : 0
-          })`}
-        >
-          <VolunteersTable volunteerData={activeVolunteers} />
+        <Tab eventKey="aktiva" title={'Aktiva i grupper'}>
+          <VolunteersTable volunteerData={cVolunteers} />
+        </Tab>
+        <Tab eventKey="pausade" title={'Pausade'}>
+          <VolunteersTable volunteerData={dVolunteers} />
         </Tab>
       </Tabs>
     </div>

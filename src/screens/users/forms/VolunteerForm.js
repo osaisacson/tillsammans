@@ -51,7 +51,6 @@ const Input = ({ label, placeholder, value, onChange }) => (
 
 const VolunteerForm = props => {
   // const voluntrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited Volunteer, passed from previous screen
-  const voluntrId = null; //Get the id of the currently edited Volunteer, passed from previous screen
 
   //Find Volunteer
   // const editedVolunteer = useSelector(state =>
@@ -88,7 +87,6 @@ const VolunteerForm = props => {
 
   const addVolunteer = e => {
     e.preventDefault();
-    console.log('ADD VOLUNTEER TRIGGERED');
     const db = firebase.firestore();
     db.collection('volunteers').add({
       förnamn: formState.inputValues.förnamn,
@@ -99,7 +97,7 @@ const VolunteerForm = props => {
       beskrivning: formState.inputValues.beskrivning,
       grupp: 'ingen',
       datum: new Date().getTime(),
-      status: 'ohanterad'
+      status: 'ny'
     });
     setRedirectToThanks(true);
   };
