@@ -113,39 +113,51 @@ export const createOrder = (
     console.log('email:', email);
     console.log('address:', address);
     console.log('postkod:', postkod);
-    console.log('postkod:', postkod);
     console.log('---------');
 
-    // any async code you want!
-    // const token = getState().auth.token;
-    // const userId = getState().auth.userId;
-    const setDatum = new Date();
-    const setGrupp = 'ingen ännu';
+    const setDatum = new Date().getTime();
+    const setGrupp = 'ingen';
     const setStatus = 'ohanterad';
-    const response = await fetch(
-      `https://sverige-tillsammans.firebaseio.com/orders.json`,
-      // `https://sverige-tillsammans.firebaseio.com/orders.json?auth=${token}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          datum: setDatum,
-          typ,
-          beskrivning,
-          tidsrymd,
-          telefon,
-          förnamn,
-          efternamn,
-          email,
-          address,
-          postkod,
-          grupp: setGrupp,
-          status: setStatus
-        })
-      }
-    );
+
+    const db = firebase.firestore();
+    const response = await db.collection('orders').add({
+      typ: typ,
+      beskrivning: beskrivning,
+      tidsrymd: tidsrymd,
+      telefon: telefon,
+      förnamn: förnamn,
+      efternamn: efternamn,
+      email: email,
+      address: address,
+      grupp: setGrupp,
+      datum: setDatum,
+      status: setStatus
+    });
+
+    // const response = await fetch(
+    //   `https://sverige-tillsammans.firebaseio.com/orders.json`,
+    //   // `https://sverige-tillsammans.firebaseio.com/orders.json?auth=${token}`,
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //       datum: setDatum,
+    //       typ,
+    //       beskrivning,
+    //       tidsrymd,
+    //       telefon,
+    //       förnamn,
+    //       efternamn,
+    //       email,
+    //       address,
+    //       postkod,
+    //       grupp: setGrupp,
+    //       status: setStatus
+    //     })
+    //   }
+    // );
 
     const resData = await response.json();
     console.log('resData efter post/fetch firebase:', resData);

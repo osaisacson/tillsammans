@@ -55,10 +55,9 @@ export default function Home() {
           <Link to="/vilkor"> Användarvillkor för tjänsten </Link>
         </div>
       </div>
-
-      {/* <div className="nav-pill float-right">
+      <div className="nav-pill float-right">
         <Link to="/admin">Admin</Link>
-      </div> */}
+      </div>
     </>
   );
 }

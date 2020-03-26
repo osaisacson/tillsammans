@@ -27,10 +27,15 @@ export default function Orders() {
   }, [dispatch]);
 
   useEffect(() => {
-    loadOrders().then(() => {
-      console.log('Orders are loaded');
-    });
-  }, [dispatch, loadOrders]);
+    loadOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // useEffect(() => {
+  //   loadOrders().then(() => {
+  //     console.log('Orders are loaded');
+  //   });
+  // }, [dispatch, loadOrders]);
 
   return (
     console.log(
@@ -52,7 +57,7 @@ export default function Orders() {
               newOrders.length ? newOrders.length : 0
             })`}
           >
-            <OrdersTable ordersData={newOrders} />
+            <OrdersTable ordersData={orders} />
           </Tab>
           <Tab
             eventKey="aktiva"
