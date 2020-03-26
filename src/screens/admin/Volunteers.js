@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import VolunteersDummyData from './../../DummyData/VolunteersDummyData';
+
+import * as volunteersActions from '../../store/actions/volunteers';
 
 //Components
 import VolunteersTable from '../../components/tables/VolunteersTable';
 
 export default function Volunteers() {
-  const newVolunteers = VolunteersDummyData.filter(
-    data => data.status === 'ny'
+  const volunteers = useSelector(state => state.volunteers.availableVolunteers);
+
+  const newVolunteers = volunteers.filter(data => data.status === 'ohanterad');
+  const activeVolunteers = volunteers.filter(
+    data => data.status === 'hanterad'
+  );
+  const doneVolunteers = volunteers.filter(data => data.status === 'klar');
+  const inactiveVolunteers = volunteers.filter(
+    data => data.status === 'inaktiv'
   );
 
-  const contactedVolunteers = VolunteersDummyData.filter(
-    data => data.status === 'kontaktad'
-  );
+  const dispatch = useDispatch();
 
-  const activeVolunteers = VolunteersDummyData.filter(
-    data => data.status === 'aktiv'
-  );
+  const loadVolunteers = useCallback(async () => {
+    try {
+      await dispatch(volunteersActions.fetchVolunteers());
+    } catch (err) {
+      console.log(err.message);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    loadVolunteers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="page-layout">
