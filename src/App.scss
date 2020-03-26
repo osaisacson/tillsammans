@@ -260,18 +260,43 @@ body {
   h2 {
     font-size: 1.2rem;
     font-weight: 800;
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
   }
 
   a {
-    padding: 10px;
-    font-size: .8rem;
-    text-transform: uppercase;
     color: #000;
     text-decoration: none;
   }
 
   a:hover {
     color: $primary-color-light;
+  }
+
+  .header-links{
+
+    a {
+      padding: 10px;
+      font-size: .8rem;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.header-label {
+  width: fit-content;
+  background-color: #fff;
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 0 0 10px 10px;
+
+  h3 {
+    margin: 0;
+    font-weight: 300;
+    font-size: 1.4rem;
   }
 }
 
