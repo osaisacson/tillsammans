@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function MainHeader(props) {
   return (
-    <>
+    <div className="main-header-wrapper">
       <div className="main-header">
         <div>
           <Link to="/">
@@ -24,6 +24,6 @@ export default function MainHeader(props) {
       <div className="header-label">
         <h3>TJÖRN</h3>
       </div>
-    </>
+    </div>
   );
 }

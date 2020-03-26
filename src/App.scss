@@ -17,6 +17,7 @@ $sub-color: grey;
 $main-color: black;
 $main-text-color: #fff;
 
+
 /* ------ Main ------*/
 html { 
   width: 100vw;
@@ -95,8 +96,6 @@ body {
   position: relative;
   bottom: 0;
 }
-
-
 
 // Sign in
 .sign-in {
@@ -199,6 +198,20 @@ body {
 }
 
 /* ------ Components ------*/
+.home-prompt {
+  @extend .centered;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 30px;
+
+  h6 {
+    font-weight: 800;
+    color: #000;
+    padding: 2px;
+  }
+}
+
 .blurb {
   background: $primary-color-light;
   color: #fff;
@@ -232,6 +245,10 @@ body {
 
 .how-to {
   margin: 0 auto 20px !important;
+}
+
+.main-header-wrapper {
+  margin-bottom: 100px;
 }
 
 .main-header {

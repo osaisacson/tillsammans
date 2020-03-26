@@ -7,7 +7,10 @@ import IconButton from './../components/IconButton';
 export default function Home() {
   return (
     <>
-      <h6 className="centered">Välj det som stämmer på dig</h6>
+      <div className="home-prompt">
+        <h6>Självisolerar du för att skydda dig själv eller andra?</h6>
+        <h6>BRA! Här kan du beställa hjälp med yttre ärenden:</h6>
+      </div>
       <div>
         <div className="flex-column centered">
           <div className="blurb">
@@ -26,7 +29,7 @@ export default function Home() {
           <Link to={`/ansök-om-assistans`}>
             <IconButton
               text={
-                'Jag är riskgrupp och självisolerar mig för att inte bli smittad'
+                'Jag är riskgrupp och självisolerar för att inte bli smittad'
               }
             />
           </Link>
