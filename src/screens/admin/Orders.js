@@ -11,8 +11,7 @@ import OrdersTable from '../../components/tables/OrdersTable';
 export default function Orders() {
   const orders = useSelector(state => state.orders.availableOrders);
 
-  // const newOrders = orders.filter(data => data.status === 'ohanterad');
-  const newOrders = orders;
+  const newOrders = orders.filter(data => data.status === 'ohanterad');
   const activeOrders = orders.filter(data => data.status === 'hanterad');
   const doneOrders = orders.filter(data => data.status === 'klar');
   const inactiveOrders = orders.filter(data => data.status === 'inaktiv');
@@ -34,8 +33,14 @@ export default function Orders() {
   }, [dispatch, loadOrders]);
 
   return (
-    console.log('-----Orders page, getting orders from state: ', orders),
-    console.log('-----newOrders filtered from orders: ', newOrders),
+    console.log(
+      '-----Orders.js: getting orders from state (THIS IS POPULATED): ',
+      orders
+    ),
+    console.log(
+      '-----Orders.js: newOrders filtered from orders (THIS IS NOT WORKING SOMEHOW, PROBABLY BECAUSE OF THE FORMAT OF "orders"): ',
+      newOrders
+    ),
     (
       <div className="page-layout">
         <h2>Beställningar</h2>

@@ -14,7 +14,6 @@ export const fetchOrders = () => {
     const firestore = firebase.firestore();
 
     try {
-      const rawOrders = [];
       const loadedOrders = [];
 
       firestore
@@ -25,7 +24,7 @@ export const fetchOrders = () => {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
             const readableDate = moment(resData.datum).format('L');
-            rawOrders.push(
+            loadedOrders.push(
               new Order(
                 doc.id,
                 readableDate,
@@ -42,30 +41,12 @@ export const fetchOrders = () => {
               )
             );
           });
-        })
-        .then(function(result) {
-          for (const key in rawOrders) {
-            loadedOrders.push(
-              new Order(
-                key,
-                rawOrders[key].datum,
-                rawOrders[key].typ,
-                rawOrders[key].beskrivning,
-                rawOrders[key].tidsrymd,
-                rawOrders[key].telefon,
-                rawOrders[key].förnamn,
-                rawOrders[key].efternamn,
-                rawOrders[key].email,
-                rawOrders[key].address,
-                rawOrders[key].grupp,
-                rawOrders[key].status
-              )
-            );
-            return loadedOrders;
-          }
         });
 
-      console.log('rawOrders: ', rawOrders);
+      console.log(
+        'actions.js: data received from firebase and passed through model: ',
+        loadedOrders
+      );
 
       dispatch({
         type: SET_ORDERS,
