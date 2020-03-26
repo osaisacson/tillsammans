@@ -22,6 +22,11 @@ import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 import Mottaget from './screens/users/Mottaget';
+//Info screens
+import Conditions from './screens/info/Conditions';
+import HowTo from './screens/info/HowTo';
+import Intro from './screens/info/Intro';
+import Network from './screens/info/Network';
 
 import './App.scss';
 
@@ -48,8 +53,20 @@ export default function App() {
             <Route path="/ansök-om-assistans">
               <Apply />
             </Route>
-            <Route path="/bli-volontär">
+            <Route path="/bli-volontar">
               <Volunteer />
+            </Route>
+            <Route path="/vilkor">
+              <Conditions />
+            </Route>
+            <Route path="/sahar-funkar-det">
+              <HowTo />
+            </Route>
+            <Route path="/intro">
+              <Intro />
+            </Route>
+            <Route path="/natverk">
+              <Network />
             </Route>
             {/* För admin */}
             <Route path="/admin">

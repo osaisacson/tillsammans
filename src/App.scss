@@ -87,6 +87,17 @@ body {
   }
 }
 
+.links-bottom-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  position: relative;
+  bottom: 30px;
+}
+
 
 
 //Sign in

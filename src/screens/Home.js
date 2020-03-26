@@ -10,7 +10,11 @@ export default function Home() {
   return (
     <>
       <LanguageButtons />
+      <div className="nav-pill float-right">
+        <Link to="/sahar-funkar-det"> Såhär funkar det...</Link>
+      </div>
       <MainHeader useLarge={true} />
+
       <h6 className="centered">Välj det som stämmer på dig</h6>
       <div>
         <div className="flex-column centered">
@@ -31,11 +35,23 @@ export default function Home() {
               }
             />
           </Link>
-          <Link to={`/bli-volontär/`}>
+          <Link to={`/bli-volontar/`}>
             <IconButton text={'Jag är frisk och vill bli volontär'} />
           </Link>
         </div>
       </div>
+      <div className="links-bottom-page">
+        <div className="nav-pill">
+          <Link to="/intro">Introduktion</Link>
+        </div>
+        <div className="nav-pill">
+          <Link to="/natverk"> Civilsamhällets volontärnätverk på Tjörn </Link>
+        </div>
+        <div className="nav-pill">
+          <Link to="/vilkor"> Användarvillkor för tjänsten </Link>
+        </div>
+      </div>
+
       {/* <div className="nav-pill float-right">
         <Link to="/admin">Admin</Link>
       </div> */}
