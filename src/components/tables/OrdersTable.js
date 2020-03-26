@@ -84,23 +84,26 @@ export default function OrdersTable(props) {
   const rows = ordersData.map(rowData => <Row key={rowData.id} {...rowData} />);
 
   return (
-    <div className="table-responsive">
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th onClick={() => sortBy('datum')}>Mottaget</th>
-            <th onClick={() => sortBy('typ')}>Typ</th>
-            <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
-            <th onClick={() => sortBy('tidsrymd')}>Tid kan vänta</th>
-            <th onClick={() => sortBy('telefon')}>Telefon</th>
-            <th onClick={() => sortBy('email')}>Email</th>
-            <th onClick={() => sortBy('address')}>Address</th>
-            <th onClick={() => sortBy('grupp')}>Grupp</th>
-            <th onClick={() => sortBy('status')}>Status</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    </div>
+    console.log('OrdersTable received data: ', props.ordersData),
+    (
+      <div className="table-responsive">
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th onClick={() => sortBy('datum')}>Mottaget</th>
+              <th onClick={() => sortBy('typ')}>Typ</th>
+              <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
+              <th onClick={() => sortBy('tidsrymd')}>Tid kan vänta</th>
+              <th onClick={() => sortBy('telefon')}>Telefon</th>
+              <th onClick={() => sortBy('email')}>Email</th>
+              <th onClick={() => sortBy('address')}>Address</th>
+              <th onClick={() => sortBy('grupp')}>Grupp</th>
+              <th onClick={() => sortBy('status')}>Status</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
+    )
   );
 }

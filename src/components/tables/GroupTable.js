@@ -71,20 +71,23 @@ export default function GroupTable(props) {
   const rows = groupData.map(rowData => <Row key={rowData.id} {...rowData} />);
 
   return (
-    <div className="table-responsive">
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th onClick={() => sortBy('gruppnamn')}>Gruppnamn</th>
-            <th onClick={() => sortBy('kontakt')}>Kontakt</th>
-            <th onClick={() => sortBy('telefon')}>Telefonnummer</th>
-            <th onClick={() => sortBy('email')}>Email</th>
-            <th onClick={() => sortBy('address')}>Address</th>
-            <th onClick={() => sortBy('postkod')}>Postkod</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    </div>
+    console.log('GroupTable, received data: ', props.groupData),
+    (
+      <div className="table-responsive">
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th onClick={() => sortBy('gruppnamn')}>Gruppnamn</th>
+              <th onClick={() => sortBy('kontakt')}>Kontakt</th>
+              <th onClick={() => sortBy('telefon')}>Telefonnummer</th>
+              <th onClick={() => sortBy('email')}>Email</th>
+              <th onClick={() => sortBy('address')}>Address</th>
+              <th onClick={() => sortBy('postkod')}>Postkod</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
+    )
   );
 }

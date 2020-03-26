@@ -11,7 +11,8 @@ import OrdersTable from '../../components/tables/OrdersTable';
 export default function Orders() {
   const orders = useSelector(state => state.orders.availableOrders);
 
-  const newOrders = orders.filter(data => data.status === 'ohanterad');
+  // const newOrders = orders.filter(data => data.status === 'ohanterad');
+  const newOrders = orders;
   const activeOrders = orders.filter(data => data.status === 'hanterad');
   const doneOrders = orders.filter(data => data.status === 'klar');
   const inactiveOrders = orders.filter(data => data.status === 'inaktiv');
@@ -34,7 +35,7 @@ export default function Orders() {
 
   return (
     console.log('-----Orders page, getting orders from state: ', orders),
-    console.log('-----newOrders: ', newOrders),
+    console.log('-----newOrders filtered from orders: ', newOrders),
     (
       <div className="page-layout">
         <h2>Beställningar</h2>
