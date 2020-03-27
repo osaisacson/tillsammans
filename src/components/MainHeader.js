@@ -17,10 +17,18 @@ export default function MainHeader(props) {
           </Link>
         </div>
         <div className="header-links">
-          <Link to="/sahar-funkar-det"> Såhär funkar det</Link>
-          <Link to="/intro">Vad kan man få hjälp med?</Link>
-          <Link to="/kontakt"> Kontakt</Link>
-          <Link to="/vilkor"> Byt språk </Link>
+          <Link className="slide-left-one" to="/sahar-funkar-det">
+            Såhär funkar det
+          </Link>
+          <Link className="slide-left-two" to="/intro">
+            Vad kan man få hjälp med?
+          </Link>
+          <Link className="slide-left-three" to="/kontakt">
+            Kontakt
+          </Link>
+          <Link className="slide-left-four" to="/vilkor">
+            Byt språk
+          </Link>
         </div>
       </div>
       <div className="header-label">
