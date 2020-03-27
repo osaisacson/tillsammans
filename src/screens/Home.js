@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//Import icons
+import Icon1 from './../images/symbol2.png';
+import Icon2 from './../images/symbol1.png';
+import Icon3 from './../images/symbol3.png';
 
 //Components
 import IconButton from './../components/IconButton';
@@ -21,6 +25,7 @@ export default function Home() {
           </div> */}
           <Link to={`/ansök-om-assistans`}>
             <IconButton
+              icon={Icon1}
               text={
                 'Jag är sjuk och självisolerar mig för att inte smitta andra'
               }
@@ -28,13 +33,17 @@ export default function Home() {
           </Link>
           <Link to={`/ansök-om-assistans`}>
             <IconButton
+              icon={Icon2}
               text={
                 'Jag är riskgrupp och självisolerar för att inte bli smittad'
               }
             />
           </Link>
           <Link to={`/bli-volontar/`}>
-            <IconButton text={'Jag är frisk och vill bli volontär'} />
+            <IconButton
+              icon={Icon3}
+              text={'Jag är frisk och vill bli volontär'}
+            />
           </Link>
         </div>
       </div>
