@@ -42,33 +42,31 @@ export default function Orders() {
   // }, [dispatch, loadOrders]);
 
   return (
-    console.log(
-      '-----Orders.js: getting orders from state (THIS IS POPULATED): ',
-      orders
-    ),
-    console.log(
-      '-----Orders.js: newOrders filtered from orders (THIS IS NOT WORKING SOMEHOW, PROBABLY BECAUSE OF THE FORMAT OF "orders"): ',
-      newOrders
-    ),
-    (
-      <div className="page-layout">
-        <h2>Beställningar</h2>
-        <p>Sortera genom att trycka på titlarna</p>
-        <Tabs defaultActiveKey="nya" id="0">
-          <Tab eventKey="nya" title={'Nya beställningar '}>
-            <OrdersTable ordersData={newOrders} />
-          </Tab>
-          <Tab eventKey="aktiva" title={'Hanterade'}>
-            <OrdersTable ordersData={activeOrders} />
-          </Tab>
-          <Tab eventKey="klara" title={'Levererade'}>
-            <OrdersTable ordersData={doneOrders} />
-          </Tab>
-          <Tab eventKey="inaktiv" title={`Inaktiva `}>
-            <OrdersTable ordersData={inactiveOrders} />
-          </Tab>
-        </Tabs>
-      </div>
-    )
+    // console.log(
+    //   '-----Orders.js: getting orders from state (THIS IS POPULATED): ',
+    //   orders
+    // ),
+    // console.log(
+    //   '-----Orders.js: newOrders filtered from orders (THIS IS NOT WORKING SOMEHOW, PROBABLY BECAUSE OF THE FORMAT OF "orders"): ',
+    //   newOrders
+    // ),
+    <div className="page-layout">
+      <h2>Beställningar</h2>
+      <p>Sortera genom att trycka på titlarna</p>
+      <Tabs defaultActiveKey="nya" id="0">
+        <Tab eventKey="nya" title={'Nya beställningar '}>
+          <OrdersTable ordersData={newOrders} />
+        </Tab>
+        <Tab eventKey="aktiva" title={'Hanterade'}>
+          <OrdersTable ordersData={activeOrders} />
+        </Tab>
+        <Tab eventKey="klara" title={'Levererade'}>
+          <OrdersTable ordersData={doneOrders} />
+        </Tab>
+        <Tab eventKey="inaktiv" title={`Inaktiva `}>
+          <OrdersTable ordersData={inactiveOrders} />
+        </Tab>
+      </Tabs>
+    </div>
   );
 }

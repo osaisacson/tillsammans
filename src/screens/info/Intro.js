@@ -3,7 +3,7 @@ import React from 'react';
 export default function Intro() {
   return (
     <div className="page-layout">
-      <h2> Introduktion </h2>
+      <h2> Vad kan man få hjälp med?</h2>
       <p>
         Duis hendrerit lectus sit amet fermentum accumsan. Aenean mattis velit
         at neque consequat, ultricies cursus odio aliquet. Phasellus vel

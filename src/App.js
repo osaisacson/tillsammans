@@ -28,7 +28,7 @@ import Mottaget from './screens/users/Mottaget';
 //Info screens
 import HowTo from './screens/info/HowTo';
 import Intro from './screens/info/Intro';
-import Network from './screens/info/Network';
+import Contact from './screens/info/Contact';
 
 import './App.scss';
 
@@ -67,8 +67,8 @@ export default function App() {
             <Route path="/intro">
               <Intro />
             </Route>
-            <Route path="/natverk">
-              <Network />
+            <Route path="/kontakt">
+              <Contact />
             </Route>
             {/* För admin */}
             <Route path="/admin">

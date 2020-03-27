@@ -17,7 +17,7 @@ export default function MainHeader(props) {
         <div className="header-links">
           <Link to="/sahar-funkar-det"> Såhär funkar det</Link>
           <Link to="/intro">Vad kan man få hjälp med?</Link>
-          <Link to="/natverk"> Kontakt</Link>
+          <Link to="/kontakt"> Kontakt</Link>
           <Link to="/vilkor"> Byt språk </Link>
         </div>
       </div>
