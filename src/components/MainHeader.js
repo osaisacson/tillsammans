@@ -8,10 +8,12 @@ export default function MainHeader(props) {
         <div>
           <Link to="/">
             <div className="alla-tillsammans">
-              <h3 className="bold">Alla Tillsammans</h3>
-              <h3>mot Covid-19</h3>
+              <div>
+                <h3 className="bold">Alla Tillsammans</h3>
+                <h3>mot Covid-19</h3>
+              </div>
+              <h2>Civilsamhället i samverkan</h2>
             </div>
-            <h2>Civilsamhället i samverkan</h2>
           </Link>
         </div>
         <div className="header-links">
