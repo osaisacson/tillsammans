@@ -19,6 +19,11 @@ export default function Contact() {
                 Egnahemsfabriken. Vill du komma i kontakt med
                 volontärsamordnaren når du henne på tjorn@allatillsammans.se
               </p>
+              <p>
+                Om du istället föredrar att ringa in din beställning kan du
+                kontakta Maria Eriksson (Diakon, Stenkyrka församling - Svenska
+                kyrkan Tjörn) på 0733 230 515.
+              </p>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
