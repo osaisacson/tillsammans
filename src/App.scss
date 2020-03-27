@@ -264,6 +264,9 @@ body {
 }
 
 .main-header-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
   margin-bottom: 80px;
 }
 
@@ -272,10 +275,8 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 10px;
   color: #000;
-  position: fixed;
   background-color: #fff;
   -webkit-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
   -moz-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
@@ -317,18 +318,18 @@ body {
   a:hover {
     color: $primary-color-light;
   }
+}
 
-  .header-links{
-    display: flex;
-    flex-wrap: wrap;
+.header-links{
+  display: flex;
+  flex-wrap: wrap;
 
-    a {
-      @extend .tracking-in-contract-bck;
-      padding: 10px;
-      font-size: .8rem;
-      text-transform: uppercase;
-      transition: all .35s ease-in-out;
-    }
+  a {
+    @extend .tracking-in-contract-bck;
+    padding: 10px;
+    font-size: .8rem;
+    text-transform: uppercase;
+    transition: all .35s ease-in-out;
   }
 }
 
@@ -524,6 +525,6 @@ a:hover {
 
 /* ------ Media queries ------*/
 @media only screen and (max-width: 980px) {
-    .blurb, .language-buttons { display: none} 
+    .blurb, .language-buttons, .header-links { display: none} 
 }
 
