@@ -223,7 +223,7 @@ const VolunteerForm = props => {
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
-              placeholder="E-post (frivilligt)"
+              placeholder="e-post (frivilligt)"
               required
             />
           </Col>
