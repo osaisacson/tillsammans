@@ -212,6 +212,10 @@ body {
     color: #000;
     padding: 2px;
   }
+
+  p {
+    color: #000;
+  }
 }
 
 .blurb {
@@ -382,6 +386,8 @@ body {
 .header-label {
   width: fit-content;
   background-color: #fff;
+  position: fixed;
+  top: 60px;
   color: #000;
   padding: 4px 10px;
   border-radius: 0 0 10px 10px;
