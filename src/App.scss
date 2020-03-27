@@ -283,7 +283,6 @@ body {
 
   a {
     color: #000;
-    text-decoration: none;
   }
 
   a:hover {
@@ -316,46 +315,25 @@ body {
 
 .form-title {    
   font-weight: 800;
-  font-size: 14px;
+  font-size: 1rem;
   margin-bottom: 30px;
 }
 
 .large-icon-button {
   padding: 20px 30px;
   margin: 10px 0;
-  background-color: $primary-color-medium;
+  border-radius: 50px;
   color: #fff;
-  border-color: $primary-color-medium;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
   font-size: 1.2rem;
-  text-decoration: none;
 }
 
 .icon {
   width: 50px;
   margin-right: 15px;
-}
-
-.nav-pill {
-  margin: 20px 0;
-  width: fit-content;
-
-  a {
-    color: #fff;
-    padding: 10px 15px;
-    background-color: #666;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 10px;
-  }
-
-  a:hover {
-    background-color: #000;
-    text-decoration: none;
-  }
 }
 
 
@@ -408,6 +386,10 @@ body {
 }
 
 /* ------ Bootstrap overrides ------*/
+a:hover {
+  text-decoration: none;
+}
+
 .btn {
   font-size: 1.1rem;
   white-space: normal;
