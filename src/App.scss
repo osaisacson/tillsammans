@@ -210,35 +210,45 @@ body {
 }
 
 .blurb {
-  background: $primary-color-light;
-  color: #fff;
-  position: absolute;
-  top: 41%;
-  left: 12%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 152px;
-  height: 152px;
-  transform: rotate(-5deg);
-  box-shadow: 0 1px 0px rgba(0,0,0,.55);
-
-  div {
-    margin-top: 31px;
-  }
-  
-  h4 {
-    font-size: 20px;
-    font-weight: 200;
-  }
-  h6 {
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 400;
+  img {
+    width: 200px;
+    position: absolute;
+    left: 6%;
+    top: 40%;
   }
 }
+
+//Old blurb
+// .blurb {
+//   background: $primary-color-light;
+//   color: #fff;
+//   position: absolute;
+//   top: 41%;
+//   left: 12%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 50%;
+//   width: 152px;
+//   height: 152px;
+//   transform: rotate(-5deg);
+//   box-shadow: 0 1px 0px rgba(0,0,0,.55);
+
+//   div {
+//     margin-top: 31px;
+//   }
+  
+//   h4 {
+//     font-size: 20px;
+//     font-weight: 200;
+//   }
+//   h6 {
+//     font-size: 14px;
+//     font-style: italic;
+//     font-weight: 400;
+//   }
+// }
 
 .how-to {
   margin: 0 auto 20px !important;

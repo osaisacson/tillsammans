@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//Import icons
+//Import images
+import School from './../images/illustration-pointer-med-text.png';
 import Icon1 from './../images/symbol2.png';
 import Icon2 from './../images/symbol1.png';
 import Icon3 from './../images/symbol3.png';
@@ -17,12 +18,13 @@ export default function Home() {
       </div>
       <div>
         <div className="flex-column centered">
-          {/* <div className="blurb">
-            <div>
+          <div className="blurb">
+            <img src={School} className="school" alt="" />
+            {/* <div>
               <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
               <h4>TJÖRN</h4>
-            </div>
-          </div> */}
+            </div> */}
+          </div>
           <Link to={`/ansök-om-assistans`}>
             <IconButton
               icon={Icon1}
