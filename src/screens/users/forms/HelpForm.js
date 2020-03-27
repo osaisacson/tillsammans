@@ -236,7 +236,7 @@ const HelpForm = props => {
             <option value="Max en dag">Max en dag</option>
             <option value="Upp till två dagar">Upp till två dagar</option>
             <option value="Upp till två dagar">Upp till tre dagar</option>
-            <option value="Upp till tre dagar">Upp till tre dagar</option>
+            <option value="Upp till tre dagar">Upp till fyra dagar</option>
             <option value="Ta det när det går">Ta det när det går</option>
           </Form.Control>
         </Form.Group>
