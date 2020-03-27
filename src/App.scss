@@ -442,18 +442,18 @@ body {
 
 //slide-right
 .slide-right-one {
+	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s both;
+	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s both;
+}
+
+.slide-right-two {
 	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .1s both;
 	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .1s both;
 }
 
-.slide-right-two {
+.slide-right-three {
 	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .2s both;
 	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .2s both;
-}
-
-.slide-right-three {
-	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s both;
-	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s both;
 }
 
 //slide left
