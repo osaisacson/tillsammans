@@ -28,9 +28,7 @@ export default function Home() {
           <Link to={`/ansök-om-assistans`}>
             <IconButton
               icon={Icon1}
-              text={
-                'Jag är sjuk och självisolerar mig för att inte smitta andra'
-              }
+              text={'Jag självisolerar mig för att inte smitta andra'}
             />
           </Link>
           <Link to={`/ansök-om-assistans`}>
