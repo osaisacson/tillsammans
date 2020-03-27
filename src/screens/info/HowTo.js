@@ -13,7 +13,6 @@ export default function HowTo() {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              {' '}
               <ul>
                 <li>
                   Beställningstjänsten ALLA TILLSAMMANS MOT COVID-19 PÅ TJÖRN
@@ -63,7 +62,7 @@ export default function HowTo() {
           <Accordion.Toggle as={Card.Header} eventKey="2">
             <h6>VAD KAN MAN FÅ HJÄLP MED?</h6>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
+          <Accordion.Collapse eventKey="2">
             <Card.Body>
               {' '}
               <ul>
@@ -91,9 +90,8 @@ export default function HowTo() {
           <Accordion.Toggle as={Card.Header} eventKey="3">
             <h6>HUR HANTERAS DIN BESTÄLLNING?</h6>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
+          <Accordion.Collapse eventKey="3">
             <Card.Body>
-              {' '}
               <ul>
                 <li>
                   Efter att du skickat in din beställning lagras den i vårt
@@ -124,12 +122,11 @@ export default function HowTo() {
           </Accordion.Collapse>
         </Card>
         <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="3">
+          <Accordion.Toggle as={Card.Header} eventKey="4">
             <h6>VAD KOSTAR DET? HUR FUNGERAR BETALNINGAR?</h6>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
+          <Accordion.Collapse eventKey="4">
             <Card.Body>
-              {' '}
               <ul>
                 <li>Att använda tjänsten är gratis.</li>
                 <li>
@@ -149,10 +146,10 @@ export default function HowTo() {
           </Accordion.Collapse>
         </Card>
         <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="3">
+          <Accordion.Toggle as={Card.Header} eventKey="5">
             <h6>KAN JAG LITA PÅ VOLONTÄRERNA?</h6>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
+          <Accordion.Collapse eventKey="5">
             <Card.Body>
               <ul>
                 <li>
