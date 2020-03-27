@@ -33,7 +33,7 @@ export default function OrdersTable(props) {
             onClick={() => console.log('TODO: this should set status as "ny"')}
             variant="secondary"
           >
-            Ny
+            Ohanterad
           </Button>
           <Button
             active={status === 'hanterad'}
@@ -42,7 +42,7 @@ export default function OrdersTable(props) {
             }
             variant="secondary"
           >
-            Aktiv
+            Hanterad
           </Button>
           <Button
             active={status === 'klar'}
@@ -51,7 +51,7 @@ export default function OrdersTable(props) {
             }
             variant="secondary"
           >
-            Klar
+            Levererad
           </Button>
           <Button
             active={status === 'inaktiv'}

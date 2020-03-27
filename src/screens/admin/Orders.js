@@ -56,12 +56,12 @@ export default function Orders() {
         <p>Sortera genom att trycka på titlarna</p>
         <Tabs defaultActiveKey="nya" id="0">
           <Tab eventKey="nya" title={'Nya beställningar '}>
-            <OrdersTable ordersData={orders} />
+            <OrdersTable ordersData={newOrders} />
           </Tab>
-          <Tab eventKey="aktiva" title={'Aktiva '}>
+          <Tab eventKey="aktiva" title={'Hanterade'}>
             <OrdersTable ordersData={activeOrders} />
           </Tab>
-          <Tab eventKey="klara" title={'Klara '}>
+          <Tab eventKey="klara" title={'Levererade'}>
             <OrdersTable ordersData={doneOrders} />
           </Tab>
           <Tab eventKey="inaktiv" title={`Inaktiva `}>

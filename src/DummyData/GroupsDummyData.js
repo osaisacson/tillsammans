@@ -12,6 +12,16 @@ const GROUPS = [
   ),
   new Group(
     'g2',
+    '2020-03-28',
+    'Webbteam',
+    'Åsa Isacson',
+    '0703234011',
+    'asa.isacson@gmail.com',
+    'Näs 19',
+    'aktiv'
+  ),
+  new Group(
+    'g3',
     '2020-03-30',
     'Skärhamnstruppen',
     'Bob Knutsson',
@@ -21,7 +31,7 @@ const GROUPS = [
     'aktiv'
   ),
   new Group(
-    'g3',
+    'g4',
     '2020-03-29',
     'Mjörn Rockers',
     'Lars Ullerud',
@@ -31,7 +41,7 @@ const GROUPS = [
     'aktiv'
   ),
   new Group(
-    'g4',
+    'g5',
     '2020-04-01',
     'Inte en lugn stund i Kyrkesund',
     'Kalle Karlsson',
