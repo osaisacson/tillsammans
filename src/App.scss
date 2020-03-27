@@ -250,6 +250,7 @@ body {
 
 .main-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -291,6 +292,8 @@ body {
   }
 
   .header-links{
+    display: flex;
+    flex-wrap: wrap;
 
     a {
       padding: 10px;
@@ -387,6 +390,10 @@ body {
 }
 
 /* ------ Bootstrap overrides ------*/
+.container {
+  margin-top: 15%;
+}
+
 a:hover {
   text-decoration: none;
 }
