@@ -40,10 +40,7 @@ export default function Home() {
             />
           </Link>
           <Link to={`/bli-volontar/`}>
-            <IconButton
-              icon={Icon3}
-              text={'Jag är frisk och vill bli volontär'}
-            />
+            <IconButton icon={Icon3} text={'Jag vill bli volontär'} />
           </Link>
         </div>
       </div>

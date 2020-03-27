@@ -9,7 +9,7 @@ $primary-color-medium: lighten($primary-color, 10%);
 $primary-color-light: lighten($primary-color, 35%); 
 $primary-color-extra-light: lighten($primary-color, 45%); 
 
-$page-background: rgba(17, 27, 64, .7);
+$page-background: rgba(17, 27, 64, .8);
 $page-background-contrast: #fff;
 $page-background-contrast-hover: #c0c0c0;
 
@@ -63,7 +63,7 @@ body {
 .page-layout {
   background-color: $page-background !important;
   border-radius: 2px;
-  padding: 10px;
+  padding: 20px;
   margin: 10px 0;
   border-radius: 2px;
 
@@ -77,9 +77,13 @@ body {
     }
   }
   
+  h2 {
+    margin-top: 10px;
+  }
+
   h2, h3, p {
-    color: $page-background-contrast;
     margin-left: 20px;
+    color: $page-background-contrast;
   }
 }
 
@@ -469,6 +473,10 @@ body {
 .accordion {
   .card-header {
     cursor: pointer;
+
+    h6 {
+      font-weight: 600;
+    }
   }
 
   .card {
