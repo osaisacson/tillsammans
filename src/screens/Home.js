@@ -24,10 +24,6 @@ export default function Home() {
         <div className="flex-column centered">
           <div className="blurb">
             <img src={School} className="school" alt="" />
-            {/* <div>
-              <h6>Vi besegrar Covid-19 genom att isolera oss tillsammans</h6>
-              <h4>TJÖRN</h4>
-            </div> */}
           </div>
           <Link className="slide-right-one" to={`/ansök-om-assistans`}>
             <IconButton

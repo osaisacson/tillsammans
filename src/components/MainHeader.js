@@ -52,9 +52,7 @@ export default function MainHeader(props) {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <div className="header-label">
-        <h3>TJÖRN</h3>
-      </div>
+      <div className="header-label">TJÖRN</div>
     </>
   );
 }
