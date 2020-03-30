@@ -66,6 +66,10 @@ body {
   float: right;
 }
 
+.flex {
+  display: flex;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -241,70 +245,32 @@ body {
  * ----------------------------------------
  */
 
-.main-header-wrapper {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  margin-bottom: 80px;
-}
 
-.main-header {
+.alla-tillsammans {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  color: $navigation-text-color;
-  background-color: $navigation-color;
-  -webkit-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
-  -moz-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
-  box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
 
-  .alla-tillsammans {
 
-    div {
-      display: flex;
-    }
 
-    h3 {
-      font-size: .8rem;
-      font-weight: 300;
-
-      &.bold {
-        margin-right: 4px;
-        font-weight: 600;
-      }
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin: 0;
-    }
+  .text-section {
+    margin-left: 10px;
   }
 
   h3 {
-    margin: 0;
-  }
-
-  a {
-    color: #000;
-  }
-
-  a:hover {
-    color: $primary-color-light;
-  }
-}
-
-.header-links{
-  display: flex;
-  flex-wrap: wrap;
-
-  a {
-    padding: 10px;
     font-size: .8rem;
-    text-transform: uppercase;
-    transition: all .35s ease-in-out;
+    font-weight: 300;
+    margin: 0;
+
+    &.bold {
+      margin-right: 4px;
+      font-weight: 600;
+    }
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
   }
 }
 
@@ -425,6 +391,7 @@ body {
 .form {
 
   h3 {
+    margin-left: 2px;
     font-size: 1.1rem;
     font-weight: 600;
     color: $page-background-contrast;
@@ -604,6 +571,7 @@ body {
  */
  .container {
   margin-top: 13%;
+  margin-bottom: 10%;
 }
 
 .accordion {
@@ -653,11 +621,43 @@ a:hover {
   background-color: $primary-color-dark !important;
 }
 
+.nav-link {
+  text-transform: uppercase;
+  font-size: .8rem;
+  color: #000;
+  margin-right: 10px;
+}
+
+.navbar-brand:hover {
+  color: $primary-color-light !important;
+}
+
+.nav-link:hover, .nav-link:active, .nav-link.active {
+  color: #fff !important;
+  text-align: center;
+  background-color: $page-background;
+}
+
+//overrides the bootstrap navbar class which positions the navbar links to the left. We want them to the right.
+.navbar-nav {
+  margin-left: auto !important;
+  margin-right: 20px;
+}
+
+.navbar-light .navbar-toggler {
+  border: 0;
+}
+
+
 /**
  * ----------------------------------------
  * Media Queries
  * ----------------------------------------
  */
+ @media screen and (min-width: 0px) and (max-width: 400px) {
+  .hide-on-small { display: none; }  /* show it on small screens */
+}
+
  @media only screen and (max-width: 980px) {
-  .blurb, .language-buttons, .header-links { display: none} 
+  .blurb { display: none} 
 }
