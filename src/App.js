@@ -12,6 +12,7 @@ import volunteersReducer from './store/reducers/volunteers';
 
 //Components
 import MainHeader from './components/MainHeader';
+import Footer from './components/Footer';
 
 //All screens
 import Home from './screens/Home';
@@ -95,6 +96,7 @@ export default function App() {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </Router>
     </Provider>
   );

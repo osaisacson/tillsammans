@@ -14,6 +14,9 @@ $primary-color-medium: lighten($primary-color, 10%);
 $primary-color-light: lighten($primary-color, 35%); 
 $primary-color-extra-light: lighten($primary-color, 45%); 
 
+$navigation-color: #fff;
+$navigation-text-color: #000;
+
 $page-background: rgba(17, 27, 64, .8);
 $page-background-contrast: #fff;
 $page-background-contrast-hover: #c0c0c0;
@@ -21,6 +24,7 @@ $page-background-contrast-hover: #c0c0c0;
 $sub-color: grey;
 $main-color: black;
 $main-text-color: #fff;
+$highlight-color: #ffff00;
 
 
 /**
@@ -74,8 +78,12 @@ body {
 }
 
 .highlight {
-  background-color: #ffff00;
+  background-color: $highlight-color;
   padding: 1px 3px;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 
@@ -229,6 +237,123 @@ body {
 
 /**
  * ----------------------------------------
+ * Header, Footer
+ * ----------------------------------------
+ */
+
+.main-header-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.main-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: $navigation-text-color;
+  background-color: $navigation-color;
+  -webkit-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
+  -moz-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
+  box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
+
+  .alla-tillsammans {
+
+    div {
+      display: flex;
+    }
+
+    h3 {
+      font-size: .8rem;
+      font-weight: 300;
+
+      &.bold {
+        margin-right: 4px;
+        font-weight: 600;
+      }
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0;
+    }
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  a {
+    color: #000;
+  }
+
+  a:hover {
+    color: $primary-color-light;
+  }
+}
+
+.header-links{
+  display: flex;
+  flex-wrap: wrap;
+
+  a {
+    padding: 10px;
+    font-size: .8rem;
+    text-transform: uppercase;
+    transition: all .35s ease-in-out;
+  }
+}
+
+.header-label {
+  width: fit-content;
+  background-color: $navigation-color;
+  color: $navigation-text-color;
+  padding: 4px 10px;
+  border-radius: 0 0 10px 10px;
+
+  h3 {
+    margin: 0;
+    font-weight: 300;
+    font-size: 1.4rem;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  color: $highlight-color;
+  background-color: $page-background;
+
+  p {
+    margin: 0;
+    padding: 0;
+
+    &.bold {
+      margin-right: 6px;
+    }
+  }
+
+  a {
+    margin-left: 6px;
+    color: $highlight-color;
+    font-weight: 600;
+  }
+
+  a:hover {
+    color: darken($highlight-color, 10%)
+  }
+}
+/**
+ * ----------------------------------------
  * Components
  * ----------------------------------------
  */
@@ -265,89 +390,6 @@ body {
 
 .how-to {
   margin: 0 auto 20px !important;
-}
-
-.main-header-wrapper {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  margin-bottom: 80px;
-}
-
-.main-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  color: #000;
-  background-color: #fff;
-  -webkit-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
-  -moz-box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
-  box-shadow: 0px 6px 9px 0px rgba(0,0,0,0.19);
-
-  .alla-tillsammans {
-
-    div {
-      display: flex;
-    }
-
-    h3 {
-      font-size: .8rem;
-      font-weight: 300;
-
-      &.bold {
-        margin-right: 4px;
-        font-weight: 600;
-      }
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin: 0;
-    }
-  
-  }
-
-
-  h3 {
-    margin: 0;
-  }
-
-  a {
-    color: #000;
-  }
-
-  a:hover {
-    color: $primary-color-light;
-  }
-}
-
-.header-links{
-  display: flex;
-  flex-wrap: wrap;
-
-  a {
-    padding: 10px;
-    font-size: .8rem;
-    text-transform: uppercase;
-    transition: all .35s ease-in-out;
-  }
-}
-
-.header-label {
-  width: fit-content;
-  background-color: #fff;
-  color: #000;
-  padding: 4px 10px;
-  border-radius: 0 0 10px 10px;
-
-  h3 {
-    margin: 0;
-    font-weight: 300;
-    font-size: 1.4rem;
-  }
 }
 
 .form-title {    
