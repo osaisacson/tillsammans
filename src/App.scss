@@ -276,7 +276,7 @@ body {
 
 .header-label {
   width: fit-content;
-  background-color: $navigation-color;
+  background-color: #f8f9fa;
   color: $navigation-text-color;
   padding: 4px 10px;
   border-radius: 0 0 10px 10px;
@@ -293,7 +293,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: sticky;
+  position: fixed;
   flex-wrap: wrap;
   bottom: 0;
   width: 100%;
