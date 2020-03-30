@@ -43,10 +43,6 @@ export default function MainHeader(props) {
             <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Engelska</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Finska</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

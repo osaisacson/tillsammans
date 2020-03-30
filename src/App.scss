@@ -400,6 +400,7 @@ body {
   border: none;
   outline: none;
   transition: background-color 0.5s ease;
+  margin-bottom: 10px;
 
   p {
     margin-bottom: 0;
@@ -439,9 +440,11 @@ body {
 
 /* Style the accordion content text */
 .accordion__text {
+  background-color: rgba(255, 255, 255, .1);
   font-weight: 400;
   font-size: 14px;
   padding: 18px;
+  margin-bottom: 10px;
 }
 
 /**
@@ -721,6 +724,15 @@ button {
  * ----------------------------------------
  */
  @media screen and (min-width: 0px) and (max-width: 400px) {
+   h1, h2, h3, h4, h5, h6, p {
+     margin-left: 0 !important;
+   }
+   h2 {
+     font-size: 1.6rem;
+   }
+   ul {
+     padding-left: 5px;
+   }
   .hide-on-small { display: none; }  /* show it on small screens */
 }
 
