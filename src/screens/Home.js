@@ -15,7 +15,10 @@ export default function Home() {
       <div className="home-prompt">
         <h6>Självisolerar du för att skydda dig själv eller andra?</h6>
         <h6>BRA! Här kan du beställa hjälp med yttre ärenden:</h6>
-        <p>Om du föredrar att ringa, kontakta oss på 0733230515</p>
+        <p>
+          Om du föredrar att ringa, kontakta oss på{' '}
+          <span className="highlight">073-3230515</span>
+        </p>
       </div>
       <div>
         <div className="flex-column centered">
