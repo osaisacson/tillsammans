@@ -40,6 +40,9 @@ export default function MainHeader(props) {
             <Link id="intro" to="/intro" className="nav-link">
               Vad kan man få hjälp med?
             </Link>
+            <Link id="intro" to="/kontakt" className="nav-link">
+              Kontakt
+            </Link>
             <NavDropdown id="byt-sprak" title="Byt språk">
               <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Engelska</NavDropdown.Item>

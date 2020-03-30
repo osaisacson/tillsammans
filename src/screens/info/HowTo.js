@@ -1,6 +1,4 @@
 import React from 'react';
-// import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
 import Accordion from '../../components/Accordion';
 
 export default function HowTo() {
