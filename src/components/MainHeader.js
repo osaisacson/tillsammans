@@ -15,7 +15,7 @@ export default function MainHeader(props) {
             width="30"
             height="30"
             className="d-inline-block align-top"
-          />{' '}
+          />
           <div className="text-section hide-on-small">
             <div className="flex">
               <h3 className="bold">Alla Tillsammans</h3>
@@ -29,13 +29,17 @@ export default function MainHeader(props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav>
-          <Link to="/sahar-funkar-det" className="nav-link">
+          <Link
+            id="sahar-funkar-det"
+            to="/sahar-funkar-det"
+            className="nav-link"
+          >
             Såhär funkar det
           </Link>
-          <Link to="/intro" className="nav-link">
+          <Link id="intro" to="/intro" className="nav-link">
             Vad kan man få hjälp med?
           </Link>
-          <NavDropdown title="Byt språk" id="basic-nav-dropdown">
+          <NavDropdown id="byt-sprak" title="Byt språk">
             <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Engelska</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Finska</NavDropdown.Item>
