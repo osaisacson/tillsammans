@@ -60,6 +60,8 @@ const HelpForm = props => {
 
   //Set states
   const [redirectToThanks, setRedirectToThanks] = useState(false);
+  const [approvedConditions, setApprovedConditions] = useState(false);
+
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState();
 
@@ -72,7 +74,8 @@ const HelpForm = props => {
       förnamn: editedOrder ? editedOrder.förnamn : '',
       efternamn: editedOrder ? editedOrder.efternamn : '',
       email: editedOrder ? editedOrder.email : '',
-      address: editedOrder ? editedOrder.address : ''
+      address: editedOrder ? editedOrder.address : '',
+      conditions: editedOrder ? editedOrder.conditions : ''
     },
     inputValidities: {
       typ: editedOrder ? true : false,
@@ -82,13 +85,18 @@ const HelpForm = props => {
       förnamn: editedOrder ? true : false,
       efternamn: editedOrder ? true : false,
       email: editedOrder ? true : false,
-      address: editedOrder ? true : false
+      address: editedOrder ? true : false,
+      conditions: approvedConditions
     },
     formIsValid: editedOrder ? true : false
   });
 
   const addUser = e => {
     e.preventDefault();
+    if (!approvedConditions) {
+      alert('Det verkar som du inte godkänt våra vilkor');
+      return;
+    }
     console.log('ADD USER TRIGGERED');
     const db = firebase.firestore();
     db.collection('orders').add({
@@ -164,6 +172,10 @@ const HelpForm = props => {
 
   //   setIsLoading(false);
   // }, [formState, editedOrder, dispatch, ordrId]);
+
+  const toggleCheckBox = () => {
+    setApprovedConditions(!approvedConditions);
+  };
 
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
@@ -294,6 +306,19 @@ const HelpForm = props => {
             />
           </Col>
         </Form.Row>
+        <Form.Group controlId="formBasicCheckbox">
+          <p>
+            I och med att du skickar oss din beställning så godkänner du att
+            dina uppgifter lagras tillfälligt av oss. Vi säljer aldrig dina
+            uppgifter och använder dom aldrig för reklam. Efter beställningen
+            utförts raderar vi dina uppgifter.
+          </p>
+          <Form.Check
+            type="checkbox"
+            onClick={toggleCheckBox}
+            label="Jag har läst ovan och godkänner att mina uppgifter lagras tillfälligt och att min information är synlig för voluntärplattformens medarbetare under tiden min beställning bearbetas."
+          />
+        </Form.Group>
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>
