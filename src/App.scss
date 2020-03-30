@@ -292,7 +292,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  text-align: center;
+  position: sticky;
+  flex-wrap: wrap;
   bottom: 0;
   width: 100%;
   padding: 10px;
