@@ -17,7 +17,7 @@ export default function MainHeader(props) {
               height="30"
               className="d-inline-block align-top"
             />
-            <div className="text-section hide-on-small">
+            <div className="text-section">
               <div className="flex">
                 <h3 className="bold">Alla Tillsammans</h3>
                 <h3>mot Covid-19</h3>

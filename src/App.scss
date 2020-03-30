@@ -724,6 +724,14 @@ button {
  * ----------------------------------------
  */
  @media screen and (min-width: 0px) and (max-width: 400px) {
+   .text-section {
+     h3 {
+       font-size: .6rem
+     }
+     h2 {
+      font-size: .8rem
+    }
+   }
   .dropdown-item {
     text-align: center;
   }
