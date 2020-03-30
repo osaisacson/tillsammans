@@ -738,7 +738,11 @@ button {
      padding-left: 5px;
    }
    .header-label {
-    top: 50px;
+    top: 52px;
+    
+    h3 {
+      font-size: 1rem
+    }
   }
   .hide-on-small { display: none; }  /* show it on small screens */
 }
