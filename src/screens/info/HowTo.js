@@ -55,11 +55,11 @@ export default function HowTo() {
             Tjänsten kan användas för att beställa hjälp med de flesta
             typer av ärenden. Det behöver alltså inte bara handla om att
             handla mat utan kan vara att hämta upp / lämna någonting, att
-            handla djurmat osv.{' '}
+            handla djurmat osv.
           </li>
           <li>
             Vi försöker efter bästa förmåga hantera och bistå alla
-            beställningar.{' '}
+            beställningar.
           </li>
           <li>
             Eftersom längre social isolering och osäkerhet kan vara mycket

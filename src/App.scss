@@ -384,22 +384,21 @@ body {
 }
 
 //Accordion
-/* Style the accordion section */
 .accordion__section {
   display: flex;
   flex-direction: column;
 }
 
-/* Style the buttons that are used to open and close the accordion panel */
+/* Buttons used to open and close the accordion panel */
 .accordion {
-  background-color: rgba(255, 255, 255, .1);
   cursor: pointer;
+  background-color: rgba(255, 255, 255, .1);
   padding: 18px;
   display: flex;
   align-items: center;
   border: none;
   outline: none;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.4s ease;
   margin-bottom: 10px;
 
   p {
@@ -415,9 +414,8 @@ body {
 
 /* Style the accordion content title */
 .accordion__title {
-  font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 /* Style the accordion chevron icon */
@@ -441,10 +439,11 @@ body {
 /* Style the accordion content text */
 .accordion__text {
   background-color: rgba(255, 255, 255, .1);
-  font-weight: 400;
-  font-size: 14px;
   padding: 18px;
-  margin-bottom: 10px;
+  
+  li {
+    margin-bottom: 15px;
+  }
 }
 
 /**
