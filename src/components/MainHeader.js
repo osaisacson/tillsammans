@@ -43,6 +43,10 @@ export default function MainHeader(props) {
             <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Engelska</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Finska</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Arabiska</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Polska</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Kurdiska</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Spanska</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
