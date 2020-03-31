@@ -94,7 +94,7 @@ const HelpForm = props => {
   const addUser = e => {
     e.preventDefault();
     if (!approvedConditions) {
-      alert('Det verkar som du inte godkänt våra vilkor');
+      alert('Det verkar som du inte läst och godkänt våra vilkor');
       return;
     }
     console.log('ADD USER TRIGGERED');
