@@ -185,9 +185,17 @@ const VolunteerForm = props => {
   return (
     <div className="form">
       <Form onSubmit={addVolunteer}>
+        <p>
+          Tillsammans kan vi begränsa smittspridningen av Covid – 19 och skydda
+          utsatta grupper. Men vi behöver hjälpas åt! Kan du tänka dig att
+          hjälpa till som volontär på Tjörn? Du behövs! Anmäl dig genom det här
+          formuläret så kommer du snart att bli kontaktad av en av våra
+          gruppledare!
+        </p>
         <Form.Row>
           <Col>
             <Input
+              placeholder="Förnamn"
               label="förnamn"
               value={formState.inputValues.förnamn}
               type="text"
@@ -197,6 +205,7 @@ const VolunteerForm = props => {
           </Col>
           <Col>
             <Input
+              placeholder="Efternamn"
               label="efternamn"
               value={formState.inputValues.efternamn}
               type="text"
@@ -210,6 +219,7 @@ const VolunteerForm = props => {
         <Form.Row>
           <Col>
             <Input
+              placeholder="Telefon"
               label="telefon"
               value={formState.inputValues.telefon}
               type="text"
@@ -219,11 +229,11 @@ const VolunteerForm = props => {
           </Col>
           <Col>
             <Input
+              placeholder="e-post (frivilligt)"
               label="email"
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
-              placeholder="e-post (frivilligt)"
               required
             />
           </Col>
@@ -232,6 +242,7 @@ const VolunteerForm = props => {
         <Form.Row>
           <Col>
             <Input
+              placeholder="Address"
               label="address"
               value={formState.inputValues.address}
               type="text"
@@ -245,13 +256,21 @@ const VolunteerForm = props => {
           <Form.Control
             as="textarea"
             rows="3"
+            placeholder="Jag har ingen bil men en bra cykel"
             name="beskrivning"
             value={formState.inputValues.beskrivning}
             type="text"
             onChange={textChangeHandler.bind(this, 'beskrivning')}
-            placeholder="Jag har ingen bil men en bra cykel"
           />
         </Form.Group>
+        <p>
+          INFORMATION FÖR DIN INTEGRITET: I och med att du skickar oss din
+          beställning så godkänner du att vi tillfälligt sparar dina
+          kontaktuppgifter. Vi säljer naturligtvis aldrig dina uppgifter och vi
+          lämnar dom inte vidare till annan part. Jag godkänner att mina
+          uppgifter lagras tillfälligt och att min information är tillgänglig
+          för volontärplattformens samordnare samt en gruppledare.
+        </p>
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>
