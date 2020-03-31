@@ -47,12 +47,17 @@ export default function Contact() {
       <Accordion
         title="SAMVERKANDE ORGANISATIONER"
         content="  <p>
-          Medverkande och samverkande organisationer som stöttar
-          civilsamhällets volontärsorganisering på Tjörn är:
-        </p>
+        Medverkande och samverkande organisationer som tillsammans bygger civilsamhällets volontärsorganisering på Tjörn är:
         <ul>
-          <li>Egnahemsfabriken</li>
-        </ul>"
+        <li><a href='https://www.svenskakyrkan.se/tjorn'>Svenska Kyrkan Tjörn </a></li>
+        <li><a href='https://kommun.redcross.se/tjorn/'>Tjörns Röda Korskrets</li>
+        <li><a href='https://www.facebook.com/raddabarnentjorn/'>Rädda Barnen Tjörn</li>
+        <li><a href='https://www.egnahemsfabriken.se'>Egnahemsfabriken</li>
+        <li><a href='https://www.omstallningtjorn.se/'>Omställning Tjörn</li>
+        <li><a href='https://www.facebook.com/Agapes-v%C3%A4nner-evenemang-STO-204569240323939/'>Agapes vänner</a></li>
+       </ul> <p>Vi samverkar även med Tjörns kommun</p>
+        <p>Representerar du en organisation eller förening på Tjörn som vill bidra till den lokala volontärsplattformen för stöd i samband med utbrottet av Covid-19? </p>
+        <p>Kontakta oss på tjorn@allatillsammans.se eller ring vår stödsamordnare eller samordningsgrupp (se 'volontärsamordnare' ovan).</p>"
       />
       <Accordion
         title="FEEDBACK OCH FÖRSLAG"
