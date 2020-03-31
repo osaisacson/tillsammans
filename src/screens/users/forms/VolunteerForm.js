@@ -61,9 +61,18 @@ const VolunteerForm = props => {
   const editedVolunteer = false;
 
   //Set states
-  const [redirectToThanks, setRedirectToThanks] = useState(false);
+
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState();
+  const [redirectToThanks, setRedirectToThanks] = useState(false);
+  const [hasLicence, setHasLicence] = useState(false);
+  const [hasCar, setHasCar] = useState(false);
+  const [shopFood, setShopFood] = useState(false);
+  const [shopSupplies, setShopSupplies] = useState(false);
+  const [runErrands, setRunErrands] = useState(false);
+  const [doAnimals, setDoAnimals] = useState(false);
+  const [doTalking, setDoTalking] = useState(false);
+  const [doAuthorities, setDoAuthorities] = useState(false);
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -72,7 +81,17 @@ const VolunteerForm = props => {
       telefon: editedVolunteer ? editedVolunteer.telefon : '',
       email: editedVolunteer ? editedVolunteer.email : '',
       address: editedVolunteer ? editedVolunteer.address : '',
-      beskrivning: editedVolunteer ? editedVolunteer.beskrivning : ''
+      beskrivning: editedVolunteer ? editedVolunteer.beskrivning : '',
+      språk: editedVolunteer ? editedVolunteer.språk : '',
+      födelseår: editedVolunteer ? editedVolunteer.födelseår : '',
+      körkort: editedVolunteer ? editedVolunteer.körkort : '',
+      bil: editedVolunteer ? editedVolunteer.bil : '',
+      mat: editedVolunteer ? editedVolunteer.mat : '',
+      varor: editedVolunteer ? editedVolunteer.varor : '',
+      ärenden: editedVolunteer ? editedVolunteer.ärenden : '',
+      djur: editedVolunteer ? editedVolunteer.djur : '',
+      prata: editedVolunteer ? editedVolunteer.prata : '',
+      myndigheter: editedVolunteer ? editedVolunteer.myndigheter : ''
     },
     inputValidities: {
       förnamn: editedVolunteer ? true : false,
@@ -80,7 +99,17 @@ const VolunteerForm = props => {
       telefon: editedVolunteer ? true : false,
       email: editedVolunteer ? true : false,
       address: editedVolunteer ? true : false,
-      beskrivning: editedVolunteer ? true : false
+      beskrivning: editedVolunteer ? true : false,
+      språk: editedVolunteer ? true : false,
+      födelseår: editedVolunteer ? true : false,
+      körkort: editedVolunteer ? true : false,
+      bil: editedVolunteer ? true : false,
+      mat: editedVolunteer ? true : false,
+      varor: editedVolunteer ? true : false,
+      ärenden: editedVolunteer ? true : false,
+      djur: editedVolunteer ? true : false,
+      prata: editedVolunteer ? true : false,
+      myndigheter: editedVolunteer ? true : false
     },
     formIsValid: editedVolunteer ? true : false
   });
@@ -95,6 +124,16 @@ const VolunteerForm = props => {
       email: formState.inputValues.email,
       address: formState.inputValues.address,
       beskrivning: formState.inputValues.beskrivning,
+      språk: formState.inputValues.språk,
+      födelseår: formState.inputValues.födelseår,
+      körkort: hasLicence,
+      bil: hasCar,
+      mat: shopFood,
+      varor: shopSupplies,
+      ärenden: runErrands,
+      djur: doAnimals,
+      prata: doTalking,
+      myndigheter: doAuthorities,
       grupp: 'ingen',
       datum: new Date().getTime(),
       status: 'ny'
@@ -256,13 +295,98 @@ const VolunteerForm = props => {
           <Form.Control
             as="textarea"
             rows="3"
-            placeholder="Jag har ingen bil men en bra cykel"
+            placeholder="Jag åker till affären en gång i veckan, kan hämta upp något när jag ändå är där"
             name="beskrivning"
             value={formState.inputValues.beskrivning}
             type="text"
             onChange={textChangeHandler.bind(this, 'beskrivning')}
           />
         </Form.Group>
+        <Form.Row>
+          <Col>
+            <Input
+              placeholder="Jag talar/förstår följande språk"
+              label="språk"
+              value={formState.inputValues.språk}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'språk')}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              placeholder="Födelseår"
+              label="födelseår"
+              value={formState.inputValues.födelseår}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'födelseår')}
+              required
+            />
+          </Col>
+        </Form.Row>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setHasLicence(!hasLicence);
+            }}
+            label="Jag har körkort"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setHasCar(!hasCar);
+            }}
+            label="Jag har egen bil"
+          />
+        </Form.Group>
+
+        <h3>Exempel på uppgifter jag kan utföra:</h3>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setShopFood(!shopFood);
+            }}
+            label="Handla matvaror och djurmat"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setShopSupplies(!shopSupplies);
+            }}
+            label="Hämta och lämna paket, post, mediciner"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setRunErrands(!runErrands);
+            }}
+            label="Göra andra ärenden"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setDoAnimals(!doAnimals);
+            }}
+            label="Rasta djur"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setDoTalking(!doTalking);
+            }}
+            label="Vara tillgänglig för att prata"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setDoAuthorities(!doAuthorities);
+            }}
+            label="Hjälpa till med vård/myndighetskontakter och rådgivning"
+          />
+        </Form.Group>
+
         <p>
           INFORMATION FÖR DIN INTEGRITET: I och med att du skickar oss din
           beställning så godkänner du att vi tillfälligt sparar dina

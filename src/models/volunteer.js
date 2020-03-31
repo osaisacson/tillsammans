@@ -7,6 +7,14 @@ class Volunteer {
     email,
     address,
     beskrivning,
+    körkort,
+    bil,
+    mat,
+    varor,
+    ärenden,
+    djur,
+    prata,
+    myndigheter,
     grupp,
     datum,
     status
@@ -18,6 +26,14 @@ class Volunteer {
     this.email = email;
     this.address = address;
     this.beskrivning = beskrivning;
+    this.körkort = körkort;
+    this.bil = bil;
+    this.mat = mat;
+    this.varor = varor;
+    this.ärenden = ärenden;
+    this.djur = djur;
+    this.prata = prata;
+    this.myndigheter = myndigheter;
     this.grupp = grupp;
     this.datum = datum;
     this.status = status;

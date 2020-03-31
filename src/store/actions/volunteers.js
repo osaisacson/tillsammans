@@ -1,7 +1,7 @@
 import Volunteer from '../../models/volunteer';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment';
+// import moment from 'moment';
 
 export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER';
 export const CREATE_VOLUNTEER = 'CREATE_VOLUNTEER';
@@ -32,6 +32,14 @@ export const fetchVolunteers = () => {
                 resData.email,
                 resData.address,
                 resData.beskrivning,
+                resData.körkort,
+                resData.bil,
+                resData.mat,
+                resData.varor,
+                resData.ärenden,
+                resData.djur,
+                resData.prata,
+                resData.myndigheter,
                 resData.grupp,
                 resData.datum,
                 resData.status

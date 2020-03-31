@@ -9,11 +9,18 @@ export default function VolunteersTable(props) {
     datum,
     förnamn,
     efternamn,
-    beskrivning,
-    email,
     telefon,
+    email,
     address,
-    postkod,
+    beskrivning,
+    körkort,
+    bil,
+    mat,
+    varor,
+    ärenden,
+    djur,
+    prata,
+    myndigheter,
     grupp,
     status
   }) => (
@@ -21,12 +28,21 @@ export default function VolunteersTable(props) {
       <td>{datum}</td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
-      <td className="beskrivning">{beskrivning}</td>
-      <td>{email}</td>
       <td>{telefon}</td>
+      <td>{email}</td>
       <td>{address}</td>
-      <td>{postkod}</td>
+      <td className="beskrivning">{beskrivning}</td>
+      <td>{körkort ? 'x' : ''}</td>
+      <td>{bil ? 'x' : ''}</td>
+      <td>{mat ? 'x' : ''}</td>
+      <td>{varor ? 'x' : ''}</td>
+      <td>{ärenden ? 'x' : ''}</td>
+      <td>{djur ? 'x' : ''}</td>
+      <td>{prata ? 'x' : ''}</td>
+      <td>{myndigheter ? 'x' : ''}</td>
       <td>{grupp}</td>
+      <td>{status}</td>
+
       <td>
         <ButtonGroup aria-label="set status" size="sm">
           <Button
@@ -82,16 +98,22 @@ export default function VolunteersTable(props) {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th onClick={() => sortBy('datum')}>Datum</th>
+            <th onClick={() => sortBy('datum')}>datum</th>
             <th onClick={() => sortBy('förnamn')}>Förnamn</th>
             <th onClick={() => sortBy('efternamn')}>Efternamn</th>
-            <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
+            <th onClick={() => sortBy('telefon')}>Telefon</th>
             <th onClick={() => sortBy('email')}>E-post</th>
-            <th onClick={() => sortBy('telefon')}>Telefonnummer</th>
-            <th onClick={() => sortBy('address')}>Address</th>
-            <th onClick={() => sortBy('postkod')}>Postkod</th>
+            <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
+            <th onClick={() => sortBy('körkort')}>Har körkort</th>
+            <th onClick={() => sortBy('bil')}>Har bil</th>
+            <th onClick={() => sortBy('mat')}>Mat</th>
+            <th onClick={() => sortBy('varor')}>Varor</th>
+            <th onClick={() => sortBy('ärenden')}>Ärenden</th>
+            <th onClick={() => sortBy('djur')}>Djur</th>
+            <th onClick={() => sortBy('prata')}>Prata</th>
+            <th onClick={() => sortBy('myndigheter')}>Myndigheter</th>
             <th onClick={() => sortBy('grupp')}>Grupp</th>
-            <th>Sätt status</th>
+            <th onClick={() => sortBy('status')}>Sätt status</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
