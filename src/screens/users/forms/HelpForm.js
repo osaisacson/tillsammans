@@ -82,6 +82,7 @@ const HelpForm = props => {
       efternamn: editedOrder ? editedOrder.efternamn : '',
       email: editedOrder ? editedOrder.email : '',
       address: editedOrder ? editedOrder.address : '',
+      postkod: editedOrder ? editedOrder.postkod : '',
       conditions: editedOrder ? editedOrder.conditions : ''
     },
     inputValidities: {
@@ -96,6 +97,7 @@ const HelpForm = props => {
       efternamn: editedOrder ? true : false,
       email: editedOrder ? true : false,
       address: editedOrder ? true : false,
+      postkod: editedOrder ? true : false,
       conditions: approvedConditions
     },
     formIsValid: editedOrder ? true : false
@@ -121,6 +123,7 @@ const HelpForm = props => {
       efternamn: formState.inputValues.efternamn,
       email: formState.inputValues.email,
       address: formState.inputValues.address,
+      postkod: formState.inputValues.postkod,
       grupp: 'ingen',
       datum: new Date().getTime(),
       status: 'ohanterad'
@@ -192,12 +195,6 @@ const HelpForm = props => {
 
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
-    //inputIdentifier and text will act as key:value in the form reducer
-    // console.log('-------TEXTCHANGEHANDLER, received values-------');
-    // console.log('inputIdentifier:', inputIdentifier);
-    // console.log('text:', text.target.value);
-    // console.log('------------------------------------------------');
-
     let isValid = true;
 
     dispatchFormState({
@@ -298,6 +295,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="telefon"
+              placeholder="Telefon"
               value={formState.inputValues.telefon}
               type="text"
               onChange={textChangeHandler.bind(this, 'telefon')}
@@ -307,10 +305,10 @@ const HelpForm = props => {
           <Col>
             <Input
               label="email"
+              placeholder="E-post (frivilligt)"
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
-              placeholder="e-post (frivilligt)"
               required
             />
           </Col>
@@ -319,6 +317,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="förnamn"
+              placeholder="Förnamn"
               value={formState.inputValues.förnamn}
               type="text"
               onChange={textChangeHandler.bind(this, 'förnamn')}
@@ -328,6 +327,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="efternamn"
+              placeholder="Efternamn"
               value={formState.inputValues.efternamn}
               type="text"
               onChange={textChangeHandler.bind(this, 'efternamn')}
@@ -339,9 +339,20 @@ const HelpForm = props => {
           <Col>
             <Input
               label="address"
+              placeholder="Address"
               value={formState.inputValues.address}
               type="text"
               onChange={textChangeHandler.bind(this, 'address')}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              label="postkod"
+              placeholder="Postkod"
+              value={formState.inputValues.postkod}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'postkod')}
               required
             />
           </Col>

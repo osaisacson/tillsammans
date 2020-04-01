@@ -82,6 +82,7 @@ const VolunteerForm = props => {
       telefon: editedVolunteer ? editedVolunteer.telefon : '',
       email: editedVolunteer ? editedVolunteer.email : '',
       address: editedVolunteer ? editedVolunteer.address : '',
+      postkod: editedVolunteer ? editedVolunteer.postkod : '',
       beskrivning: editedVolunteer ? editedVolunteer.beskrivning : '',
       språk: editedVolunteer ? editedVolunteer.språk : '',
       födelseår: editedVolunteer ? editedVolunteer.födelseår : '',
@@ -101,6 +102,7 @@ const VolunteerForm = props => {
       telefon: editedVolunteer ? true : false,
       email: editedVolunteer ? true : false,
       address: editedVolunteer ? true : false,
+      postkod: editedVolunteer ? true : false,
       beskrivning: editedVolunteer ? true : false,
       språk: editedVolunteer ? true : false,
       födelseår: editedVolunteer ? true : false,
@@ -126,6 +128,7 @@ const VolunteerForm = props => {
       telefon: formState.inputValues.telefon,
       email: formState.inputValues.email,
       address: formState.inputValues.address,
+      postkod: formState.inputValues.postkod,
       beskrivning: formState.inputValues.beskrivning,
       språk: formState.inputValues.språk,
       födelseår: formState.inputValues.födelseår,
@@ -290,6 +293,16 @@ const VolunteerForm = props => {
               value={formState.inputValues.address}
               type="text"
               onChange={textChangeHandler.bind(this, 'address')}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              placeholder="Postkod"
+              label="postkod"
+              value={formState.inputValues.postkod}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'postkod')}
               required
             />
           </Col>

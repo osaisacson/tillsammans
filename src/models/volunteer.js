@@ -6,6 +6,7 @@ class Volunteer {
     telefon,
     email,
     address,
+    postkod,
     beskrivning,
     körkort,
     bil,
@@ -26,6 +27,7 @@ class Volunteer {
     this.telefon = telefon;
     this.email = email;
     this.address = address;
+    this.postkod = postkod;
     this.beskrivning = beskrivning;
     this.körkort = körkort;
     this.bil = bil;
