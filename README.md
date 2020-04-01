@@ -6,13 +6,13 @@ Uses React.js/Node.js/Hooks/Redux, firebase for db and deploys with Heroku.
 
 Find the latest live version at:
 
-### https://tillsammans.herokuapp.com/
+### https://tjorn.allatillsammans.se
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
-Once your changes are merged (see work work workin and build build buildin section below) you and everyone else will see them live at http://tillsammans.herokuapp.com
+Once your changes are merged (see work work workin and build build buildin section below) you and everyone else will see them live at https://tjorn.allatillsammans.se
 
 ### Tools
 
@@ -20,7 +20,7 @@ If this is your first rodeo, here's the from scratch setup you'll need:
 
 1. Code editor: Download visual studio from here https://code.visualstudio.com/ - this will let you add html and styles.
 2. Terminal: Download iTerm from https://iterm2.com/ - this will let you install the project and add any extras (if needed).
-3. A GitHub account: https://github.com/ - this will let you clone a copy of the project to your own machine, and also let you push changes to the central repository, which will then be merged into the live version at http://tillsammans.herokuapp.com
+3. A GitHub account: https://github.com/ - this will let you clone a copy of the project to your own machine, and also let you push changes to the central repository, which will then be merged into the live version at https://tjorn.allatillsammans.se
 
 ### Prerequisites
 
@@ -167,11 +167,11 @@ This is for the person who will be approving that the changes you made above sho
 
 2. Approve an existing PR (you'll see them clearly when you go to the above page, if there are any) and merge it to the master branch (press the 'merge' button...) - this will automatically build the app on Heroku (setup for this is in step 4-5 under the heroku deployment section above)
 
-3. Give it a minute, then check out the heroku address of your app to see that it built successfully with the changes from the PR.
+3. Give it a minute, then check out the live version of your app to see that it built successfully with the changes from the PR.
 
 ```
 
-https://tillsammans.herokuapp.com/
+https://tjorn.allatillsammans.se
 
 ```
 
