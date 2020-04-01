@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 //Actions
-import firebase from '../../../firebase/firebase.utils';
+import firebase from '../../firebase/firebase.utils';
 // import * as volunteersActions from '../../../store/actions/volunteers';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
@@ -421,21 +421,22 @@ const VolunteerForm = props => {
             label="Hjälpa till att sätta upp teknologi (beställa online, etc)"
           />
         </Form.Group>
-
-        <p>
-          <span>INFORMATION FÖR DIN TRYGGHET:</span> I och med att du skickar
-          oss din anmälan så godkänner du att vi sparar dina kontaktuppgifter.
-          Vi säljer naturligtvis aldrig dina uppgifter och vi lämnar dom inte
-          vidare till annan part.
-        </p>
-        <Form.Check
-          type="checkbox"
-          onClick={toggleCheckBox}
-          label="Jag godkänner att mina
+        <Form.Group>
+          <p>
+            <span>INFORMATION FÖR DIN TRYGGHET:</span> I och med att du skickar
+            oss din anmälan så godkänner du att vi sparar dina kontaktuppgifter.
+            Vi säljer naturligtvis aldrig dina uppgifter och vi lämnar dom inte
+            vidare till annan part.
+          </p>
+          <Form.Check
+            type="checkbox"
+            onClick={toggleCheckBox}
+            label="Jag godkänner att mina
             uppgifter lagras och att min information är tillgänglig för
             volontärplattformens samordnare samt en gruppledare."
-        />
-        <br />
+          />
+          <br />
+        </Form.Group>
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>

@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import OrdersTable from '../../components/tables/OrdersTable';
+import OrdersTable from './OrdersTable';
 
 const Orders = props => {
   const firestore = firebase.firestore();

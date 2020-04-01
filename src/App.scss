@@ -697,6 +697,7 @@ a:hover {
   font-size: .8rem;
   color: #000;
   padding-right: 10px;
+  margin-right: 10px;
 }
 
 .navbar-brand:hover {
@@ -712,7 +713,7 @@ a:hover {
 //overrides the bootstrap navbar class which positions the navbar links to the left. We want them to the right.
 .navbar-nav {
   margin-left: auto !important;
-  margin-right: 20px;
+  margin-right: 0;
 }
 
 .navbar-light .navbar-toggler {

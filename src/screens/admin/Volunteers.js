@@ -8,7 +8,7 @@ import volunteersDummyData from './../../DummyData/VolunteersDummyData';
 // import * as volunteersActions from '../../store/actions/volunteers';
 
 //Components
-import VolunteersTable from '../../components/tables/VolunteersTable';
+import VolunteersTable from './VolunteersTable';
 
 export default function Volunteers() {
   const volunteers = volunteersDummyData;

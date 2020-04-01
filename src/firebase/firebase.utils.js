@@ -3,6 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/functions';
 
+//TODO This will be changed and hidden in the final version
 const config = {
   apiKey: 'AIzaSyA1U1ZqCGWk11wpBvoDj2nsbPwrLfRyqVE',
   authDomain: 'sverige-tillsammans.firebaseapp.com',

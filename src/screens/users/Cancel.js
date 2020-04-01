@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components
-import CancelForm from './forms/CancelForm';
+import CancelForm from './CancelForm';
 
 export default function Cancel() {
   return (

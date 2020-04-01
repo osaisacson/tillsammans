@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components
-import HelpForm from './forms/HelpForm';
+import HelpForm from './HelpForm';
 
 export default function Apply() {
   return (

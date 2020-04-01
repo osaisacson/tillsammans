@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 //Actions
-import firebase from '../../../firebase/firebase.utils';
+import firebase from '../../firebase/firebase.utils';
 // import * as ordersActions from '../../../store/actions/orders';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';

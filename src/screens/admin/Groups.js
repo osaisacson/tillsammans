@@ -4,7 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import GroupsDummyData from './../../DummyData/GroupsDummyData';
 
 //Components
-import GroupTable from '../../components/tables/GroupTable';
+import GroupTable from './GroupTable';
 
 const newGroups = GroupsDummyData.filter(data => data.status === 'ny');
 
