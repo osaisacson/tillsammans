@@ -1,13 +1,13 @@
 import React from 'react';
 
 //Components
-import VolunteerForm from './forms/VolunteerForm';
+import CancelForm from './forms/CancelForm';
 
-export default function Volunteer() {
+export default function Cancel() {
   return (
     <>
       <div className="page-layout">
-        <VolunteerForm />
+        <CancelForm />
       </div>
     </>
   );

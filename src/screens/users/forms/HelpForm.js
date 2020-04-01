@@ -106,7 +106,7 @@ const HelpForm = props => {
   const addUser = e => {
     e.preventDefault();
     if (!approvedConditions) {
-      alert('Det verkar som du inte läst och godkänt våra vilkor');
+      alert('Det verkar som du inte läst och godkänt våra villkor');
       return;
     }
     console.log('ADD USER TRIGGERED');
@@ -212,6 +212,14 @@ const HelpForm = props => {
   return (
     <div className="form">
       <Form onSubmit={addUser}>
+        <h2>Beställning</h2>
+        <p>
+          Vill du inte använda formuläret kan du även beställa genom att ringa{' '}
+          <span>073-3230571</span> eller maila{' '}
+          <span>tjorn@allatillsammans.se</span>
+        </p>
+        <br />
+
         <h3>Vad behöver du hjälp med?</h3>
         <Form.Group controlId={'typ'}>
           <Form.Control
@@ -223,13 +231,20 @@ const HelpForm = props => {
             required
           >
             <option value="inget val">Välj typ</option>
-            <option value="Handla/Hämta mat">Handla/Hämta mat</option>
-            <option value="Handla/Hämta annat">Handla/Hämta annat</option>
-            <option value="Hjälpa till med teknik">
-              Hjälpa till med teknik
+            <option value="Handla/Hämta mat">Handla / Hämta matvaror</option>
+            <option value="Handla/Hämta annat">
+              Handla / Hämta annat (exempelvis paket, post, mediciner...)
             </option>
-            <option value="Prata">Prata</option>
-            <option value="Annat ärende">Utföra annat ärende</option>
+            <option value="Rådgivning för att komma igång med digital teknik">
+              Rådgivning för att komma igång med digital teknik
+            </option>
+            <option value="Prata">
+              Prata med någon (vi kan ta en telefonfika)
+            </option>
+            <option value="Annat ärende">
+              Utföra annat ärende (exempelvis rasta hund)
+            </option>
+            <option value="Övrigt">Övrigt / Annat</option>
           </Form.Control>
         </Form.Group>
 
@@ -246,7 +261,10 @@ const HelpForm = props => {
             placeholder="Inköpslista, önskad butik eller annan information om din beställning."
           />
         </Form.Group>
-        <h3>Om min beställning innebär betalning så betalar jag helst via:</h3>
+        <h3>
+          Om min beställning innebär kostnader (exempelvis inköp) så ersätter
+          jag volontärens utlägg via:
+        </h3>
         <Form.Group controlId="formBasicCheckbox">
           <Form.Check
             type="checkbox"
@@ -305,7 +323,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="email"
-              placeholder="E-post (frivilligt)"
+              placeholder="E-post"
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
@@ -317,7 +335,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="förnamn"
-              placeholder="Förnamn"
+              placeholder="Förnamn (frivilligt)"
               value={formState.inputValues.förnamn}
               type="text"
               onChange={textChangeHandler.bind(this, 'förnamn')}
@@ -327,7 +345,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="efternamn"
-              placeholder="Efternamn"
+              placeholder="Efternamn (frivilligt)"
               value={formState.inputValues.efternamn}
               type="text"
               onChange={textChangeHandler.bind(this, 'efternamn')}
@@ -349,7 +367,7 @@ const HelpForm = props => {
           <Col>
             <Input
               label="postkod"
-              placeholder="Postkod"
+              placeholder="Postkod (frivilligt)"
               value={formState.inputValues.postkod}
               type="text"
               onChange={textChangeHandler.bind(this, 'postkod')}
@@ -359,14 +377,12 @@ const HelpForm = props => {
         </Form.Row>
         <Form.Group controlId="formBasicCheckbox">
           <p>
-            INFORMATION FÖR DIN INTEGRITET: I och med att du skickar oss din
-            beställning så godkänner du att vi tillfälligt sparar dina
+            <span>INFORMATION FÖR DIN TRYGGHET:</span> I och med att du skickar
+            oss din beställning så godkänner du att vi tillfälligt sparar dina
             kontaktuppgifter. Vi säljer naturligtvis aldrig dina uppgifter och
             vi lämnar dom inte vidare till annan part. Innehållet i din
-            beställning är endast synlig för vår volontärsamordnare och för den
-            volontärgruppledare som ansvarar för att hantera den. Du kan även
-            beställa genom att ringa 073-3230571 eller maila
-            tjorn@allatillsammans.se
+            beställning är endast synlig för vår samordnare och för den
+            volontärgruppledare som ansvarar för att hantera den.
           </p>
           <Form.Check
             type="checkbox"
@@ -377,10 +393,8 @@ const HelpForm = props => {
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>
-
-        <h4>
-          Du kommer bli kontaktad av en stödsamordnare så snart som möjligt
-        </h4>
+        <br />
+        <h4>Du kommer bli kontaktad av en samordnare så snart som möjligt</h4>
       </Form>
     </div>
   );

@@ -18,6 +18,8 @@ import Footer from './components/Footer';
 import Home from './screens/Home';
 //User screens
 import Apply from './screens/users/Apply';
+import Partners from './screens/info/Partners';
+import Cancel from './screens/users/Cancel';
 import Volunteer from './screens/users/Volunteer';
 //Admin screens
 import CheckAdmin from './screens/admin/CheckAdmin';
@@ -59,6 +61,9 @@ export default function App() {
             <Route path="/bestallning">
               <Apply />
             </Route>
+            <Route path="/avboka">
+              <Cancel />
+            </Route>
             <Route path="/bli-volontar">
               <Volunteer />
             </Route>
@@ -71,6 +76,9 @@ export default function App() {
             </Route>
             <Route path="/kontakt">
               <Contact />
+            </Route>
+            <Route path="/partners">
+              <Partners />
             </Route>
             {/* För admin */}
             <Route path="/admin">

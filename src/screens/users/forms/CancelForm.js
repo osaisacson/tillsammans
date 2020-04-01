@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 //Actions
 import firebase from '../../../firebase/firebase.utils';
-// import * as volunteersActions from '../../../store/actions/volunteers';
+// import * as ordersActions from '../../../store/actions/orders';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -49,62 +49,53 @@ const Input = ({ label, placeholder, value, onChange }) => (
   </>
 );
 
-const GroupForm = props => {
-  // const voluntrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited Volunteer, passed from previous screen
+const CancelForm = props => {
+  // const ordrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited order, passed from previous screen
+  const ordrId = null; //Get the id of the currently edited order, passed from previous screen
 
-  //Find Volunteer
-  // const editedVolunteer = useSelector(state =>
-  //   state.volunteers.availableVolunteers.find(
-  //     voluntr => voluntr.id === voluntrId
-  //   )
-  // );
-  const editedVolunteer = false;
+  //Find order
+  const editedOrder = useSelector(state =>
+    state.orders.availableOrders.find(ordr => ordr.id === ordrId)
+  );
 
   //Set states
   const [redirectToThanks, setRedirectToThanks] = useState(false);
+
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      gruppnamn: editedVolunteer ? editedVolunteer.gruppnamn : '',
-      förnamn: editedVolunteer ? editedVolunteer.förnamn : '',
-      efternamn: editedVolunteer ? editedVolunteer.efternamn : '',
-      telefon: editedVolunteer ? editedVolunteer.telefon : '',
-      email: editedVolunteer ? editedVolunteer.email : '',
-      address: editedVolunteer ? editedVolunteer.address : '',
-      beskrivning: editedVolunteer ? editedVolunteer.beskrivning : ''
+      telefon: editedOrder ? editedOrder.telefon : '',
+      email: editedOrder ? editedOrder.email : '',
+      address: editedOrder ? editedOrder.address : '',
+      postkod: editedOrder ? editedOrder.postkod : ''
     },
     inputValidities: {
-      gruppnamn: editedVolunteer ? true : false,
-      förnamn: editedVolunteer ? true : false,
-      efternamn: editedVolunteer ? true : false,
-      telefon: editedVolunteer ? true : false,
-      email: editedVolunteer ? true : false,
-      address: editedVolunteer ? true : false,
-      beskrivning: editedVolunteer ? true : false
+      telefon: editedOrder ? true : false,
+      email: editedOrder ? true : false,
+      address: editedOrder ? true : false,
+      postkod: editedOrder ? true : false
     },
-    formIsValid: editedVolunteer ? true : false
+    formIsValid: editedOrder ? true : false
   });
 
-  const addGroup = e => {
+  const addUser = e => {
     e.preventDefault();
+
     const db = firebase.firestore();
-    db.collection('volunteers').add({
-      förnamn: formState.inputValues.förnamn,
-      efternamn: formState.inputValues.efternamn,
+    db.collection('orders').add({
       telefon: formState.inputValues.telefon,
       email: formState.inputValues.email,
       address: formState.inputValues.address,
-      beskrivning: formState.inputValues.beskrivning,
-      grupp: 'ingen',
+      postkod: formState.inputValues.postkod,
       datum: new Date().getTime(),
-      status: 'ny'
+      status: 'avboka'
     });
     setRedirectToThanks(true);
   };
 
-  //For later use: this is the way we want to do it, not the addVolunteer above.
+  //For later use: this is the way we want to do it, not the addUser above.
 
   // const dispatch = useDispatch();
 
@@ -120,10 +111,10 @@ const GroupForm = props => {
   //   setError(null);
   //   setIsLoading(true);
   //   try {
-  //     if (editedVolunteer) {
+  //     if (editedOrder) {
   //       await dispatch(
-  //         volunteersActions.updateVolunteer(
-  //           voluntrId,
+  //         ordersActions.updateOrder(
+  //           ordrId,
   //           formState.inputValues.typ,
   //           formState.inputValues.beskrivning,
   //           formState.inputValues.tidsrymd,
@@ -142,7 +133,7 @@ const GroupForm = props => {
   //       );
   //       console.log('---------------------------------------');
   //       await dispatch(
-  //         volunteersActions.createVolunteer(
+  //         ordersActions.createOrder(
   //           formState.inputValues.typ,
   //           formState.inputValues.beskrivning,
   //           formState.inputValues.tidsrymd,
@@ -160,16 +151,10 @@ const GroupForm = props => {
   //   }
 
   //   setIsLoading(false);
-  // }, [formState, editedVolunteer, dispatch, voluntrId]);
+  // }, [formState, editedOrder, dispatch, ordrId]);
 
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
-    //inputIdentifier and text will act as key:value in the form reducer
-    // console.log('-------TEXTCHANGEHANDLER, received values-------');
-    // console.log('inputIdentifier:', inputIdentifier);
-    // console.log('text:', text.target.value);
-    // console.log('------------------------------------------------');
-
     let isValid = true;
 
     dispatchFormState({
@@ -186,33 +171,15 @@ const GroupForm = props => {
 
   return (
     <div className="form">
-      <Form onSubmit={addGroup}>
-        <Form.Row>
-          <Col>
-            <Input
-              label="förnamn"
-              value={formState.inputValues.förnamn}
-              type="text"
-              onChange={textChangeHandler.bind(this, 'förnamn')}
-              required
-            />
-          </Col>
-          <Col>
-            <Input
-              label="efternamn"
-              value={formState.inputValues.efternamn}
-              type="text"
-              onChange={textChangeHandler.bind(this, 'efternamn')}
-              required
-            />
-          </Col>
-        </Form.Row>
-
-        <h3>Var når vi dig?</h3>
+      <Form onSubmit={addUser}>
+        <h2>Avboka en beställning här</h2>
+        <br />
+        <h3>Kontaktuppgifter till dig så vi kan hitta din beställning</h3>
         <Form.Row>
           <Col>
             <Input
               label="telefon"
+              placeholder="Telefon"
               value={formState.inputValues.telefon}
               type="text"
               onChange={textChangeHandler.bind(this, 'telefon')}
@@ -222,10 +189,10 @@ const GroupForm = props => {
           <Col>
             <Input
               label="email"
+              placeholder="E-post (frivilligt)"
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
-              placeholder="e-post (frivilligt)"
               required
             />
           </Col>
@@ -235,33 +202,31 @@ const GroupForm = props => {
           <Col>
             <Input
               label="address"
+              placeholder="Address"
               value={formState.inputValues.address}
               type="text"
               onChange={textChangeHandler.bind(this, 'address')}
               required
             />
           </Col>
+          <Col>
+            <Input
+              label="postkod"
+              placeholder="Postkod"
+              value={formState.inputValues.postkod}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'postkod')}
+              required
+            />
+          </Col>
         </Form.Row>
-        <h3>Beskriv dig själv</h3>
-        <Form.Group controlId="t-1">
-          <Form.Control
-            as="textarea"
-            rows="3"
-            name="beskrivning"
-            value={formState.inputValues.beskrivning}
-            type="text"
-            onChange={textChangeHandler.bind(this, 'beskrivning')}
-            placeholder="Jag har ingen bil men en bra cykel"
-          />
-        </Form.Group>
+
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>
-
-        <h4>Du kommer bli kontaktad av en samordnare så snart som möjligt</h4>
       </Form>
     </div>
   );
 };
 
-export default GroupForm;
+export default CancelForm;

@@ -73,7 +73,7 @@ export default function HowTo() {
           <ul>
           <li>
             Efter att du skickat in din beställning lagras den i vårt
-            system. Volontärsamordnaren tittar på var på Tjörn du bor och
+            system. Samordnaren tittar på var på Tjörn du bor och
             vad du behöver hjälp med och fördelar därefter baserat på
             informationen din beställning till en av de aktiva
             volontärgrupperna på Tjörn.
@@ -93,7 +93,7 @@ export default function HowTo() {
           </li>
           <li>
             Om du vill avboka en lagd beställning ber vi dig att kontakta
-            volontärsamordnaren på tjorn@allatillsammans.se
+            samordnaren på tjorn@allatillsammans.se
           </li>
         </ul>"
         />
@@ -121,12 +121,12 @@ export default function HowTo() {
           content="
           <ul>
           <li>
-            Alla beställningar passerar Volontärsamordnaren som fördelar
+            Alla beställningar passerar samordnaren som fördelar
             dem till lämplig grupp baserat på beställningens innehåll och
             adress. Varje grupp har en gruppledare som i sin tur fördelar
             beställningen till en av gruppens 6-8 volontärer. Gruppledaren
             står i ständig kontakt med gruppens volontärer och rapporterar
-            till volontärsamordnaren när en beställning är färdighanterad.
+            till samordnaren när en beställning är färdighanterad.
           </li>
           <li>
             En beställning får inte flaggas som KLAR i vårt system om inte

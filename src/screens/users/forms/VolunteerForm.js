@@ -50,6 +50,8 @@ const Input = ({ label, placeholder, value, onChange }) => (
 );
 
 const VolunteerForm = props => {
+  const [approvedConditions, setApprovedConditions] = useState(false);
+
   // const voluntrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited Volunteer, passed from previous screen
 
   //Find Volunteer
@@ -121,6 +123,10 @@ const VolunteerForm = props => {
 
   const addVolunteer = e => {
     e.preventDefault();
+    if (!approvedConditions) {
+      alert('Det verkar som du inte läst och godkänt våra villkor');
+      return;
+    }
     const db = firebase.firestore();
     db.collection('volunteers').add({
       förnamn: formState.inputValues.förnamn,
@@ -206,6 +212,10 @@ const VolunteerForm = props => {
   //   setIsLoading(false);
   // }, [formState, editedVolunteer, dispatch, voluntrId]);
 
+  const toggleCheckBox = () => {
+    setApprovedConditions(!approvedConditions);
+  };
+
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
     //inputIdentifier and text will act as key:value in the form reducer
@@ -231,6 +241,8 @@ const VolunteerForm = props => {
   return (
     <div className="form">
       <Form onSubmit={addVolunteer}>
+        <h2>Jag vill bli volontär</h2>
+        <br />
         <p>
           Tillsammans kan vi begränsa smittspridningen av Covid – 19 och skydda
           utsatta grupper. Men vi behöver hjälpas åt! Kan du tänka dig att
@@ -412,20 +424,24 @@ const VolunteerForm = props => {
         </Form.Group>
 
         <p>
-          INFORMATION FÖR DIN INTEGRITET: I och med att du skickar oss din
-          beställning så godkänner du att vi tillfälligt sparar dina
+          <span>INFORMATION FÖR DIN TRYGGHET</span> I och med att du skickar oss
+          din anmälan så godkänner du att vi tillfälligt sparar dina
           kontaktuppgifter. Vi säljer naturligtvis aldrig dina uppgifter och vi
-          lämnar dom inte vidare till annan part. Jag godkänner att mina
-          uppgifter lagras tillfälligt och att min information är tillgänglig
-          för volontärplattformens samordnare samt en gruppledare.
+          lämnar dom inte vidare till annan part.
         </p>
+        <Form.Check
+          type="checkbox"
+          onClick={toggleCheckBox}
+          label="Jag godkänner att mina
+            uppgifter lagras och att min information är tillgänglig för
+            volontärplattformens samordnare samt en gruppledare."
+        />
+        <br />
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>
-
-        <h4>
-          Du kommer bli kontaktad av en stödsamordnare så snart som möjligt
-        </h4>
+        <br />
+        <h4>Du kommer bli kontaktad av en samordnare så snart som möjligt</h4>
       </Form>
     </div>
   );

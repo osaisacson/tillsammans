@@ -37,11 +37,11 @@ export default function MainHeader(props) {
             >
               Såhär funkar det
             </Link>
-            <Link id="intro" to="/intro" className="nav-link">
-              Vad kan man få hjälp med?
-            </Link>
-            <Link id="intro" to="/kontakt" className="nav-link">
+            <Link id="kontakt" to="/kontakt" className="nav-link">
               Kontakt
+            </Link>
+            <Link id="partners" to="/partners" className="nav-link">
+              Partners
             </Link>
             <NavDropdown id="byt-sprak" title="Byt språk">
               <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
