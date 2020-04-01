@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import FormInput from '../../components/FormInput';
 import CustomButton from '../../components/CustomButton';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 const SignIn = props => {
+  const firestore = firebase.firestore();
+
+  const [adminData, setAdminData] = useState();
   const [loginName, setLoginName] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
+  useEffect(() => {
+    firestore
+      .collection('admin')
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          const resData = doc.data();
+          setAdminData(resData);
+        });
+      });
+  }, [firestore]);
+
   const handleSubmit = event => {
     event.preventDefault();
-    //TODO: This should obviously be hidden
     const isVerified =
-      loginName === 'tjornadmin' && loginPassword === 'allatillsammans';
-
+      loginName === adminData.adminName && loginPassword === adminData.adminPwd;
     isVerified
       ? props.checkIfVerified('confirmed')
       : props.checkIfVerified('wrong credentials');
