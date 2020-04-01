@@ -20,8 +20,7 @@ import Home from './screens/Home';
 import Apply from './screens/users/Apply';
 import Volunteer from './screens/users/Volunteer';
 //Admin screens
-import Admin from './screens/admin/Admin';
-import SignInPage from './screens/admin/SignInPage';
+import CheckAdmin from './screens/admin/CheckAdmin';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
@@ -32,6 +31,8 @@ import Intro from './screens/info/Intro';
 import Contact from './screens/info/Contact';
 
 import './App.scss';
+
+require('dotenv').config();
 
 //Combines all the reducers which manages our redux state. This is where we geet our current state from in the child screens.
 const rootReducer = combineReducers({
@@ -73,10 +74,7 @@ export default function App() {
             </Route>
             {/* För admin */}
             <Route path="/admin">
-              <Admin />
-            </Route>
-            <Route path="/sign-in">
-              <SignInPage />
+              <CheckAdmin />
             </Route>
             <Route path="/mottaget">
               <Mottaget />

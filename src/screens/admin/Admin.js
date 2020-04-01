@@ -7,7 +7,7 @@ import Volunteers from './Volunteers';
 import Orders from './Orders';
 import Groups from './Groups';
 
-export default function Admin() {
+const Admin = props => {
   return (
     <div className="page-layout">
       <Tabs variant="pills" defaultActiveKey="first" id="0">
@@ -23,4 +23,6 @@ export default function Admin() {
       </Tabs>
     </div>
   );
-}
+};
+
+export default Admin;
