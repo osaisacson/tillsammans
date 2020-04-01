@@ -44,7 +44,7 @@ export const fetchOrders = () => {
         });
 
       console.log(
-        'actions.js: data received from firebase and passed through model: ',
+        'store/actions/orders.js:47 getting data from firebase and passing it through model - THIS WORKS: ',
         loadedOrders
       );
 

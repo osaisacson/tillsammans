@@ -98,7 +98,7 @@ body {
  */
 
 .page-layout {
-  min-width: 100%;
+  width: 100%;
   background-color: $page-background !important;
   border-radius: 2px;
   padding: 20px;
@@ -114,7 +114,13 @@ body {
       color: $page-background-contrast-hover;
     }
   }
-  
+
+  .nav-tabs {
+    .nav-link:active, .nav-link.active {
+      color: #000 !important;
+    }  
+  }
+
   h2 {
     margin-top: 10px;
   }

@@ -14,7 +14,10 @@ export default (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case SET_ORDERS:
-      console.log('-----action.orders from SET_ORDERS reducer', action.orders);
+      console.log(
+        'store/reducers/orders.js:18 getting the firebase data via our reducer, THIS WORKS:',
+        action.orders
+      );
       return {
         availableOrders: action.orders
       };

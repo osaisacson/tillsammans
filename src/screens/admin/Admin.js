@@ -1,7 +1,6 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { Link } from 'react-router-dom';
 
 //Components
 import Volunteers from './Volunteers';
