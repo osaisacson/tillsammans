@@ -33,11 +33,11 @@ const Volunteers = props => {
       'Attempting to filter data. Loading main data does not work, and neither does filtering'
     );
     console.log(
-      'line:37 getting volunteers slice from redux state',
+      'line:37 getting volunteers slice from redux state, DOES NOT WORK: ',
       volunteers
     );
     console.log(
-      'line:41 this should show a subset of the slice but it does not',
+      'line:41 this should show a subset of the slice, DOES NOT WORK: ',
       aVolunteers
     );
     console.log('--------------------------------------------------');
