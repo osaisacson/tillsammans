@@ -15,54 +15,71 @@ const Orders = props => {
   const firestore = firebase.firestore();
   const loadedOrders = [];
 
-  let newOrders;
-  let activeOrders;
-  let doneOrders;
-  let inactiveOrders;
+  let newOrders = [];
+  let activeOrders = [];
+  let doneOrders = [];
+  let inactiveOrders = [];
+
+  const setSubsets = () => {
+    newOrders = loadedOrders.filter(data => data.status === 'ohanterad');
+    activeOrders = loadedOrders.filter(data => data.status === 'hanterad');
+    doneOrders = loadedOrders.filter(data => data.status === 'klar');
+    inactiveOrders = loadedOrders.filter(data => data.status === 'inaktiv');
+  };
 
   //Attempt to NOT use redux
   useEffect(() => {
-    firestore
-      .collection('orders')
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          const resData = doc.data();
-          const readableDate = moment(resData.datum).format('L');
-          loadedOrders.push(
-            new Order(
-              doc.id,
-              readableDate,
-              resData.typ,
-              resData.beskrivning,
-              resData.tidsrymd,
-              resData.telefon,
-              resData.förnamn,
-              resData.efternamn,
-              resData.email,
-              resData.address,
-              resData.grupp,
-              resData.status
-            )
-          );
+    // Create an scoped async function in the hook
+    async function getOrders() {
+      await firestore
+        .collection('orders')
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            const resData = doc.data();
+            const readableDate = moment(resData.datum).format('L');
+            loadedOrders.push(
+              new Order(
+                doc.id,
+                readableDate,
+                resData.typ,
+                resData.beskrivning,
+                resData.swish,
+                resData.kontant,
+                resData.faktura,
+                resData.tidsrymd,
+                resData.telefon,
+                resData.förnamn,
+                resData.efternamn,
+                resData.email,
+                resData.address,
+                resData.postkod,
+                resData.grupp,
+                resData.status
+              )
+            );
+          });
         });
-      });
-    console.log('loadedOrders', loadedOrders);
+    }
+    console.log('-------------screens/admin/Orders.js-------------');
+    console.log(
+      'Attempting to filter data. Loading main data set works but filtering does not.'
+    );
+
+    getOrders();
+    console.log('line:71 loadedOrders, this works', loadedOrders);
+
+    setSubsets();
+    console.log(
+      'line:75 this should show a subset of the loadedOrders but it does not',
+      newOrders
+    );
+    console.log('--------------------------------------------------');
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadedOrders]);
 
-  newOrders = loadedOrders.filter(data => data.status === 'ohanterad');
-  activeOrders = loadedOrders.filter(data => data.status === 'hanterad');
-  doneOrders = loadedOrders.filter(data => data.status === 'klar');
-  inactiveOrders = loadedOrders.filter(data => data.status === 'inaktiv');
-  console.log(
-    'screens/admin/Orders.js: attempting to filter data. Loading main set works but filtering does not.'
-  );
-  console.log(
-    'screens/admin/Orders.js: main data set (loadedOrders): ',
-    loadedOrders
-  );
   return (
     <div className="page-layout">
       <h2>Beställningar</h2>
