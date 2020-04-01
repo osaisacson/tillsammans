@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //Reducers
 import ordersReducer from './store/reducers/orders';
-// import groupsReducer from './store/reducers/groups';
+import groupsReducer from './store/reducers/groups';
 import volunteersReducer from './store/reducers/volunteers';
-// import authReducer from './store/reducers/auth';
+import cancellationsReducer from './store/reducers/cancellations';
 
 //Components
 import MainHeader from './components/MainHeader';
@@ -26,6 +26,7 @@ import CheckAdmin from './screens/admin/CheckAdmin';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
+import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
 //Info screens
 import HowTo from './screens/info/HowTo';
@@ -39,9 +40,9 @@ require('dotenv').config();
 //Combines all the reducers which manages our redux state. This is where we geet our current state from in the child screens.
 const rootReducer = combineReducers({
   orders: ordersReducer,
-  volunteers: volunteersReducer
-  // groups: groupsReducer,
-  // auth: authReducer
+  volunteers: volunteersReducer,
+  groups: groupsReducer,
+  cancellations: cancellationsReducer
 });
 
 //NOTE: remove composeWithDevTools before deploying the app. It is only used for React Native Debugger.
@@ -95,6 +96,9 @@ export default function App() {
             </Route>
             <Route path="/grupper">
               <Groups />
+            </Route>
+            <Route path="/avbokningar">
+              <Cancellations />
             </Route>
             {/* För alla */}
             <Route path="/">

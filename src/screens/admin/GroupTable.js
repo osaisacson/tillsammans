@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
-export default function GroupTable(props) {
+const GroupTable = props => {
   const [groupData, setGroupData] = useState(props.groupData);
 
   const Row = ({
@@ -88,4 +88,6 @@ export default function GroupTable(props) {
       </table>
     </div>
   );
-}
+};
+
+export default GroupTable;

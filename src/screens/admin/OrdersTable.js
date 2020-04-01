@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
-export default function OrdersTable(props) {
+const OrdersTable = props => {
   const [ordersData, setOrdersData] = useState(props.ordersData);
 
   const Row = ({
@@ -103,4 +103,6 @@ export default function OrdersTable(props) {
       </table>
     </div>
   );
-}
+};
+
+export default OrdersTable;

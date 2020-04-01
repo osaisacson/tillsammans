@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
-export default function VolunteersTable(props) {
+const VolunteersTable = props => {
   const [volunteerData, setVolunteerData] = useState(props.volunteerData);
 
   const Row = ({
@@ -12,6 +12,7 @@ export default function VolunteersTable(props) {
     telefon,
     email,
     address,
+    postkod,
     beskrivning,
     körkort,
     bil,
@@ -21,6 +22,7 @@ export default function VolunteersTable(props) {
     djur,
     prata,
     myndigheter,
+    teknik,
     grupp,
     status
   }) => (
@@ -31,6 +33,7 @@ export default function VolunteersTable(props) {
       <td>{telefon}</td>
       <td>{email}</td>
       <td>{address}</td>
+      <td>{postkod}</td>
       <td className="beskrivning">{beskrivning}</td>
       <td>{körkort ? 'x' : ''}</td>
       <td>{bil ? 'x' : ''}</td>
@@ -40,6 +43,7 @@ export default function VolunteersTable(props) {
       <td>{djur ? 'x' : ''}</td>
       <td>{prata ? 'x' : ''}</td>
       <td>{myndigheter ? 'x' : ''}</td>
+      <td>{teknik ? 'x' : ''}</td>
       <td>{grupp}</td>
       <td>{status}</td>
 
@@ -103,6 +107,8 @@ export default function VolunteersTable(props) {
             <th onClick={() => sortBy('efternamn')}>Efternamn</th>
             <th onClick={() => sortBy('telefon')}>Telefon</th>
             <th onClick={() => sortBy('email')}>E-post</th>
+            <th onClick={() => sortBy('address')}>Address</th>
+            <th onClick={() => sortBy('postkod')}>Postkod</th>
             <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
             <th onClick={() => sortBy('körkort')}>Har körkort</th>
             <th onClick={() => sortBy('bil')}>Har bil</th>
@@ -112,6 +118,7 @@ export default function VolunteersTable(props) {
             <th onClick={() => sortBy('djur')}>Djur</th>
             <th onClick={() => sortBy('prata')}>Prata</th>
             <th onClick={() => sortBy('myndigheter')}>Myndigheter</th>
+            <th onClick={() => sortBy('myndigheter')}>Teknik</th>
             <th onClick={() => sortBy('grupp')}>Grupp</th>
             <th onClick={() => sortBy('status')}>Sätt status</th>
           </tr>
@@ -120,4 +127,6 @@ export default function VolunteersTable(props) {
       </table>
     </div>
   );
-}
+};
+
+export default VolunteersTable;

@@ -6,15 +6,14 @@ import GroupsDummyData from './../../DummyData/GroupsDummyData';
 //Components
 import GroupTable from './GroupTable';
 
-const newGroups = GroupsDummyData.filter(data => data.status === 'ny');
+const Groups = props => {
+  //Group subsets
+  const newGroups = GroupsDummyData.filter(data => data.status === 'ny');
+  const activeGroups = GroupsDummyData.filter(data => data.status === 'aktiv');
+  const inactiveGroups = GroupsDummyData.filter(
+    data => data.status === 'inaktiv'
+  );
 
-const activeGroups = GroupsDummyData.filter(data => data.status === 'aktiv');
-
-const inactiveGroups = GroupsDummyData.filter(
-  data => data.status === 'inaktiv'
-);
-
-export default function Groups() {
   return (
     <div className="page-layout">
       <h2>Grupper</h2>
@@ -32,4 +31,6 @@ export default function Groups() {
       </Tabs>
     </div>
   );
-}
+};
+
+export default Groups;

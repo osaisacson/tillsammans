@@ -62,20 +62,23 @@ const Orders = props => {
           });
         });
     }
+    console.log('****** ORDERS - NON-REDUX APPROACH ******');
+
     console.log('-------------screens/admin/Orders.js-------------');
     console.log(
-      'Attempting to filter data. Loading main data set works but filtering does not.'
+      'Attempting to filter data. Loading main data set works but filtering does not:'
     );
 
     getOrders();
-    console.log('line:71 loadedOrders, this works', loadedOrders);
+    console.log('line:71 loadedOrders, THIS WORKS:', loadedOrders);
 
     setSubsets();
     console.log(
-      'line:75 this should show a subset of the loadedOrders but it does not',
+      'line:75 this should show a subset of the loadedOrders, DOES NOT WORK: ',
       newOrders
     );
     console.log('--------------------------------------------------');
+    console.log('****** END. NON-REDUX APPROACH ******');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadedOrders]);

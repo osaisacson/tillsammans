@@ -31,6 +31,7 @@ export const fetchVolunteers = () => {
                 resData.telefon,
                 resData.email,
                 resData.address,
+                resData.postkod,
                 resData.beskrivning,
                 resData.körkort,
                 resData.bil,
@@ -40,6 +41,7 @@ export const fetchVolunteers = () => {
                 resData.djur,
                 resData.prata,
                 resData.myndigheter,
+                resData.teknik,
                 resData.grupp,
                 resData.datum,
                 resData.status
@@ -48,8 +50,10 @@ export const fetchVolunteers = () => {
           });
         });
 
+      console.log('****** VOLONTÄRER - REDUX APPROACH (preferred) ******');
+      console.log('---------store/actions/volunteers.js---------');
       console.log(
-        'actions.js: data received from firebase and passed through model: ',
+        'data received from firebase and passed through model THIS WORKS: ',
         loadedVolunteers
       );
 
@@ -64,25 +68,10 @@ export const fetchVolunteers = () => {
   };
 };
 
-// console.log('doc.id: ', doc.id);
-// console.log('readableDate: ', readableDate);
-// console.log('resData.typ: ', resData.typ);
-// console.log('resData.beskrivning: ', resData.beskrivning);
-// console.log('resData.tidsrymd: ', resData.tidsrymd);
-// console.log('resData.telefon: ', resData.telefon);
-// console.log('resData.förnamn: ', resData.förnamn);
-// console.log('resData.efternamn: ', resData.efternamn);
-// console.log('resData.email: ', resData.email);
-// console.log('resData.address: ', resData.address);
-// console.log('resData.grupp: ', resData.grupp);
-// console.log('resData.status: ', resData.status);
-
 export const deleteVolunteer = volunteerId => {
   return async (dispatch, getState) => {
-    // const token = getState().auth.token; //TODO: set up authorisation of admin
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/volunteers/${volunteerId}.json`,
-      // `https://sverige-tillsammans.firebaseio.com/volunteers/${volunteerId}.json?auth=${token}`,
       {
         method: 'DELETE'
       }
@@ -96,73 +85,50 @@ export const deleteVolunteer = volunteerId => {
 };
 
 export const createVolunteer = (
-  typ,
-  beskrivning,
-  tidsrymd,
-  telefon,
   förnamn,
   efternamn,
+  telefon,
   email,
   address,
-  postkod
+  postkod,
+  beskrivning,
+  körkort,
+  bil,
+  mat,
+  varor,
+  ärenden,
+  djur,
+  prata,
+  myndigheter,
+  teknik
 ) => {
-  return async (dispatch, getState) => {
-    console.log('------createVolunteer was triggered-------');
-    console.log('received data:');
-    console.log('typ:', typ);
-    console.log('beskrivning:', beskrivning);
-    console.log('tidsrymd:', tidsrymd);
-    console.log('telefon:', telefon);
-    console.log('förnamn:', förnamn);
-    console.log('efternamn:', efternamn);
-    console.log('email:', email);
-    console.log('address:', address);
-    console.log('postkod:', postkod);
-    console.log('---------');
-
+  return async dispatch => {
     const setDatum = new Date().getTime();
     const setGrupp = 'ingen';
     const setStatus = 'ohanterad';
 
     const db = firebase.firestore();
     const response = await db.collection('volunteers').add({
-      typ: typ,
-      beskrivning: beskrivning,
-      tidsrymd: tidsrymd,
-      telefon: telefon,
-      förnamn: förnamn,
-      efternamn: efternamn,
-      email: email,
-      address: address,
+      förnamn,
+      efternamn,
+      telefon,
+      email,
+      address,
+      postkod,
+      beskrivning,
+      körkort,
+      bil,
+      mat,
+      varor,
+      ärenden,
+      djur,
+      prata,
+      myndigheter,
+      teknik,
       grupp: setGrupp,
       datum: setDatum,
       status: setStatus
     });
-
-    // const response = await fetch(
-    //   `https://sverige-tillsammans.firebaseio.com/volunteers.json`,
-    //   // `https://sverige-tillsammans.firebaseio.com/volunteers.json?auth=${token}`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //       datum: setDatum,
-    //       typ,
-    //       beskrivning,
-    //       tidsrymd,
-    //       telefon,
-    //       förnamn,
-    //       efternamn,
-    //       email,
-    //       address,
-    //       postkod,
-    //       grupp: setGrupp,
-    //       status: setStatus
-    //     })
-    //   }
-    // );
 
     const resData = await response.json();
     console.log('resData efter post/fetch firebase:', resData);
@@ -172,17 +138,24 @@ export const createVolunteer = (
       type: CREATE_VOLUNTEER,
       volunteerData: {
         id: resData.name,
-        datum: setDatum,
-        typ,
-        beskrivning,
-        tidsrymd,
-        telefon,
         förnamn,
         efternamn,
+        telefon,
         email,
         address,
         postkod,
+        beskrivning,
+        körkort,
+        bil,
+        mat,
+        varor,
+        ärenden,
+        djur,
+        prata,
+        myndigheter,
+        teknik,
         grupp: setGrupp,
+        datum: setDatum,
         status: setStatus
       }
     });
@@ -191,38 +164,50 @@ export const createVolunteer = (
 
 export const updateVolunteer = (
   id,
-  typ,
-  beskrivning,
-  tidsrymd,
-  telefon,
   förnamn,
   efternamn,
+  telefon,
   email,
   address,
   postkod,
+  beskrivning,
+  körkort,
+  bil,
+  mat,
+  varor,
+  ärenden,
+  djur,
+  prata,
+  myndigheter,
+  teknik,
   grupp,
   status
 ) => {
-  return async (dispatch, getState) => {
-    // const token = getState().auth.token;
+  return async dispatch => {
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/volunteers/${id}.json`,
-      // `https://sverige-tillsammans.firebaseio.com/volunteers/${id}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          typ,
-          beskrivning,
-          tidsrymd,
-          telefon,
           förnamn,
           efternamn,
+          telefon,
           email,
           address,
           postkod,
+          beskrivning,
+          körkort,
+          bil,
+          mat,
+          varor,
+          ärenden,
+          djur,
+          prata,
+          myndigheter,
+          teknik,
           grupp,
           status
         })
@@ -237,15 +222,22 @@ export const updateVolunteer = (
       type: UPDATE_VOLUNTEER,
       oid: id,
       volunteerData: {
-        typ,
-        beskrivning,
-        tidsrymd,
-        telefon,
         förnamn,
         efternamn,
+        telefon,
         email,
         address,
         postkod,
+        beskrivning,
+        körkort,
+        bil,
+        mat,
+        varor,
+        ärenden,
+        djur,
+        prata,
+        myndigheter,
+        teknik,
         grupp,
         status
       }

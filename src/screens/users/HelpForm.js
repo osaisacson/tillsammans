@@ -257,8 +257,7 @@ const HelpForm = props => {
             value={formState.inputValues.beskrivning}
             type="text"
             onChange={textChangeHandler.bind(this, 'beskrivning')}
-            // defaultValue={'tidigare värde'} Såhär fixar vi edit form senare
-            placeholder="Inköpslista, önskad butik eller annan information om din beställning."
+            placeholder="Inköpslista eller annan information om din beställning."
           />
         </Form.Group>
         <h3>

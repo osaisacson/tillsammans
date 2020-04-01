@@ -6,6 +6,7 @@ import Tab from 'react-bootstrap/Tab';
 import Volunteers from './Volunteers';
 import Orders from './Orders';
 import Groups from './Groups';
+import Cancellations from './Cancellations';
 
 const Admin = props => {
   return (
@@ -19,6 +20,9 @@ const Admin = props => {
         </Tab>
         <Tab title="Grupper" eventKey="third">
           <Groups />
+        </Tab>
+        <Tab title="Avbokningar" eventKey="fourth">
+          <Cancellations />
         </Tab>
       </Tabs>
     </div>
