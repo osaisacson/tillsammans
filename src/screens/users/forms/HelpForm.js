@@ -113,7 +113,7 @@ const HelpForm = props => {
       typ: formState.inputValues.typ,
       beskrivning: formState.inputValues.beskrivning,
       swish: useSwish,
-      kontanter: useCash,
+      kontant: useCash,
       faktura: useInvoice,
       tidsrymd: formState.inputValues.tidsrymd,
       telefon: formState.inputValues.telefon,
