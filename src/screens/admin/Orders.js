@@ -1,101 +1,87 @@
-import React, { useEffect } from 'react';
-import Order from './../../models/order';
-import moment from 'moment';
+import React, { useEffect, useState } from "react";
+import Order from "./../../models/order";
+import moment from "moment";
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 //Components
-import OrdersTable from './OrdersTable';
+import OrdersTable from "./OrdersTable";
 
 const Orders = props => {
   const firestore = firebase.firestore();
-  const loadedOrders = [];
-
-  let newOrders = [];
-  let activeOrders = [];
-  let doneOrders = [];
-  let inactiveOrders = [];
-
-  const setSubsets = () => {
-    newOrders = loadedOrders.filter(data => data.status === 'ohanterad');
-    activeOrders = loadedOrders.filter(data => data.status === 'hanterad');
-    doneOrders = loadedOrders.filter(data => data.status === 'klar');
-    inactiveOrders = loadedOrders.filter(data => data.status === 'inaktiv');
-  };
+  const [data, setData] = useState({
+    newOrders: [],
+    activeOrders: [],
+    doneOrders: [],
+    inactiveOrders: []
+  });
 
   //Attempt to NOT use redux
   useEffect(() => {
     // Create an scoped async function in the hook
     async function getOrders() {
-      await firestore
-        .collection('orders')
-        .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            const resData = doc.data();
-            const readableDate = moment(resData.datum).format('L');
-            loadedOrders.push(
-              new Order(
-                doc.id,
-                readableDate,
-                resData.typ,
-                resData.beskrivning,
-                resData.swish,
-                resData.kontant,
-                resData.faktura,
-                resData.tidsrymd,
-                resData.telefon,
-                resData.förnamn,
-                resData.efternamn,
-                resData.email,
-                resData.address,
-                resData.postkod,
-                resData.grupp,
-                resData.status
-              )
-            );
-          });
-        });
+      const orders = [];
+      const querySnapshot = await firestore.collection("orders").get();
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        const resData = doc.data();
+        const readableDate = moment(resData.datum).format("L");
+
+        orders.push(
+          new Order(
+            doc.id,
+            readableDate,
+            resData.typ,
+            resData.beskrivning,
+            resData.swish,
+            resData.kontant,
+            resData.faktura,
+            resData.tidsrymd,
+            resData.telefon,
+            resData.förnamn,
+            resData.efternamn,
+            resData.email,
+            resData.address,
+            resData.postkod,
+            resData.grupp,
+            resData.status
+          )
+        );
+      });
+
+      setData({
+        newOrders: orders.filter(data => data.status === "ohanterad"),
+        activeOrders: orders.filter(data => data.status === "hanterad"),
+        doneOrders: orders.filter(data => data.status === "klar"),
+        inactiveOrders: orders.filter(data => data.status === "inaktiv")
+      });
     }
-    console.log('-------------screens/admin/Orders.js-------------');
-    console.log(
-      'Attempting to filter data. Loading main data set works but filtering does not.'
-    );
 
     getOrders();
-    console.log('line:71 loadedOrders, this works', loadedOrders);
-
-    setSubsets();
-    console.log(
-      'line:75 this should show a subset of the loadedOrders but it does not',
-      newOrders
-    );
-    console.log('--------------------------------------------------');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadedOrders]);
+  }, []);
 
   return (
     <div className="page-layout">
       <h2>Beställningar</h2>
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
-        <Tab eventKey="nya" title={'Nya beställningar '}>
-          <OrdersTable ordersData={newOrders} />
+        <Tab eventKey="nya" title={"Nya beställningar "}>
+          <OrdersTable ordersData={data.newOrders} />
         </Tab>
-        <Tab eventKey="aktiva" title={'Hanterade'}>
-          <OrdersTable ordersData={activeOrders} />
+        <Tab eventKey="aktiva" title={"Hanterade "}>
+          <OrdersTable ordersData={data.activeOrders} />
         </Tab>
-        <Tab eventKey="klara" title={'Levererade'}>
-          <OrdersTable ordersData={doneOrders} />
+        <Tab eventKey="klara" title={"Levererade "}>
+          <OrdersTable ordersData={data.doneOrders} />
         </Tab>
-        <Tab eventKey="inaktiv" title={`Inaktiva `}>
-          <OrdersTable ordersData={inactiveOrders} />
+        <Tab eventKey="inaktiv" title={"Inaktiva "}>
+          <OrdersTable ordersData={data.inactiveOrders} />
         </Tab>
       </Tabs>
     </div>

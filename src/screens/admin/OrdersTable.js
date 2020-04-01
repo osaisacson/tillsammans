@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
 
 export default function OrdersTable(props) {
-  const [ordersData, setOrdersData] = useState(props.ordersData);
-
+  const [key, setKey] = useState("datum");
   const Row = ({
     datum,
     typ,
@@ -29,14 +28,14 @@ export default function OrdersTable(props) {
       <td>
         <ButtonGroup aria-label="set status" size="sm">
           <Button
-            active={status === 'ohanterad'}
+            active={status === "ohanterad"}
             onClick={() => console.log('TODO: this should set status as "ny"')}
             variant="secondary"
           >
             Ohanterad
           </Button>
           <Button
-            active={status === 'hanterad'}
+            active={status === "hanterad"}
             onClick={() =>
               console.log('TODO: this should set status as "hanterad"')
             }
@@ -45,7 +44,7 @@ export default function OrdersTable(props) {
             Hanterad
           </Button>
           <Button
-            active={status === 'klar'}
+            active={status === "klar"}
             onClick={() =>
               console.log('TODO: this should set status as "klar"')
             }
@@ -54,7 +53,7 @@ export default function OrdersTable(props) {
             Levererad
           </Button>
           <Button
-            active={status === 'inaktiv'}
+            active={status === "inaktiv"}
             onClick={() =>
               console.log('TODO: this should set status as "inaktiv"')
             }
@@ -75,28 +74,24 @@ export default function OrdersTable(props) {
     };
   };
 
-  const sortBy = key => {
-    let arrayCopy = [...ordersData];
-    arrayCopy.sort(compareBy(key));
-    setOrdersData(arrayCopy);
-  };
-
-  const rows = ordersData.map(rowData => <Row key={rowData.id} {...rowData} />);
+  const rows = props.ordersData
+    .sort(compareBy(key))
+    .map(rowData => <Row key={rowData.id} {...rowData} />);
 
   return (
     <div className="table-responsive">
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th onClick={() => sortBy('datum')}>Mottaget</th>
-            <th onClick={() => sortBy('typ')}>Typ</th>
-            <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
-            <th onClick={() => sortBy('tidsrymd')}>Tid kan vänta</th>
-            <th onClick={() => sortBy('telefon')}>Telefon</th>
-            <th onClick={() => sortBy('email')}>Email</th>
-            <th onClick={() => sortBy('address')}>Address</th>
-            <th onClick={() => sortBy('grupp')}>Grupp</th>
-            <th onClick={() => sortBy('status')}>Status</th>
+            <th onClick={() => setKey("datum")}>Mottaget</th>
+            <th onClick={() => setKey("typ")}>Typ</th>
+            <th onClick={() => setKey("beskrivning")}>Beskrivning</th>
+            <th onClick={() => setKey("tidsrymd")}>Tid kan vänta</th>
+            <th onClick={() => setKey("telefon")}>Telefon</th>
+            <th onClick={() => setKey("email")}>Email</th>
+            <th onClick={() => setKey("address")}>Address</th>
+            <th onClick={() => setKey("grupp")}>Grupp</th>
+            <th onClick={() => setKey("status")}>Status</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
