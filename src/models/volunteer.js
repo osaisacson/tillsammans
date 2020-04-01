@@ -15,6 +15,7 @@ class Volunteer {
     djur,
     prata,
     myndigheter,
+    teknik,
     grupp,
     datum,
     status
@@ -34,6 +35,7 @@ class Volunteer {
     this.djur = djur;
     this.prata = prata;
     this.myndigheter = myndigheter;
+    this.teknik = teknik;
     this.grupp = grupp;
     this.datum = datum;
     this.status = status;

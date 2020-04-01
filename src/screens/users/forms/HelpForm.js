@@ -215,6 +215,9 @@ const HelpForm = props => {
             <option value="inget val">Välj typ</option>
             <option value="Handla/Hämta mat">Handla/Hämta mat</option>
             <option value="Handla/Hämta annat">Handla/Hämta annat</option>
+            <option value="Hjälpa till med teknik">
+              Hjälpa till med teknik
+            </option>
             <option value="Prata">Prata</option>
             <option value="Annat ärende">Utföra annat ärende</option>
           </Form.Control>

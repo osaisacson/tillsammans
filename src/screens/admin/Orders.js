@@ -1,66 +1,88 @@
-import React, { useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import Order from './../../models/order';
+import moment from 'moment';
+
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-// import ordersDummyData from './../../DummyData/OrdersDummyData';
 
-import * as ordersActions from '../../store/actions/orders';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 //Components
 import OrdersTable from '../../components/tables/OrdersTable';
 
-export default function Orders() {
-  // const orders = ordersDummyData;
+const Orders = props => {
+  const firestore = firebase.firestore();
+  const loadedOrders = [];
 
-  const orders = useSelector(state => state.orders.availableOrders);
+  let newOrders;
+  let activeOrders;
+  let doneOrders;
+  let inactiveOrders;
 
-  const newOrders = orders.filter(data => data.status === 'ohanterad');
-  const activeOrders = orders.filter(data => data.status === 'hanterad');
-  const doneOrders = orders.filter(data => data.status === 'klar');
-  const inactiveOrders = orders.filter(data => data.status === 'inaktiv');
-
-  const dispatch = useDispatch();
-
-  const loadOrders = useCallback(async () => {
-    try {
-      await dispatch(ordersActions.fetchOrders());
-    } catch (err) {
-      console.log(err.message);
-    }
-  }, [dispatch]);
-
+  //Attempt to NOT use redux
   useEffect(() => {
-    loadOrders().then(() => {
-      console.log(
-        'screens/admin/Orders.js - useEffect() which attempts to load orders. This might be where the issue lives.'
-      );
-    });
-  }, [dispatch, loadOrders]);
+    firestore
+      .collection('orders')
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          const resData = doc.data();
+          const readableDate = moment(resData.datum).format('L');
+          loadedOrders.push(
+            new Order(
+              doc.id,
+              readableDate,
+              resData.typ,
+              resData.beskrivning,
+              resData.tidsrymd,
+              resData.telefon,
+              resData.förnamn,
+              resData.efternamn,
+              resData.email,
+              resData.address,
+              resData.grupp,
+              resData.status
+            )
+          );
+        });
+      });
+    console.log('loadedOrders', loadedOrders);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadedOrders]);
 
-  return (
-    console.log(
-      'screens/admin/Orders.js:46 getting data from state -- THIS RENDERS TWO TIMES AND WORKS THE SECOND TIME IT RENDERS: ',
-      orders
-    ),
-    (
-      <div className="page-layout">
-        <h2>Beställningar</h2>
-        <p>Sortera genom att trycka på titlarna</p>
-        <Tabs defaultActiveKey="nya" id="0">
-          <Tab eventKey="nya" title={'Nya beställningar '}>
-            <OrdersTable ordersData={newOrders} />
-          </Tab>
-          <Tab eventKey="aktiva" title={'Hanterade'}>
-            <OrdersTable ordersData={activeOrders} />
-          </Tab>
-          <Tab eventKey="klara" title={'Levererade'}>
-            <OrdersTable ordersData={doneOrders} />
-          </Tab>
-          <Tab eventKey="inaktiv" title={`Inaktiva `}>
-            <OrdersTable ordersData={inactiveOrders} />
-          </Tab>
-        </Tabs>
-      </div>
-    )
+  newOrders = loadedOrders.filter(data => data.status === 'ohanterad');
+  activeOrders = loadedOrders.filter(data => data.status === 'hanterad');
+  doneOrders = loadedOrders.filter(data => data.status === 'klar');
+  inactiveOrders = loadedOrders.filter(data => data.status === 'inaktiv');
+  console.log(
+    'screens/admin/Orders.js: attempting to filter data. Loading main set works but filtering does not.'
   );
-}
+  console.log(
+    'screens/admin/Orders.js: main data set (loadedOrders): ',
+    loadedOrders
+  );
+  return (
+    <div className="page-layout">
+      <h2>Beställningar</h2>
+      <p>Sortera genom att trycka på titlarna</p>
+      <Tabs defaultActiveKey="nya" id="0">
+        <Tab eventKey="nya" title={'Nya beställningar '}>
+          <OrdersTable ordersData={newOrders} />
+        </Tab>
+        <Tab eventKey="aktiva" title={'Hanterade'}>
+          <OrdersTable ordersData={activeOrders} />
+        </Tab>
+        <Tab eventKey="klara" title={'Levererade'}>
+          <OrdersTable ordersData={doneOrders} />
+        </Tab>
+        <Tab eventKey="inaktiv" title={`Inaktiva `}>
+          <OrdersTable ordersData={inactiveOrders} />
+        </Tab>
+      </Tabs>
+    </div>
+  );
+};
+
+export default Orders;

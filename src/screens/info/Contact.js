@@ -15,8 +15,8 @@ export default function Contact() {
         </p>
         <p>
           Om du istället föredrar att ringa in din beställning kan du
-          kontakta Maria Eriksson (Diakon, Stenkyrka församling - Svenska
-          kyrkan Tjörn) på 0733 230 515.
+          kontakta Helena Johannesson (Svenska
+          kyrkan Tjörn) på 0733 230 571.
         </p>"
       />
       <Accordion

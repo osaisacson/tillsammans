@@ -73,6 +73,7 @@ const VolunteerForm = props => {
   const [doAnimals, setDoAnimals] = useState(false);
   const [doTalking, setDoTalking] = useState(false);
   const [doAuthorities, setDoAuthorities] = useState(false);
+  const [doTech, setDoTech] = useState(false);
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -91,7 +92,8 @@ const VolunteerForm = props => {
       ärenden: editedVolunteer ? editedVolunteer.ärenden : '',
       djur: editedVolunteer ? editedVolunteer.djur : '',
       prata: editedVolunteer ? editedVolunteer.prata : '',
-      myndigheter: editedVolunteer ? editedVolunteer.myndigheter : ''
+      myndigheter: editedVolunteer ? editedVolunteer.myndigheter : '',
+      teknik: editedVolunteer ? editedVolunteer.teknik : ''
     },
     inputValidities: {
       förnamn: editedVolunteer ? true : false,
@@ -109,7 +111,8 @@ const VolunteerForm = props => {
       ärenden: editedVolunteer ? true : false,
       djur: editedVolunteer ? true : false,
       prata: editedVolunteer ? true : false,
-      myndigheter: editedVolunteer ? true : false
+      myndigheter: editedVolunteer ? true : false,
+      teknik: editedVolunteer ? true : false
     },
     formIsValid: editedVolunteer ? true : false
   });
@@ -134,6 +137,7 @@ const VolunteerForm = props => {
       djur: doAnimals,
       prata: doTalking,
       myndigheter: doAuthorities,
+      teknik: doTech,
       grupp: 'ingen',
       datum: new Date().getTime(),
       status: 'ny'
@@ -384,6 +388,13 @@ const VolunteerForm = props => {
               setDoAuthorities(!doAuthorities);
             }}
             label="Hjälpa till med vård/myndighetskontakter och rådgivning"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setDoTech(!doTech);
+            }}
+            label="Hjälpa till att sätta upp teknologi (beställa online, etc)"
           />
         </Form.Group>
 
