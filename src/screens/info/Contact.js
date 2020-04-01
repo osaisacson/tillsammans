@@ -9,9 +9,7 @@ export default function Contact() {
       <Accordion
         title="SAMORDNARE"
         content=" <p>
-          Samordnaren på Tjörn är Anna Berglund från
-          Egnahemsfabriken. Vill du komma i kontakt med
-          samordnaren når du henne på tjorn@allatillsammans.se
+          Samordnaren på Tjörn är Anna Berglund (Egnahemsfabriken). Henne når du på tjorn@allatillsammans.se
         </p>
         <p>
           Om du istället föredrar att ringa in din beställning kan du
@@ -24,9 +22,8 @@ export default function Contact() {
         content=" <p>
           Volontärsinsatserna bedrivs i volontärsgrupper. Varje
           volontärsgrupp har 4-6 medlemmar och en gruppledare. Kontakta
-          gruppledaren om du har frågor om din beställning efter att denna
-          har fördelats till en grupp (du har fått ett sms eller
-          epostmeddelande om detta).
+          gruppledaren om du har frågor om din beställning (du får ett sms eller
+          epostmeddelande med kontaktdetaljer till din grupp när beställningen har fördelats).
         </p>"
       />
       <Accordion
@@ -39,15 +36,14 @@ export default function Contact() {
       <Accordion
         title="AVBOKA BESTÄLLNING"
         content=" <p>
-          Vill du dra tillbaka en beställning innan den har fördelats till
-          en grupp? Skicka ett mail till tjorn@allatillsammans.se eller
-          använd beställningsformuläret <a href='https://tjorn.allatillsammans.se/avboka'>här</div></a> och skriv att du vill avboka.
+          Vill du dra tillbaka en beställning? Skicka ett mail till tjorn@allatillsammans.se eller
+          använd avbokningsformuläret <a href='https://tjorn.allatillsammans.se/avboka'>här</div></a>.
         </p>"
       />
       <Accordion
         title="FEEDBACK OCH FÖRSLAG"
         content="  <p>
-        Vi tar gärna emot förslag om förbättringar av siten!
+        Vi tar gärna emot förslag om utökning och förbättringar av siten!
         </p>
         <p>Webbansvarig: Åsa Isacson
         </p>

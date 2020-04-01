@@ -43,7 +43,7 @@ export default function MainHeader(props) {
             <Link id="partners" to="/partners" className="nav-link">
               Partners
             </Link>
-            <NavDropdown id="byt-sprak" title="Byt språk">
+            {/* <NavDropdown id="byt-sprak" title="Byt språk">
               <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Engelska</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Finska</NavDropdown.Item>
@@ -51,7 +51,7 @@ export default function MainHeader(props) {
               <NavDropdown.Item href="#action/3.3">Polska</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Kurdiska</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Spanska</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

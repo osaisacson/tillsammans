@@ -11,9 +11,9 @@ export default function HowTo() {
           title="VILKA STÅR BAKOM TJÄNSTEN OCH VAD ÄR DESS SYFTE?"
           content=" <ul>
           <li>
-            Beställningstjänsten ALLA TILLSAMMANS MOT COVID-19 PÅ TJÖRN
+            Beställningstjänsten ALLA TILLSAMMANS
             drivs av frivilliga krafter i civilsamhällets organisationer
-            på Tjörn.
+            på Tjörn i samarbete med Tjörns Kommun. Se alla medverkande organisationer under PARTNERS.
           </li>
           <li>
             Syftet med tjänsten är att hjälpa dig som sitter i
@@ -52,8 +52,8 @@ export default function HowTo() {
           <li>
             Tjänsten kan användas för att beställa hjälp med de flesta
             typer av ärenden. Det behöver alltså inte bara handla om att
-            handla mat utan kan vara att hämta upp / lämna någonting, att
-            handla djurmat osv.
+            köpa mat utan kan vara att hämta upp / lämna någonting, att
+            rasta djur osv.
           </li>
           <li>
             Vi försöker efter bästa förmåga hantera och bistå alla
@@ -79,8 +79,7 @@ export default function HowTo() {
             volontärgrupperna på Tjörn.
           </li>
           <li>
-            Ju mer information du förser din beställning med (i
-            meddelanderutan) desto lättare blir den för oss att hantera.
+            Ju mer information du förser din beställning med desto lättare blir den för oss att hantera.
           </li>
           <li>
             Om vi inte har möjlighet att hjälpa dig kommer vi så snart som
@@ -92,8 +91,7 @@ export default function HowTo() {
             detta av en volontär.
           </li>
           <li>
-            Om du vill avboka en lagd beställning ber vi dig att kontakta
-            samordnaren på tjorn@allatillsammans.se
+            Om du vill avboka en lagd beställning ber vi dig att göra det <a href='https://tjorn.allatillsammans.se/avboka'>här</a>
           </li>
         </ul>"
         />

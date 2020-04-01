@@ -6,9 +6,9 @@ export default function Partners() {
     <div className="page-layout">
       <h2> Partners och samverkande organisationer</h2>
       <p>
-        Beställningstjänsten ALLA TILLSAMMANS MOT COVID-19 PÅ TJÖRN drivs av
-        frivilliga krafter i civilsamhällets organisationer på Tjörn i dialog
-        med Tjörns kommun och med stöd från lokalt näringsliv.
+        Beställningstjänsten ALLA TILLSAMMANS drivs av frivilliga krafter i
+        civilsamhällets organisationer på Tjörn i dialog med Tjörns kommun och
+        med stöd från lokalt näringsliv.
       </p>
       <p>Medverkande organisationer är:</p>
       <ul>

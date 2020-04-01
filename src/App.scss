@@ -131,6 +131,11 @@ body {
 
   h2, h3, p {
     color: $page-background-contrast;
+
+    a {
+      color: $page-background-contrast;
+      font-weight: 600;
+    }
   }
 }
 
@@ -303,27 +308,28 @@ body {
   flex-wrap: wrap;
   bottom: 0;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   color: $highlight-color;
-  background-color: $page-background;
+  background-color: $primary-color-dark;
 
   p {
     margin: 0;
     padding: 0;
 
-    &.bold {
+    span {
       margin-right: 6px;
+      font-weight: 600;
     }
-  }
 
-  a {
-    margin-left: 6px;
-    color: $highlight-color;
-    font-weight: 600;
-  }
-
-  a:hover {
-    color: darken($highlight-color, 10%)
+    a {
+      margin-left: 6px;
+      color: $highlight-color;
+      font-weight: 600;
+    }
+  
+    a:hover {
+      color: darken($highlight-color, 10%)
+    }
   }
 }
 /**
@@ -332,25 +338,6 @@ body {
  * ----------------------------------------
  */
 
-.home-prompt {
-  @extend .centered;
-  display: none;
-  background-color: #f8f9fa;
-  padding: 7px 10px 2px 10px;
-  width: fit-content;
-  margin: auto;
-  margin-bottom: 30px;
-
-  h6 {
-    font-weight: 800;
-    color: #000;
-    padding: 2px;
-  }
-
-  p {
-    color: #000;
-  }
-}
 
 .blurb {
   z-index: 10;
@@ -373,14 +360,21 @@ body {
   margin-bottom: 30px;
 }
 
+.large-button-container {
+  margin-top: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
 .large-icon-button {
   padding: 20px 30px;
+  width: 385px;
   margin: 10px 0;
   border-radius: 50px;
   color: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  text-align: left;
   font-weight: 600;
   font-size: 1.2rem;
 }
@@ -647,7 +641,7 @@ body {
   align-items: center;
   justify-content: center;
   padding-bottom: 120px;
-  padding-top: 70px;
+  padding-top: 80px;
 }
 
 .accordion {
@@ -756,7 +750,28 @@ ul {
  * Media Queries
  * ----------------------------------------
  */
+
  @media screen and (min-width: 0px) and (max-width: 400px) {
+  .container {
+    padding-top: 50px;
+  }
+
+  .footer {
+    font-size: .9rem;
+    padding: 5px;
+  }
+
+  .large-button-container {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .large-icon-button {
+    padding: 10px 15px;
+    width: 280px;
+    font-size: 1rem;
+  }
    .text-section {
      h3 {
        font-size: .6rem

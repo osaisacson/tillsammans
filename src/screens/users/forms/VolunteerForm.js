@@ -242,14 +242,13 @@ const VolunteerForm = props => {
     <div className="form">
       <Form onSubmit={addVolunteer}>
         <h2>Jag vill bli volontär</h2>
-        <br />
         <p>
           Tillsammans kan vi begränsa smittspridningen av Covid – 19 och skydda
           utsatta grupper. Men vi behöver hjälpas åt! Kan du tänka dig att
-          hjälpa till som volontär på Tjörn? Du behövs! Anmäl dig genom det här
-          formuläret så kommer du snart att bli kontaktad av en av våra
-          gruppledare!
+          hjälpa till som volontär på Tjörn? Anmäl dig genom det här formuläret
+          så kommer du snart att bli kontaktad av en av våra gruppledare.
         </p>
+        <br />
         <Form.Row>
           <Col>
             <Input
@@ -424,10 +423,10 @@ const VolunteerForm = props => {
         </Form.Group>
 
         <p>
-          <span>INFORMATION FÖR DIN TRYGGHET</span> I och med att du skickar oss
-          din anmälan så godkänner du att vi tillfälligt sparar dina
-          kontaktuppgifter. Vi säljer naturligtvis aldrig dina uppgifter och vi
-          lämnar dom inte vidare till annan part.
+          <span>INFORMATION FÖR DIN TRYGGHET:</span> I och med att du skickar
+          oss din anmälan så godkänner du att vi sparar dina kontaktuppgifter.
+          Vi säljer naturligtvis aldrig dina uppgifter och vi lämnar dom inte
+          vidare till annan part.
         </p>
         <Form.Check
           type="checkbox"
