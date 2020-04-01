@@ -362,17 +362,16 @@ const HelpForm = props => {
             INFORMATION FÖR DIN INTEGRITET: I och med att du skickar oss din
             beställning så godkänner du att vi tillfälligt sparar dina
             kontaktuppgifter. Vi säljer naturligtvis aldrig dina uppgifter och
-            vi lämnar dom inte vidare till annan part. Efter att din beställning
-            har levererats, alternativt avbrutits, raderas all information.
-            Innehållet i din beställning är endast synlig för vår
-            volontärsamordnare och för den volontärgruppledare som ansvarar för
-            att hantera den. Du kan även beställa genom att ringa 073-3230515
-            eller maila tjorn@allatillsammans.se
+            vi lämnar dom inte vidare till annan part. Innehållet i din
+            beställning är endast synlig för vår volontärsamordnare och för den
+            volontärgruppledare som ansvarar för att hantera den. Du kan även
+            beställa genom att ringa 073-3230571 eller maila
+            tjorn@allatillsammans.se
           </p>
           <Form.Check
             type="checkbox"
             onClick={toggleCheckBox}
-            label="Jag har läst ovan och godkänner att mina uppgifter lagras tillfälligt och att min information är synlig för volontärplattformens samordnare samt en gruppledare under tiden som min beställning hanteras."
+            label="Jag har läst ovan och godkänner att mina uppgifter lagras och att min information är synlig för volontärplattformens samordnare samt en gruppledare under tiden som min beställning hanteras."
           />
         </Form.Group>
         <Button type="submit" variant="secondary" size="lg" block>

@@ -26,13 +26,13 @@ export default function Home() {
           <div className="blurb">
             <img src={School} className="school" alt="" />
           </div>
-          <Link className="slide-right-one" to={`/ansök-om-assistans`}>
+          <Link to={`/bestallning`}>
             <IconButton
               icon={Icon1}
               text={'Jag självisolerar mig för att inte smitta andra'}
             />
           </Link>
-          <Link className="slide-right-two" to={`/ansök-om-assistans`}>
+          <Link to={`/bestallning`}>
             <IconButton
               icon={Icon2}
               text={
@@ -40,7 +40,7 @@ export default function Home() {
               }
             />
           </Link>
-          <Link className="slide-right-three" to={`/bli-volontar/`}>
+          <Link to={`/bli-volontar/`}>
             <IconButton icon={Icon3} text={'Jag vill bli volontär'} />
           </Link>
         </div>

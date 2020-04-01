@@ -56,7 +56,7 @@ export default function App() {
         <div className="container">
           <Switch>
             {/* För användare */}
-            <Route path="/ansök-om-assistans">
+            <Route path="/bestallning">
               <Apply />
             </Route>
             <Route path="/bli-volontar">

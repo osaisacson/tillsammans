@@ -98,7 +98,7 @@ export default function VolunteersTable(props) {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th onClick={() => sortBy('datum')}>datum</th>
+            <th onClick={() => sortBy('datum')}>Datum</th>
             <th onClick={() => sortBy('förnamn')}>Förnamn</th>
             <th onClick={() => sortBy('efternamn')}>Efternamn</th>
             <th onClick={() => sortBy('telefon')}>Telefon</th>

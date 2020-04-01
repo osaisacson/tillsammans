@@ -334,6 +334,7 @@ body {
 
 .home-prompt {
   @extend .centered;
+  display: none;
   background-color: #f8f9fa;
   padding: 7px 10px 2px 10px;
   width: fit-content;
