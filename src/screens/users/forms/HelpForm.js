@@ -50,6 +50,10 @@ const Input = ({ label, placeholder, value, onChange }) => (
 );
 
 const HelpForm = props => {
+  const [useSwish, setUseSwish] = useState(false);
+  const [useCash, setUseCash] = useState(false);
+  const [useInvoice, setUseInvoice] = useState(false);
+
   // const ordrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited order, passed from previous screen
   const ordrId = null; //Get the id of the currently edited order, passed from previous screen
 
@@ -69,6 +73,9 @@ const HelpForm = props => {
     inputValues: {
       typ: editedOrder ? editedOrder.typ : '',
       beskrivning: editedOrder ? editedOrder.beskrivning : '',
+      swish: editedOrder ? editedOrder.swish : '',
+      kontant: editedOrder ? editedOrder.kontant : '',
+      faktura: editedOrder ? editedOrder.faktura : '',
       tidsrymd: editedOrder ? editedOrder.tidsrymd : '',
       telefon: editedOrder ? editedOrder.telefon : '',
       förnamn: editedOrder ? editedOrder.förnamn : '',
@@ -80,6 +87,9 @@ const HelpForm = props => {
     inputValidities: {
       typ: editedOrder ? true : false,
       beskrivning: editedOrder ? true : false,
+      swish: editedOrder ? true : false,
+      kontant: editedOrder ? true : false,
+      faktura: editedOrder ? true : false,
       tidsrymd: editedOrder ? true : false,
       telefon: editedOrder ? true : false,
       förnamn: editedOrder ? true : false,
@@ -102,6 +112,9 @@ const HelpForm = props => {
     db.collection('orders').add({
       typ: formState.inputValues.typ,
       beskrivning: formState.inputValues.beskrivning,
+      swish: useSwish,
+      kontanter: useCash,
+      faktura: useInvoice,
       tidsrymd: formState.inputValues.tidsrymd,
       telefon: formState.inputValues.telefon,
       förnamn: formState.inputValues.förnamn,
@@ -234,6 +247,30 @@ const HelpForm = props => {
             onChange={textChangeHandler.bind(this, 'beskrivning')}
             // defaultValue={'tidigare värde'} Såhär fixar vi edit form senare
             placeholder="Inköpslista, önskad butik eller annan information om din beställning."
+          />
+        </Form.Group>
+        <h3>Om min beställning innebär betalning så betalar jag helst via:</h3>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setUseSwish(!useSwish);
+            }}
+            label="Swish"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setUseCash(!useCash);
+            }}
+            label="Kontanter"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setUseInvoice(!useInvoice);
+            }}
+            label="Faktura"
           />
         </Form.Group>
 
