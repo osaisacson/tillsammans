@@ -9,9 +9,9 @@ const SignIn = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    //TODO: This should obviously be hidden
     const isVerified =
-      loginName === process.env.REACT_APP_LOGIN_NAME &&
-      loginPassword === process.env.REACT_APP_LOGIN_KEY;
+      loginName === 'tjornadmin' && loginPassword === 'allatillsammans';
 
     isVerified
       ? props.checkIfVerified('confirmed')
