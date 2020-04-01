@@ -29,11 +29,6 @@ export default function Orders() {
     }
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   loadOrders();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   useEffect(() => {
     loadOrders().then(() => {
       console.log(
