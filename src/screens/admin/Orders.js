@@ -5,12 +5,14 @@ import moment from 'moment';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
 import Table from './Table';
+import HelpForm from './../users/HelpForm';
 import AddButtonHeader from './../../components/AddButtonHeader';
 
 const Orders = props => {
@@ -22,49 +24,47 @@ const Orders = props => {
     inactiveOrders: []
   });
 
-  //Attempt to NOT use redux
+  // Create an scoped async function in the hook
+  async function getOrders() {
+    const orders = [];
+    const querySnapshot = await firestore.collection('orders').get();
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(resData.datum).format('L');
+
+      orders.push(
+        new Order(
+          doc.id,
+          readableDate,
+          resData.typ,
+          resData.beskrivning,
+          resData.swish,
+          resData.kontant,
+          resData.faktura,
+          resData.tidsrymd,
+          resData.telefon,
+          resData.förnamn,
+          resData.efternamn,
+          resData.email,
+          resData.address,
+          resData.postkod,
+          resData.grupp,
+          resData.status
+        )
+      );
+    });
+
+    setData({
+      newOrders: orders.filter(data => data.status === 'ohanterad'),
+      activeOrders: orders.filter(data => data.status === 'hanterad'),
+      doneOrders: orders.filter(data => data.status === 'klar'),
+      inactiveOrders: orders.filter(data => data.status === 'inaktiv')
+    });
+  }
+
   useEffect(() => {
-    // Create an scoped async function in the hook
-    async function getOrders() {
-      const orders = [];
-      const querySnapshot = await firestore.collection('orders').get();
-      querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        const resData = doc.data();
-        const readableDate = moment(resData.datum).format('L');
-
-        orders.push(
-          new Order(
-            doc.id,
-            readableDate,
-            resData.typ,
-            resData.beskrivning,
-            resData.swish,
-            resData.kontant,
-            resData.faktura,
-            resData.tidsrymd,
-            resData.telefon,
-            resData.förnamn,
-            resData.efternamn,
-            resData.email,
-            resData.address,
-            resData.postkod,
-            resData.grupp,
-            resData.status
-          )
-        );
-      });
-
-      setData({
-        newOrders: orders.filter(data => data.status === 'ohanterad'),
-        activeOrders: orders.filter(data => data.status === 'hanterad'),
-        doneOrders: orders.filter(data => data.status === 'klar'),
-        inactiveOrders: orders.filter(data => data.status === 'inaktiv')
-      });
-    }
-
     getOrders();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -73,9 +73,14 @@ const Orders = props => {
       <AddButtonHeader
         headerText="Beställningar"
         buttonText="Beställning"
-        headerLink={'/bestallning'}
+        formForModal={<HelpForm />}
       />
       <p>Sortera genom att trycka på titlarna</p>
+
+      <div className="refresh-wrapper">
+        <Button onClick={getOrders}>Ladda nya beställningar</Button>
+      </div>
+
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
           eventKey="nya"

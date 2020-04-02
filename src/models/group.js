@@ -4,6 +4,7 @@ class Group {
     datum,
     gruppnamn,
     kontakt,
+    kommentarer,
     telefon,
     email,
     address,
@@ -14,6 +15,7 @@ class Group {
     this.datum = datum;
     this.gruppnamn = gruppnamn;
     this.kontakt = kontakt;
+    this.kommentarer = kommentarer;
     this.telefon = telefon;
     this.email = email;
     this.address = address;

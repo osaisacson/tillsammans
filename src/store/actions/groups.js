@@ -30,9 +30,11 @@ export const fetchGroups = () => {
                 readableDate,
                 resData.gruppnamn,
                 resData.kontakt,
+                resData.kommentarer,
                 resData.telefon,
                 resData.email,
                 resData.address,
+                resData.postkod,
                 resData.status
               )
             );

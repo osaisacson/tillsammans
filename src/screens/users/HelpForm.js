@@ -2,7 +2,6 @@
 // import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useReducer } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -10,6 +9,9 @@ import Button from 'react-bootstrap/Button';
 //Actions
 import firebase from '../../firebase/firebase.utils';
 // import * as ordersActions from '../../../store/actions/orders';
+
+//Components
+import Mottaget from './Mottaget';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -50,10 +52,6 @@ const Input = ({ label, placeholder, value, onChange }) => (
 );
 
 const HelpForm = props => {
-  const [useSwish, setUseSwish] = useState(false);
-  const [useCash, setUseCash] = useState(false);
-  const [useInvoice, setUseInvoice] = useState(false);
-
   // const ordrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited order, passed from previous screen
   const ordrId = null; //Get the id of the currently edited order, passed from previous screen
 
@@ -63,6 +61,9 @@ const HelpForm = props => {
   );
 
   //Set states
+  const [useSwish, setUseSwish] = useState(false);
+  const [useCash, setUseCash] = useState(false);
+  const [useInvoice, setUseInvoice] = useState(false);
   const [redirectToThanks, setRedirectToThanks] = useState(false);
   const [approvedConditions, setApprovedConditions] = useState(false);
 
@@ -206,7 +207,7 @@ const HelpForm = props => {
   };
 
   if (redirectToThanks === true) {
-    return <Redirect to="/mottaget" />;
+    return <Mottaget />;
   }
 
   return (

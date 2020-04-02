@@ -1,15 +1,13 @@
-// import React, { useState, useEffect, useCallback, useReducer } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useReducer } from 'react';
-// import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 //Actions
 import firebase from '../../firebase/firebase.utils';
-// import * as volunteersActions from '../../../store/actions/volunteers';
+
+//Components
+import Mottaget from './Mottaget';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -154,76 +152,12 @@ const VolunteerForm = props => {
     setRedirectToThanks(true);
   };
 
-  //For later use: this is the way we want to do it, not the addVolunteer above.
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = useCallback(async () => {
-  //   if (!formState.formIsValid) {
-  //     alert(
-  //       'Ojoj',
-  //       'Det verkar som något saknas i formuläret, kolla om det står någonting under fälten.',
-  //       [{ text: 'OK' }]
-  //     );
-  //     return;
-  //   }
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     if (editedVolunteer) {
-  //       await dispatch(
-  //         volunteersActions.updateVolunteer(
-  //           voluntrId,
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     } else {
-  //       console.log('--------CREATE PRODUCT: dispatch--------');
-  //       console.log(
-  //         'formstate.inputValues.beskrivning:',
-  //         formState.inputValues.beskrivning
-  //       );
-  //       console.log('---------------------------------------');
-  //       await dispatch(
-  //         volunteersActions.createVolunteer(
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     }
-  //     setRedirectToThanks(true);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-
-  //   setIsLoading(false);
-  // }, [formState, editedVolunteer, dispatch, voluntrId]);
-
   const toggleCheckBox = () => {
     setApprovedConditions(!approvedConditions);
   };
 
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
-    //inputIdentifier and text will act as key:value in the form reducer
-    // console.log('-------TEXTCHANGEHANDLER, received values-------');
-    // console.log('inputIdentifier:', inputIdentifier);
-    // console.log('text:', text.target.value);
-    // console.log('------------------------------------------------');
-
     let isValid = true;
 
     dispatchFormState({
@@ -235,7 +169,7 @@ const VolunteerForm = props => {
   };
 
   if (redirectToThanks === true) {
-    return <Redirect to="/mottaget" />;
+    return <Mottaget />;
   }
 
   return (

@@ -10,6 +10,7 @@ export default function VolunteersTable(props) {
     <>
       <th onClick={() => setKey('datum')}>Mottaget</th>
       <th onClick={() => setKey('status')}>Status</th>
+      <th onClick={() => setKey('grupp')}>Grupp</th>
       <th onClick={() => setKey('typ')}>Typ</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
       <th onClick={() => setKey('swish')}>Swish</th>
@@ -22,7 +23,6 @@ export default function VolunteersTable(props) {
       <th onClick={() => setKey('email')}>Email</th>
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
-      <th onClick={() => setKey('grupp')}>Grupp</th>
     </>
   );
 
@@ -30,6 +30,7 @@ export default function VolunteersTable(props) {
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
       <th onClick={() => setKey('status')}>Ändra status</th>
+      <th onClick={() => setKey('grupp')}>Grupp</th>
       <th onClick={() => setKey('förnamn')}>Förnamn</th>
       <th onClick={() => setKey('efternamn')}>Efternamn</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
@@ -46,7 +47,6 @@ export default function VolunteersTable(props) {
       <th onClick={() => setKey('prata')}>Prata</th>
       <th onClick={() => setKey('myndigheter')}>Myndigheter</th>
       <th onClick={() => setKey('myndigheter')}>Teknik</th>
-      <th onClick={() => setKey('grupp')}>Grupp</th>
     </>
   );
 
@@ -66,11 +66,11 @@ export default function VolunteersTable(props) {
   const CancelledTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
+      <th onClick={() => setKey('status')}>Sätt status</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
       <th onClick={() => setKey('email')}>E-post</th>
-      <th onClick={() => setKey('status')}>Sätt status</th>
     </>
   );
 
@@ -78,6 +78,7 @@ export default function VolunteersTable(props) {
     id,
     datum,
     status,
+    grupp,
     typ,
     beskrivning,
     swish,
@@ -89,8 +90,7 @@ export default function VolunteersTable(props) {
     efternamn,
     email,
     address,
-    postkod,
-    grupp
+    postkod
   }) => (
     <tr key={id}>
       <td>{datum}</td>
@@ -132,11 +132,12 @@ export default function VolunteersTable(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{grupp}</td>
       <td>{typ}</td>
       <td className="beskrivning">{beskrivning}</td>
-      <td>{swish ? 'x' : ''}</td>
-      <td>{kontant ? 'x' : ''}</td>
-      <td>{faktura ? 'x' : ''}</td>
+      <td className="check">{swish ? 'x' : ''}</td>
+      <td className="check">{kontant ? 'x' : ''}</td>
+      <td className="check">{faktura ? 'x' : ''}</td>
       <td>{tidsrymd}</td>
       <td>{telefon}</td>
       <td>{förnamn}</td>
@@ -144,7 +145,6 @@ export default function VolunteersTable(props) {
       <td>{email}</td>
       <td>{address}</td>
       <td>{postkod}</td>
-      <td>{grupp}</td>
     </tr>
   );
 
@@ -202,6 +202,7 @@ export default function VolunteersTable(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{grupp}</td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
       <td>{telefon}</td>
@@ -209,16 +210,15 @@ export default function VolunteersTable(props) {
       <td>{address}</td>
       <td>{postkod}</td>
       <td className="beskrivning">{beskrivning}</td>
-      <td>{körkort ? 'x' : ''}</td>
-      <td>{bil ? 'x' : ''}</td>
-      <td>{mat ? 'x' : ''}</td>
-      <td>{varor ? 'x' : ''}</td>
-      <td>{ärenden ? 'x' : ''}</td>
-      <td>{djur ? 'x' : ''}</td>
-      <td>{prata ? 'x' : ''}</td>
-      <td>{myndigheter ? 'x' : ''}</td>
-      <td>{teknik ? 'x' : ''}</td>
-      <td>{grupp}</td>
+      <td className="check">{körkort ? 'x' : ''}</td>
+      <td className="check">{bil ? 'x' : ''}</td>
+      <td className="check">{mat ? 'x' : ''}</td>
+      <td className="check">{varor ? 'x' : ''}</td>
+      <td className="check">{ärenden ? 'x' : ''}</td>
+      <td className="check">{djur ? 'x' : ''}</td>
+      <td className="check">{prata ? 'x' : ''}</td>
+      <td className="check">{myndigheter ? 'x' : ''}</td>
+      <td className="check">{teknik ? 'x' : ''}</td>
     </tr>
   );
 

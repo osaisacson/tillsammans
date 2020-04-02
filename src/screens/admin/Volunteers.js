@@ -5,6 +5,7 @@ import moment from 'moment';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -12,6 +13,7 @@ import 'firebase/firestore';
 //Components
 import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
+import VolunteerForm from './../users/VolunteerForm';
 
 const Volunteers = props => {
   const firestore = firebase.firestore();
@@ -22,53 +24,51 @@ const Volunteers = props => {
     inactiveVolunteers: []
   });
 
-  //Attempt to NOT use redux
+  async function getVolunteers() {
+    const volunteers = [];
+    const querySnapshot = await firestore.collection('volunteers').get();
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(resData.datum).format('L');
+
+      volunteers.push(
+        new Volunteer(
+          doc.id,
+          resData.förnamn,
+          resData.efternamn,
+          resData.telefon,
+          resData.email,
+          resData.address,
+          resData.postkod,
+          resData.beskrivning,
+          resData.körkort,
+          resData.bil,
+          resData.mat,
+          resData.varor,
+          resData.ärenden,
+          resData.djur,
+          resData.prata,
+          resData.myndigheter,
+          resData.teknik,
+          resData.grupp,
+          readableDate,
+          resData.status
+        )
+      );
+    });
+
+    setData({
+      newVolunteers: volunteers.filter(data => data.status === 'ny'),
+      distributedVolunteers: volunteers.filter(
+        data => data.status === 'hanterad'
+      ),
+      activeVolunteers: volunteers.filter(data => data.status === 'aktiv'),
+      inactiveVolunteers: volunteers.filter(data => data.status === 'pausad')
+    });
+  }
+
   useEffect(() => {
-    // Create an scoped async function in the hook
-    async function getVolunteers() {
-      const volunteers = [];
-      const querySnapshot = await firestore.collection('volunteers').get();
-      querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        const resData = doc.data();
-        const readableDate = moment(resData.datum).format('L');
-
-        volunteers.push(
-          new Volunteer(
-            doc.id,
-            resData.förnamn,
-            resData.efternamn,
-            resData.telefon,
-            resData.email,
-            resData.address,
-            resData.postkod,
-            resData.beskrivning,
-            resData.körkort,
-            resData.bil,
-            resData.mat,
-            resData.varor,
-            resData.ärenden,
-            resData.djur,
-            resData.prata,
-            resData.myndigheter,
-            resData.teknik,
-            resData.grupp,
-            readableDate,
-            resData.status
-          )
-        );
-      });
-
-      setData({
-        newVolunteers: volunteers.filter(data => data.status === 'ny'),
-        distributedVolunteers: volunteers.filter(
-          data => data.status === 'hanterad'
-        ),
-        activeVolunteers: volunteers.filter(data => data.status === 'aktiv'),
-        inactiveVolunteers: volunteers.filter(data => data.status === 'pausad')
-      });
-    }
-
     getVolunteers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -78,9 +78,14 @@ const Volunteers = props => {
       <AddButtonHeader
         headerText="Volontärer"
         buttonText="Volontär"
-        headerLink={'/bli-volontar'}
+        formForModal={<VolunteerForm />}
       />
       <p>Sortera genom att trycka på titlarna</p>
+
+      <div className="refresh-wrapper">
+        <Button onClick={getVolunteers}>Ladda nya volontärer</Button>{' '}
+      </div>
+
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
           eventKey="nya"

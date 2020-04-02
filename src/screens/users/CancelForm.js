@@ -1,15 +1,14 @@
-// import React, { useState, useEffect, useCallback, useReducer } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useReducer } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 //Actions
 import firebase from '../../firebase/firebase.utils';
-// import * as ordersActions from '../../../store/actions/orders';
+
+//Components
+import Mottaget from './Mottaget';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -50,8 +49,7 @@ const Input = ({ label, placeholder, value, onChange }) => (
 );
 
 const CancelForm = props => {
-  // const ordrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited order, passed from previous screen
-  const ordrId = null; //Get the id of the currently edited order, passed from previous screen
+  const ordrId = null; //TODO: Get the id of the currently edited order, passed from previous screen
 
   //Find order
   const editedOrder = useSelector(state =>
@@ -60,9 +58,6 @@ const CancelForm = props => {
 
   //Set states
   const [redirectToThanks, setRedirectToThanks] = useState(false);
-
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -95,64 +90,6 @@ const CancelForm = props => {
     setRedirectToThanks(true);
   };
 
-  //For later use: this is the way we want to do it, not the addCancellation above.
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = useCallback(async () => {
-  //   if (!formState.formIsValid) {
-  //     alert(
-  //       'Ojoj',
-  //       'Det verkar som något saknas i formuläret, kolla om det står någonting under fälten.',
-  //       [{ text: 'OK' }]
-  //     );
-  //     return;
-  //   }
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     if (editedOrder) {
-  //       await dispatch(
-  //         ordersActions.updateOrder(
-  //           ordrId,
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     } else {
-  //       console.log('--------CREATE PRODUCT: dispatch--------');
-  //       console.log(
-  //         'formstate.inputValues.beskrivning:',
-  //         formState.inputValues.beskrivning
-  //       );
-  //       console.log('---------------------------------------');
-  //       await dispatch(
-  //         ordersActions.createOrder(
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     }
-  //     setRedirectToThanks(true);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-
-  //   setIsLoading(false);
-  // }, [formState, editedOrder, dispatch, ordrId]);
-
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
     let isValid = true;
@@ -166,7 +103,7 @@ const CancelForm = props => {
   };
 
   if (redirectToThanks === true) {
-    return <Redirect to="/mottaget" />;
+    return <Mottaget />;
   }
 
   return (

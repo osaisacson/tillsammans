@@ -6,6 +6,7 @@ import Cancellation from './../../models/cancellation';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -13,6 +14,7 @@ import 'firebase/firestore';
 //Components
 import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
+import CancelForm from './../users/CancelForm';
 
 const Cancellations = props => {
   const firestore = firebase.firestore();
@@ -21,36 +23,34 @@ const Cancellations = props => {
     cancelled: []
   });
 
-  //Attempt to NOT use redux
+  async function getCancellations() {
+    const cancellations = [];
+    const querySnapshot = await firestore.collection('cancellations').get();
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(resData.datum).format('L');
+
+      cancellations.push(
+        new Cancellation(
+          doc.id,
+          readableDate,
+          resData.telefon,
+          resData.email,
+          resData.address,
+          resData.postkod,
+          resData.status
+        )
+      );
+    });
+
+    setData({
+      toCancel: cancellations.filter(data => data.status === 'avboka'),
+      cancelled: cancellations.filter(data => data.status === 'avbokad')
+    });
+  }
+
   useEffect(() => {
-    // Create an scoped async function in the hook
-    async function getCancellations() {
-      const cancellations = [];
-      const querySnapshot = await firestore.collection('cancellations').get();
-      querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        const resData = doc.data();
-        const readableDate = moment(resData.datum).format('L');
-
-        cancellations.push(
-          new Cancellation(
-            doc.id,
-            readableDate,
-            resData.telefon,
-            resData.email,
-            resData.address,
-            resData.postkod,
-            resData.status
-          )
-        );
-      });
-
-      setData({
-        toCancel: cancellations.filter(data => data.status === 'avboka'),
-        cancelled: cancellations.filter(data => data.status === 'avbokad')
-      });
-    }
-
     getCancellations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -60,7 +60,7 @@ const Cancellations = props => {
       <AddButtonHeader
         headerText="Avbokningar"
         buttonText="Avbokning"
-        headerLink={'/avboka'}
+        formForModal={<CancelForm />}
       />
       <ol>
         <li>Hitta den avbeställda bokningen under 'beställningar'</li>
@@ -77,6 +77,9 @@ const Cancellations = props => {
           'status'.
         </li>
       </ol>
+      <div className="refresh-wrapper">
+        <Button onClick={getCancellations}>Ladda nya avbokningar</Button>
+      </div>
       <Tabs defaultActiveKey="avboka" id="0">
         <Tab
           eventKey="avboka"

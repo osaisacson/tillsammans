@@ -1,15 +1,13 @@
-// import React, { useState, useEffect, useCallback, useReducer } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useReducer } from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 //Actions
 import firebase from '../../firebase/firebase.utils';
-// import * as volunteersActions from '../../../store/actions/volunteers';
+
+//Components
+import Mottaget from './Mottaget';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -50,126 +48,52 @@ const Input = ({ label, placeholder, value, onChange }) => (
 );
 
 const GroupForm = props => {
-  // const voluntrId = props.route.params ? props.route.params.detailId : null; //Get the id of the currently edited Volunteer, passed from previous screen
-
-  //Find Volunteer
-  // const editedVolunteer = useSelector(state =>
-  //   state.volunteers.availableVolunteers.find(
-  //     voluntr => voluntr.id === voluntrId
-  //   )
-  // );
-  const editedVolunteer = false;
+  const editedGroup = false;
 
   //Set states
   const [redirectToThanks, setRedirectToThanks] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      gruppnamn: editedVolunteer ? editedVolunteer.gruppnamn : '',
-      förnamn: editedVolunteer ? editedVolunteer.förnamn : '',
-      efternamn: editedVolunteer ? editedVolunteer.efternamn : '',
-      telefon: editedVolunteer ? editedVolunteer.telefon : '',
-      email: editedVolunteer ? editedVolunteer.email : '',
-      address: editedVolunteer ? editedVolunteer.address : '',
-      beskrivning: editedVolunteer ? editedVolunteer.beskrivning : ''
+      gruppnamn: editedGroup ? editedGroup.gruppnamn : '',
+      kontakt: editedGroup ? editedGroup.kontakt : '',
+      kommentarer: editedGroup ? editedGroup.kommentarer : '',
+      telefon: editedGroup ? editedGroup.telefon : '',
+      email: editedGroup ? editedGroup.email : '',
+      address: editedGroup ? editedGroup.address : '',
+      postkod: editedGroup ? editedGroup.postkod : ''
     },
     inputValidities: {
-      gruppnamn: editedVolunteer ? true : false,
-      förnamn: editedVolunteer ? true : false,
-      efternamn: editedVolunteer ? true : false,
-      telefon: editedVolunteer ? true : false,
-      email: editedVolunteer ? true : false,
-      address: editedVolunteer ? true : false,
-      beskrivning: editedVolunteer ? true : false
+      gruppnamn: editedGroup ? true : false,
+      kontakt: editedGroup ? true : false,
+      kommentarer: editedGroup ? true : false,
+      telefon: editedGroup ? true : false,
+      email: editedGroup ? true : false,
+      address: editedGroup ? true : false,
+      postkod: editedGroup ? true : false
     },
-    formIsValid: editedVolunteer ? true : false
+    formIsValid: editedGroup ? true : false
   });
 
   const addGroup = e => {
     e.preventDefault();
     const db = firebase.firestore();
-    db.collection('volunteers').add({
-      förnamn: formState.inputValues.förnamn,
-      efternamn: formState.inputValues.efternamn,
+    db.collection('groups').add({
+      datum: new Date().getTime(),
+      gruppnamn: formState.inputValues.gruppnamn,
+      kontakt: formState.inputValues.kontakt,
+      kommentarer: formState.inputValues.kommentarer,
       telefon: formState.inputValues.telefon,
       email: formState.inputValues.email,
       address: formState.inputValues.address,
-      beskrivning: formState.inputValues.beskrivning,
-      grupp: 'ingen',
-      datum: new Date().getTime(),
+      postkod: formState.inputValues.postkod,
       status: 'ny'
     });
     setRedirectToThanks(true);
   };
 
-  //For later use: this is the way we want to do it, not the addVolunteer above.
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = useCallback(async () => {
-  //   if (!formState.formIsValid) {
-  //     alert(
-  //       'Ojoj',
-  //       'Det verkar som något saknas i formuläret, kolla om det står någonting under fälten.',
-  //       [{ text: 'OK' }]
-  //     );
-  //     return;
-  //   }
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     if (editedVolunteer) {
-  //       await dispatch(
-  //         volunteersActions.updateVolunteer(
-  //           voluntrId,
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     } else {
-  //       console.log('--------CREATE PRODUCT: dispatch--------');
-  //       console.log(
-  //         'formstate.inputValues.beskrivning:',
-  //         formState.inputValues.beskrivning
-  //       );
-  //       console.log('---------------------------------------');
-  //       await dispatch(
-  //         volunteersActions.createVolunteer(
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     }
-  //     setRedirectToThanks(true);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-
-  //   setIsLoading(false);
-  // }, [formState, editedVolunteer, dispatch, voluntrId]);
-
   //Manages validation of title input
   const textChangeHandler = (inputIdentifier, text) => {
-    //inputIdentifier and text will act as key:value in the form reducer
-    // console.log('-------TEXTCHANGEHANDLER, received values-------');
-    // console.log('inputIdentifier:', inputIdentifier);
-    // console.log('text:', text.target.value);
-    // console.log('------------------------------------------------');
-
     let isValid = true;
 
     dispatchFormState({
@@ -181,37 +105,43 @@ const GroupForm = props => {
   };
 
   if (redirectToThanks === true) {
-    return <Redirect to="/mottaget" />;
+    return <Mottaget />;
   }
 
   return (
     <div className="form">
+      <h2>Lägg till ny grupp</h2>
+      <p>Varje grupp ska vara lite och lätthanterlig, runt 4-10 personer</p>
+      <br />
       <Form onSubmit={addGroup}>
         <Form.Row>
           <Col>
             <Input
-              label="förnamn"
-              value={formState.inputValues.förnamn}
+              placeholder="Gruppnamn"
+              label="gruppnamn"
+              value={formState.inputValues.gruppnamn}
               type="text"
-              onChange={textChangeHandler.bind(this, 'förnamn')}
+              onChange={textChangeHandler.bind(this, 'gruppnamn')}
               required
             />
           </Col>
           <Col>
             <Input
-              label="efternamn"
-              value={formState.inputValues.efternamn}
+              placeholder="Kontaktperson"
+              label="kontakt"
+              value={formState.inputValues.kontakt}
               type="text"
-              onChange={textChangeHandler.bind(this, 'efternamn')}
+              onChange={textChangeHandler.bind(this, 'kontakt')}
               required
             />
           </Col>
         </Form.Row>
 
-        <h3>Var når vi dig?</h3>
+        <h3>Kontaktpersonens uppgifter</h3>
         <Form.Row>
           <Col>
             <Input
+              placeholder="Telefon"
               label="telefon"
               value={formState.inputValues.telefon}
               type="text"
@@ -221,19 +151,20 @@ const GroupForm = props => {
           </Col>
           <Col>
             <Input
+              placeholder="E-post"
               label="email"
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
-              placeholder="e-post (frivilligt)"
               required
             />
           </Col>
         </Form.Row>
-
+        <h3>Gruppens uppgifter</h3>
         <Form.Row>
           <Col>
             <Input
+              placeholder="Address"
               label="address"
               value={formState.inputValues.address}
               type="text"
@@ -241,24 +172,32 @@ const GroupForm = props => {
               required
             />
           </Col>
+          <Col>
+            <Input
+              placeholder="Postkod"
+              label="postkod"
+              value={formState.inputValues.postkod}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'postkod')}
+              required
+            />
+          </Col>
         </Form.Row>
-        <h3>Beskriv dig själv</h3>
+        <h3>Kommentarer</h3>
         <Form.Group controlId="t-1">
           <Form.Control
             as="textarea"
             rows="3"
-            name="beskrivning"
-            value={formState.inputValues.beskrivning}
+            name="kommentarer"
+            value={formState.inputValues.kommentarer}
             type="text"
-            onChange={textChangeHandler.bind(this, 'beskrivning')}
-            placeholder="Jag har ingen bil men en bra cykel"
+            onChange={textChangeHandler.bind(this, 'kommentarer')}
+            placeholder="Gruppens bakgrund, etc"
           />
         </Form.Group>
         <Button type="submit" variant="secondary" size="lg" block>
           Skicka
         </Button>
-
-        <h4>Du kommer bli kontaktad av en samordnare så snart som möjligt</h4>
       </Form>
     </div>
   );
