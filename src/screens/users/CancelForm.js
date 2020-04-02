@@ -80,11 +80,11 @@ const CancelForm = props => {
     formIsValid: editedOrder ? true : false
   });
 
-  const addUser = e => {
+  const addCancellation = e => {
     e.preventDefault();
 
     const db = firebase.firestore();
-    db.collection('orders').add({
+    db.collection('cancellations').add({
       telefon: formState.inputValues.telefon,
       email: formState.inputValues.email,
       address: formState.inputValues.address,
@@ -95,7 +95,7 @@ const CancelForm = props => {
     setRedirectToThanks(true);
   };
 
-  //For later use: this is the way we want to do it, not the addUser above.
+  //For later use: this is the way we want to do it, not the addCancellation above.
 
   // const dispatch = useDispatch();
 
@@ -171,7 +171,7 @@ const CancelForm = props => {
 
   return (
     <div className="form">
-      <Form onSubmit={addUser}>
+      <Form onSubmit={addCancellation}>
         <h2>Avboka en beställning här</h2>
         <br />
         <h3>Kontaktuppgifter till dig så vi kan hitta din beställning</h3>
