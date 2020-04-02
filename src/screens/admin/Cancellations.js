@@ -1,33 +1,55 @@
-import React, { useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import Cancellation from './../../models/cancellation';
+import moment from 'moment';
+
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
-import * as cancellationsActions from '../../store/actions/cancellations';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 //Components
 import Table from './Table';
 
 const Cancellations = props => {
-  const cancellations = useSelector(
-    state => state.cancellations.availableCancellations
-  );
+  const firestore = firebase.firestore();
+  const [data, setData] = useState({
+    toCancel: [],
+    cancelled: []
+  });
 
-  const toCancel = cancellations.filter(data => data.status === 'avboka');
-  const cancelled = cancellations.filter(data => data.status === 'avbokad');
-
-  const dispatch = useDispatch();
-
-  const loadcancellations = useCallback(async () => {
-    try {
-      await dispatch(cancellationsActions.fetchCancellations());
-    } catch (err) {
-      console.log(err.message);
-    }
-  }, [dispatch]);
-
+  //Attempt to NOT use redux
   useEffect(() => {
-    loadcancellations();
+    // Create an scoped async function in the hook
+    async function getCancellations() {
+      const cancellations = [];
+      const querySnapshot = await firestore.collection('cancellations').get();
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        const resData = doc.data();
+        const readableDate = moment(resData.datum).format('L');
+
+        cancellations.push(
+          new Cancellation(
+            doc.id,
+            readableDate,
+            resData.telefon,
+            resData.email,
+            resData.address,
+            resData.postkod,
+            resData.status
+          )
+        );
+      });
+
+      setData({
+        toCancel: cancellations.filter(data => data.status === 'avboka'),
+        cancelled: cancellations.filter(data => data.status === 'avbokad')
+      });
+    }
+
+    getCancellations();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,11 +72,21 @@ const Cancellations = props => {
         </li>
       </ol>
       <Tabs defaultActiveKey="nya" id="0">
-        <Tab eventKey="avboka" title={`Att avboka`}>
-          <Table isCancelled={true} tableData={toCancel} />
+        <Tab
+          eventKey="avboka"
+          title={`Att avboka (${
+            data.toCancel.length ? data.toCancel.length : 0
+          })`}
+        >
+          <Table isCancelled={true} tableData={data.toCancel} />
         </Tab>
-        <Tab eventKey="avbokade" title={'Avbokade'}>
-          <Table isCancelled={true} tableData={cancelled} />
+        <Tab
+          eventKey="avbokade"
+          title={`Avbokade (${
+            data.cancelled.length ? data.cancelled.length : 0
+          })`}
+        >
+          <Table isCancelled={true} tableData={data.cancelled} />
         </Tab>
       </Tabs>
     </div>

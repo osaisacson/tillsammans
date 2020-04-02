@@ -71,16 +71,36 @@ const Orders = props => {
       <h2>Beställningar</h2>
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
-        <Tab eventKey="nya" title={'Nya beställningar '}>
+        <Tab
+          eventKey="nya"
+          title={`Ohanterade Beställningar (${
+            data.newOrders.length ? data.newOrders.length : 0
+          })`}
+        >
           <Table isOrders={true} tableData={data.newOrders} />
         </Tab>
-        <Tab eventKey="aktiva" title={'Hanterade '}>
+        <Tab
+          eventKey="aktiva"
+          title={`Hanterade (${
+            data.activeOrders.length ? data.activeOrders.length : 0
+          })`}
+        >
           <Table isOrders={true} tableData={data.activeOrders} />
         </Tab>
-        <Tab eventKey="klara" title={'Levererade '}>
+        <Tab
+          eventKey="klara"
+          title={`Levererade (${
+            data.doneOrders.length ? data.doneOrders.length : 0
+          })`}
+        >
           <Table isOrders={true} tableData={data.doneOrders} />
         </Tab>
-        <Tab eventKey="inaktiv" title={'Inaktiva '}>
+        <Tab
+          eventKey="inaktiv"
+          title={`Inaktiva (${
+            data.inactiveOrders.length ? data.inactiveOrders.length : 0
+          })`}
+        >
           <Table isOrders={true} tableData={data.inactiveOrders} />
         </Tab>
       </Tabs>

@@ -347,13 +347,7 @@ export default function VolunteersTable(props) {
     .map(rowData => <TableRows key={rowData.id} {...rowData} />);
 
   if (!props.tableData.length) {
-    return (
-      <div className="table-responsive">
-        <table className="table table-bordered">
-          <div className="empty-state">Ingen data än</div>
-        </table>
-      </div>
-    );
+    return <div className="empty-state">Ingen data än</div>;
   }
   return (
     <div className="table-responsive">
