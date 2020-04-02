@@ -43,7 +43,7 @@ export default function Contact() {
       <Accordion
         title="FEEDBACK OCH FÖRSLAG"
         content="  <p>
-        Vi tar gärna emot förslag om utökning och förbättringar av siten!
+        Vi uppgraderar kontinuerligt siten för att möta behov, och tar gärna emot förslag om utökning och förbättringar!
         </p>
         <p>Webbansvarig: Åsa Isacson
         </p>
