@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
-const VolunteersTable = props => {
-  const [volunteerData, setVolunteerData] = useState(props.volunteerData);
-
+export default function OrdersTable(props) {
+  const [key, setKey] = useState('datum');
   const Row = ({
     datum,
     förnamn,
@@ -87,46 +86,38 @@ const VolunteersTable = props => {
     };
   };
 
-  const sortBy = key => {
-    let arrayCopy = [...volunteerData];
-    arrayCopy.sort(compareBy(key));
-    setVolunteerData(arrayCopy);
-  };
-
-  const rows = volunteerData.map(rowData => (
-    <Row key={rowData.id} {...rowData} />
-  ));
+  const rows = props.volunteersData
+    .sort(compareBy(key))
+    .map(rowData => <Row key={rowData.id} {...rowData} />);
 
   return (
     <div className="table-responsive">
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th onClick={() => sortBy('datum')}>Datum</th>
-            <th onClick={() => sortBy('förnamn')}>Förnamn</th>
-            <th onClick={() => sortBy('efternamn')}>Efternamn</th>
-            <th onClick={() => sortBy('telefon')}>Telefon</th>
-            <th onClick={() => sortBy('email')}>E-post</th>
-            <th onClick={() => sortBy('address')}>Address</th>
-            <th onClick={() => sortBy('postkod')}>Postkod</th>
-            <th onClick={() => sortBy('beskrivning')}>Beskrivning</th>
-            <th onClick={() => sortBy('körkort')}>Har körkort</th>
-            <th onClick={() => sortBy('bil')}>Har bil</th>
-            <th onClick={() => sortBy('mat')}>Mat</th>
-            <th onClick={() => sortBy('varor')}>Varor</th>
-            <th onClick={() => sortBy('ärenden')}>Ärenden</th>
-            <th onClick={() => sortBy('djur')}>Djur</th>
-            <th onClick={() => sortBy('prata')}>Prata</th>
-            <th onClick={() => sortBy('myndigheter')}>Myndigheter</th>
-            <th onClick={() => sortBy('myndigheter')}>Teknik</th>
-            <th onClick={() => sortBy('grupp')}>Grupp</th>
-            <th onClick={() => sortBy('status')}>Sätt status</th>
+            <th onClick={() => setKey('datum')}>Datum</th>
+            <th onClick={() => setKey('förnamn')}>Förnamn</th>
+            <th onClick={() => setKey('efternamn')}>Efternamn</th>
+            <th onClick={() => setKey('telefon')}>Telefon</th>
+            <th onClick={() => setKey('email')}>E-post</th>
+            <th onClick={() => setKey('address')}>Address</th>
+            <th onClick={() => setKey('postkod')}>Postkod</th>
+            <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
+            <th onClick={() => setKey('körkort')}>Har körkort</th>
+            <th onClick={() => setKey('bil')}>Har bil</th>
+            <th onClick={() => setKey('mat')}>Mat</th>
+            <th onClick={() => setKey('varor')}>Varor</th>
+            <th onClick={() => setKey('ärenden')}>Ärenden</th>
+            <th onClick={() => setKey('djur')}>Djur</th>
+            <th onClick={() => setKey('prata')}>Prata</th>
+            <th onClick={() => setKey('myndigheter')}>Myndigheter</th>
+            <th onClick={() => setKey('myndigheter')}>Teknik</th>
+            <th onClick={() => setKey('grupp')}>Grupp</th>
+            <th onClick={() => setKey('status')}>Sätt status</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
       </table>
     </div>
   );
-};
-
-export default VolunteersTable;
+}
