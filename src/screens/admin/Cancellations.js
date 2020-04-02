@@ -6,7 +6,6 @@ import Cancellation from './../../models/cancellation';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -14,6 +13,7 @@ import 'firebase/firestore';
 //Components
 import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
+import RefreshButton from './../../components/RefreshButton';
 import CancelForm from './../users/CancelForm';
 
 const Cancellations = props => {
@@ -77,9 +77,9 @@ const Cancellations = props => {
           'status'.
         </li>
       </ol>
-      <div className="refresh-wrapper">
-        <Button onClick={getCancellations}>Ladda nya avbokningar</Button>
-      </div>
+
+      <RefreshButton refreshAction={getCancellations} />
+
       <Tabs defaultActiveKey="avboka" id="0">
         <Tab
           eventKey="avboka"

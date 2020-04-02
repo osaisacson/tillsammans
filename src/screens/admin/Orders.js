@@ -5,7 +5,6 @@ import moment from 'moment';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -14,6 +13,7 @@ import 'firebase/firestore';
 import Table from './Table';
 import HelpForm from './../users/HelpForm';
 import AddButtonHeader from './../../components/AddButtonHeader';
+import RefreshButton from './../../components/RefreshButton';
 
 const Orders = props => {
   const firestore = firebase.firestore();
@@ -77,9 +77,7 @@ const Orders = props => {
       />
       <p>Sortera genom att trycka på titlarna</p>
 
-      <div className="refresh-wrapper">
-        <Button onClick={getOrders}>Ladda nya beställningar</Button>
-      </div>
+      <RefreshButton refreshAction={getOrders} />
 
       <Tabs defaultActiveKey="nya" id="0">
         <Tab

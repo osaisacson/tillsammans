@@ -5,7 +5,6 @@ import moment from 'moment';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -13,6 +12,7 @@ import 'firebase/firestore';
 //Components
 import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
+import RefreshButton from './../../components/RefreshButton';
 import VolunteerForm from './../users/VolunteerForm';
 
 const Volunteers = props => {
@@ -82,9 +82,7 @@ const Volunteers = props => {
       />
       <p>Sortera genom att trycka på titlarna</p>
 
-      <div className="refresh-wrapper">
-        <Button onClick={getVolunteers}>Ladda nya volontärer</Button>{' '}
-      </div>
+      <RefreshButton refreshAction={getVolunteers} />
 
       <Tabs defaultActiveKey="nya" id="0">
         <Tab

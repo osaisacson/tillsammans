@@ -5,7 +5,6 @@ import moment from 'moment';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -13,6 +12,7 @@ import 'firebase/firestore';
 //Components
 import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
+import RefreshButton from './../../components/RefreshButton';
 import GroupForm from '../users/GroupForm';
 
 const Groups = props => {
@@ -76,9 +76,7 @@ const Groups = props => {
         <li>Om du behöver kontakta gruppen, se 'kontaktperson' nedan.</li>
       </ol>
 
-      <div className="refresh-wrapper">
-        <Button onClick={getGroups}>Ladda nya grupper</Button>{' '}
-      </div>
+      <RefreshButton refreshAction={getGroups} />
 
       <Tabs defaultActiveKey="ny" id="0">
         <Tab
