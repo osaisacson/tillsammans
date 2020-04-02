@@ -150,6 +150,13 @@ body {
   bottom: 0;
 }
 
+.empty-state {
+  @extend .centered;
+  padding: 20px;
+  font-weight: 1.1rem;
+  font-style: italic;
+}
+
 /**
  * ----------------------------------------
  * Sign In

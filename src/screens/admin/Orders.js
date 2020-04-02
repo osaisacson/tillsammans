@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import OrdersTable from './OrdersTable';
+import Table from './Table';
 
 const Orders = props => {
   const firestore = firebase.firestore();
@@ -72,16 +72,16 @@ const Orders = props => {
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab eventKey="nya" title={'Nya beställningar '}>
-          <OrdersTable ordersData={data.newOrders} />
+          <Table isOrders={true} tableData={data.newOrders} />
         </Tab>
         <Tab eventKey="aktiva" title={'Hanterade '}>
-          <OrdersTable ordersData={data.activeOrders} />
+          <Table isOrders={true} tableData={data.activeOrders} />
         </Tab>
         <Tab eventKey="klara" title={'Levererade '}>
-          <OrdersTable ordersData={data.doneOrders} />
+          <Table isOrders={true} tableData={data.doneOrders} />
         </Tab>
         <Tab eventKey="inaktiv" title={'Inaktiva '}>
-          <OrdersTable ordersData={data.inactiveOrders} />
+          <Table isOrders={true} tableData={data.inactiveOrders} />
         </Tab>
       </Tabs>
     </div>

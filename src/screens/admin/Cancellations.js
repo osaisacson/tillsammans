@@ -6,7 +6,7 @@ import Tab from 'react-bootstrap/Tab';
 import * as cancellationsActions from '../../store/actions/cancellations';
 
 //Components
-import CancellationsTable from './CancellationsTable';
+import Table from './Table';
 
 const Cancellations = props => {
   const cancellations = useSelector(
@@ -51,10 +51,10 @@ const Cancellations = props => {
       </ol>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab eventKey="avboka" title={`Att avboka`}>
-          <CancellationsTable cancellationData={toCancel} />
+          <Table isCancelled={true} tableData={toCancel} />
         </Tab>
         <Tab eventKey="avbokade" title={'Avbokade'}>
-          <CancellationsTable cancellationData={cancelled} />
+          <Table isCancelled={true} tableData={cancelled} />
         </Tab>
       </Tabs>
     </div>

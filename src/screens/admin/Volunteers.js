@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import VolunteersTable from './VolunteersTable';
+import Table from './Table';
 
 const Volunteers = props => {
   const firestore = firebase.firestore();
@@ -82,7 +82,7 @@ const Volunteers = props => {
             data.newVolunteers.length ? data.newVolunteers.length : 0
           })`}
         >
-          <VolunteersTable volunteersData={data.newVolunteers} />
+          <Table isVolunteers={true} tableData={data.newVolunteers} />
         </Tab>
         <Tab
           eventKey="fördelade"
@@ -92,7 +92,7 @@ const Volunteers = props => {
               : 0
           })`}
         >
-          <VolunteersTable volunteersData={data.distributedVolunteers} />
+          <Table isVolunteers={true} tableData={data.distributedVolunteers} />
         </Tab>
         <Tab
           eventKey="aktiva"
@@ -100,7 +100,7 @@ const Volunteers = props => {
             data.activeVolunteers.length ? data.activeVolunteers.length : 0
           })`}
         >
-          <VolunteersTable volunteersData={data.activeVolunteers} />
+          <Table isVolunteers={true} tableData={data.activeVolunteers} />
         </Tab>
         <Tab
           eventKey="pausade"
@@ -108,7 +108,7 @@ const Volunteers = props => {
             data.inactiveVolunteers.length ? data.inactiveVolunteers.length : 0
           })`}
         >
-          <VolunteersTable volunteersData={data.inactiveVolunteers} />
+          <Table isVolunteers={true} tableData={data.inactiveVolunteers} />
         </Tab>
       </Tabs>
     </div>
@@ -174,16 +174,16 @@ export default Volunteers;
 //           title={`Nya anmälningar`}
 //           // title={`Nya anmälningar (${aVolunteers.length ? aVolunteers.length : 0})`}
 //         >
-//           <VolunteersTable volunteersData={aVolunteers} />
+//           <VolunteersTable tableData={aVolunteers} />
 //         </Tab>
 //         <Tab eventKey="fördelade" title={'Fördelade för att kontaktas'}>
-//           <VolunteersTable volunteersData={bVolunteers} />
+//           <VolunteersTable tableData={bVolunteers} />
 //         </Tab>
 //         <Tab eventKey="aktiva" title={'Aktiva i grupper'}>
-//           <VolunteersTable volunteersData={cVolunteers} />
+//           <VolunteersTable tableData={cVolunteers} />
 //         </Tab>
 //         <Tab eventKey="pausade" title={'Pausade'}>
-//           <VolunteersTable volunteersData={dVolunteers} />
+//           <VolunteersTable tableData={dVolunteers} />
 //         </Tab>
 //       </Tabs>
 //     </div>

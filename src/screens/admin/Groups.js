@@ -4,7 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import GroupsDummyData from './../../DummyData/GroupsDummyData';
 
 //Components
-import GroupTable from './GroupTable';
+import Table from './Table';
 
 const Groups = props => {
   //Group subsets
@@ -20,13 +20,13 @@ const Groups = props => {
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab eventKey="nya" title={'Nya grupper'}>
-          <GroupTable groupData={newGroups} />
+          <Table isGroups={true} tableData={newGroups} />
         </Tab>
         <Tab eventKey="aktiva" title={'Aktiva'}>
-          <GroupTable groupData={activeGroups} />
+          <Table isGroups={true} tableData={activeGroups} />
         </Tab>
         <Tab eventKey="inaktiva" title={'Inaktiva '}>
-          <GroupTable groupData={inactiveGroups} />
+          <Table isGroups={true} tableData={inactiveGroups} />
         </Tab>
       </Tabs>
     </div>
