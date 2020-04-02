@@ -28,7 +28,7 @@ export default function Home() {
             text={'Jag är riskgrupp och självisolerar för att inte bli smittad'}
           />
         </Link>
-        <Link to={`/bli-volontar/`}>
+        <Link to={`/bli-volontar`}>
           <IconButton icon={Icon3} text={'Jag vill bli volontär'} />
         </Link>
       </div>

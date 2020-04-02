@@ -4,12 +4,14 @@ import moment from 'moment';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import Badge from 'react-bootstrap/Badge';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
 import Table from './Table';
+import AddButtonHeader from './../../components/AddButtonHeader';
 
 const Volunteers = props => {
   const firestore = firebase.firestore();
@@ -73,14 +75,27 @@ const Volunteers = props => {
 
   return (
     <div className="page-layout">
-      <h2>Volontärer</h2>
+      <AddButtonHeader
+        headerText="Volontärer"
+        buttonText="Volontär"
+        headerLink={'/bli-volontar'}
+      />
       <p>Sortera genom att trycka på titlarna</p>
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
           eventKey="nya"
-          title={`Nya anmälningar (${
-            data.newVolunteers.length ? data.newVolunteers.length : 0
-          })`}
+          title={
+            <span>
+              Nya Anmälningar{' '}
+              {data.newVolunteers.length ? (
+                <Badge pill variant="danger">
+                  {data.newVolunteers.length}
+                </Badge>
+              ) : (
+                0
+              )}
+            </span>
+          }
         >
           <Table isVolunteers={true} tableData={data.newVolunteers} />
         </Tab>

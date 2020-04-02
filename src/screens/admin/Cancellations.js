@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Cancellation from './../../models/cancellation';
 import moment from 'moment';
+
+import Cancellation from './../../models/cancellation';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import Badge from 'react-bootstrap/Badge';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
 import Table from './Table';
+import AddButtonHeader from './../../components/AddButtonHeader';
 
 const Cancellations = props => {
   const firestore = firebase.firestore();
@@ -49,13 +52,16 @@ const Cancellations = props => {
     }
 
     getCancellations();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="page-layout">
-      <h2>Avbokningar</h2>
+      <AddButtonHeader
+        headerText="Avbokningar"
+        buttonText="Avbokning"
+        headerLink={'/avboka'}
+      />
       <ol>
         <li>Hitta den avbeställda bokningen under 'beställningar'</li>
         <li>
@@ -71,12 +77,21 @@ const Cancellations = props => {
           'status'.
         </li>
       </ol>
-      <Tabs defaultActiveKey="nya" id="0">
+      <Tabs defaultActiveKey="avboka" id="0">
         <Tab
           eventKey="avboka"
-          title={`Att avboka (${
-            data.toCancel.length ? data.toCancel.length : 0
-          })`}
+          title={
+            <span>
+              Att avboka{' '}
+              {data.toCancel.length ? (
+                <Badge pill variant="danger">
+                  {data.toCancel.length}
+                </Badge>
+              ) : (
+                0
+              )}
+            </span>
+          }
         >
           <Table isCancelled={true} tableData={data.toCancel} />
         </Tab>

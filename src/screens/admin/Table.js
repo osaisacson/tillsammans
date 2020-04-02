@@ -9,6 +9,7 @@ export default function VolunteersTable(props) {
   const OrdersTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Mottaget</th>
+      <th onClick={() => setKey('status')}>Status</th>
       <th onClick={() => setKey('typ')}>Typ</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
       <th onClick={() => setKey('swish')}>Swish</th>
@@ -22,7 +23,6 @@ export default function VolunteersTable(props) {
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
       <th onClick={() => setKey('grupp')}>Grupp</th>
-      <th onClick={() => setKey('status')}>Status</th>
     </>
   );
 

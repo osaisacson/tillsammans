@@ -197,16 +197,6 @@ body {
     color: black;
     border: 1px solid black;
   }
-
-  &.google-sign-in {
-    background-color: #4285f4;
-    color: white;
-
-    &:hover {
-      background-color: #357ae8;
-      border: none;
-    }
-  }
 }
 
 @mixin shrinkLabel {
@@ -365,6 +355,11 @@ body {
   font-weight: 800;
   font-size: 1rem;
   margin-bottom: 30px;
+}
+
+.add-button {
+  background-color: $primary-color;
+  color: #fff;
 }
 
 .large-button-container {
