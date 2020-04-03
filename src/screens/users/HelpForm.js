@@ -125,7 +125,7 @@ const HelpForm = props => {
       email: formState.inputValues.email,
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
-      grupp: 'ingen',
+      grupp: '',
       datum: new Date().getTime(),
       status: 'ohanterad'
     });
