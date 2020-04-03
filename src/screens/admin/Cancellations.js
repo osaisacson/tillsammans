@@ -15,6 +15,7 @@ import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import CancelForm from './../users/CancelForm';
+import Accordion from './../../components/Accordion';
 
 const Cancellations = props => {
   const firestore = firebase.firestore();
@@ -62,8 +63,10 @@ const Cancellations = props => {
         buttonText="Avbokning"
         formForModal={<CancelForm />}
       />
-      <ol>
-        <li>Hitta den avbeställda bokningen under 'beställningar'</li>
+      <Accordion
+        title="Hur vi hanterar avbokningar"
+        content="<ol>
+        <li>Hitta den avbokade beställningen under 'beställningar'</li>
         <li>
           Kontakta relevant grupp för att meddela att beställningen ska bli
           avbokad.
@@ -71,12 +74,13 @@ const Cancellations = props => {
         <li>
           Påminn gruppledaren att kommunicera avbokningen till beställaren
         </li>
-        <li>Radera beställningen</li>
+        <li>Radera beställningen via 'radera beställning' under beställningar/aktioner</li>
         <li>
           Kom sen tillbaka hit och markera avbokningen som 'avbokad' under
           'status'.
         </li>
-      </ol>
+      </ol>"
+      />
 
       <RefreshButton refreshAction={getCancellations} />
 

@@ -196,13 +196,13 @@ export default function VolunteersTable(props) {
             Levererad
           </Button>
           <Button
-            active={status === 'inaktiv'}
+            active={status === 'pausad'}
             onClick={() =>
-              console.log('TODO: this should set status as "inaktiv"')
+              console.log('TODO: this should set status as "pausad"')
             }
             variant="secondary"
           >
-            Inaktiv
+            Pausad
           </Button>
         </ButtonGroup>
       </td>

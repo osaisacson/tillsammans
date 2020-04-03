@@ -18,6 +18,7 @@ import Table from './Table';
 import HelpForm from './../users/HelpForm';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
+import Accordion from './../../components/Accordion';
 
 const Orders = props => {
   const firestore = firebase.firestore();
@@ -27,7 +28,7 @@ const Orders = props => {
     newOrders: [],
     activeOrders: [],
     doneOrders: [],
-    inactiveOrders: []
+    pausedOrders: []
   });
 
   async function getOrders() {
@@ -64,7 +65,7 @@ const Orders = props => {
       newOrders: orders.filter(data => data.status === 'ohanterad'),
       activeOrders: orders.filter(data => data.status === 'hanterad'),
       doneOrders: orders.filter(data => data.status === 'klar'),
-      inactiveOrders: orders.filter(data => data.status === 'inaktiv')
+      pausedOrders: orders.filter(data => data.status === 'pausad')
     });
   }
 
@@ -80,7 +81,41 @@ const Orders = props => {
         buttonText="Beställning"
         formForModal={<HelpForm />}
       />
-      <p>Sortera genom att trycka på titlarna</p>
+      <Accordion
+        title="Hur vi hanterar beställningar"
+        content="<ol>
+        <li>
+          Läs igenom beställningen och avgör om den är klar att skicka vidare
+          till en grupp.
+        </li>
+        <ul>
+          <li>
+            Om inte, klicka 'pausa' under aktionerna nedan och följ upp via
+            email/telefon till beställaren och redigera nedan tills
+            informationen är redo.
+          </li>
+          <li>
+            Om redo, se vilken grupp som verkar mest lämplig för beställningen.
+            Hitta information om grupper under 'Grupper' ovan.
+          </li>
+        </ul>
+        <li>
+          När du avgjort vilken grupp beställningen ska skickas till, tilldela
+          beställningen en grupp nedan under aktioner. NOTERA: Snart kommer
+          detta skicka ett automatiskt email till gruppen, men tills det är
+          klart får vi skicka detaljerna om beställningen manuellt via ett mail.
+        </li>
+        <li>
+          När du valt grupp för beställningen så flyttas denna till 'hanterad'
+          tabben, och läggs dessutom till under respektive grupp under
+          'grupper'.
+        </li>
+        <li>
+          Om du behöver ångra något gör detta via aktionerna nedan. Men glöm
+          inte att kontakta respektive grupp om ändringar.
+        </li>
+      </ol>"
+      />
 
       <RefreshButton refreshAction={getOrders} />
 
@@ -119,12 +154,12 @@ const Orders = props => {
           <Table isOrders={true} tableData={data.doneOrders} />
         </Tab>
         <Tab
-          eventKey="inaktiv"
-          title={`Inaktiva (${
-            data.inactiveOrders.length ? data.inactiveOrders.length : 0
+          eventKey="pausad"
+          title={`Pausade (${
+            data.pausedOrders.length ? data.pausedOrders.length : 0
           })`}
         >
-          <Table isOrders={true} tableData={data.inactiveOrders} />
+          <Table isOrders={true} tableData={data.pausedOrders} />
         </Tab>
       </Tabs>
     </div>

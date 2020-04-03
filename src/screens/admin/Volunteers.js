@@ -14,6 +14,7 @@ import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import VolunteerForm from './../users/VolunteerForm';
+import Accordion from './../../components/Accordion';
 
 const Volunteers = props => {
   const firestore = firebase.firestore();
@@ -82,7 +83,41 @@ const Volunteers = props => {
         buttonText="Volontär"
         formForModal={<VolunteerForm />}
       />
-      <p>Sortera genom att trycka på titlarna</p>
+      <Accordion
+        title="Hur vi hanterar volontärer"
+        content="  <ol>
+        <li>
+          Läs igenom volontärsinformationen och avgör om den är klar för en
+          grupp.
+        </li>
+        <ul>
+          <li>
+            Om inte, klicka 'pausa' under aktionerna nedan och följ upp via
+            email/telefon till volontären, och redigera nedan tills
+            informationen är redo.
+          </li>
+          <li>
+            Om redo, se vilken grupp volontären bäst verkar passa. Hitta
+            information om grupper under 'Grupper' ovan.
+          </li>
+        </ul>
+        <li>
+          När du avgjort vilken grupp volontären ska till, tilldela volontären en
+          grupp nedan under aktioner. NOTERA: Snart kommer detta skicka ett
+          automatiskt email till gruppen, men tills det är klart får vi skicka
+          detaljerna om volontären manuellt via ett mail.
+        </li>
+        <li>
+          När du valt grupp för volontären så flyttas denna till 'hanterad'
+          tabben, och läggs dessutom till under respektive grupp under
+          'grupper'.
+        </li>
+        <li>
+          Om du behöver ångra något gör detta via aktionerna nedan. Men glöm
+          inte att kontakta respektive grupp om ändringar.
+        </li>
+      </ol>"
+      />
 
       <RefreshButton refreshAction={getVolunteers} />
 

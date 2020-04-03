@@ -14,6 +14,7 @@ import Table from './Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import GroupForm from '../users/GroupForm';
+import Accordion from './../../components/Accordion';
 
 const Groups = props => {
   const firestore = firebase.firestore();
@@ -67,14 +68,17 @@ const Groups = props => {
         headerLink={'/ny-grupp'}
         formForModal={<GroupForm />}
       />
-      <p>
+      <Accordion
+        title="Hur vi hanterar grupper"
+        content="        <p>
         Den här sidan är till för att få överblick över grupper knutna till
         plattformen
       </p>
       <ol>
         <li>Se anknytna volontärer och beställningar under varje grupp</li>
         <li>Om du behöver kontakta gruppen, se 'kontaktperson' nedan.</li>
-      </ol>
+      </ol>"
+      />
 
       <RefreshButton refreshAction={getGroups} />
 
