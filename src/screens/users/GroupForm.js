@@ -87,7 +87,7 @@ const GroupForm = props => {
       email: formState.inputValues.email,
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
-      status: 'ny'
+      status: 'aktiv'
     });
     setRedirectToThanks(true);
   };

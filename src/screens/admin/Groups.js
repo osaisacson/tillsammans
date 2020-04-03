@@ -19,7 +19,6 @@ import Accordion from './../../components/Accordion';
 const Groups = props => {
   const firestore = firebase.firestore();
   const [data, setData] = useState({
-    newGroups: [],
     activeGroups: [],
     inactiveGroups: []
   });
@@ -49,7 +48,6 @@ const Groups = props => {
     });
 
     setData({
-      newGroups: groups.filter(data => data.status === 'ny'),
       activeGroups: groups.filter(data => data.status === 'aktiv'),
       inactiveGroups: groups.filter(data => data.status === 'inaktiv')
     });
@@ -82,29 +80,21 @@ const Groups = props => {
 
       <RefreshButton refreshAction={getGroups} />
 
-      <Tabs defaultActiveKey="ny" id="0">
+      <Tabs defaultActiveKey="aktiva" id="0">
         <Tab
-          eventKey="ny"
+          eventKey="aktiva"
           title={
             <span>
-              Nya Grupper{' '}
-              {data.newGroups.length ? (
+              Aktiva Grupper{' '}
+              {data.activeGroups.length ? (
                 <Badge pill variant="danger">
-                  {data.newGroups.length}
+                  {data.activeGroups.length}
                 </Badge>
               ) : (
                 0
               )}
             </span>
           }
-        >
-          <Table isGroups={true} tableData={data.newGroups} />
-        </Tab>
-        <Tab
-          eventKey="aktiva"
-          title={`Aktiva grupper (${
-            data.activeGroups.length ? data.activeGroups.length : 0
-          })`}
         >
           <Table isGroups={true} tableData={data.activeGroups} />
         </Tab>

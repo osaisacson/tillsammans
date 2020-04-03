@@ -27,6 +27,8 @@ import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
+//Group Admin screens
+import GroupAdmin from './screens/groupAdmin/GroupAdmin';
 //Info screens
 import HowTo from './screens/info/HowTo';
 import Intro from './screens/info/Intro';
@@ -57,7 +59,7 @@ export default function App() {
 
         <div className="container">
           <Switch>
-            {/* För användare */}
+            {/* For users */}
             <Route path="/bestallning">
               <Apply />
             </Route>
@@ -80,7 +82,7 @@ export default function App() {
             <Route path="/partners">
               <Partners />
             </Route>
-            {/* För admin */}
+            {/* For admin */}
             <Route path="/admin">
               <CheckAdmin />
             </Route>
@@ -99,7 +101,9 @@ export default function App() {
             <Route path="/avbokningar">
               <Cancellations />
             </Route>
-            {/* För alla */}
+            {/* For groupadmin */}
+            <Route path="/grupp/:groupId" exact component={GroupAdmin} />
+            {/* For all */}
             <Route path="/">
               <Home />
             </Route>

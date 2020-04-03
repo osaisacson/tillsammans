@@ -1,6 +1,7 @@
 class Volunteer {
   constructor(
     id,
+    gruppId,
     förnamn,
     efternamn,
     telefon,
@@ -19,11 +20,11 @@ class Volunteer {
     prata,
     myndigheter,
     teknik,
-    grupp,
     datum,
     status
   ) {
     this.id = id;
+    this.gruppId = gruppId;
     this.förnamn = förnamn;
     this.efternamn = efternamn;
     this.telefon = telefon;
@@ -42,7 +43,6 @@ class Volunteer {
     this.prata = prata;
     this.myndigheter = myndigheter;
     this.teknik = teknik;
-    this.grupp = grupp;
     this.datum = datum;
     this.status = status;
   }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+
 import moment from 'moment';
 
 //Models
-import Group from './../../models/group';
+import Group from '../../models/group';
 
 //Bootstrap
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -14,9 +14,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-//Components
-
-export default function Table(props) {
+export default function GroupsTable(props) {
   const firestore = firebase.firestore();
 
   //Set constants
@@ -126,32 +124,6 @@ export default function Table(props) {
     </>
   );
 
-  const GroupsTableHeaders = () => (
-    <>
-      <th onClick={() => setKey('gruppnamn')}>
-        Gruppnamn (klicka för att komma till gruppens sida)
-      </th>
-      <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
-      <th onClick={() => setKey('kontakt')}>Kontakt</th>
-      <th onClick={() => setKey('telefon')}>Telefonnummer</th>
-      <th onClick={() => setKey('email')}>Email</th>
-      <th onClick={() => setKey('address')}>Address</th>
-      <th onClick={() => setKey('postkod')}>Postkod</th>
-    </>
-  );
-
-  const CancelledTableHeaders = () => (
-    <>
-      <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
-      <th onClick={() => setKey('telefon')}>Telefon</th>
-      <th onClick={() => setKey('address')}>Address</th>
-      <th onClick={() => setKey('postkod')}>Postkod</th>
-      <th onClick={() => setKey('email')}>E-post</th>
-    </>
-  );
-
   const OrdersRows = ({
     id,
     datum,
@@ -258,7 +230,16 @@ export default function Table(props) {
             }
             variant="secondary"
           >
-            Aktiv
+            aktiv
+          </Button>
+          <Button
+            active={status === 'pausad'}
+            onClick={() =>
+              console.log('TODO: this should set status as "pausad"')
+            }
+            variant="secondary"
+          >
+            pausad
           </Button>
           <Button
             className="delete-btn"
@@ -294,134 +275,16 @@ export default function Table(props) {
     </tr>
   );
 
-  const GroupsRows = ({
-    id,
-    gruppnamn,
-    datum,
-    status,
-    kontakt,
-    telefon,
-    email,
-    address,
-    postkod
-  }) => (
-    <tr key={id}>
-      <td>
-        {/* Pass groupId to detail */}
-        <Link to={`/grupp/${id}`}>{gruppnamn}</Link>
-      </td>
-      <td>{datum}</td>
-      <td>
-        <ButtonGroup aria-label="set status" size="sm">
-          <Button
-            active={status === 'aktiv'}
-            onClick={() =>
-              console.log('TODO: this should set status as "aktiv"')
-            }
-            variant="secondary"
-          >
-            Aktiv
-          </Button>
-          <Button
-            active={status === 'inaktiv'}
-            onClick={() =>
-              console.log('TODO: this should set status as "inaktiv"')
-            }
-            variant="secondary"
-          >
-            Inaktiv
-          </Button>
-          <Button
-            className="delete-btn"
-            onClick={() =>
-              console.log(
-                'TODO: this should delete the post, and showing a popup confirming it before'
-              )
-            }
-            variant="danger"
-          >
-            X
-          </Button>
-        </ButtonGroup>
-      </td>
-      <td>{kontakt}</td>
-      <td>{telefon}</td>
-      <td>{email}</td>
-      <td>{address}</td>
-      <td>{postkod}</td>
-    </tr>
-  );
-
-  const CancelledRows = ({
-    id,
-    datum,
-    status,
-    telefon,
-    address,
-    postkod,
-    email
-  }) => (
-    <tr key={id}>
-      <td>{datum}</td>
-      <td>
-        <ButtonGroup aria-label="set status" size="sm">
-          <Button
-            active={status === 'avboka'}
-            onClick={() => console.log('TODO: this should set status as "ny"')}
-            variant="secondary"
-          >
-            Att avboka
-          </Button>
-          <Button
-            active={status === 'avbokad'}
-            onClick={() =>
-              console.log('TODO: this should set status as "kontaktad"')
-            }
-            variant="secondary"
-          >
-            Avbokad
-          </Button>
-          <Button
-            className="delete-btn"
-            onClick={() =>
-              console.log(
-                'TODO: this should delete the post, and showing a popup confirming it before'
-              )
-            }
-            variant="danger"
-          >
-            X
-          </Button>
-        </ButtonGroup>
-      </td>
-      <td>{telefon}</td>
-      <td>{address}</td>
-      <td>{postkod}</td>
-      <td>{email}</td>
-    </tr>
-  );
-
   //Set TableHeaders, default Orders
   let TableHeaders = OrdersTableHeaders;
   if (props.isVolunteers) {
     TableHeaders = VolunteersTableHeaders;
   }
-  if (props.isGroups) {
-    TableHeaders = GroupsTableHeaders;
-  }
-  if (props.isCancelled) {
-    TableHeaders = CancelledTableHeaders;
-  }
+
   //Set TableRows, default Orders
   let TableRows = OrdersRows;
   if (props.isVolunteers) {
     TableRows = VolunteersRows;
-  }
-  if (props.isGroups) {
-    TableRows = GroupsRows;
-  }
-  if (props.isCancelled) {
-    TableRows = CancelledRows;
   }
 
   const compareBy = key => {
