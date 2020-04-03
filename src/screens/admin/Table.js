@@ -38,6 +38,8 @@ export default function VolunteersTable(props) {
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
+      <th onClick={() => setKey('språk')}>Språk</th>
+      <th onClick={() => setKey('födelseår')}>Födelseår</th>
       <th onClick={() => setKey('körkort')}>Har körkort</th>
       <th onClick={() => setKey('bil')}>Har bil</th>
       <th onClick={() => setKey('mat')}>Mat</th>
@@ -160,6 +162,8 @@ export default function VolunteersTable(props) {
     address,
     postkod,
     beskrivning,
+    språk,
+    födelseår,
     körkort,
     bil,
     mat,
@@ -210,6 +214,8 @@ export default function VolunteersTable(props) {
       <td>{address}</td>
       <td>{postkod}</td>
       <td className="beskrivning">{beskrivning}</td>
+      <td>{språk}</td>
+      <td>{födelseår}</td>
       <td className="check">{körkort ? 'x' : ''}</td>
       <td className="check">{bil ? 'x' : ''}</td>
       <td className="check">{mat ? 'x' : ''}</td>

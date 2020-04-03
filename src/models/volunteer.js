@@ -8,6 +8,8 @@ class Volunteer {
     address,
     postkod,
     beskrivning,
+    språk,
+    födelseår,
     körkort,
     bil,
     mat,
@@ -29,6 +31,8 @@ class Volunteer {
     this.address = address;
     this.postkod = postkod;
     this.beskrivning = beskrivning;
+    this.språk = språk;
+    this.födelseår = födelseår;
     this.körkort = körkort;
     this.bil = bil;
     this.mat = mat;

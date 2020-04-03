@@ -42,6 +42,8 @@ const Volunteers = props => {
           resData.address,
           resData.postkod,
           resData.beskrivning,
+          resData.språk,
+          resData.födelseår,
           resData.körkort,
           resData.bil,
           resData.mat,
