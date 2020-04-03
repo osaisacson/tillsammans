@@ -108,7 +108,7 @@ const Volunteers = props => {
           detaljerna om volontären manuellt via ett mail.
         </li>
         <li>
-          När du valt grupp för volontären så flyttas denna till 'hanterad'
+          När du valt grupp för volontären så flyttas denna till 'Fördelade i grupper'
           tabben, och läggs dessutom till under respektive grupp under
           'grupper'.
         </li>
@@ -148,14 +148,6 @@ const Volunteers = props => {
           })`}
         >
           <Table isVolunteers={true} tableData={data.distributedVolunteers} />
-        </Tab>
-        <Tab
-          eventKey="aktiva"
-          title={`Aktiva i grupper (${
-            data.activeVolunteers.length ? data.activeVolunteers.length : 0
-          })`}
-        >
-          <Table isVolunteers={true} tableData={data.activeVolunteers} />
         </Tab>
         <Tab
           eventKey="pausade"

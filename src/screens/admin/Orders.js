@@ -106,12 +106,15 @@ const Orders = props => {
           klart får vi skicka detaljerna om beställningen manuellt via ett mail.
         </li>
         <li>
-          När du valt grupp för beställningen så flyttas denna till 'hanterad'
+          När du valt grupp för beställningen så flyttas denna till 'fördelad'
           tabben, och läggs dessutom till under respektive grupp under
           'grupper'.
         </li>
         <li>
-          Om du behöver ångra något gör detta via aktionerna nedan. Men glöm
+        När gruppen kommunicerat att beställningen är genomförd, markera denna som 'levererad' nedan. Detta kommer automatiseras snart :)
+        </li>
+        <li>
+          Om du behöver ångra något gör detta via 'aktioner' nedan. Men glöm
           inte att kontakta respektive grupp om ändringar.
         </li>
       </ol>"
@@ -124,7 +127,7 @@ const Orders = props => {
           eventKey="nya"
           title={
             <span>
-              Ohanterade Beställningar{' '}
+              Ej fördelade Beställningar{' '}
               {data.newOrders.length ? (
                 <Badge pill variant="danger">
                   {data.newOrders.length}
@@ -139,7 +142,7 @@ const Orders = props => {
         </Tab>
         <Tab
           eventKey="aktiva"
-          title={`Hanterade (${
+          title={`Fördelade (${
             data.activeOrders.length ? data.activeOrders.length : 0
           })`}
         >
