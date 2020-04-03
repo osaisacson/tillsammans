@@ -248,13 +248,6 @@ export default function VolunteersTable(props) {
       <td>{datum}</td>
       <td>
         <ButtonGroup aria-label="set status" size="sm">
-          <Button
-            active={status === 'ny'}
-            onClick={() => console.log('TODO: this should set status as "ny"')}
-            variant="secondary"
-          >
-            Ny
-          </Button>
           <DropdownGroups group={grupp} />
           <Button
             active={status === 'aktiv'}
@@ -314,13 +307,6 @@ export default function VolunteersTable(props) {
       <td>{datum}</td>
       <td>
         <ButtonGroup aria-label="set status" size="sm">
-          <Button
-            active={status === 'ny'}
-            onClick={() => console.log('TODO: this should set status as "ny"')}
-            variant="secondary"
-          >
-            Ny
-          </Button>
           <Button
             active={status === 'aktiv'}
             onClick={() =>
