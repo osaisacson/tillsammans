@@ -21,8 +21,9 @@ $page-background: rgba(17, 27, 64, .8);
 $page-background-contrast: #fff;
 $page-background-contrast-hover: #c0c0c0;
 
+$nav-color: #fff;
+
 $sub-color: grey;
-$main-color: black;
 $main-text-color: #fff;
 $highlight-color: #ffff00;
 
@@ -288,7 +289,7 @@ body {
 .header-label {
   position: fixed;
   top: 60px;
-  background-color: #f8f9fa;
+  background-color: $nav-color;
   color: $navigation-text-color;
   padding: 4px 10px;
   border-radius: 0 0 10px 10px;
@@ -587,6 +588,10 @@ a:hover {
   color: #fff !important;
   text-align: center;
   background-color: $page-background;
+}
+
+.bg-light {
+  background-color: $nav-color !important;
 }
 
 //overrides the bootstrap navbar class which positions the navbar links to the left. We want them to the right.

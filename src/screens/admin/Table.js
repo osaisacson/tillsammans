@@ -85,7 +85,7 @@ export default function VolunteersTable(props) {
   const OrdersTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Mottaget</th>
-      <th onClick={() => setKey('aktioner')}>Aktioner</th>
+      <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
       <th onClick={() => setKey('typ')}>Typ</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
       <th onClick={() => setKey('swish')}>Swish</th>
@@ -104,7 +104,7 @@ export default function VolunteersTable(props) {
   const VolunteersTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('aktioner')}>Aktioner</th>
+      <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
       <th onClick={() => setKey('förnamn')}>Förnamn</th>
       <th onClick={() => setKey('efternamn')}>Efternamn</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
@@ -129,7 +129,7 @@ export default function VolunteersTable(props) {
   const GroupsTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('aktioner')}>Aktioner</th>
+      <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
       <th onClick={() => setKey('gruppnamn')}>Gruppnamn</th>
       <th onClick={() => setKey('kontakt')}>Kontakt</th>
       <th onClick={() => setKey('telefon')}>Telefonnummer</th>
@@ -142,7 +142,7 @@ export default function VolunteersTable(props) {
   const CancelledTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('aktioner')}>Aktioner</th>
+      <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
