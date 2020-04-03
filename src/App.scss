@@ -505,8 +505,9 @@ body {
   min-width: 300px;
 }
 
-.group {
-  min-width: 200px;
+.group-dropdown {
+  min-width: 180px;
+  margin-right: 8px;
 }
 
 .check {
@@ -514,6 +515,10 @@ body {
   text-align: center;
   color: $primary-color-light;
   font-weight: 600;
+}
+
+.delete-btn {
+  background-color: red;
 }
 
 

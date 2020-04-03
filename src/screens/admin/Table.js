@@ -63,7 +63,11 @@ export default function VolunteersTable(props) {
     };
     return (
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
+        <Dropdown.Toggle
+          className="group-dropdown"
+          variant="success"
+          id="dropdown-basic"
+        >
           {selectedGroup ? selectedGroup : 'välj grupp'}
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -81,8 +85,7 @@ export default function VolunteersTable(props) {
   const OrdersTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Mottaget</th>
-      <th onClick={() => setKey('status')}>Status</th>
-      <th onClick={() => setKey('grupp')}>Grupp</th>
+      <th onClick={() => setKey('aktioner')}>Aktioner</th>
       <th onClick={() => setKey('typ')}>Typ</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
       <th onClick={() => setKey('swish')}>Swish</th>
@@ -101,8 +104,7 @@ export default function VolunteersTable(props) {
   const VolunteersTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('status')}>Ändra status</th>
-      <th onClick={() => setKey('grupp')}>Grupp</th>
+      <th onClick={() => setKey('aktioner')}>Aktioner</th>
       <th onClick={() => setKey('förnamn')}>Förnamn</th>
       <th onClick={() => setKey('efternamn')}>Efternamn</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
@@ -127,7 +129,7 @@ export default function VolunteersTable(props) {
   const GroupsTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('status')}>Status</th>
+      <th onClick={() => setKey('aktioner')}>Aktioner</th>
       <th onClick={() => setKey('gruppnamn')}>Gruppnamn</th>
       <th onClick={() => setKey('kontakt')}>Kontakt</th>
       <th onClick={() => setKey('telefon')}>Telefonnummer</th>
@@ -140,7 +142,7 @@ export default function VolunteersTable(props) {
   const CancelledTableHeaders = () => (
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
-      <th onClick={() => setKey('status')}>Sätt status</th>
+      <th onClick={() => setKey('aktioner')}>Aktioner</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
@@ -170,22 +172,7 @@ export default function VolunteersTable(props) {
       <td>{datum}</td>
       <td>
         <ButtonGroup aria-label="set status" size="sm">
-          <Button
-            active={status === 'ohanterad'}
-            onClick={() => console.log('TODO: this should set status as "ny"')}
-            variant="secondary"
-          >
-            Ohanterad
-          </Button>
-          <Button
-            active={status === 'hanterad'}
-            onClick={() =>
-              console.log('TODO: this should set status as "hanterad"')
-            }
-            variant="secondary"
-          >
-            Hanterad
-          </Button>
+          <DropdownGroups group={grupp} />
           <Button
             active={status === 'klar'}
             onClick={() =>
@@ -204,10 +191,18 @@ export default function VolunteersTable(props) {
           >
             Pausad
           </Button>
+          <Button
+            className="delete-btn"
+            onClick={() =>
+              console.log(
+                'TODO: this should delete the post, and showing a popup confirming it before'
+              )
+            }
+            variant="danger"
+          >
+            X
+          </Button>
         </ButtonGroup>
-      </td>
-      <td className="grupp">
-        <DropdownGroups group={grupp} />
       </td>
       <td>{typ}</td>
       <td className="beskrivning">{beskrivning}</td>
@@ -260,15 +255,7 @@ export default function VolunteersTable(props) {
           >
             Ny
           </Button>
-          <Button
-            active={status === 'kontaktad'}
-            onClick={() =>
-              console.log('TODO: this should set status as "kontaktad"')
-            }
-            variant="secondary"
-          >
-            Kontaktad
-          </Button>
+          <DropdownGroups group={grupp} />
           <Button
             active={status === 'aktiv'}
             onClick={() =>
@@ -278,10 +265,18 @@ export default function VolunteersTable(props) {
           >
             Aktiv
           </Button>
+          <Button
+            className="delete-btn"
+            onClick={() =>
+              console.log(
+                'TODO: this should delete the post, and showing a popup confirming it before'
+              )
+            }
+            variant="danger"
+          >
+            X
+          </Button>
         </ButtonGroup>
-      </td>
-      <td className="grupp">
-        <DropdownGroups group={grupp} />
       </td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
@@ -344,6 +339,17 @@ export default function VolunteersTable(props) {
           >
             Inaktiv
           </Button>
+          <Button
+            className="delete-btn"
+            onClick={() =>
+              console.log(
+                'TODO: this should delete the post, and showing a popup confirming it before'
+              )
+            }
+            variant="danger"
+          >
+            X
+          </Button>
         </ButtonGroup>
       </td>
       <td>{gruppnamn}</td>
@@ -383,6 +389,17 @@ export default function VolunteersTable(props) {
             variant="secondary"
           >
             Avbokad
+          </Button>
+          <Button
+            className="delete-btn"
+            onClick={() =>
+              console.log(
+                'TODO: this should delete the post, and showing a popup confirming it before'
+              )
+            }
+            variant="danger"
+          >
+            X
           </Button>
         </ButtonGroup>
       </td>
