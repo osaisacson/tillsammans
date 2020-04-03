@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Order from './../../models/order';
 import moment from 'moment';
 
+//Models
+import Order from './../../models/order';
+
+//Bootstrap
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
 
+//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -17,6 +21,8 @@ import RefreshButton from './../../components/RefreshButton';
 
 const Orders = props => {
   const firestore = firebase.firestore();
+
+  //Set constants
   const [data, setData] = useState({
     newOrders: [],
     activeOrders: [],
@@ -24,7 +30,6 @@ const Orders = props => {
     inactiveOrders: []
   });
 
-  // Create an scoped async function in the hook
   async function getOrders() {
     const orders = [];
     const querySnapshot = await firestore.collection('orders').get();

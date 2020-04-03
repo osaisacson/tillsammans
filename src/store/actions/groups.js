@@ -94,7 +94,7 @@ export const createGroup = (
     console.log('---------');
 
     const setDatum = new Date().getTime();
-    const setGrupp = 'ingen';
+    const setGrupp = '';
     const setStatus = 'ohanterad';
 
     const db = firebase.firestore();

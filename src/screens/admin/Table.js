@@ -1,9 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
+import moment from 'moment';
+
+//Models
+import Group from './../../models/group';
+
+//Bootstrap
+import Dropdown from 'react-bootstrap/Dropdown';
+
+//Firebase
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+//Components
+
 export default function VolunteersTable(props) {
+  const firestore = firebase.firestore();
+
+  //Set constants
   const [key, setKey] = useState('datum');
+  const [loadedGroups, setLoadedGroups] = useState([]);
+
+  async function getGroups() {
+    const groups = [];
+    const querySnapshot = await firestore.collection('groups').get();
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(resData.datum).format('L');
+
+      groups.push(
+        new Group(
+          doc.id,
+          readableDate,
+          resData.gruppnamn,
+          resData.kontakt,
+          resData.kommentarer,
+          resData.telefon,
+          resData.email,
+          resData.address,
+          resData.postkod,
+          resData.status
+        )
+      );
+    });
+
+    setLoadedGroups(groups);
+  }
+
+  useEffect(() => {
+    getGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const DropdownGroups = props => {
+    const [selectedGroup, setSelectedGroup] = useState(props.group);
+
+    const changeGroup = event => {
+      setSelectedGroup(event.target.text);
+    };
+    return (
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          {selectedGroup ? selectedGroup : 'välj grupp'}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          {loadedGroups.map(item => (
+            <Dropdown.Item key={item.id} value={item.id} onClick={changeGroup}>
+              {item.gruppnamn}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
 
   //Tableheaders
   const OrdersTableHeaders = () => (
@@ -134,7 +206,9 @@ export default function VolunteersTable(props) {
           </Button>
         </ButtonGroup>
       </td>
-      <td>{grupp}</td>
+      <td className="grupp">
+        <DropdownGroups group={grupp} />
+      </td>
       <td>{typ}</td>
       <td className="beskrivning">{beskrivning}</td>
       <td className="check">{swish ? 'x' : ''}</td>
@@ -206,7 +280,9 @@ export default function VolunteersTable(props) {
           </Button>
         </ButtonGroup>
       </td>
-      <td>{grupp}</td>
+      <td className="grupp">
+        <DropdownGroups group={grupp} />
+      </td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
       <td>{telefon}</td>

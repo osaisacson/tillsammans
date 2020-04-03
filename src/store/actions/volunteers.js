@@ -106,7 +106,7 @@ export const createVolunteer = (
 ) => {
   return async dispatch => {
     const setDatum = new Date().getTime();
-    const setGrupp = 'ingen';
+    const setGrupp = '';
     const setStatus = 'ohanterad';
 
     const db = firebase.firestore();
