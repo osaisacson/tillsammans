@@ -298,6 +298,7 @@ body {
 
 .footer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -308,26 +309,22 @@ body {
   padding: 15px;
   color: $highlight-color;
   background-color: $primary-color-dark;
-
+   
   p {
-    margin: 0;
-    padding: 0;
-
-    span {
-      margin-right: 6px;
-      font-weight: 600;
-    }
-
-    a {
-      margin-left: 6px;
-      color: $highlight-color;
-      font-weight: 600;
-    }
-  
-    a:hover {
-      color: darken($highlight-color, 10%)
-    }
+    margin: 0
   }
+
+  a {
+    font-size: .9rem;
+    margin-left: 6px;
+    color: $highlight-color;
+    font-weight: 600;
+  }
+
+  a:hover {
+    color: darken($highlight-color, 10%)
+  }
+  
 }
 /**
  * ----------------------------------------

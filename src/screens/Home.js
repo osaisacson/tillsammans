@@ -8,30 +8,36 @@ import Icon3 from './../images/symbol3.png';
 
 //Components
 import IconButton from './../components/IconButton';
+import Footer from './../components/Footer';
 
 export default function Home() {
   return (
-    <div>
-      <div className="large-button-container">
-        <div className="blurb">
-          <img src={School} className="school" alt="" />
+    <>
+      <div>
+        <div className="large-button-container">
+          <div className="blurb">
+            <img src={School} className="school" alt="" />
+          </div>
+          <Link to={`/bestallning`}>
+            <IconButton
+              icon={Icon1}
+              text={'Jag självisolerar mig för att inte smitta andra'}
+            />
+          </Link>
+          <Link to={`/bestallning`}>
+            <IconButton
+              icon={Icon2}
+              text={
+                'Jag är riskgrupp och självisolerar för att inte bli smittad'
+              }
+            />
+          </Link>
+          <Link to={`/bli-volontar`}>
+            <IconButton icon={Icon3} text={'Jag vill bli volontär'} />
+          </Link>
         </div>
-        <Link to={`/bestallning`}>
-          <IconButton
-            icon={Icon1}
-            text={'Jag självisolerar mig för att inte smitta andra'}
-          />
-        </Link>
-        <Link to={`/bestallning`}>
-          <IconButton
-            icon={Icon2}
-            text={'Jag är riskgrupp och självisolerar för att inte bli smittad'}
-          />
-        </Link>
-        <Link to={`/bli-volontar`}>
-          <IconButton icon={Icon3} text={'Jag vill bli volontär'} />
-        </Link>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

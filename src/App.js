@@ -12,7 +12,6 @@ import cancellationsReducer from './store/reducers/cancellations';
 
 //Components
 import MainHeader from './components/MainHeader';
-import Footer from './components/Footer';
 
 //All screens
 import Home from './screens/Home';
@@ -106,7 +105,6 @@ export default function App() {
             </Route>
           </Switch>
         </div>
-        <Footer />
       </Router>
     </Provider>
   );
