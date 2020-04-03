@@ -84,6 +84,7 @@ export default function GroupsTable(props) {
     <>
       <th onClick={() => setKey('datum')}>Mottaget</th>
       <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
+      <th onClick={() => setKey('kommentarer')}>Kommentarer från samordnare</th>
       <th onClick={() => setKey('typ')}>Typ</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
       <th onClick={() => setKey('swish')}>Swish</th>
@@ -103,6 +104,7 @@ export default function GroupsTable(props) {
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
       <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
+      <th onClick={() => setKey('kommentarer')}>Kommentarer från samordnare</th>
       <th onClick={() => setKey('förnamn')}>Förnamn</th>
       <th onClick={() => setKey('efternamn')}>Efternamn</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
@@ -127,6 +129,7 @@ export default function GroupsTable(props) {
   const OrdersRows = ({
     id,
     datum,
+    kommentarer,
     status,
     grupp,
     typ,
@@ -178,6 +181,7 @@ export default function GroupsTable(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{kommentarer}</td>
       <td>{typ}</td>
       <td className="beskrivning">{beskrivning}</td>
       <td className="check">{swish ? 'x' : ''}</td>
@@ -197,6 +201,7 @@ export default function GroupsTable(props) {
   const VolunteersRows = ({
     id,
     datum,
+    kommentarer,
     status,
     förnamn,
     efternamn,
@@ -254,6 +259,7 @@ export default function GroupsTable(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{kommentarer}</td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
       <td>{telefon}</td>

@@ -500,6 +500,17 @@ body {
       background-color: $primary-color !important;
     }
   }
+
+  a {
+    font-size: .9rem;
+    font-weight: 600;
+    color: $primary-color-light;
+  }
+
+  a:hover {
+    font-weight: 600;
+    color: $primary-color;
+  }
 }
 
 .beskrivning {

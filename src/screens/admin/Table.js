@@ -86,6 +86,7 @@ export default function Table(props) {
     <>
       <th onClick={() => setKey('datum')}>Mottaget</th>
       <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
+      <th onClick={() => setKey('kommentarer')}>Kommentarer från samordnare</th>
       <th onClick={() => setKey('typ')}>Typ</th>
       <th onClick={() => setKey('beskrivning')}>Beskrivning</th>
       <th onClick={() => setKey('swish')}>Swish</th>
@@ -105,6 +106,7 @@ export default function Table(props) {
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
       <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
+      <th onClick={() => setKey('kommentarer')}>Kommentarer från samordnare</th>
       <th onClick={() => setKey('förnamn')}>Förnamn</th>
       <th onClick={() => setKey('efternamn')}>Efternamn</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
@@ -129,15 +131,16 @@ export default function Table(props) {
   const GroupsTableHeaders = () => (
     <>
       <th onClick={() => setKey('gruppnamn')}>
-        Gruppnamn (klicka för att komma till gruppens sida)
+        Gruppnamn (länk går till gruppens sida)
       </th>
-      <th onClick={() => setKey('datum')}>Datum</th>
       <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
+      <th onClick={() => setKey('kommentarer')}>Beskrivning</th>
       <th onClick={() => setKey('kontakt')}>Kontakt</th>
       <th onClick={() => setKey('telefon')}>Telefonnummer</th>
       <th onClick={() => setKey('email')}>Email</th>
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
+      <th onClick={() => setKey('datum')}>Datum skapad</th>
     </>
   );
 
@@ -145,6 +148,7 @@ export default function Table(props) {
     <>
       <th onClick={() => setKey('datum')}>Datum</th>
       <th onClick={() => setKey('åtgärder')}>Åtgärder</th>
+      <th onClick={() => setKey('kommentarer')}>Kommentarer från samordnare</th>
       <th onClick={() => setKey('telefon')}>Telefon</th>
       <th onClick={() => setKey('address')}>Address</th>
       <th onClick={() => setKey('postkod')}>Postkod</th>
@@ -155,6 +159,7 @@ export default function Table(props) {
   const OrdersRows = ({
     id,
     datum,
+    kommentarer,
     status,
     grupp,
     typ,
@@ -206,6 +211,7 @@ export default function Table(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{kommentarer}</td>
       <td>{typ}</td>
       <td className="beskrivning">{beskrivning}</td>
       <td className="check">{swish ? 'x' : ''}</td>
@@ -225,7 +231,7 @@ export default function Table(props) {
   const VolunteersRows = ({
     id,
     datum,
-    status,
+    kommentarer,
     förnamn,
     efternamn,
     telefon,
@@ -244,7 +250,8 @@ export default function Table(props) {
     prata,
     myndigheter,
     teknik,
-    grupp
+    grupp,
+    status
   }) => (
     <tr key={id}>
       <td>{datum}</td>
@@ -273,6 +280,7 @@ export default function Table(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{kommentarer}</td>
       <td>{förnamn}</td>
       <td>{efternamn}</td>
       <td>{telefon}</td>
@@ -297,20 +305,20 @@ export default function Table(props) {
   const GroupsRows = ({
     id,
     gruppnamn,
-    datum,
+    kommentarer,
     status,
     kontakt,
     telefon,
     email,
     address,
-    postkod
+    postkod,
+    datum
   }) => (
     <tr key={id}>
       <td>
         {/* Pass groupId to detail */}
         <Link to={`/grupp/${id}`}>{gruppnamn}</Link>
       </td>
-      <td>{datum}</td>
       <td>
         <ButtonGroup aria-label="set status" size="sm">
           <Button
@@ -344,17 +352,20 @@ export default function Table(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td className="kommentarer">{kommentarer}</td>
       <td>{kontakt}</td>
       <td>{telefon}</td>
       <td>{email}</td>
       <td>{address}</td>
       <td>{postkod}</td>
+      <td>{datum}</td>
     </tr>
   );
 
   const CancelledRows = ({
     id,
     datum,
+    kommentarer,
     status,
     telefon,
     address,
@@ -394,6 +405,7 @@ export default function Table(props) {
           </Button>
         </ButtonGroup>
       </td>
+      <td>{kommentarer}</td>
       <td>{telefon}</td>
       <td>{address}</td>
       <td>{postkod}</td>

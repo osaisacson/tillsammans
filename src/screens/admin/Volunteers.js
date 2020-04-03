@@ -36,6 +36,7 @@ const Volunteers = props => {
       volunteers.push(
         new Volunteer(
           doc.id,
+          resData.gruppId,
           resData.förnamn,
           resData.efternamn,
           resData.telefon,
@@ -54,7 +55,6 @@ const Volunteers = props => {
           resData.prata,
           resData.myndigheter,
           resData.teknik,
-          resData.grupp,
           readableDate,
           resData.status
         )
