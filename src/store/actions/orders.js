@@ -36,7 +36,7 @@ export const fetchOrders = () => {
                 resData.efternamn,
                 resData.email,
                 resData.address,
-                resData.grupp,
+                resData.gruppId,
                 resData.status
               )
             );

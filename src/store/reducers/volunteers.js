@@ -4,7 +4,7 @@ import {
   UPDATE_VOLUNTEER,
   SET_VOLUNTEERS
 } from '../actions/volunteers';
-import Order from '../../models/volunteer';
+import Volunteer from '../../models/volunteer';
 
 const initialState = {
   availableVolunteers: []
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         availableVolunteers: action.volunteers
       };
     case CREATE_VOLUNTEER:
-      const newOrder = new Order(
+      const newVolunteer = new Volunteer(
         action.volunteerData.id,
         action.volunteerData.förnamn,
         action.volunteerData.efternamn,
@@ -47,13 +47,13 @@ export default (state = initialState, action) => {
       );
       return {
         ...state,
-        availableVolunteers: state.availableVolunteers.concat(newOrder)
+        availableVolunteers: state.availableVolunteers.concat(newVolunteer)
       };
     case UPDATE_VOLUNTEER:
       const volunteerIndex = state.userVolunteers.findIndex(
         ordr => ordr.id === action.oid
       );
-      const updatedOrder = new Order(
+      const updatedVolunteer = new Volunteer(
         action.oid,
         action.volunteerData.förnamn,
         action.volunteerData.efternamn,
@@ -76,7 +76,7 @@ export default (state = initialState, action) => {
         action.volunteerData.status
       );
       const updatedAvailableVolunteers = [...state.availableVolunteers];
-      updatedAvailableVolunteers[volunteerIndex] = updatedOrder;
+      updatedAvailableVolunteers[volunteerIndex] = updatedVolunteer;
 
       return {
         ...state,

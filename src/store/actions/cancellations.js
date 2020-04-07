@@ -59,7 +59,7 @@ export const fetchCancellations = () => {
 // console.log('resData.efternamn: ', resData.efternamn);
 // console.log('resData.email: ', resData.email);
 // console.log('resData.address: ', resData.address);
-// console.log('resData.grupp: ', resData.grupp);
+// console.log('resData.gruppId: ', resData.gruppId);
 // console.log('resData.status: ', resData.status);
 
 export const deleteCancellation = cancellationId => {

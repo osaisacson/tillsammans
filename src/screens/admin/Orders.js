@@ -55,7 +55,7 @@ const Orders = props => {
           resData.email,
           resData.address,
           resData.postkod,
-          resData.grupp,
+          resData.gruppId,
           resData.status
         )
       );
@@ -63,7 +63,7 @@ const Orders = props => {
 
     setData({
       newOrders: orders.filter(data => data.status === 'ohanterad'),
-      activeOrders: orders.filter(data => data.status === 'hanterad'),
+      activeOrders: orders.filter(data => data.status === 'fördelad-grupp'),
       doneOrders: orders.filter(data => data.status === 'klar'),
       pausedOrders: orders.filter(data => data.status === 'pausad')
     });

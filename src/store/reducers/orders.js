@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
         action.orderData.efternamn,
         action.orderData.email,
         action.orderData.address,
-        action.orderData.grupp,
+        action.orderData.gruppId,
         action.orderData.status
       );
       return {
@@ -55,7 +55,7 @@ export default (state = initialState, action) => {
         action.orderData.efternamn,
         action.orderData.email,
         action.orderData.address,
-        action.orderData.grupp,
+        action.orderData.gruppId,
         action.orderData.status
       );
       const updatedAvailableOrders = [...state.availableOrders];

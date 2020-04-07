@@ -24,8 +24,8 @@ const GroupOrders = props => {
 
   //Set constants
   const [data, setData] = useState({
-    newOrders: [],
-    activeOrders: [],
+    distributedGroupOrders: [],
+    distributedVolunteerOrders: [],
     doneOrders: [],
     pausedOrders: []
   });
@@ -54,19 +54,22 @@ const GroupOrders = props => {
           resData.email,
           resData.address,
           resData.postkod,
-          resData.grupp,
+          resData.gruppId,
           resData.status
         )
       );
     });
 
     //Only get the orders which match our current group id
-    const currentGroupOrders = orders.filter(data => data.id === props.groupId);
-
+    const currentGroupOrders = orders.filter(
+      data => data.gruppId === props.groupId
+    );
     setData({
-      newOrders: currentGroupOrders.filter(data => data.status === 'ohanterad'),
-      activeOrders: currentGroupOrders.filter(
-        data => data.status === 'hanterad'
+      distributedGroupOrders: currentGroupOrders.filter(
+        data => data.status === 'fördelad-grupp'
+      ),
+      distributedVolunteerOrders: currentGroupOrders.filter(
+        data => data.status === 'fördelad-volontär'
       ),
       doneOrders: currentGroupOrders.filter(data => data.status === 'klar'),
       pausedOrders: currentGroupOrders.filter(data => data.status === 'pausad')
@@ -94,9 +97,9 @@ const GroupOrders = props => {
           title={
             <span>
               Att bli fördelade till volontärer{' '}
-              {data.newOrders.length ? (
+              {data.distributedGroupOrders.length ? (
                 <Badge pill variant="danger">
-                  {data.newOrders.length}
+                  {data.distributedGroupOrders.length}
                 </Badge>
               ) : (
                 0
@@ -104,15 +107,20 @@ const GroupOrders = props => {
             </span>
           }
         >
-          <GroupTable isOrders={true} tableData={data.newOrders} />
+          <GroupTable isOrders={true} tableData={data.distributedGroupOrders} />
         </Tab>
         <Tab
           eventKey="aktiva"
           title={`Fördelade (${
-            data.activeOrders.length ? data.activeOrders.length : 0
+            data.distributedVolunteerOrders.length
+              ? data.distributedVolunteerOrders.length
+              : 0
           })`}
         >
-          <GroupTable isOrders={true} tableData={data.activeOrders} />
+          <GroupTable
+            isOrders={true}
+            tableData={data.distributedVolunteerOrders}
+          />
         </Tab>
         <Tab
           eventKey="klara"

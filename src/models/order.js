@@ -14,7 +14,7 @@ class Order {
     email,
     address,
     postkod,
-    grupp,
+    gruppId,
     status
   ) {
     this.id = id;
@@ -31,7 +31,7 @@ class Order {
     this.email = email;
     this.address = address;
     this.postkod = postkod;
-    this.grupp = grupp;
+    this.gruppId = gruppId;
     this.status = status;
   }
 }
