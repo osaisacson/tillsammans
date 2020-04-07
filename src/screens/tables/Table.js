@@ -293,37 +293,39 @@ const Table = props => {
               // });
 
               setTimeout(() => {
-                console.log('newData: ', newData);
                 resolve();
-                setData(prevState => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
+                alert('Det här funkar snart, men inte än');
+                // setData(prevState => {
+                //   const data = [...prevState.data];
+                //   data.push(newData);
+                //   return { ...prevState, data };
+                // });
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                if (oldData) {
-                  setData(prevState => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
-                }
+                alert('Det här funkar snart, men inte än');
+                // if (oldData) {
+                //   setData(prevState => {
+                //     const data = [...prevState.data];
+                //     data[data.indexOf(oldData)] = newData;
+                //     return { ...prevState, data };
+                //   });
+                // }
               }, 600);
             }),
           onRowDelete: oldData =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                setData(prevState => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
+                alert('Det här funkar snart, men inte än');
+                // setData(prevState => {
+                //   const data = [...prevState.data];
+                //   data.splice(data.indexOf(oldData), 1);
+                //   return { ...prevState, data };
+                // });
               }, 600);
             })
         }}
