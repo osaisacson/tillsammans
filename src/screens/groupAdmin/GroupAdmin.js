@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 //Models
 import Group from './../../models/group';
@@ -31,7 +31,7 @@ const GroupAdmin = ({ match }) => {
     querySnapshot.forEach(function(doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(resData.datum).format('L');
+      const readableDate = moment(resData.datum).format('lll');
 
       groups.push(
         new Group(

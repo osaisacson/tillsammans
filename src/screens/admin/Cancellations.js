@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 import Cancellation from './../../models/cancellation';
 
@@ -11,7 +11,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import Table from './Table';
+import Table from '../tables/Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import CancelForm from './../users/CancelForm';
@@ -30,7 +30,7 @@ const Cancellations = props => {
     querySnapshot.forEach(function(doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(resData.datum).format('L');
+      const readableDate = moment(resData.datum).format('lll');
 
       cancellations.push(
         new Cancellation(

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 //Models
 import Order from '../../models/order';
@@ -14,7 +14,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import GroupTable from '../groupAdmin/GroupTable';
+import Table from '../tables/Table';
 import HelpForm from '../users/HelpForm';
 import AddButtonHeader from '../../components/AddButtonHeader';
 import RefreshButton from '../../components/RefreshButton';
@@ -27,7 +27,8 @@ const GroupOrders = props => {
     distributedGroupOrders: [],
     distributedVolunteerOrders: [],
     doneOrders: [],
-    pausedOrders: []
+    pausedOrders: [],
+    cancelledOrders: []
   });
 
   async function getOrders() {
@@ -36,11 +37,13 @@ const GroupOrders = props => {
     querySnapshot.forEach(function(doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(resData.datum).format('L');
+      const readableDate = moment(resData.datum).format('lll');
 
       orders.push(
         new Order(
           doc.id,
+          resData.gruppId,
+          resData.volontärId,
           readableDate,
           resData.typ,
           resData.beskrivning,
@@ -54,7 +57,6 @@ const GroupOrders = props => {
           resData.email,
           resData.address,
           resData.postkod,
-          resData.gruppId,
           resData.status
         )
       );
@@ -72,7 +74,10 @@ const GroupOrders = props => {
         data => data.status === 'fördelad-volontär'
       ),
       doneOrders: currentGroupOrders.filter(data => data.status === 'klar'),
-      pausedOrders: currentGroupOrders.filter(data => data.status === 'pausad')
+      pausedOrders: currentGroupOrders.filter(data => data.status === 'pausad'),
+      cancelledOrders: currentGroupOrders.filter(
+        data => data.status === 'avbokad'
+      )
     });
   }
 
@@ -107,7 +112,11 @@ const GroupOrders = props => {
             </span>
           }
         >
-          <GroupTable isOrders={true} tableData={data.distributedGroupOrders} />
+          <Table
+            groupId={props.groupId}
+            isOrders={true}
+            tableData={data.distributedGroupOrders}
+          />
         </Tab>
         <Tab
           eventKey="aktiva"
@@ -117,7 +126,8 @@ const GroupOrders = props => {
               : 0
           })`}
         >
-          <GroupTable
+          <Table
+            groupId={props.groupId}
             isOrders={true}
             tableData={data.distributedVolunteerOrders}
           />
@@ -128,7 +138,11 @@ const GroupOrders = props => {
             data.doneOrders.length ? data.doneOrders.length : 0
           })`}
         >
-          <GroupTable isOrders={true} tableData={data.doneOrders} />
+          <Table
+            groupId={props.groupId}
+            isOrders={true}
+            tableData={data.doneOrders}
+          />
         </Tab>
         <Tab
           eventKey="pausad"
@@ -136,7 +150,23 @@ const GroupOrders = props => {
             data.pausedOrders.length ? data.pausedOrders.length : 0
           })`}
         >
-          <GroupTable isOrders={true} tableData={data.pausedOrders} />
+          <Table
+            groupId={props.groupId}
+            isOrders={true}
+            tableData={data.pausedOrders}
+          />
+        </Tab>
+        <Tab
+          eventKey="avbokade"
+          title={`Avbokade (${
+            data.cancelledOrders.length ? data.cancelledOrders.length : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isOrders={true}
+            tableData={data.cancelledOrders}
+          />
         </Tab>
       </Tabs>
     </div>

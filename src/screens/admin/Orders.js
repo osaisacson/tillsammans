@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 //Models
 import Order from './../../models/order';
@@ -14,7 +14,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import Table from './Table';
+import Table from '../tables/Table';
 import HelpForm from './../users/HelpForm';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
@@ -26,9 +26,10 @@ const Orders = props => {
   //Set constants
   const [data, setData] = useState({
     newOrders: [],
-    activeOrders: [],
+    assignedToGroup: [],
     doneOrders: [],
-    pausedOrders: []
+    pausedOrders: [],
+    cancelledOrders: []
   });
 
   async function getOrders() {
@@ -37,11 +38,13 @@ const Orders = props => {
     querySnapshot.forEach(function(doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(resData.datum).format('L');
+      const readableDate = moment(resData.datum).format('lll');
 
       orders.push(
         new Order(
           doc.id,
+          resData.gruppId,
+          resData.volontärId,
           readableDate,
           resData.typ,
           resData.beskrivning,
@@ -55,7 +58,6 @@ const Orders = props => {
           resData.email,
           resData.address,
           resData.postkod,
-          resData.gruppId,
           resData.status
         )
       );
@@ -63,9 +65,10 @@ const Orders = props => {
 
     setData({
       newOrders: orders.filter(data => data.status === 'ohanterad'),
-      activeOrders: orders.filter(data => data.status === 'fördelad-grupp'),
+      assignedToGroup: orders.filter(data => data.status === 'fördelad-grupp'),
       doneOrders: orders.filter(data => data.status === 'klar'),
-      pausedOrders: orders.filter(data => data.status === 'pausad')
+      pausedOrders: orders.filter(data => data.status === 'pausad'),
+      cancelledOrders: orders.filter(data => data.status === 'avbokad')
     });
   }
 
@@ -141,12 +144,12 @@ const Orders = props => {
           <Table isOrders={true} tableData={data.newOrders} />
         </Tab>
         <Tab
-          eventKey="aktiva"
-          title={`Fördelade (${
-            data.activeOrders.length ? data.activeOrders.length : 0
+          eventKey="gruppfördelade"
+          title={`Fördelade till grupp (${
+            data.assignedToGroup.length ? data.assignedToGroup.length : 0
           })`}
         >
-          <Table isOrders={true} tableData={data.activeOrders} />
+          <Table isOrders={true} tableData={data.assignedToGroup} />
         </Tab>
         <Tab
           eventKey="klara"
@@ -163,6 +166,14 @@ const Orders = props => {
           })`}
         >
           <Table isOrders={true} tableData={data.pausedOrders} />
+        </Tab>
+        <Tab
+          eventKey="avbokad"
+          title={`Avbokade (${
+            data.cancelledOrders.length ? data.cancelledOrders.length : 0
+          })`}
+        >
+          <Table isOrders={true} tableData={data.cancelledOrders} />
         </Tab>
       </Tabs>
     </div>

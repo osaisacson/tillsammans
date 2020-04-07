@@ -1,6 +1,8 @@
 class Order {
   constructor(
     id,
+    gruppId,
+    volontärId,
     datum,
     typ,
     beskrivning,
@@ -14,10 +16,11 @@ class Order {
     email,
     address,
     postkod,
-    gruppId,
     status
   ) {
     this.id = id;
+    this.gruppId = gruppId;
+    this.volontärId = volontärId;
     this.datum = datum;
     this.typ = typ;
     this.beskrivning = beskrivning;
@@ -31,7 +34,6 @@ class Order {
     this.email = email;
     this.address = address;
     this.postkod = postkod;
-    this.gruppId = gruppId;
     this.status = status;
   }
 }

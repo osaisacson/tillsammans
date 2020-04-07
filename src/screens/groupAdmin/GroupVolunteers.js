@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Volunteer from '../../models/volunteer';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -10,7 +10,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import GroupTable from '../groupAdmin/GroupTable';
+import Table from '../tables/Table';
 import AddButtonHeader from '../../components/AddButtonHeader';
 import RefreshButton from '../../components/RefreshButton';
 import VolunteerForm from '../users/VolunteerForm';
@@ -29,7 +29,7 @@ const GroupVolunteers = props => {
     querySnapshot.forEach(function(doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(resData.datum).format('L');
+      const readableDate = moment(resData.datum).format('lll');
 
       volunteers.push(
         new Volunteer(
@@ -108,7 +108,11 @@ const GroupVolunteers = props => {
             </span>
           }
         >
-          <GroupTable isVolunteers={true} tableData={data.newVolunteers} />
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={data.newVolunteers}
+          />
         </Tab>
         <Tab
           eventKey="aktiva"
@@ -116,7 +120,11 @@ const GroupVolunteers = props => {
             data.activeVolunteers.length ? data.activeVolunteers.length : 0
           })`}
         >
-          <GroupTable isVolunteers={true} tableData={data.activeVolunteers} />
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={data.activeVolunteers}
+          />
         </Tab>
         <Tab
           eventKey="pausade"
@@ -124,7 +132,11 @@ const GroupVolunteers = props => {
             data.inactiveVolunteers.length ? data.inactiveVolunteers.length : 0
           })`}
         >
-          <GroupTable isVolunteers={true} tableData={data.inactiveVolunteers} />
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={data.inactiveVolunteers}
+          />
         </Tab>
       </Tabs>
     </div>

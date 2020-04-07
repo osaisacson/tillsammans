@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Group from './../../models/group';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -10,7 +10,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 //Components
-import Table from './Table';
+import Table from '../tables/Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import GroupForm from '../users/GroupForm';
@@ -29,7 +29,7 @@ const Groups = props => {
     querySnapshot.forEach(function(doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(resData.datum).format('L');
+      const readableDate = moment(resData.datum).format('lll');
 
       groups.push(
         new Group(

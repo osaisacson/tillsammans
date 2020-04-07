@@ -113,6 +113,9 @@ const HelpForm = props => {
     console.log('ADD USER TRIGGERED');
     const db = firebase.firestore();
     db.collection('orders').add({
+      gruppId: '',
+      volontärId: '',
+      datum: new Date().getTime(),
       typ: formState.inputValues.typ,
       beskrivning: formState.inputValues.beskrivning,
       swish: useSwish,
@@ -125,8 +128,6 @@ const HelpForm = props => {
       email: formState.inputValues.email,
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
-      grupp: '',
-      datum: new Date().getTime(),
       status: 'ohanterad'
     });
     setRedirectToThanks(true);
@@ -302,8 +303,8 @@ const HelpForm = props => {
             <option value="Inget val">Välj</option>
             <option value="Max en dag">Max en dag</option>
             <option value="Upp till två dagar">Upp till två dagar</option>
-            <option value="Upp till två dagar">Upp till tre dagar</option>
-            <option value="Upp till tre dagar">Upp till fyra dagar</option>
+            <option value="Upp till tre dagar">Upp till tre dagar</option>
+            <option value="Upp till fyra dagar">Upp till fyra dagar</option>
             <option value="Ta det när det går">Ta det när det går</option>
           </Form.Control>
         </Form.Group>

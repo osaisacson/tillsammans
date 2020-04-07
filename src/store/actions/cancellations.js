@@ -1,7 +1,7 @@
 import Cancellation from '../../models/cancellation';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 export const DELETE_CANCELLATION = 'DELETE_CANCELLATION';
 export const CREATE_CANCELLATION = 'CREATE_CANCELLATION';
@@ -23,7 +23,7 @@ export const fetchCancellations = () => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(resData.datum).format('L');
+            const readableDate = moment(resData.datum).format('lll');
             loadedCancellations.push(
               new Cancellation(
                 doc.id,

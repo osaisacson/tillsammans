@@ -1,7 +1,7 @@
 import Volunteer from '../../models/volunteer';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-// import moment from 'moment';
+// import moment from 'moment-with-locales-es6';
 
 export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER';
 export const CREATE_VOLUNTEER = 'CREATE_VOLUNTEER';

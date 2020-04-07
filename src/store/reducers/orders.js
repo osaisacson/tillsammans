@@ -24,18 +24,24 @@ export default (state = initialState, action) => {
     case CREATE_ORDER:
       const newOrder = new Order(
         action.orderData.id,
+        action.orderData.gruppId,
+        action.orderData.volontärId,
         action.orderData.datum,
         action.orderData.typ,
         action.orderData.beskrivning,
+        action.orderData.swish,
+        action.orderData.kontant,
+        action.orderData.faktura,
         action.orderData.tidsrymd,
         action.orderData.telefon,
         action.orderData.förnamn,
         action.orderData.efternamn,
         action.orderData.email,
         action.orderData.address,
-        action.orderData.gruppId,
+        action.orderData.postkod,
         action.orderData.status
       );
+
       return {
         ...state,
         availableOrders: state.availableOrders.concat(newOrder)
@@ -46,16 +52,21 @@ export default (state = initialState, action) => {
       );
       const updatedOrder = new Order(
         action.oid,
+        action.orderData.gruppId,
+        action.orderData.volontärId,
         state.availableOrders[orderIndex].datum,
         action.orderData.typ,
         action.orderData.beskrivning,
+        action.orderData.swish,
+        action.orderData.kontant,
+        action.orderData.faktura,
         action.orderData.tidsrymd,
         action.orderData.telefon,
         action.orderData.förnamn,
         action.orderData.efternamn,
         action.orderData.email,
         action.orderData.address,
-        action.orderData.gruppId,
+        action.orderData.postkod,
         action.orderData.status
       );
       const updatedAvailableOrders = [...state.availableOrders];

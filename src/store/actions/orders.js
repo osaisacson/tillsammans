@@ -1,7 +1,7 @@
 import Order from './../../models/order';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 export const DELETE_ORDER = 'DELETE_ORDER';
 export const CREATE_ORDER = 'CREATE_ORDER';
@@ -23,20 +23,25 @@ export const fetchOrders = () => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(resData.datum).format('L');
+            const readableDate = moment(resData.datum).format('lll');
             loadedOrders.push(
               new Order(
                 doc.id,
+                resData.gruppId,
+                resData.volontärId,
                 readableDate,
                 resData.typ,
                 resData.beskrivning,
+                resData.swish,
+                resData.kontant,
+                resData.faktura,
                 resData.tidsrymd,
                 resData.telefon,
                 resData.förnamn,
                 resData.efternamn,
                 resData.email,
                 resData.address,
-                resData.gruppId,
+                resData.postkod,
                 resData.status
               )
             );

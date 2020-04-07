@@ -1,7 +1,7 @@
 import Group from '../../models/group';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment';
+import moment from 'moment-with-locales-es6';
 
 export const DELETE_GROUP = 'DELETE_GROUP';
 export const CREATE_GROUP = 'CREATE_GROUP';
@@ -23,7 +23,7 @@ export const fetchGroups = () => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(resData.datum).format('L');
+            const readableDate = moment(resData.datum).format('lll');
             loadedGroups.push(
               new Group(
                 doc.id,
