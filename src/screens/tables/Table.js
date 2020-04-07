@@ -237,91 +237,98 @@ const Table = props => {
   }, [props.tableData]);
 
   return (
-    <MaterialTable
-      title=""
-      columns={columndata}
-      data={data}
-      options={{
-        paging: false,
-        exportButton: true,
-        draggable: true
-      }}
-      // editable={{
-      //     onRowDelete: oldData =>
-      //         new Promise((resolve, reject) => {
-      //             setTimeout(() => {
-      //                 let newData = data;
-      //                 _.remove(newData, { _id: oldData._id });
-      //                 debugger;
-      //                 setData(newData);
-      //                 resolve();
-      //             }, 1000);
-      //         })
-      // }}
-      editable={{
-        onRowAdd: newData =>
-          new Promise(resolve => {
-            // const db = firebase.firestore();
-            // db.collection('volunteers').add({
-            //   förnamn: newData.förnamn,
-            //   efternamn: newData.efternamn,
-            //   telefon: newData.telefon,
-            //   email: newData.email,
-            //   address: newData.address,
-            //   postkod: newData.postkod,
-            //   beskrivning: newData.beskrivning,
-            //   språk: newData.språk,
-            //   födelseår: newData.födelseår,
-            //   // körkort: hasLicence,
-            //   // bil: hasCar,
-            //   // mat: shopFood,
-            //   // varor: shopSupplies,
-            //   // ärenden: runErrands,
-            //   // djur: doAnimals,
-            //   // prata: doTalking,
-            //   // myndigheter: doAuthorities,
-            //   // teknik: doTech,
-            //   gruppId: props.gruppId,
-            //   datum: new Date().getTime(),
-            //   status: 'ny'
-            // });
+    <>
+      <br />
+      <p>
+        OBS: Försök inte redigera eller radera något ännu! Att sortera och
+        exportera fungerar.
+      </p>
+      <MaterialTable
+        title=""
+        columns={columndata}
+        data={data}
+        options={{
+          paging: false,
+          exportButton: true,
+          draggable: true
+        }}
+        // editable={{
+        //     onRowDelete: oldData =>
+        //         new Promise((resolve, reject) => {
+        //             setTimeout(() => {
+        //                 let newData = data;
+        //                 _.remove(newData, { _id: oldData._id });
+        //                 debugger;
+        //                 setData(newData);
+        //                 resolve();
+        //             }, 1000);
+        //         })
+        // }}
+        editable={{
+          onRowAdd: newData =>
+            new Promise(resolve => {
+              // const db = firebase.firestore();
+              // db.collection('volunteers').add({
+              //   förnamn: newData.förnamn,
+              //   efternamn: newData.efternamn,
+              //   telefon: newData.telefon,
+              //   email: newData.email,
+              //   address: newData.address,
+              //   postkod: newData.postkod,
+              //   beskrivning: newData.beskrivning,
+              //   språk: newData.språk,
+              //   födelseår: newData.födelseår,
+              //   // körkort: hasLicence,
+              //   // bil: hasCar,
+              //   // mat: shopFood,
+              //   // varor: shopSupplies,
+              //   // ärenden: runErrands,
+              //   // djur: doAnimals,
+              //   // prata: doTalking,
+              //   // myndigheter: doAuthorities,
+              //   // teknik: doTech,
+              //   gruppId: props.gruppId,
+              //   datum: new Date().getTime(),
+              //   status: 'ny'
+              // });
 
-            setTimeout(() => {
-              console.log('newData: ', newData);
-              resolve();
-              setData(prevState => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
+              setTimeout(() => {
+                console.log('newData: ', newData);
+                resolve();
                 setData(prevState => {
                   const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
+                  data.push(newData);
                   return { ...prevState, data };
                 });
-              }
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setData(prevState => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          })
-      }}
-    />
+              }, 600);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                if (oldData) {
+                  setData(prevState => {
+                    const data = [...prevState.data];
+                    data[data.indexOf(oldData)] = newData;
+                    return { ...prevState, data };
+                  });
+                }
+              }, 600);
+            }),
+          onRowDelete: oldData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                setData(prevState => {
+                  const data = [...prevState.data];
+                  data.splice(data.indexOf(oldData), 1);
+                  return { ...prevState, data };
+                });
+              }, 600);
+            })
+        }}
+      />
+    </>
   );
 };
 
