@@ -240,7 +240,7 @@ const Table = props => {
     <>
       <br />
       <p>
-        OBS: Försök inte redigera eller radera något ännu! Att sortera och
+        OBS: Försök inte redigera eller radera något ännu! Att sortera, söka och
         exportera fungerar.
       </p>
       <MaterialTable
