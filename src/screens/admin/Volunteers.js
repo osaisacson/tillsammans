@@ -143,7 +143,7 @@ const Volunteers = props => {
         </Tab>
         <Tab
           eventKey="fördelade"
-          title={`Fördelade till grupper (${
+          title={`Fördelade till grupper - att välkomnas (${
             data.distributedVolunteers.length
               ? data.distributedVolunteers.length
               : 0
@@ -152,6 +152,18 @@ const Volunteers = props => {
           <Table
             isVolunteers={true}
             tableData={data.distributedVolunteers}
+            refreshAction={getVolunteers}
+          />
+        </Tab>
+        <Tab
+          eventKey="aktiva"
+          title={`Aktiva (${
+            data.activeVolunteers.length ? data.activeVolunteers.length : 0
+          })`}
+        >
+          <Table
+            isVolunteers={true}
+            tableData={data.activeVolunteers}
             refreshAction={getVolunteers}
           />
         </Tab>
