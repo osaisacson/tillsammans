@@ -23,7 +23,7 @@ export const fetchOrders = () => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(resData.datum).format('lll');
+            const readableDate = moment(new Date(resData.datum)).format('lll');
             loadedOrders.push(
               new Order(
                 doc.id,
@@ -210,14 +210,6 @@ export const updateOrder = (
   kommentarer
 ) => {
   return async dispatch => {
-    // const db = firebase.firestore();
-
-    // let orderRef = db.collection('orders').doc(id);
-
-    // orderRef.update({
-    //   newData
-    // });
-
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/orders/${id}.json`,
       {

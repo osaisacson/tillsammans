@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ORDERS:
       console.log(
-        'store/reducers/orders.js:18 getting the firebase data via our reducer, THIS WORKS:',
+        'store/reducers/orders.js:18 getting the firebase data via our reducer:',
         action.orders
       );
       return {

@@ -23,7 +23,7 @@ export const fetchGroups = () => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(resData.datum).format('lll');
+            const readableDate = moment(new Date(resData.datum)).format('lll');
             loadedGroups.push(
               new Group(
                 doc.id,
