@@ -113,8 +113,8 @@ const HelpForm = props => {
     console.log('ADD USER TRIGGERED');
     const db = firebase.firestore();
     db.collection('orders').add({
-      gruppId: '',
-      volontärId: '',
+      gruppId: '0',
+      volontärId: '0',
       datum: new Date().getTime(),
       typ: formState.inputValues.typ,
       beskrivning: formState.inputValues.beskrivning,

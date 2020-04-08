@@ -35,6 +35,7 @@ const Table = props => {
       title: 'Grupp',
       field: 'gruppId',
       lookup: {
+        0: 'Ingen grupp vald',
         DDPDlLcTYYMQEJNlhzgD: 'Svenska Kyrkan Myggenäs',
         Pn5Uj8h84m5pjqSmL6sA: 'Svenska Kyrkan Skärhamn',
         uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr'
@@ -116,7 +117,7 @@ const Table = props => {
         minWidth: 230
       }
     },
-    { title: 'Postkod', field: 'postkod', type: 'numeric' }
+    { title: 'Postkod', field: 'postkod' }
   ];
 
   const volunteerColumns = [
@@ -143,6 +144,7 @@ const Table = props => {
       title: 'Grupp',
       field: 'gruppId',
       lookup: {
+        0: 'Ingen grupp vald',
         DDPDlLcTYYMQEJNlhzgD: 'Svenska Kyrkan Myggenäs',
         Pn5Uj8h84m5pjqSmL6sA: 'Svenska Kyrkan Skärhamn',
         uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr'
@@ -163,7 +165,7 @@ const Table = props => {
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
     { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod', type: 'numeric' },
+    { title: 'Postkod', field: 'postkod' },
     {
       title: 'Kommentarer från samordnare',
       field: 'kommentarer',
@@ -190,7 +192,7 @@ const Table = props => {
       }
     },
     { title: 'Språk', field: 'språk' },
-    { title: 'Födelseår', field: 'födelseår', type: 'numeric' },
+    { title: 'Födelseår', field: 'födelseår' },
     { title: 'Har körkort', field: 'körkort' },
     { title: 'Har bil', field: 'bil' },
     { title: 'Mat', field: 'mat' },
@@ -235,7 +237,7 @@ const Table = props => {
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
     { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod', type: 'numeric' },
+    { title: 'Postkod', field: 'postkod' },
     { title: 'Skapad', field: 'datum', editable: 'never' }
   ];
 
@@ -257,7 +259,7 @@ const Table = props => {
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
     { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod', type: 'numeric' }
+    { title: 'Postkod', field: 'postkod' }
   ];
 
   //Set column headers depending on which screen we are in.
@@ -293,7 +295,17 @@ const Table = props => {
       email: newData.email ? newData.email : '',
       address: newData.address ? newData.address : '',
       postkod: newData.postkod ? newData.postkod : '',
-      status: newData.status ? newData.status : '1',
+      status:
+        newData.groupId === '0'
+          ? '1'
+          : newData.groupId !== '0' &&
+            (newData.status !== '3' ||
+              newData.status !== '4' ||
+              newData.status !== '5' ||
+              newData.status !== '6')
+          ? '2'
+          : newData.status,
+
       kommentarer: newData.kommentarer ? newData.kommentarer : ''
     });
 

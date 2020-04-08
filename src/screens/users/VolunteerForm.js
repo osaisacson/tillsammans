@@ -145,7 +145,7 @@ const VolunteerForm = props => {
       prata: doTalking,
       myndigheter: doAuthorities,
       teknik: doTech,
-      gruppId: '',
+      gruppId: '0',
       datum: new Date().getTime(),
       status: '1'
     });
