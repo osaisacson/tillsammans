@@ -1,7 +1,7 @@
 import Group from '../../models/group';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 export const DELETE_GROUP = 'DELETE_GROUP';
 export const CREATE_GROUP = 'CREATE_GROUP';
@@ -95,7 +95,7 @@ export const createGroup = (
 
     const setDatum = new Date().getTime();
     const setGrupp = '';
-    const setStatus = 'ohanterad';
+    const setStatus = '1';
 
     const db = firebase.firestore();
     const response = await db.collection('groups').add({

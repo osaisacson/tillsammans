@@ -147,7 +147,7 @@ const VolunteerForm = props => {
       teknik: doTech,
       gruppId: '',
       datum: new Date().getTime(),
-      status: 'ny'
+      status: '1'
     });
     setRedirectToThanks(true);
   };

@@ -128,7 +128,7 @@ const HelpForm = props => {
       email: formState.inputValues.email,
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
-      status: 'ohanterad'
+      status: '1'
     });
     setRedirectToThanks(true);
   };

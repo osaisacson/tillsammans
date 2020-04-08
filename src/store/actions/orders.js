@@ -1,7 +1,7 @@
 import Order from './../../models/order';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 export const DELETE_ORDER = 'DELETE_ORDER';
 export const CREATE_ORDER = 'CREATE_ORDER';
@@ -122,7 +122,7 @@ export const createOrder = (
 
     const setDatum = new Date().getTime();
     const setGrupp = '';
-    const setStatus = 'ohanterad';
+    const setStatus = '1';
 
     const db = firebase.firestore();
     const response = await db.collection('orders').add({
@@ -191,8 +191,14 @@ export const createOrder = (
 
 export const updateOrder = (
   id,
+  gruppId,
+  volontärId,
+  datum,
   typ,
   beskrivning,
+  swish,
+  kontant,
+  faktura,
   tidsrymd,
   telefon,
   förnamn,
@@ -200,22 +206,34 @@ export const updateOrder = (
   email,
   address,
   postkod,
-  grupp,
-  status
+  status,
+  kommentarer
 ) => {
-  return async (dispatch, getState) => {
-    // const token = getState().auth.token;
+  return async dispatch => {
+    // const db = firebase.firestore();
+
+    // let orderRef = db.collection('orders').doc(id);
+
+    // orderRef.update({
+    //   newData
+    // });
+
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/orders/${id}.json`,
-      // `https://sverige-tillsammans.firebaseio.com/orders/${id}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          gruppId,
+          volontärId,
+          datum,
           typ,
           beskrivning,
+          swish,
+          kontant,
+          faktura,
           tidsrymd,
           telefon,
           förnamn,
@@ -223,8 +241,8 @@ export const updateOrder = (
           email,
           address,
           postkod,
-          grupp,
-          status
+          status,
+          kommentarer
         })
       }
     );
@@ -237,8 +255,14 @@ export const updateOrder = (
       type: UPDATE_ORDER,
       oid: id,
       orderData: {
+        gruppId,
+        volontärId,
+        datum,
         typ,
         beskrivning,
+        swish,
+        kontant,
+        faktura,
         tidsrymd,
         telefon,
         förnamn,
@@ -246,7 +270,6 @@ export const updateOrder = (
         email,
         address,
         postkod,
-        grupp,
         status
       }
     });

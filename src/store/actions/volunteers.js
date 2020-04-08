@@ -1,7 +1,7 @@
 import Volunteer from '../../models/volunteer';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-// import moment from 'moment-with-locales-es6';
+// import moment from 'moment';
 
 export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER';
 export const CREATE_VOLUNTEER = 'CREATE_VOLUNTEER';
@@ -107,7 +107,7 @@ export const createVolunteer = (
   return async dispatch => {
     const setDatum = new Date().getTime();
     const setGrupp = '';
-    const setStatus = 'ohanterad';
+    const setStatus = '1';
 
     const db = firebase.firestore();
     const response = await db.collection('volunteers').add({

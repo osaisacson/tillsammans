@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 //Models
 import Group from '../../models/group';

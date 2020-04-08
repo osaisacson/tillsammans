@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 import Cancellation from './../../models/cancellation';
 

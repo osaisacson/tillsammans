@@ -39,7 +39,8 @@ export default (state = initialState, action) => {
         action.orderData.email,
         action.orderData.address,
         action.orderData.postkod,
-        action.orderData.status
+        action.orderData.status,
+        action.orderData.kommentarer
       );
 
       return {
@@ -67,7 +68,8 @@ export default (state = initialState, action) => {
         action.orderData.email,
         action.orderData.address,
         action.orderData.postkod,
-        action.orderData.status
+        action.orderData.status,
+        action.orderData.kommentarer
       );
       const updatedAvailableOrders = [...state.availableOrders];
       updatedAvailableOrders[orderIndex] = updatedOrder;

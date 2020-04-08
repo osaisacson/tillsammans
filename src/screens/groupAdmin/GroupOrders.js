@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 //Models
 import Order from '../../models/order';
@@ -57,7 +57,8 @@ const GroupOrders = props => {
           resData.email,
           resData.address,
           resData.postkod,
-          resData.status
+          resData.status,
+          resData.kommentarer
         )
       );
     });
@@ -68,16 +69,14 @@ const GroupOrders = props => {
     );
     setData({
       distributedGroupOrders: currentGroupOrders.filter(
-        data => data.status === 'fördelad-grupp'
+        data => data.status === '2'
       ),
       distributedVolunteerOrders: currentGroupOrders.filter(
-        data => data.status === 'fördelad-volontär'
+        data => data.status === '3'
       ),
-      doneOrders: currentGroupOrders.filter(data => data.status === 'klar'),
-      pausedOrders: currentGroupOrders.filter(data => data.status === 'pausad'),
-      cancelledOrders: currentGroupOrders.filter(
-        data => data.status === 'avbokad'
-      )
+      doneOrders: currentGroupOrders.filter(data => data.status === '4'),
+      pausedOrders: currentGroupOrders.filter(data => data.status === '5'),
+      cancelledOrders: currentGroupOrders.filter(data => data.status === '6')
     });
   }
 

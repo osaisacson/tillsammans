@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 //Models
 import Order from './../../models/order';
@@ -58,17 +58,18 @@ const Orders = props => {
           resData.email,
           resData.address,
           resData.postkod,
-          resData.status
+          resData.status,
+          resData.kommentarer
         )
       );
     });
 
     setData({
-      newOrders: orders.filter(data => data.status === 'ohanterad'),
-      assignedToGroup: orders.filter(data => data.status === 'fördelad-grupp'),
-      doneOrders: orders.filter(data => data.status === 'klar'),
-      pausedOrders: orders.filter(data => data.status === 'pausad'),
-      cancelledOrders: orders.filter(data => data.status === 'avbokad')
+      newOrders: orders.filter(data => data.status === '1'),
+      assignedToGroup: orders.filter(data => data.status === '2'),
+      doneOrders: orders.filter(data => data.status === '4'),
+      pausedOrders: orders.filter(data => data.status === '5'),
+      cancelledOrders: orders.filter(data => data.status === '6')
     });
   }
 

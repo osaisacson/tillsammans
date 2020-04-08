@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 //Models
 import Group from './../../models/group';

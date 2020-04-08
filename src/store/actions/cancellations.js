@@ -1,7 +1,7 @@
 import Cancellation from '../../models/cancellation';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 export const DELETE_CANCELLATION = 'DELETE_CANCELLATION';
 export const CREATE_CANCELLATION = 'CREATE_CANCELLATION';
@@ -107,7 +107,7 @@ export const createCancellation = (
 
     const setDatum = new Date().getTime();
     const setGrupp = '';
-    const setStatus = 'ohanterad';
+    const setStatus = '1';
 
     const db = firebase.firestore();
     const response = await db.collection('cancellations').add({

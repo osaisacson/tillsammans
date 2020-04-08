@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Volunteer from '../../models/volunteer';
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -65,14 +65,12 @@ const GroupVolunteers = props => {
     );
 
     setData({
-      newVolunteers: currentGroupVolunteers.filter(
-        data => data.status === 'hanterad'
-      ),
+      newVolunteers: currentGroupVolunteers.filter(data => data.status === '2'),
       activeVolunteers: currentGroupVolunteers.filter(
-        data => data.status === 'aktiv'
+        data => data.status === '3'
       ),
       inactiveVolunteers: currentGroupVolunteers.filter(
-        data => data.status === 'pausad'
+        data => data.status === '4'
       )
     });
   }

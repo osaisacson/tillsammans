@@ -2,16 +2,35 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { Link } from 'react-router-dom';
 
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const Table = props => {
+  //Set constants
   const [data, setData] = useState();
 
   //Column headers
-
   const orderColumns = [
-    { title: 'Mottaget', field: 'datum', editable: 'never' },
+    {
+      title: 'Status',
+      field: 'status',
+      lookup: {
+        1: 'ny',
+        2: 'fördelad-grupp',
+        3: 'fördelad-volontär',
+        4: 'klar',
+        5: 'pausad',
+        6: 'avbokad'
+      },
+      cellStyle: {
+        width: 200,
+        minWidth: 200
+      },
+      headerStyle: {
+        width: 200,
+        minWidth: 200
+      }
+    },
     {
       title: 'Grupp',
       field: 'gruppId',
@@ -29,6 +48,7 @@ const Table = props => {
         minWidth: 230
       }
     },
+    { title: 'Mottaget', field: 'datum', editable: 'never' },
     {
       title: 'Beskrivning',
       field: 'beskrivning',
@@ -100,7 +120,25 @@ const Table = props => {
   ];
 
   const volunteerColumns = [
-    { title: 'Mottaget', field: 'datum', editable: 'never' },
+    {
+      title: 'Status',
+      field: 'status',
+      lookup: {
+        1: 'ny',
+        2: 'fördelad-grupp',
+        3: 'aktiv',
+        4: 'pausad',
+        5: 'olämplig'
+      },
+      cellStyle: {
+        width: 200,
+        minWidth: 200
+      },
+      headerStyle: {
+        width: 200,
+        minWidth: 200
+      }
+    },
     {
       title: 'Grupp',
       field: 'gruppId',
@@ -118,6 +156,8 @@ const Table = props => {
         minWidth: 230
       }
     },
+    { title: 'Mottaget', field: 'datum', editable: 'never' },
+
     { title: 'Förnamn', field: 'förnamn' },
     { title: 'Efternamn', field: 'efternamn' },
     { title: 'Telefon', field: 'telefon' },
@@ -229,6 +269,103 @@ const Table = props => {
     ? groupColumns
     : cancelledColumns;
 
+  //Prep firestore
+  const db = firebase.firestore();
+
+  //Update existing order
+  async function updateOrder(newData, oldData) {
+    const currDocId = newData.id;
+    let orderRef = db.collection('orders').doc(currDocId);
+
+    orderRef.update({
+      gruppId: newData.gruppId ? newData.gruppId : '',
+      volontärId: newData.volontärId ? newData.volontärId : '',
+      datum: newData.datum ? newData.datum : '',
+      typ: newData.typ ? newData.typ : 'Ingen',
+      beskrivning: newData.beskrivning ? newData.beskrivning : '',
+      swish: newData.swish ? newData.swish : false,
+      kontant: newData.kontant ? newData.kontant : false,
+      faktura: newData.faktura ? newData.faktura : false,
+      tidsrymd: newData.tidsrymd ? newData.tidsrymd : '',
+      telefon: newData.telefon ? newData.telefon : '',
+      förnamn: newData.förnamn ? newData.förnamn : '',
+      efternamn: newData.efternamn ? newData.efternamn : '',
+      email: newData.email ? newData.email : '',
+      address: newData.address ? newData.address : '',
+      postkod: newData.postkod ? newData.postkod : '',
+      status: newData.status ? newData.status : '1',
+      kommentarer: newData.kommentarer ? newData.kommentarer : ''
+    });
+
+    // setData((newData, oldData) => {
+    //   return { ...oldData, newData };
+    // });
+  }
+
+  //Update existing volunteer
+  async function updateVolunteer(newData, oldData) {
+    const currDocId = newData.id;
+    let volunteerRef = db.collection('volunteers').doc(currDocId);
+
+    volunteerRef.update({
+      gruppId: newData.gruppId ? newData.gruppId : '',
+      förnamn: newData.förnamn ? newData.förnamn : '',
+      efternamn: newData.efternamn ? newData.efternamn : '',
+      telefon: newData.telefon ? newData.telefon : '',
+      email: newData.email ? newData.email : '',
+      address: newData.address ? newData.address : '',
+      postkod: newData.postkod ? newData.postkod : '',
+      beskrivning: newData.beskrivning ? newData.beskrivning : '',
+      språk: newData.språk ? newData.språk : '',
+      födelseår: newData.födelseår ? newData.födelseår : '',
+      körkort: newData.körkort ? newData.körkort : false,
+      bil: newData.bil ? newData.bil : false,
+      mat: newData.mat ? newData.mat : false,
+      varor: newData.varor ? newData.varor : false,
+      ärenden: newData.ärenden ? newData.ärenden : false,
+      djur: newData.djur ? newData.djur : false,
+      prata: newData.prata ? newData.prata : false,
+      myndigheter: newData.myndigheter ? newData.myndigheter : false,
+      teknik: newData.teknik ? newData.teknik : false,
+      datum: newData.datum ? newData.datum : '',
+      status: newData.status ? newData.status : '1',
+      kommentarer: newData.kommentarer ? newData.kommentarer : ''
+    });
+  }
+
+  //Update existing group
+  async function updateGroup(newData, oldData) {
+    const currDocId = newData.id;
+    let groupRef = db.collection('groups').doc(currDocId);
+
+    groupRef.update({
+      datum: newData.datum ? newData.datum : '',
+      gruppnamn: newData.gruppnamn ? newData.gruppnamn : '',
+      kontakt: newData.kontakt ? newData.kontakt : '',
+      kommentarer: newData.kommentarer ? newData.kommentarer : '',
+      telefon: newData.telefon ? newData.telefon : '',
+      email: newData.email ? newData.email : '',
+      address: newData.address ? newData.address : '',
+      postkod: newData.postkod ? newData.postkod : '',
+      status: newData.status ? newData.status : '1'
+    });
+  }
+
+  //Update existing cancellation
+  async function updateCancelled(newData, oldData) {
+    const currDocId = newData.id;
+    let cancelledRef = db.collection('cancellations').doc(currDocId);
+
+    cancelledRef.update({
+      datum: newData.datum ? newData.datum : '',
+      telefon: newData.telefon ? newData.telefon : '',
+      email: newData.email ? newData.email : '',
+      address: newData.address ? newData.address : '',
+      postkod: newData.postkod ? newData.postkod : '',
+      status: newData.status ? newData.status : '1'
+    });
+  }
+
   //Re-render if the data passed to the table changes - which it should do if we edit a row
   useEffect(() => {
     console.log('data has changed - rerendering');
@@ -237,100 +374,27 @@ const Table = props => {
   }, [props.tableData]);
 
   return (
-    <>
-      <br />
-      <p>
-        OBS: Försök inte redigera eller radera något ännu! Att sortera, söka och
-        exportera fungerar.
-      </p>
-      <MaterialTable
-        title=""
-        columns={columndata}
-        data={data}
-        options={{
-          paging: false,
-          exportButton: true,
-          draggable: true
-        }}
-        // editable={{
-        //     onRowDelete: oldData =>
-        //         new Promise((resolve, reject) => {
-        //             setTimeout(() => {
-        //                 let newData = data;
-        //                 _.remove(newData, { _id: oldData._id });
-        //                 debugger;
-        //                 setData(newData);
-        //                 resolve();
-        //             }, 1000);
-        //         })
-        // }}
-        editable={{
-          onRowAdd: newData =>
-            new Promise(resolve => {
-              // const db = firebase.firestore();
-              // db.collection('volunteers').add({
-              //   förnamn: newData.förnamn,
-              //   efternamn: newData.efternamn,
-              //   telefon: newData.telefon,
-              //   email: newData.email,
-              //   address: newData.address,
-              //   postkod: newData.postkod,
-              //   beskrivning: newData.beskrivning,
-              //   språk: newData.språk,
-              //   födelseår: newData.födelseår,
-              //   // körkort: hasLicence,
-              //   // bil: hasCar,
-              //   // mat: shopFood,
-              //   // varor: shopSupplies,
-              //   // ärenden: runErrands,
-              //   // djur: doAnimals,
-              //   // prata: doTalking,
-              //   // myndigheter: doAuthorities,
-              //   // teknik: doTech,
-              //   gruppId: props.gruppId,
-              //   datum: new Date().getTime(),
-              //   status: 'ny'
-              // });
-
-              setTimeout(() => {
-                resolve();
-                alert('Det här funkar snart, men inte än');
-                // setData(prevState => {
-                //   const data = [...prevState.data];
-                //   data.push(newData);
-                //   return { ...prevState, data };
-                // });
-              }, 600);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                alert('Det här funkar snart, men inte än');
-                // if (oldData) {
-                //   setData(prevState => {
-                //     const data = [...prevState.data];
-                //     data[data.indexOf(oldData)] = newData;
-                //     return { ...prevState, data };
-                //   });
-                // }
-              }, 600);
-            }),
-          onRowDelete: oldData =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                alert('Det här funkar snart, men inte än');
-                // setData(prevState => {
-                //   const data = [...prevState.data];
-                //   data.splice(data.indexOf(oldData), 1);
-                //   return { ...prevState, data };
-                // });
-              }, 600);
-            })
-        }}
-      />
-    </>
+    <MaterialTable
+      title=""
+      columns={columndata}
+      data={data}
+      options={{
+        paging: false,
+        exportButton: true,
+        draggable: false
+      }}
+      editable={{
+        onRowUpdate: (newData, oldData) => {
+          props.isOrders
+            ? updateOrder(newData, oldData)
+            : props.isVolunteers
+            ? updateVolunteer(newData, oldData)
+            : props.isGroups
+            ? updateGroup(newData, oldData)
+            : updateCancelled(newData, oldData);
+        }
+      }}
+    />
   );
 };
 
@@ -340,7 +404,7 @@ export default Table;
 // import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // import Button from 'react-bootstrap/Button';
 
-// import moment from 'moment-with-locales-es6';
+// import moment from 'moment';
 
 // //Models
 // import Group from '../../models/group';
