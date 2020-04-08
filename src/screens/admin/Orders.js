@@ -93,32 +93,53 @@ const Orders = props => {
         </li>
         <ul>
           <li>
-            Om inte, klicka 'pausa' under aktionerna nedan och följ upp via
-            email/telefon till beställaren och redigera nedan tills
-            informationen är redo.
+            Om inte, följ upp via email/telefon till beställaren och redigera nedan tills
+            informationen är redo eller ändra status nedan till 'pausad' eller 'avbokad'. OBS: Än så länge måste detta ändras manuellt av Åsa, så skicka henne ett mail om att statusen då ska ändras.
           </li>
           <li>
-            Om redo, se vilken grupp som verkar mest lämplig för beställningen.
-            Hitta information om grupper under 'Grupper' ovan.
+            Om redo, se vilken grupp som verkar mest lämplig för beställningen och ändra till denna grupp under fältet 'Grupp'.
+            Hitta information om grupper under 'Grupper' ovan. OBS: Snart kommer
+            detta automatiskt skicka ett email till gruppen, men tills det är
+            klart måste du  skicka detaljerna om beställningen manuellt via ett mail:
+</br>
+      -----------------------------------------------------------------------
+      </br>
+<p>Hej!</p>
+
+            <p>Här kommer en ny beställning till er volontärgrupp från Alla Tillsammans.</p>
+
+            <p>Nästa steg:</p>
+            
+            <p>1. Kontakta varje beställare så de vet att ni mottagit deras beställning</p>
+            
+            <p>2. Efter beställningen är genomförd: svara på det här mailet (cc: Anna, Åsa, Erik) för att beställningen ska klarmarkeras i systemet.</p>
+            
+            <p>Fördelad till volontärgrupp: (namn på grupp )</p>
+
+            <h3>BESTÄLLNING</h3>
+            <p>LEVERANSADRESS:</p>
+            <p>TELEFON:</p>
+            <p>EPOST:</p>
+            <p>KAN VÄNTA: </p>
+            <p>INNEHÅLL I BESTÄLLNING: </p>
+            <p>BETALNINGSFORM: </p>
+      -----------------------------------------------------------------------
+      </br>
+      </br>
           </li>
         </ul>
-        <li>
-          När du avgjort vilken grupp beställningen ska skickas till, tilldela
-          beställningen en grupp nedan under aktioner. NOTERA: Snart kommer
-          detta skicka ett automatiskt email till gruppen, men tills det är
-          klart får vi skicka detaljerna om beställningen manuellt via ett mail.
-        </li>
+
         <li>
           När du valt grupp för beställningen så flyttas denna till 'fördelad'
           tabben, och läggs dessutom till under respektive grupp under
           'grupper'.
         </li>
         <li>
-        När gruppen kommunicerat att beställningen är genomförd, markera denna som 'levererad' nedan. Detta kommer automatiseras snart :)
+        När gruppen kommunicerat att beställningen är genomförd, markera denna som 'levererad' under 'status' nedan. Detta kommer automatiseras snart :)
         </li>
         <li>
-          Om du behöver ångra något gör detta via 'aktioner' nedan. Men glöm
-          inte att kontakta respektive grupp om ändringar.
+          Om du behöver ångra något gör detta via 'status' nedan. Men glöm
+          inte att kontakta respektive grupp om något ändrats, eftersom dom är beroende av din kommunikation för att få reda på detta.
         </li>
       </ol>"
       />
