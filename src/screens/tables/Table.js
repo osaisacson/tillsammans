@@ -390,8 +390,8 @@ const Table = props => {
       <br />
       <p>Nu fungerar skapa ny, refresh, sortera, söka, och exportera. </p>
       <p>
-        Redigera fungerar också men använd det inte än, då kommer ett error
-        meddelande.
+        Redigera fungerar också men använd det inte riktigt än - vi har ett
+        error som jag håller på att lösa.
       </p>
       <MaterialTable
         title=""
