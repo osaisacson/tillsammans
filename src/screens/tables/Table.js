@@ -23,12 +23,12 @@ const Table = props => {
         6: 'avbokad'
       },
       cellStyle: {
-        width: 200,
-        minWidth: 200
+        width: 150,
+        minWidth: 150
       },
       headerStyle: {
-        width: 200,
-        minWidth: 200
+        width: 150,
+        minWidth: 150
       }
     },
     {
@@ -132,12 +132,12 @@ const Table = props => {
         5: 'olämplig'
       },
       cellStyle: {
-        width: 200,
-        minWidth: 200
+        width: 150,
+        minWidth: 150
       },
       headerStyle: {
-        width: 200,
-        minWidth: 200
+        width: 150,
+        minWidth: 150
       }
     },
     {
