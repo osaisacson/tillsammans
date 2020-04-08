@@ -386,27 +386,35 @@ const Table = props => {
   }, [props.tableData]);
 
   return (
-    <MaterialTable
-      title=""
-      columns={columndata}
-      data={data}
-      options={{
-        paging: false,
-        exportButton: true,
-        draggable: false
-      }}
-      editable={{
-        onRowUpdate: (newData, oldData) => {
-          props.isOrders
-            ? updateOrder(newData, oldData)
-            : props.isVolunteers
-            ? updateVolunteer(newData, oldData)
-            : props.isGroups
-            ? updateGroup(newData, oldData)
-            : updateCancelled(newData, oldData);
-        }
-      }}
-    />
+    <>
+      <br />
+      <p>Nu fungerar skapa ny, refresh, sortera, söka, och exportera. </p>
+      <p>
+        Redigera fungerar också men använd det inte än, då kommer ett error
+        meddelande.
+      </p>
+      <MaterialTable
+        title=""
+        columns={columndata}
+        data={data}
+        options={{
+          paging: false,
+          exportButton: true,
+          draggable: false
+        }}
+        editable={{
+          onRowUpdate: (newData, oldData) => {
+            props.isOrders
+              ? updateOrder(newData, oldData)
+              : props.isVolunteers
+              ? updateVolunteer(newData, oldData)
+              : props.isGroups
+              ? updateGroup(newData, oldData)
+              : updateCancelled(newData, oldData);
+          }
+        }}
+      />
+    </>
   );
 };
 
