@@ -135,7 +135,11 @@ const Volunteers = props => {
             </span>
           }
         >
-          <Table isVolunteers={true} tableData={data.newVolunteers} />
+          <Table
+            isVolunteers={true}
+            tableData={data.newVolunteers}
+            refreshAction={getVolunteers}
+          />
         </Tab>
         <Tab
           eventKey="fördelade"
@@ -145,7 +149,11 @@ const Volunteers = props => {
               : 0
           })`}
         >
-          <Table isVolunteers={true} tableData={data.distributedVolunteers} />
+          <Table
+            isVolunteers={true}
+            tableData={data.distributedVolunteers}
+            refreshAction={getVolunteers}
+          />
         </Tab>
         <Tab
           eventKey="pausade"
@@ -153,7 +161,11 @@ const Volunteers = props => {
             data.inactiveVolunteers.length ? data.inactiveVolunteers.length : 0
           })`}
         >
-          <Table isVolunteers={true} tableData={data.inactiveVolunteers} />
+          <Table
+            isVolunteers={true}
+            tableData={data.inactiveVolunteers}
+            refreshAction={getVolunteers}
+          />
         </Tab>
       </Tabs>
     </div>

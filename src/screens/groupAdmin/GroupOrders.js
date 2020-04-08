@@ -115,6 +115,7 @@ const GroupOrders = props => {
             groupId={props.groupId}
             isOrders={true}
             tableData={data.distributedGroupOrders}
+            refreshAction={getOrders}
           />
         </Tab>
         <Tab
@@ -129,6 +130,7 @@ const GroupOrders = props => {
             groupId={props.groupId}
             isOrders={true}
             tableData={data.distributedVolunteerOrders}
+            refreshAction={getOrders}
           />
         </Tab>
         <Tab
@@ -141,6 +143,7 @@ const GroupOrders = props => {
             groupId={props.groupId}
             isOrders={true}
             tableData={data.doneOrders}
+            refreshAction={getOrders}
           />
         </Tab>
         <Tab
@@ -153,6 +156,7 @@ const GroupOrders = props => {
             groupId={props.groupId}
             isOrders={true}
             tableData={data.pausedOrders}
+            refreshAction={getOrders}
           />
         </Tab>
         <Tab
@@ -165,6 +169,7 @@ const GroupOrders = props => {
             groupId={props.groupId}
             isOrders={true}
             tableData={data.cancelledOrders}
+            refreshAction={getOrders}
           />
         </Tab>
       </Tabs>

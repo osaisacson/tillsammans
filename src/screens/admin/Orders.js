@@ -163,7 +163,11 @@ const Orders = props => {
             </span>
           }
         >
-          <Table isOrders={true} tableData={data.newOrders} />
+          <Table
+            isOrders={true}
+            tableData={data.newOrders}
+            refreshAction={getOrders}
+          />
         </Tab>
         <Tab
           eventKey="gruppfördelade"
@@ -171,7 +175,11 @@ const Orders = props => {
             data.assignedToGroup.length ? data.assignedToGroup.length : 0
           })`}
         >
-          <Table isOrders={true} tableData={data.assignedToGroup} />
+          <Table
+            isOrders={true}
+            tableData={data.assignedToGroup}
+            refreshAction={getOrders}
+          />
         </Tab>
         <Tab
           eventKey="klara"
@@ -179,7 +187,11 @@ const Orders = props => {
             data.doneOrders.length ? data.doneOrders.length : 0
           })`}
         >
-          <Table isOrders={true} tableData={data.doneOrders} />
+          <Table
+            isOrders={true}
+            tableData={data.doneOrders}
+            refreshAction={getOrders}
+          />
         </Tab>
         <Tab
           eventKey="pausad"
@@ -187,7 +199,11 @@ const Orders = props => {
             data.pausedOrders.length ? data.pausedOrders.length : 0
           })`}
         >
-          <Table isOrders={true} tableData={data.pausedOrders} />
+          <Table
+            isOrders={true}
+            tableData={data.pausedOrders}
+            refreshAction={getOrders}
+          />
         </Tab>
         <Tab
           eventKey="avbokad"
@@ -195,7 +211,11 @@ const Orders = props => {
             data.cancelledOrders.length ? data.cancelledOrders.length : 0
           })`}
         >
-          <Table isOrders={true} tableData={data.cancelledOrders} />
+          <Table
+            isOrders={true}
+            tableData={data.cancelledOrders}
+            refreshAction={getOrders}
+          />
         </Tab>
       </Tabs>
     </div>

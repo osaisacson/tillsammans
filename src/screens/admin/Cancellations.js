@@ -99,7 +99,11 @@ const Cancellations = props => {
             </span>
           }
         >
-          <Table isCancelled={true} tableData={data.toCancel} />
+          <Table
+            isCancelled={true}
+            tableData={data.toCancel}
+            refreshAction={getCancellations}
+          />
         </Tab>
         <Tab
           eventKey="avbokade"
@@ -107,7 +111,11 @@ const Cancellations = props => {
             data.cancelled.length ? data.cancelled.length : 0
           })`}
         >
-          <Table isCancelled={true} tableData={data.cancelled} />
+          <Table
+            isCancelled={true}
+            tableData={data.cancelled}
+            refreshAction={getCancellations}
+          />
         </Tab>
       </Tabs>
     </div>

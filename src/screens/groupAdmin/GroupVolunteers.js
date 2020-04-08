@@ -110,6 +110,7 @@ const GroupVolunteers = props => {
             groupId={props.groupId}
             isVolunteers={true}
             tableData={data.newVolunteers}
+            refreshAction={getVolunteers}
           />
         </Tab>
         <Tab
@@ -122,6 +123,7 @@ const GroupVolunteers = props => {
             groupId={props.groupId}
             isVolunteers={true}
             tableData={data.activeVolunteers}
+            refreshAction={getVolunteers}
           />
         </Tab>
         <Tab
@@ -134,6 +136,7 @@ const GroupVolunteers = props => {
             groupId={props.groupId}
             isVolunteers={true}
             tableData={data.inactiveVolunteers}
+            refreshAction={getVolunteers}
           />
         </Tab>
       </Tabs>

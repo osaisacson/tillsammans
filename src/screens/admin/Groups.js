@@ -96,7 +96,11 @@ const Groups = props => {
             </span>
           }
         >
-          <Table isGroups={true} tableData={data.activeGroups} />
+          <Table
+            isGroups={true}
+            tableData={data.activeGroups}
+            refreshAction={getGroups}
+          />
         </Tab>
         <Tab
           eventKey="inaktiva"
@@ -104,7 +108,11 @@ const Groups = props => {
             data.inactiveGroups.length ? data.inactiveGroups.length : 0
           })`}
         >
-          <Table isGroups={true} tableData={data.inactiveGroups} />
+          <Table
+            isGroups={true}
+            tableData={data.inactiveGroups}
+            refreshAction={getGroups}
+          />
         </Tab>
       </Tabs>
     </div>

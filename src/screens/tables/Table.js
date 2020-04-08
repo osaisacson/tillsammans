@@ -7,7 +7,7 @@ import 'firebase/firestore';
 
 const Table = props => {
   //Set constants
-  const [data, setData] = useState();
+  const [data, setData] = useState(props.tableData);
 
   //Column headers
   const orderColumns = [
@@ -295,23 +295,9 @@ const Table = props => {
       email: newData.email ? newData.email : '',
       address: newData.address ? newData.address : '',
       postkod: newData.postkod ? newData.postkod : '',
-      status:
-        newData.groupId === '0'
-          ? '1'
-          : newData.groupId !== '0' &&
-            (newData.status !== '3' ||
-              newData.status !== '4' ||
-              newData.status !== '5' ||
-              newData.status !== '6')
-          ? '2'
-          : newData.status,
-
+      status: newData.status ? newData.status : '',
       kommentarer: newData.kommentarer ? newData.kommentarer : ''
     });
-
-    // setData((newData, oldData) => {
-    //   return { ...oldData, newData };
-    // });
   }
 
   //Update existing volunteer
@@ -386,24 +372,18 @@ const Table = props => {
   }, [props.tableData]);
 
   return (
-    <>
-      <br />
-      <p>Nu fungerar skapa ny, refresh, sortera, söka, och exportera. </p>
-      <p>
-        Redigera fungerar också men använd det inte riktigt än - vi har ett
-        error som jag håller på att lösa.
-      </p>
-      <MaterialTable
-        title=""
-        columns={columndata}
-        data={data}
-        options={{
-          paging: false,
-          exportButton: true,
-          draggable: false
-        }}
-        editable={{
-          onRowUpdate: (newData, oldData) => {
+    <MaterialTable
+      title=""
+      columns={columndata}
+      data={data}
+      options={{
+        paging: false,
+        exportButton: true,
+        draggable: true
+      }}
+      editable={{
+        onRowUpdate: (newData, oldData) =>
+          new Promise(resolve => {
             props.isOrders
               ? updateOrder(newData, oldData)
               : props.isVolunteers
@@ -411,10 +391,11 @@ const Table = props => {
               : props.isGroups
               ? updateGroup(newData, oldData)
               : updateCancelled(newData, oldData);
-          }
-        }}
-      />
-    </>
+            props.refreshAction();
+            resolve();
+          })
+      }}
+    />
   );
 };
 
