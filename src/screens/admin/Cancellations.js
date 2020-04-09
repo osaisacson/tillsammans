@@ -59,7 +59,7 @@ const Cancellations = props => {
     <div className="page-layout">
       <AddButtonHeader
         headerText="Avbokningar"
-        buttonText="Avbokning"
+        buttonText="avbokning"
         formForModal={<CancelForm />}
       />
       <Accordion

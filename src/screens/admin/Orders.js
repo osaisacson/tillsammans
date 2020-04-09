@@ -82,7 +82,7 @@ const Orders = props => {
     <div className="page-layout">
       <AddButtonHeader
         headerText="Beställningar"
-        buttonText="Beställning"
+        buttonText="beställning"
         formForModal={<HelpForm />}
       />
       <Accordion

@@ -19,8 +19,10 @@ const GroupVolunteers = props => {
   const firestore = firebase.firestore();
   const [data, setData] = useState({
     newVolunteers: [],
+    welcomedVolunteers: [],
     activeVolunteers: [],
-    inactiveVolunteers: []
+    pausedVolunteers: [],
+    notSuitableVolunteers: []
   });
 
   async function getVolunteers() {
@@ -66,11 +68,17 @@ const GroupVolunteers = props => {
 
     setData({
       newVolunteers: currentGroupVolunteers.filter(data => data.status === '2'),
-      activeVolunteers: currentGroupVolunteers.filter(
+      welcomedVolunteers: currentGroupVolunteers.filter(
         data => data.status === '3'
       ),
-      inactiveVolunteers: currentGroupVolunteers.filter(
+      activeVolunteers: currentGroupVolunteers.filter(
         data => data.status === '4'
+      ),
+      pausedVolunteers: currentGroupVolunteers.filter(
+        data => data.status === '5'
+      ),
+      notSuitableVolunteers: currentGroupVolunteers.filter(
+        data => data.status === '6'
       )
     });
   }
@@ -84,10 +92,34 @@ const GroupVolunteers = props => {
     <div className="page-layout">
       <AddButtonHeader
         headerText="Volontärer"
-        buttonText="Volontär"
+        buttonText="volontär"
         formForModal={<VolunteerForm />}
       />
-
+      <br />
+      <h4>Hur vi hanterar volontärer</h4>
+      <ol>
+        <li>
+          Öppna redigering genom att klicka på pennan till vänster om volontären
+        </li>
+        <li>
+          Ändra status till det som passar. (Du kan också uppdatera annan
+          information om du vill - till exempel 'kommentarer' - men 'status' är
+          viktigast)
+        </li>
+        <li>
+          Klicka på bock-ikonen till vänster om volontären för att spara
+          ändringar
+        </li>
+        <li>
+          Om inte ändringarna syns direkt, klicka den lila refresh-knappen nere
+          till höger
+        </li>
+        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
+      </ol>
+      <p>
+        För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
+        systemet och tar gärna emot tips om hur det kan bli bättre!
+      </p>
       <RefreshButton refreshAction={getVolunteers} />
 
       <Tabs defaultActiveKey="nya" id="0">
@@ -114,6 +146,19 @@ const GroupVolunteers = props => {
           />
         </Tab>
         <Tab
+          eventKey="välkomnade"
+          title={`Välkomnade - att tränas (${
+            data.welcomedVolunteers.length ? data.welcomedVolunteers.length : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isGroupVolunteers={true}
+            tableData={data.welcomedVolunteers}
+            refreshAction={getVolunteers}
+          />
+        </Tab>
+        <Tab
           eventKey="aktiva"
           title={`Aktiva(${
             data.activeVolunteers.length ? data.activeVolunteers.length : 0
@@ -129,13 +174,28 @@ const GroupVolunteers = props => {
         <Tab
           eventKey="pausade"
           title={`Pausade (${
-            data.inactiveVolunteers.length ? data.inactiveVolunteers.length : 0
+            data.pausedVolunteers.length ? data.pausedVolunteers.length : 0
           })`}
         >
           <Table
             groupId={props.groupId}
             isGroupVolunteers={true}
-            tableData={data.inactiveVolunteers}
+            tableData={data.pausedVolunteers}
+            refreshAction={getVolunteers}
+          />
+        </Tab>
+        <Tab
+          eventKey="olämpliga"
+          title={`Olämpliga (${
+            data.notSuitableVolunteers.length
+              ? data.notSuitableVolunteers.length
+              : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isGroupVolunteers={true}
+            tableData={data.notSuitableVolunteers}
             refreshAction={getVolunteers}
           />
         </Tab>

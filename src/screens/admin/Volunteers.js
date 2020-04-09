@@ -78,7 +78,7 @@ const Volunteers = props => {
     <div className="page-layout">
       <AddButtonHeader
         headerText="Volontärer"
-        buttonText="Volontär"
+        buttonText="volontär"
         formForModal={<VolunteerForm />}
       />
       <Accordion

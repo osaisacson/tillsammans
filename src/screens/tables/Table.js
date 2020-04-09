@@ -43,17 +43,19 @@ const Table = props => {
   const volunteerStatusDropdown = {
     1: 'Ny',
     2: 'Fördelad till grupp',
-    3: 'Aktiv',
-    4: 'Pausad',
-    5: 'Olämplig'
+    3: 'Välkomnad',
+    4: 'Aktiv',
+    5: 'Pausad',
+    6: 'Olämplig'
   };
 
   const volunteerStatusDropdownForGroups = {
-    // 1: 'ny',
-    2: 'Att bli utförd',
-    3: 'Aktiv',
-    4: 'Pausad',
-    5: 'Olämplig'
+    // 1: 'Ny',
+    2: 'Att bli välkomnad',
+    3: 'Välkomnad',
+    4: 'Aktiv',
+    5: 'Pausad',
+    6: 'Olämplig'
   };
 
   //Custom cell sizes

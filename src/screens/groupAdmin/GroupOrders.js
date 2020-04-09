@@ -89,10 +89,35 @@ const GroupOrders = props => {
     <div className="page-layout">
       <AddButtonHeader
         headerText="Beställningar"
-        buttonText="Beställning"
+        buttonText="beställning"
         formForModal={<HelpForm />}
       />
-
+      <br />
+      <h4>Hur vi hanterar beställningar</h4>
+      <ol>
+        <li>
+          Öppna redigering genom att klicka på pennan till vänster om
+          beställningen
+        </li>
+        <li>
+          Ändra status till det som passar. (Du kan också uppdatera annan
+          information om du vill - till exempel 'kommentarer' - men 'status' är
+          viktigast)
+        </li>
+        <li>
+          Klicka på bock-ikonen till vänster om beställningen för att spara
+          ändringar
+        </li>
+        <li>
+          Om inte ändringarna syns direkt, klicka den lila refresh-knappen nere
+          till höger
+        </li>
+        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
+      </ol>
+      <p>
+        För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
+        systemet och tar gärna emot tips om hur det kan bli bättre!
+      </p>
       <RefreshButton refreshAction={getOrders} />
 
       <Tabs defaultActiveKey="nya" id="0">

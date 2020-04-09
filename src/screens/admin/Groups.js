@@ -62,7 +62,7 @@ const Groups = props => {
     <div className="page-layout">
       <AddButtonHeader
         headerText="Grupper"
-        buttonText="Grupp"
+        buttonText="grupp"
         headerLink={'/ny-grupp'}
         formForModal={<GroupForm />}
       />
