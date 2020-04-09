@@ -38,7 +38,8 @@ const Table = props => {
         0: 'Ingen grupp vald',
         DDPDlLcTYYMQEJNlhzgD: 'Svenska Kyrkan Myggenäs',
         Pn5Uj8h84m5pjqSmL6sA: 'Svenska Kyrkan Skärhamn',
-        uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr'
+        uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr',
+        TmhoPLMU6XmapwTSS6Hi: 'Inre grupp'
       },
       cellStyle: {
         width: 230,
@@ -147,7 +148,8 @@ const Table = props => {
         0: 'Ingen grupp vald',
         DDPDlLcTYYMQEJNlhzgD: 'Svenska Kyrkan Myggenäs',
         Pn5Uj8h84m5pjqSmL6sA: 'Svenska Kyrkan Skärhamn',
-        uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr'
+        uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr',
+        TmhoPLMU6XmapwTSS6Hi: 'Inre grupp'
       },
       cellStyle: {
         width: 230,
