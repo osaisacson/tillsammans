@@ -120,6 +120,11 @@ const GroupVolunteers = props => {
         För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
         systemet och tar gärna emot tips om hur det kan bli bättre!
       </p>
+      <br />
+      <h5>Mer information här</h5>
+      <a href="https://docs.google.com/document/d/1lLxe5x-4yJ1qPHfGkBkfle2EIp7tVjUU4aMhYuRQQ5Y/edit?usp=sharing">
+        Gemensamma procedurer för beställningar och volontärer
+      </a>
       <RefreshButton refreshAction={getVolunteers} />
 
       <Tabs defaultActiveKey="nya" id="0">
