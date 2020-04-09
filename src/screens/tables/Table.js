@@ -106,7 +106,7 @@ const Table = props => {
       headerStyle: xlarge
     },
     {
-      title: 'Kommentarer (skriv extra information här)',
+      title: 'Kommentarer (skriv extra info här)',
       field: 'kommentarer',
       cellStyle: large,
       headerStyle: large
@@ -181,7 +181,7 @@ const Table = props => {
     { title: 'Address', field: 'address' },
     { title: 'Postkod', field: 'postkod' },
     {
-      title: 'Kommentarer (skriv extra information här)',
+      title: 'Kommentarer (skriv extra info här)',
       field: 'kommentarer',
       cellStyle: large,
       headerStyle: large
@@ -280,7 +280,7 @@ const Table = props => {
   const cancelledColumns = [
     { title: 'Mottagen', field: 'datum', editable: 'never' },
     {
-      title: 'Kommentarer (skriv extra information här)',
+      title: 'Kommentarer (skriv extra info här)',
       field: 'kommentarer',
       cellStyle: large,
       headerStyle: large

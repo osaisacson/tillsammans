@@ -21,8 +21,10 @@ const Volunteers = props => {
   const [data, setData] = useState({
     newVolunteers: [],
     distributedVolunteers: [],
+    welcomedVolunteers: [],
     activeVolunteers: [],
-    inactiveVolunteers: []
+    pausedVolunteers: [],
+    notSuitableVolunteers: []
   });
 
   async function getVolunteers() {
@@ -64,8 +66,10 @@ const Volunteers = props => {
     setData({
       newVolunteers: volunteers.filter(data => data.status === '1'),
       distributedVolunteers: volunteers.filter(data => data.status === '2'),
-      activeVolunteers: volunteers.filter(data => data.status === '3'),
-      inactiveVolunteers: volunteers.filter(data => data.status === '4')
+      welcomedVolunteers: volunteers.filter(data => data.status === '3'),
+      activeVolunteers: volunteers.filter(data => data.status === '4'),
+      pausedVolunteers: volunteers.filter(data => data.status === '5'),
+      notSuitableVolunteers: volunteers.filter(data => data.status === '6')
     });
   }
 
@@ -130,7 +134,7 @@ const Volunteers = props => {
           eventKey="nya"
           title={
             <span>
-              Nya Anmälningar{' '}
+              Nya {''}
               {data.newVolunteers.length ? (
                 <Badge pill variant="danger">
                   {data.newVolunteers.length}
@@ -142,6 +146,7 @@ const Volunteers = props => {
           }
         >
           <Table
+            groupId={props.groupId}
             isVolunteers={true}
             tableData={data.newVolunteers}
             refreshAction={getVolunteers}
@@ -149,25 +154,40 @@ const Volunteers = props => {
         </Tab>
         <Tab
           eventKey="fördelade"
-          title={`Fördelade till grupper - att välkomnas (${
+          title={`Fördelade till grupper (${
             data.distributedVolunteers.length
               ? data.distributedVolunteers.length
               : 0
           })`}
         >
           <Table
+            groupId={props.groupId}
             isVolunteers={true}
             tableData={data.distributedVolunteers}
             refreshAction={getVolunteers}
           />
         </Tab>
         <Tab
+          eventKey="välkomnade"
+          title={`Välkomnade (${
+            data.welcomedVolunteers.length ? data.welcomedVolunteers.length : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={data.welcomedVolunteers}
+            refreshAction={getVolunteers}
+          />
+        </Tab>
+        <Tab
           eventKey="aktiva"
-          title={`Aktiva (${
+          title={`Aktiva(${
             data.activeVolunteers.length ? data.activeVolunteers.length : 0
           })`}
         >
           <Table
+            groupId={props.groupId}
             isVolunteers={true}
             tableData={data.activeVolunteers}
             refreshAction={getVolunteers}
@@ -176,12 +196,28 @@ const Volunteers = props => {
         <Tab
           eventKey="pausade"
           title={`Pausade (${
-            data.inactiveVolunteers.length ? data.inactiveVolunteers.length : 0
+            data.pausedVolunteers.length ? data.pausedVolunteers.length : 0
           })`}
         >
           <Table
+            groupId={props.groupId}
             isVolunteers={true}
-            tableData={data.inactiveVolunteers}
+            tableData={data.pausedVolunteers}
+            refreshAction={getVolunteers}
+          />
+        </Tab>
+        <Tab
+          eventKey="olämpliga"
+          title={`Olämpliga (${
+            data.notSuitableVolunteers.length
+              ? data.notSuitableVolunteers.length
+              : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={data.notSuitableVolunteers}
             refreshAction={getVolunteers}
           />
         </Tab>
@@ -191,78 +227,3 @@ const Volunteers = props => {
 };
 
 export default Volunteers;
-
-// import React, { useEffect, useCallback } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import Tabs from 'react-bootstrap/Tabs';
-// import Tab from 'react-bootstrap/Tab';
-
-// import * as volunteersActions from '../../store/actions/volunteers';
-
-// //Components
-// import VolunteersTable from './VolunteersTable';
-
-// const Volunteers = props => {
-//   const volunteers = useSelector(state => state.volunteers.availableVolunteers);
-
-//   const aVolunteers = volunteers.filter(data => data.status === 'ny');
-//   const bVolunteers = volunteers.filter(data => data.status === 'fördelad');
-//   const cVolunteers = volunteers.filter(data => data.status === 'kontaktad');
-//   const dVolunteers = volunteers.filter(data => data.status === 'pausad');
-
-//   const dispatch = useDispatch();
-
-//   const loadVolunteers = useCallback(async () => {
-//     try {
-//       await dispatch(volunteersActions.fetchVolunteers());
-//     } catch (err) {
-//       console.log(err.message);
-//     }
-//   }, [dispatch]);
-
-//   useEffect(() => {
-//     loadVolunteers();
-//     console.log('---------screens/admin/Volunteers.js---------');
-//     console.log(
-//       'Attempting to filter data. Loading main data does not work, and neither does filtering'
-//     );
-//     console.log(
-//       'line:37 getting volunteers slice from redux state, DOES NOT WORK: ',
-//       volunteers
-//     );
-//     console.log(
-//       'line:41 this should show a subset of the slice, DOES NOT WORK: ',
-//       aVolunteers
-//     );
-//     console.log('--------------------------------------------------');
-//     console.log('****** END. REDUX APPROACH ******');
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, []);
-
-//   return (
-//     <div className="page-layout">
-//       <h2>Volontärer</h2>
-//       <p>Sortera genom att trycka på titlarna</p>
-//       <Tabs defaultActiveKey="nya" id="0">
-//         <Tab
-//           eventKey="nya"
-//           title={`Nya anmälningar`}
-//           // title={`Nya anmälningar (${aVolunteers.length ? aVolunteers.length : 0})`}
-//         >
-//           <VolunteersTable tableData={aVolunteers} />
-//         </Tab>
-//         <Tab eventKey="fördelade" title={'Fördelade för att kontaktas'}>
-//           <VolunteersTable tableData={bVolunteers} />
-//         </Tab>
-//         <Tab eventKey="aktiva" title={'Aktiva i grupper'}>
-//           <VolunteersTable tableData={cVolunteers} />
-//         </Tab>
-//         <Tab eventKey="pausade" title={'Pausade'}>
-//           <VolunteersTable tableData={dVolunteers} />
-//         </Tab>
-//       </Tabs>
-//     </div>
-//   );
-// };
-
-// export default Volunteers;
