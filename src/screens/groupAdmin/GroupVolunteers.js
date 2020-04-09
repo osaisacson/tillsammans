@@ -108,7 +108,7 @@ const GroupVolunteers = props => {
         >
           <Table
             groupId={props.groupId}
-            isVolunteers={true}
+            isGroupVolunteers={true}
             tableData={data.newVolunteers}
             refreshAction={getVolunteers}
           />
@@ -121,7 +121,7 @@ const GroupVolunteers = props => {
         >
           <Table
             groupId={props.groupId}
-            isVolunteers={true}
+            isGroupVolunteers={true}
             tableData={data.activeVolunteers}
             refreshAction={getVolunteers}
           />
@@ -134,7 +134,7 @@ const GroupVolunteers = props => {
         >
           <Table
             groupId={props.groupId}
-            isVolunteers={true}
+            isGroupVolunteers={true}
             tableData={data.inactiveVolunteers}
             refreshAction={getVolunteers}
           />

@@ -23,37 +23,37 @@ const Table = props => {
   };
 
   const groupStatusDropdown = {
-    1: 'ny',
-    2: 'fördelad-grupp',
+    1: 'Ny',
+    2: 'Fördelad till grupp',
     // 3: 'fördelad-volontär', //TBD
-    4: 'klar',
-    5: 'pausad',
-    6: 'avbokad'
+    4: 'Klar',
+    5: 'Pausad',
+    6: 'Avbokad'
   };
 
   const groupStatusDropdownForGroups = {
     // 1: 'ny',
-    // 2: 'fördelad-grupp',
+    2: 'Att bli utförd',
     // 3: 'fördelad-volontär', //TBD
-    4: 'klar',
-    5: 'pausad',
-    6: 'avbokad'
+    4: 'Klar',
+    5: 'Pausad',
+    6: 'Avbokad'
   };
 
   const volunteerStatusDropdown = {
-    1: 'ny',
-    2: 'fördelad-grupp',
-    3: 'aktiv',
-    4: 'pausad',
-    5: 'olämplig'
+    1: 'Ny',
+    2: 'Fördelad till grupp',
+    3: 'Aktiv',
+    4: 'Pausad',
+    5: 'Olämplig'
   };
 
   const volunteerStatusDropdownForGroups = {
     // 1: 'ny',
-    // 2: 'fördelad-grupp',
-    3: 'aktiv',
-    4: 'pausad',
-    5: 'olämplig'
+    2: 'Att bli utförd',
+    3: 'Aktiv',
+    4: 'Pausad',
+    5: 'Olämplig'
   };
 
   //Custom cell sizes
@@ -413,9 +413,9 @@ const Table = props => {
       editable={{
         onRowUpdate: (newData, oldData) =>
           new Promise(resolve => {
-            props.isOrders
+            props.isOrders || props.isGroupOrders
               ? updateOrder(newData, oldData)
-              : props.isVolunteers
+              : props.isVolunteers || props.isGroupVolunteers
               ? updateVolunteer(newData, oldData)
               : props.isGroups
               ? updateGroup(newData, oldData)
