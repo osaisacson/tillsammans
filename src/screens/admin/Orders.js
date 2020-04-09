@@ -183,7 +183,7 @@ const Orders = props => {
         </Tab>
         <Tab
           eventKey="klara"
-          title={`Levererade (${
+          title={`Klara (${
             data.doneOrders.length ? data.doneOrders.length : 0
           })`}
         >

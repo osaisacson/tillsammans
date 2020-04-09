@@ -100,7 +100,7 @@ const GroupOrders = props => {
           eventKey="nya"
           title={
             <span>
-              Att bli fördelade till volontärer{' '}
+              Att bli utförda{' '}
               {data.distributedGroupOrders.length ? (
                 <Badge pill variant="danger">
                   {data.distributedGroupOrders.length}
@@ -113,12 +113,12 @@ const GroupOrders = props => {
         >
           <Table
             groupId={props.groupId}
-            isOrders={true}
+            isGroupOrders={true}
             tableData={data.distributedGroupOrders}
             refreshAction={getOrders}
           />
         </Tab>
-        <Tab
+        {/* <Tab
           eventKey="aktiva"
           title={`Fördelade (${
             data.distributedVolunteerOrders.length
@@ -128,20 +128,20 @@ const GroupOrders = props => {
         >
           <Table
             groupId={props.groupId}
-            isOrders={true}
+            isGroupOrders={true}
             tableData={data.distributedVolunteerOrders}
             refreshAction={getOrders}
           />
-        </Tab>
+        </Tab> */}
         <Tab
           eventKey="klara"
-          title={`Levererade (${
+          title={`Klara (${
             data.doneOrders.length ? data.doneOrders.length : 0
           })`}
         >
           <Table
             groupId={props.groupId}
-            isOrders={true}
+            isGroupOrders={true}
             tableData={data.doneOrders}
             refreshAction={getOrders}
           />
@@ -154,7 +154,7 @@ const GroupOrders = props => {
         >
           <Table
             groupId={props.groupId}
-            isOrders={true}
+            isGroupOrders={true}
             tableData={data.pausedOrders}
             refreshAction={getOrders}
           />
@@ -167,7 +167,7 @@ const GroupOrders = props => {
         >
           <Table
             groupId={props.groupId}
-            isOrders={true}
+            isGroupOrders={true}
             tableData={data.cancelledOrders}
             refreshAction={getOrders}
           />
