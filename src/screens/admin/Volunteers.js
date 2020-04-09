@@ -82,39 +82,45 @@ const Volunteers = props => {
         formForModal={<VolunteerForm />}
       />
       <Accordion
-        title="Hur vi hanterar volontärer"
-        content="  <ol>
+        title="Hur vi hanterar Volontärer"
+        content="<ol>
+        <li>Öppna redigering genom att klicka på pennan till vänster om volontären</li>
+        <li>Välj grupp</li>
+        <li>Ändra status till 'Fördelad till grupp'.</li>
+      
         <li>
-          Läs igenom volontärsinformationen och avgör om den är klar för en
-          grupp.
+          Klicka på spara symbolen för att spara ändringar
         </li>
-        <ul>
-          <li>
-            Om inte, klicka 'pausa' under aktionerna nedan och följ upp via
-            email/telefon till volontären, och redigera nedan tills
-            informationen är redo.
-          </li>
-          <li>
-            Om redo, se vilken grupp volontären bäst verkar passa. Hitta
-            information om grupper under 'Grupper' ovan.
-          </li>
-        </ul>
-        <li>
-          När du avgjort vilken grupp volontären ska till, tilldela volontären en
-          grupp nedan under aktioner. NOTERA: Snart kommer detta skicka ett
-          automatiskt email till gruppen, men tills det är klart får vi skicka
-          detaljerna om volontären manuellt via ett mail.
-        </li>
-        <li>
-          När du valt grupp för volontären så flyttas denna till 'Fördelade i grupper'
-          tabben, och läggs dessutom till under respektive grupp under
-          'grupper'.
-        </li>
-        <li>
-          Om du behöver ångra något gör detta via aktionerna nedan. Men glöm
-          inte att kontakta respektive grupp om ändringar.
-        </li>
-      </ol>"
+      <li>Om inte ändringarna syns direkt, klicka refresh-knappen till höger</li>
+      <li>VIKTIGT: Skicka ut ett email till den valda gruppens kontaktperson om att de fått in en ny volontär</li>
+      </ol>
+      
+     
+</br>
+      -----------------------------------------------------------------------
+      </br>
+<p>Hej!</p>
+
+            <p>Ni har fått in en ny volontär till er volontärgrupp från Alla Tillsammans.</p>
+
+            <p>Nästa steg:</p>
+            
+            <p>1. Gå in på er sida (kontakta asaisacson@gmail.com om ni behöver addressen/login)</p>
+            
+            <p>2. Hitta alla detaljer om volontären där</p>
+           
+            <p>3. Kontakta volontären och låt dom veta att de snart kommer bli välkomnade.</p>
+
+            <p>4. Uppdatera volontärens status via er gruppsida när de blivit välkomnade. </p>
+
+            <br />
+
+            <p>Låt mig veta om ni har några frågor!</p>
+            <p>Vänliga hälsningar,</p>
+
+      -----------------------------------------------------------------------
+      </br>
+      </br>"
       />
 
       <RefreshButton refreshAction={getVolunteers} />
