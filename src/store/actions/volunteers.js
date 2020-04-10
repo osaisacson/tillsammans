@@ -46,7 +46,8 @@ export const fetchVolunteers = () => {
                 resData.teknik,
                 resData.grupp,
                 resData.datum,
-                resData.status
+                resData.status,
+                resData.kommentarer
               )
             );
           });

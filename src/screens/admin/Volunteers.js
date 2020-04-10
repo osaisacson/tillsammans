@@ -58,7 +58,8 @@ const Volunteers = props => {
           resData.myndigheter,
           resData.teknik,
           readableDate,
-          resData.status
+          resData.status,
+          resData.kommentarer
         )
       );
     });

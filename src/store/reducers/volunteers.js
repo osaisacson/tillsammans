@@ -43,7 +43,8 @@ export default (state = initialState, action) => {
         action.volunteerData.teknik,
         action.volunteerData.grupp,
         action.volunteerData.datum,
-        action.volunteerData.status
+        action.volunteerData.status,
+        action.volunteerData.kommentarer
       );
       return {
         ...state,
@@ -73,7 +74,8 @@ export default (state = initialState, action) => {
         action.volunteerData.teknik,
         action.volunteerData.grupp,
         state.availableVolunteers[volunteerIndex].datum,
-        action.volunteerData.status
+        action.volunteerData.status,
+        action.volunteerData.kommentarer
       );
       const updatedAvailableVolunteers = [...state.availableVolunteers];
       updatedAvailableVolunteers[volunteerIndex] = updatedVolunteer;

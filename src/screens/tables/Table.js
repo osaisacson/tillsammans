@@ -160,6 +160,7 @@ const Table = props => {
     {
       title: 'Namn',
       field: 'namn',
+      editable: 'never',
       cellStyle: medium,
       headerStyle: medium,
       render: rowData => (
@@ -171,6 +172,7 @@ const Table = props => {
     {
       title: 'Beskrivning',
       field: 'beskrivning',
+      editable: 'never',
       cellStyle: xlarge,
       headerStyle: xlarge
     },
@@ -183,6 +185,7 @@ const Table = props => {
     {
       title: 'Typ',
       field: 'typ',
+      editable: 'never',
       cellStyle: medium,
       headerStyle: medium
     },
@@ -216,6 +219,7 @@ const Table = props => {
   ];
 
   const volunteerColumns = [
+    { title: 'Mottaget', field: 'datum', editable: 'never' },
     {
       title: 'Status',
       field: 'status',
@@ -233,11 +237,16 @@ const Table = props => {
       cellStyle: medium,
       headerStyle: medium
     },
-    { title: 'Mottaget', field: 'datum', editable: 'never' },
-
+    {
+      title: 'Kommentarer (skriv extra info här)',
+      field: 'kommentarer',
+      cellStyle: large,
+      headerStyle: large
+    },
     {
       title: 'Namn',
       field: 'namn',
+      editable: 'never',
       cellStyle: medium,
       headerStyle: medium,
       render: rowData => (
@@ -246,17 +255,6 @@ const Table = props => {
         </div>
       )
     },
-    { title: 'Telefon', field: 'telefon' },
-    { title: 'Email', field: 'email' },
-    { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod' },
-    {
-      title: 'Kommentarer (skriv extra info här)',
-      field: 'kommentarer',
-      cellStyle: large,
-      headerStyle: large
-    },
-
     {
       title: 'Beskrivning',
       field: 'beskrivning',
@@ -264,6 +262,10 @@ const Table = props => {
       cellStyle: xlarge,
       headerStyle: xlarge
     },
+    { title: 'Telefon', field: 'telefon' },
+    { title: 'Email', field: 'email' },
+    { title: 'Address', field: 'address' },
+    { title: 'Postkod', field: 'postkod' },
     { title: 'Språk', field: 'språk', editable: 'never' },
     { title: 'Födelseår', field: 'födelseår', editable: 'never' },
     {

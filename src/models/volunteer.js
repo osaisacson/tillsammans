@@ -21,7 +21,8 @@ class Volunteer {
     myndigheter,
     teknik,
     datum,
-    status
+    status,
+    kommentarer
   ) {
     this.id = id;
     this.gruppId = gruppId;
@@ -45,6 +46,7 @@ class Volunteer {
     this.teknik = teknik;
     this.datum = datum;
     this.status = status;
+    this.kommentarer = kommentarer;
   }
 }
 
