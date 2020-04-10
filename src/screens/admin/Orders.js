@@ -2,16 +2,10 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 
 //Models
-import Order from './../../models/order';
-
 //Bootstrap
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
-
-//Firebase
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 
 //Components
 import Table from '../tables/Table';
@@ -21,63 +15,6 @@ import RefreshButton from './../../components/RefreshButton';
 import Accordion from './../../components/Accordion';
 
 const Orders = props => {
-  const firestore = firebase.firestore();
-
-  //Set constants
-  const [data, setData] = useState({
-    newOrders: [],
-    assignedToGroup: [],
-    doneOrders: [],
-    pausedOrders: [],
-    cancelledOrders: []
-  });
-
-  async function getOrders() {
-    const orders = [];
-    const querySnapshot = await firestore.collection('orders').get();
-    querySnapshot.forEach(function(doc) {
-      // doc.data() is never undefined for query doc snapshots
-      const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format('lll');
-
-      orders.push(
-        new Order(
-          doc.id,
-          resData.gruppId,
-          resData.volontärId,
-          readableDate,
-          resData.typ,
-          resData.beskrivning,
-          resData.swish,
-          resData.kontant,
-          resData.faktura,
-          resData.tidsrymd,
-          resData.telefon,
-          resData.förnamn,
-          resData.efternamn,
-          resData.email,
-          resData.address,
-          resData.postkod,
-          resData.status,
-          resData.kommentarer
-        )
-      );
-    });
-
-    setData({
-      newOrders: orders.filter(data => data.status === '1'),
-      assignedToGroup: orders.filter(data => data.status === '2'),
-      doneOrders: orders.filter(data => data.status === '4'),
-      pausedOrders: orders.filter(data => data.status === '5'),
-      cancelledOrders: orders.filter(data => data.status === '6')
-    });
-  }
-
-  useEffect(() => {
-    getOrders();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="page-layout">
       <AddButtonHeader
@@ -127,7 +64,7 @@ const Orders = props => {
       </br>"
       />
 
-      <RefreshButton refreshAction={getOrders} />
+      <RefreshButton refreshAction={props.refreshAction} />
 
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
@@ -135,9 +72,9 @@ const Orders = props => {
           title={
             <span>
               Ej fördelade Beställningar{' '}
-              {data.newOrders.length ? (
+              {props.dbData.newOrders.length ? (
                 <Badge pill variant="danger">
-                  {data.newOrders.length}
+                  {props.dbData.newOrders.length}
                 </Badge>
               ) : (
                 0
@@ -147,56 +84,62 @@ const Orders = props => {
         >
           <Table
             isOrders={true}
-            tableData={data.newOrders}
-            refreshAction={getOrders}
+            tableData={props.dbData.newOrders}
+            refreshAction={props.refreshAction}
           />
         </Tab>
         <Tab
           eventKey="gruppfördelade"
           title={`Fördelade till grupp (${
-            data.assignedToGroup.length ? data.assignedToGroup.length : 0
+            props.dbData.assignedToGroup.length
+              ? props.dbData.assignedToGroup.length
+              : 0
           })`}
         >
           <Table
             isOrders={true}
-            tableData={data.assignedToGroup}
-            refreshAction={getOrders}
+            tableData={props.dbData.assignedToGroup}
+            refreshAction={props.refreshAction}
           />
         </Tab>
         <Tab
           eventKey="klara"
           title={`Klara (${
-            data.doneOrders.length ? data.doneOrders.length : 0
+            props.dbData.doneOrders.length ? props.dbData.doneOrders.length : 0
           })`}
         >
           <Table
             isOrders={true}
-            tableData={data.doneOrders}
-            refreshAction={getOrders}
+            tableData={props.dbData.doneOrders}
+            refreshAction={props.refreshAction}
           />
         </Tab>
         <Tab
           eventKey="pausad"
           title={`Pausade (${
-            data.pausedOrders.length ? data.pausedOrders.length : 0
+            props.dbData.pausedOrders.length
+              ? props.dbData.pausedOrders.length
+              : 0
           })`}
         >
           <Table
             isOrders={true}
-            tableData={data.pausedOrders}
-            refreshAction={getOrders}
+            tableData={props.dbData.pausedOrders}
+            refreshAction={props.refreshAction}
           />
         </Tab>
         <Tab
           eventKey="avbokad"
           title={`Avbokade (${
-            data.cancelledOrders.length ? data.cancelledOrders.length : 0
+            props.dbData.cancelledOrders.length
+              ? props.dbData.cancelledOrders.length
+              : 0
           })`}
         >
           <Table
             isOrders={true}
-            tableData={data.cancelledOrders}
-            refreshAction={getOrders}
+            tableData={props.dbData.cancelledOrders}
+            refreshAction={props.refreshAction}
           />
         </Tab>
       </Tabs>

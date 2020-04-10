@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Volunteer from './../../models/volunteer';
-import moment from 'moment';
+import React from 'react';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
-
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 
 //Components
 import Table from '../tables/Table';
@@ -17,68 +12,6 @@ import VolunteerForm from './../users/VolunteerForm';
 import Accordion from './../../components/Accordion';
 
 const Volunteers = props => {
-  const firestore = firebase.firestore();
-  const [data, setData] = useState({
-    newVolunteers: [],
-    distributedVolunteers: [],
-    welcomedVolunteers: [],
-    activeVolunteers: [],
-    pausedVolunteers: [],
-    notSuitableVolunteers: []
-  });
-
-  async function getVolunteers() {
-    const volunteers = [];
-    const querySnapshot = await firestore.collection('volunteers').get();
-    querySnapshot.forEach(function(doc) {
-      // doc.data() is never undefined for query doc snapshots
-      const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format('lll');
-
-      volunteers.push(
-        new Volunteer(
-          doc.id,
-          resData.gruppId,
-          resData.förnamn,
-          resData.efternamn,
-          resData.telefon,
-          resData.email,
-          resData.address,
-          resData.postkod,
-          resData.beskrivning,
-          resData.språk,
-          resData.födelseår,
-          resData.körkort,
-          resData.bil,
-          resData.mat,
-          resData.varor,
-          resData.ärenden,
-          resData.djur,
-          resData.prata,
-          resData.myndigheter,
-          resData.teknik,
-          readableDate,
-          resData.status,
-          resData.kommentarer
-        )
-      );
-    });
-
-    setData({
-      newVolunteers: volunteers.filter(data => data.status === '1'),
-      distributedVolunteers: volunteers.filter(data => data.status === '2'),
-      welcomedVolunteers: volunteers.filter(data => data.status === '3'),
-      activeVolunteers: volunteers.filter(data => data.status === '4'),
-      pausedVolunteers: volunteers.filter(data => data.status === '5'),
-      notSuitableVolunteers: volunteers.filter(data => data.status === '6')
-    });
-  }
-
-  useEffect(() => {
-    getVolunteers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="page-layout">
       <AddButtonHeader
@@ -128,7 +61,7 @@ const Volunteers = props => {
       </br>"
       />
 
-      <RefreshButton refreshAction={getVolunteers} />
+      <RefreshButton refreshAction={props.refreshAction} />
 
       <Tabs defaultActiveKey="nya" id="0">
         <Tab
@@ -136,9 +69,9 @@ const Volunteers = props => {
           title={
             <span>
               Nya {''}
-              {data.newVolunteers.length ? (
+              {props.dbData.newVolunteers.length ? (
                 <Badge pill variant="danger">
-                  {data.newVolunteers.length}
+                  {props.dbData.newVolunteers.length}
                 </Badge>
               ) : (
                 0
@@ -149,77 +82,83 @@ const Volunteers = props => {
           <Table
             groupId={props.groupId}
             isVolunteers={true}
-            tableData={data.newVolunteers}
-            refreshAction={getVolunteers}
+            tableData={props.dbData.newVolunteers}
+            refreshAction={props.refreshAction}
           />
         </Tab>
         <Tab
           eventKey="fördelade"
           title={`Fördelade till grupper (${
-            data.distributedVolunteers.length
-              ? data.distributedVolunteers.length
+            props.dbData.distributedVolunteers.length
+              ? props.dbData.distributedVolunteers.length
               : 0
           })`}
         >
           <Table
             groupId={props.groupId}
             isVolunteers={true}
-            tableData={data.distributedVolunteers}
-            refreshAction={getVolunteers}
+            tableData={props.dbData.distributedVolunteers}
+            refreshAction={props.refreshAction}
           />
         </Tab>
         <Tab
           eventKey="välkomnade"
           title={`Välkomnade (${
-            data.welcomedVolunteers.length ? data.welcomedVolunteers.length : 0
-          })`}
-        >
-          <Table
-            groupId={props.groupId}
-            isVolunteers={true}
-            tableData={data.welcomedVolunteers}
-            refreshAction={getVolunteers}
-          />
-        </Tab>
-        <Tab
-          eventKey="aktiva"
-          title={`Aktiva(${
-            data.activeVolunteers.length ? data.activeVolunteers.length : 0
-          })`}
-        >
-          <Table
-            groupId={props.groupId}
-            isVolunteers={true}
-            tableData={data.activeVolunteers}
-            refreshAction={getVolunteers}
-          />
-        </Tab>
-        <Tab
-          eventKey="pausade"
-          title={`Pausade (${
-            data.pausedVolunteers.length ? data.pausedVolunteers.length : 0
-          })`}
-        >
-          <Table
-            groupId={props.groupId}
-            isVolunteers={true}
-            tableData={data.pausedVolunteers}
-            refreshAction={getVolunteers}
-          />
-        </Tab>
-        <Tab
-          eventKey="olämpliga"
-          title={`Olämpliga (${
-            data.notSuitableVolunteers.length
-              ? data.notSuitableVolunteers.length
+            props.dbData.welcomedVolunteers.length
+              ? props.dbData.welcomedVolunteers.length
               : 0
           })`}
         >
           <Table
             groupId={props.groupId}
             isVolunteers={true}
-            tableData={data.notSuitableVolunteers}
-            refreshAction={getVolunteers}
+            tableData={props.dbData.welcomedVolunteers}
+            refreshAction={props.refreshAction}
+          />
+        </Tab>
+        <Tab
+          eventKey="aktiva"
+          title={`Aktiva(${
+            props.dbData.activeVolunteers.length
+              ? props.dbData.activeVolunteers.length
+              : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={props.dbData.activeVolunteers}
+            refreshAction={props.refreshAction}
+          />
+        </Tab>
+        <Tab
+          eventKey="pausade"
+          title={`Pausade (${
+            props.dbData.pausedVolunteers.length
+              ? props.dbData.pausedVolunteers.length
+              : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={props.dbData.pausedVolunteers}
+            refreshAction={props.refreshAction}
+          />
+        </Tab>
+        <Tab
+          eventKey="olämpliga"
+          title={`Olämpliga (${
+            props.dbData.notSuitableVolunteers.length
+              ? props.dbData.notSuitableVolunteers.length
+              : 0
+          })`}
+        >
+          <Table
+            groupId={props.groupId}
+            isVolunteers={true}
+            tableData={props.dbData.notSuitableVolunteers}
+            refreshAction={props.refreshAction}
           />
         </Tab>
       </Tabs>
