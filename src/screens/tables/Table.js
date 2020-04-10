@@ -62,13 +62,13 @@ const Table = props => {
 
   //Custom cell sizes
   const small = {
-    width: 150,
-    minWidth: 150
+    width: 130,
+    minWidth: 130
   };
 
   const medium = {
-    width: 230,
-    minWidth: 230
+    width: 190,
+    minWidth: 190
   };
 
   const large = {
@@ -117,19 +117,11 @@ const Table = props => {
   //Column headers
   const orderColumns = [
     {
-      title: 'Status',
-      field: 'status',
-      lookup: props.isGroupOrders
-        ? groupStatusDropdownForGroups
-        : groupStatusDropdown,
-      cellStyle: small,
-      headerStyle: small
-    },
-    {
-      title: 'Kopiera och skicka detaljer',
+      title: 'Kopiera & skicka detaljer',
       field: 'skicka',
       cellStyle: medium,
       headerStyle: medium,
+      editable: 'never',
       render: rowData => (
         <Button
           onClick={sendEmail.bind(this, rowData)}
@@ -140,6 +132,23 @@ const Table = props => {
         </Button>
       )
     },
+    { title: 'Mottaget', field: 'datum', editable: 'never' },
+    {
+      title: 'Tid kan vänta',
+      field: 'tidsrymd',
+      editable: 'never',
+      cellStyle: small,
+      headerStyle: small
+    },
+    {
+      title: 'Status',
+      field: 'status',
+      lookup: props.isGroupOrders
+        ? groupStatusDropdownForGroups
+        : groupStatusDropdown,
+      cellStyle: small,
+      headerStyle: small
+    },
     {
       title: 'Grupp',
       field: 'gruppId',
@@ -148,9 +157,17 @@ const Table = props => {
       cellStyle: medium,
       headerStyle: medium
     },
-    { title: 'Mottaget', field: 'datum', editable: 'never' },
-    { title: 'Förnamn', field: 'förnamn' },
-    { title: 'Efternamn', field: 'efternamn' },
+    {
+      title: 'Namn',
+      field: 'namn',
+      cellStyle: medium,
+      headerStyle: medium,
+      render: rowData => (
+        <div>
+          {rowData.förnamn} {rowData.efternamn}
+        </div>
+      )
+    },
     {
       title: 'Beskrivning',
       field: 'beskrivning',
@@ -162,12 +179,6 @@ const Table = props => {
       field: 'kommentarer',
       cellStyle: large,
       headerStyle: large
-    },
-    {
-      title: 'Tid kan vänta',
-      field: 'tidsrymd',
-      cellStyle: small,
-      headerStyle: small
     },
     {
       title: 'Typ',
@@ -224,8 +235,17 @@ const Table = props => {
     },
     { title: 'Mottaget', field: 'datum', editable: 'never' },
 
-    { title: 'Förnamn', field: 'förnamn' },
-    { title: 'Efternamn', field: 'efternamn' },
+    {
+      title: 'Namn',
+      field: 'namn',
+      cellStyle: medium,
+      headerStyle: medium,
+      render: rowData => (
+        <div>
+          {rowData.förnamn} {rowData.efternamn}
+        </div>
+      )
+    },
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
     { title: 'Address', field: 'address' },
@@ -467,6 +487,23 @@ const Table = props => {
         paging: true,
         exportButton: true,
         draggable: true
+      }}
+      localization={{
+        pagination: {
+          labelDisplayedRows: '{from}-{to} av {count}'
+        },
+        toolbar: {
+          nRowsSelected: '{0} rader valda'
+        },
+        header: {
+          actions: ' '
+        },
+        body: {
+          emptyDataSourceMessage: 'Här var det tomt!',
+          filterRow: {
+            filterTooltip: 'Filter'
+          }
+        }
       }}
       editable={{
         onRowUpdate: (newData, oldData) =>
