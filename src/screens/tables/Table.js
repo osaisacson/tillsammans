@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 //Components
@@ -80,6 +81,39 @@ const Table = props => {
     minWidth: 350
   };
 
+  //Send email
+  const sendEmail = content => {
+    const email = 'Email till mottagare här';
+    const subject = `Ny beställning från ${
+      content.förnamn ? content.förnamn : ''
+    } ${content.efternamn ? content.efternamn : ''}`;
+    const emailBody = `Hej! %0A
+    %0A 
+    Här kommer information om beställningen: %0A 
+    %0A
+    Datum mottaget: ${content.datum ? content.datum : '-'}, %0A
+    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : '-'} %0A 
+    %0A
+    Förnamn: ${content.förnamn ? content.förnamn : ''} %0A
+    Efternamn: ${content.efternamn ? content.efternamn : ''} %0A
+    Email: ${content.email ? content.email : '-'} %0A
+    Telefon: ${content.telefon ? content.telefon : '-'} %0A
+    Address: ${content.address ? content.address : '-'} %0A
+    Postkod: ${content.postkod ? content.postkod : '-'} %0A
+    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ''} 
+    %0A
+    Typ: ${content.typ ? content.typ : 'Ingen'} %0A
+    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} %0A
+    %0A
+    Swish: ${content.swish ? 'Ja' : 'Nej'} %0A
+    Kontant: ${content.kontant ? 'Ja' : 'Nej'} %0A
+    Faktura: ${content.faktura ? 'Ja' : 'Nej'} %0A
+  `;
+    window.open(
+      'mailto:' + email + '?subject=' + subject + '&body=' + emailBody
+    );
+  };
+
   //Column headers
   const orderColumns = [
     {
@@ -90,6 +124,21 @@ const Table = props => {
         : groupStatusDropdown,
       cellStyle: small,
       headerStyle: small
+    },
+    {
+      title: 'Kopiera och skicka detaljer',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      render: rowData => (
+        <Button
+          onClick={sendEmail.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Kopiera detaljer till email
+        </Button>
+      )
     },
     {
       title: 'Grupp',

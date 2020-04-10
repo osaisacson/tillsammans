@@ -111,7 +111,7 @@ const Orders = props => {
             
             <p>1. Gå in på er sida (kontakta asaisacson@gmail.com om ni behöver addressen/login)</p>
             
-            <p>2. Hitta alla detaljer om beställningen där</p>
+            <p>2. Hitta alla detaljer om beställningen där, och tryck på en knapp för att vidarebefordra dom till lämplig volontär</p>
            
             <p>3. Kontakta beställaren och låt dom veta beställningen är mottagen och på gång.</p>
 
