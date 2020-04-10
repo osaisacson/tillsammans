@@ -28,7 +28,7 @@ import Groups from './screens/admin/Groups';
 import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
 //Group Admin screens
-import GroupAdmin from './screens/groupAdmin/GroupAdmin';
+import CheckGroupAdmin from './screens/groupAdmin/CheckGroupAdmin';
 //Info screens
 import HowTo from './screens/info/HowTo';
 import Intro from './screens/info/Intro';
@@ -102,7 +102,11 @@ export default function App() {
               <Cancellations />
             </Route>
             {/* For groupadmin */}
-            <Route path="/grupp/:groupId" exact component={GroupAdmin} />
+            <Route
+              path="/grupp/:groupLink/:groupId"
+              exact
+              component={CheckGroupAdmin}
+            />
             {/* For all */}
             <Route path="/">
               <Home />

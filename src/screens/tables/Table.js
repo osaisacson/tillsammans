@@ -16,10 +16,11 @@ const Table = props => {
   //Dropdowns
   const groupDropdown = {
     0: 'Ingen grupp vald',
-    DDPDlLcTYYMQEJNlhzgD: 'Svenska Kyrkan Myggenäs',
-    Pn5Uj8h84m5pjqSmL6sA: 'Svenska Kyrkan Skärhamn',
-    uID02NUmUhp9mRqZbLF1: 'Svenska Kyrkan Kållekärr',
-    TmhoPLMU6XmapwTSS6Hi: 'Inre grupp'
+    Pn5Uj8h84m5pjqSmL6sA: 'Yttre Grupp Skärhamn',
+    DDPDlLcTYYMQEJNlhzgD: 'Yttre Grupp Norra Tjörn',
+    uID02NUmUhp9mRqZbLF1: 'Yttre Grupp Centrala Tjörn',
+    TmhoPLMU6XmapwTSS6Hi: 'Inre grupp',
+    R0tHIsIvM82th7Elq6zo: 'Kommunikatörerna'
   };
 
   const groupStatusDropdown = {
@@ -99,6 +100,8 @@ const Table = props => {
       headerStyle: medium
     },
     { title: 'Mottaget', field: 'datum', editable: 'never' },
+    { title: 'Förnamn', field: 'förnamn' },
+    { title: 'Efternamn', field: 'efternamn' },
     {
       title: 'Beskrivning',
       field: 'beskrivning',
@@ -141,8 +144,6 @@ const Table = props => {
       editable: 'never',
       render: rowData => <RenderBadge bool={rowData.faktura} />
     },
-    { title: 'Förnamn', field: 'förnamn' },
-    { title: 'Efternamn', field: 'efternamn' },
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
     {
@@ -257,7 +258,9 @@ const Table = props => {
       title: 'Gruppnamn',
       field: 'gruppnamn',
       render: rowData => (
-        <Link to={`/grupp/${rowData.id}`}>{rowData.gruppnamn}</Link>
+        <Link to={`/grupp/${rowData.länkNamn}/${rowData.id}`}>
+          {rowData.gruppnamn}
+        </Link>
       ),
       cellStyle: medium,
       headerStyle: medium
@@ -274,7 +277,9 @@ const Table = props => {
     { title: 'Email', field: 'email' },
     { title: 'Address', field: 'address' },
     { title: 'Postkod', field: 'postkod' },
-    { title: 'Skapad', field: 'datum', editable: 'never' }
+    { title: 'Skapad', field: 'datum', editable: 'never' },
+    { title: 'adminNamn', field: 'adminNamn' },
+    { title: 'adminPwd', field: 'adminPwd' }
   ];
 
   const cancelledColumns = [
@@ -370,6 +375,8 @@ const Table = props => {
     groupRef.update({
       datum: newData.datum ? newData.datum : '',
       gruppnamn: newData.gruppnamn ? newData.gruppnamn : '',
+      adminNamn: newData.adminNamn ? newData.adminNamn : '',
+      adminPwd: newData.adminPwd ? newData.adminPwd : '',
       kontakt: newData.kontakt ? newData.kontakt : '',
       kommentarer: newData.kommentarer ? newData.kommentarer : '',
       telefon: newData.telefon ? newData.telefon : '',
@@ -408,7 +415,7 @@ const Table = props => {
       columns={columndata}
       data={data}
       options={{
-        paging: false,
+        paging: true,
         exportButton: true,
         draggable: true
       }}

@@ -3,33 +3,60 @@ import React, { useState, useEffect } from 'react';
 import FormInput from '../../components/FormInput';
 import CustomButton from '../../components/CustomButton';
 
+//Models
+import AdminGroup from '../../models/adminGroup';
+
+//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const SignIn = props => {
+const GroupSignIn = props => {
   const firestore = firebase.firestore();
 
-  const [adminData, setAdminData] = useState();
+  //Set constants
   const [loginName, setLoginName] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
+  const [data, setData] = useState({
+    finalAdminData: []
+  });
+
   useEffect(() => {
-    firestore
-      .collection('admin')
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          const resData = doc.data();
-          setAdminData(resData);
-        });
+    async function getAdminData() {
+      const loadedAdminData = [];
+      const querySnapshot = await firestore.collection('groups').get();
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        const resData = doc.data();
+
+        loadedAdminData.push(
+          new AdminGroup(
+            doc.id,
+            resData.gruppnamn,
+            resData.adminNamn,
+            resData.adminPwd
+          )
+        );
       });
-  }, [firestore]);
+
+      //Only get the admin data which match our current group id
+      const currAdminGroupData = loadedAdminData.filter(
+        data => data.id === props.groupId
+      );
+      setData({
+        finalAdminData: currAdminGroupData[0]
+      });
+    }
+    getAdminData();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = event => {
     event.preventDefault();
     const isVerified =
-      loginName === adminData.adminNamn && loginPassword === adminData.adminPwd;
+      loginName === data.finalAdminData.adminNamn &&
+      loginPassword === data.finalAdminData.adminPwd;
     isVerified
       ? props.checkIfVerified('confirmed')
       : props.checkIfVerified('wrong credentials');
@@ -47,7 +74,8 @@ const SignIn = props => {
 
   return (
     <div className="sign-in page-layout">
-      <h2>Logga in som admin</h2>
+      <h6>{data.finalAdminData.gruppnamn}</h6>
+      <h2>Gruppsida - admin</h2>
 
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -67,11 +95,11 @@ const SignIn = props => {
           required
         />
         <div className="buttons">
-          <CustomButton type="submit"> Logga in som admin </CustomButton>
+          <CustomButton type="submit"> Logga in</CustomButton>
         </div>
       </form>
     </div>
   );
 };
 
-export default SignIn;
+export default GroupSignIn;

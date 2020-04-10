@@ -14,12 +14,7 @@ import 'firebase/firestore';
 import GroupOrders from '../groupAdmin/GroupOrders';
 import GroupVolunteers from '../groupAdmin/GroupVolunteers';
 
-const GroupAdmin = ({ match }) => {
-  //Get id of group as passed via params in Table.js
-  const {
-    params: { groupId }
-  } = match;
-
+const GroupAdmin = props => {
   const firestore = firebase.firestore();
   const [groupData, setGroupData] = useState({
     currentGroup: []
@@ -38,20 +33,23 @@ const GroupAdmin = ({ match }) => {
           doc.id,
           readableDate,
           resData.gruppnamn,
+          resData.länkNamn,
           resData.kontakt,
           resData.kommentarer,
           resData.telefon,
           resData.email,
           resData.address,
           resData.postkod,
-          resData.status
+          resData.status,
+          resData.adminNamn,
+          resData.adminPwd
         )
       );
     });
 
     //set current group data as the object which matches the passed group id
     setGroupData({
-      currentGroup: groups.find(data => data.id === groupId)
+      currentGroup: groups.find(data => data.id === props.groupId)
     });
   }
   useEffect(() => {
@@ -65,10 +63,10 @@ const GroupAdmin = ({ match }) => {
       <br />
       <Tabs variant="pills" defaultActiveKey="first" id="0">
         <Tab title="Beställningar" eventKey="first">
-          <GroupOrders groupId={groupId} />
+          <GroupOrders groupId={props.groupId} />
         </Tab>
         <Tab title="Volontärer" eventKey="second">
-          <GroupVolunteers groupId={groupId} />
+          <GroupVolunteers groupId={props.groupId} />
         </Tab>
       </Tabs>
     </div>

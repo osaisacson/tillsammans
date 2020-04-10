@@ -22,13 +22,16 @@ export default (state = initialState, action) => {
         action.groupData.id,
         action.groupData.datum,
         action.groupData.gruppnamn,
+        action.groupData.länkNamn,
         action.groupData.kontakt,
         action.groupData.kommentarer,
         action.groupData.telefon,
         action.groupData.email,
         action.groupData.address,
         action.groupData.postkod,
-        action.groupData.status
+        action.groupData.status,
+        action.groupData.adminNamn,
+        action.groupData.adminPwd
       );
       return {
         ...state,
@@ -42,13 +45,16 @@ export default (state = initialState, action) => {
         action.oid,
         state.availableGroups[groupIndex].datum,
         action.groupData.gruppnamn,
+        action.groupData.länkNamn,
         action.groupData.kontakt,
         action.groupData.kommentarer,
         action.groupData.telefon,
         action.groupData.email,
         action.groupData.address,
         action.groupData.postkod,
-        action.groupData.status
+        action.groupData.status,
+        action.groupData.adminNamn,
+        action.groupData.adminPwd
       );
       const updatedAvailableGroups = [...state.availableGroups];
       updatedAvailableGroups[groupIndex] = updatedGroup;

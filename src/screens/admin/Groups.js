@@ -36,13 +36,16 @@ const Groups = props => {
           doc.id,
           readableDate,
           resData.gruppnamn,
+          resData.länkNamn,
           resData.kontakt,
           resData.kommentarer,
           resData.telefon,
           resData.email,
           resData.address,
           resData.postkod,
-          resData.status
+          resData.status,
+          resData.adminNamn,
+          resData.adminPwd
         )
       );
     });
