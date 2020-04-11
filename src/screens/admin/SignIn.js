@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import FormInput from '../../components/FormInput';
-import CustomButton from '../../components/CustomButton';
+//Components
+import SignInForm from '../../components/SignInForm';
 
+//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const SignIn = props => {
   const firestore = firebase.firestore();
 
+  //Set up hooks
   const [adminData, setAdminData] = useState();
   const [loginName, setLoginName] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -46,31 +48,13 @@ const SignIn = props => {
   };
 
   return (
-    <div className="sign-in page-layout">
-      <h2>Logga in som admin</h2>
-
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          name="adminNamn"
-          type="text"
-          handleChange={handleChange}
-          value={loginName}
-          label="Administratörsnamn"
-          required
-        />
-        <FormInput
-          name="password"
-          type="password"
-          value={loginPassword}
-          handleChange={handleChange}
-          label="Lösenord"
-          required
-        />
-        <div className="buttons">
-          <CustomButton type="submit"> Logga in som admin </CustomButton>
-        </div>
-      </form>
-    </div>
+    <SignInForm
+      header={'Logga in som admin'}
+      loginName={loginName}
+      loginPassword={loginPassword}
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+    />
   );
 };
 

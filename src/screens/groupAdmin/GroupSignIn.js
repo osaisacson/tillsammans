@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import FormInput from '../../components/FormInput';
-import CustomButton from '../../components/CustomButton';
+//Components
+import SignInForm from '../../components/SignInForm';
 
 //Models
 import AdminGroup from '../../models/adminGroup';
@@ -13,7 +13,7 @@ import 'firebase/firestore';
 const GroupSignIn = props => {
   const firestore = firebase.firestore();
 
-  //Set constants
+  //Set up hooks
   const [loginName, setLoginName] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
@@ -73,32 +73,14 @@ const GroupSignIn = props => {
   };
 
   return (
-    <div className="sign-in page-layout">
-      <h6>{data.finalAdminData.gruppnamn}</h6>
-      <h2>Gruppsida - admin</h2>
-
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          name="adminNamn"
-          type="text"
-          handleChange={handleChange}
-          value={loginName}
-          label="Administratörsnamn"
-          required
-        />
-        <FormInput
-          name="password"
-          type="password"
-          value={loginPassword}
-          handleChange={handleChange}
-          label="Lösenord"
-          required
-        />
-        <div className="buttons">
-          <CustomButton type="submit"> Logga in</CustomButton>
-        </div>
-      </form>
-    </div>
+    <SignInForm
+      topHeader={data.finalAdminData.gruppnamn}
+      header={'Gruppsida - admin'}
+      loginName={loginName}
+      loginPassword={loginPassword}
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+    />
   );
 };
 

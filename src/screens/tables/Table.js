@@ -11,7 +11,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const Table = props => {
-  //Set constants
+  //Set up hooks
   const [data, setData] = useState(props.tableData);
 
   //Dropdowns

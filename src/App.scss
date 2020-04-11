@@ -25,8 +25,6 @@ $nav-color: #fff;
 
 $sub-color: grey;
 $main-text-color: #fff;
-$highlight-color: #ffff00;
-
 
 /**
  * ----------------------------------------
@@ -57,23 +55,18 @@ body {
  * ----------------------------------------
  */
 
+.bold {
+  font-weight: 600;
+}
+
 .centered {
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-.float-right {
-  float: right;
-}
-
 .flex {
   display: flex;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
 }
 
 .flex-spread {
@@ -82,17 +75,9 @@ body {
   align-items: center;
 }
 
-.highlight {
-  background-color: $highlight-color;
-  padding: 1px 3px;
-}
-
-.bold {
-  font-weight: 600;
-}
-
-.smaller {
-  font-size: .9rem;
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -167,37 +152,6 @@ body {
   width: 380px;
   display: flex;
   flex-direction: column;
-
-  .title {
-    margin: 10px 0;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.custom-button {
-  min-width: 165px;
-  width: auto;
-  height: 50px;
-  letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
-  font-size: 12px;
-  background-color: black;
-  color: white;
-  text-transform: uppercase;
-  font-weight: 400;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-  }
 }
 
 @mixin shrinkLabel {
@@ -258,7 +212,6 @@ body {
  * Header, Footer
  * ----------------------------------------
  */
-
 
 .alla-tillsammans {
   display: flex;
@@ -327,26 +280,13 @@ body {
   }
   
 }
+
+
 /**
  * ----------------------------------------
- * Components
+ * Buttons and Icons
  * ----------------------------------------
  */
-
-.blurb {
-  z-index: 10;
-
-  img {
-    width: 200px;
-    position: absolute;
-    left: 6%;
-    top: 40%;
-  }
-}
-
-.how-to {
-  margin: 0 auto 20px !important;
-}
 
 .add-button {
   background-color: $primary-color;
@@ -357,6 +297,7 @@ body {
   font-size: .8rem !important;
 }
 
+//Wrapper around refresh button
 .refresh-wrapper {
   margin-top: 30px;
   display: flex;
@@ -364,7 +305,7 @@ body {
 }
 
 .large-button-container {
-  margin-top: 25%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
 }
@@ -387,11 +328,26 @@ body {
   margin-right: 15px;
 }
 
-//Accordion
-.accordion__section {
-  display: flex;
-  flex-direction: column;
+
+/**
+ * ----------------------------------------
+ * Components
+ * ----------------------------------------
+ */
+
+ //Blurb - illustration on the front page
+ .blurb {
+  z-index: 10;
+
+  img {
+    width: 200px;
+    position: absolute;
+    left: 6%;
+    top: 30%;
+  }
 }
+
+//Accordion 
 
 /* Buttons used to open and close the accordion panel */
 .accordion {
@@ -517,26 +473,6 @@ body {
   }
 }
 
-.beskrivning {
-  min-width: 300px;
-}
-
-.group-dropdown {
-  min-width: 180px;
-  margin-right: 8px;
-}
-
-.check {
-  max-width: 60px;
-  text-align: center;
-  color: $primary-color-light;
-  font-weight: 600;
-}
-
-.delete-btn {
-  background-color: red;
-}
-
 
 /**
  * ----------------------------------------
@@ -550,20 +486,6 @@ body {
   justify-content: center;
   padding-bottom: 120px;
   padding-top: 80px;
-}
-
-.accordion {
-  .card-header {
-    cursor: pointer;
-
-    h6 {
-      font-weight: 600;
-    }
-  }
-
-  .card {
-    background-color: transparent;
-  }
 }
 
 a:hover {
@@ -595,14 +517,14 @@ a:hover {
   margin-right: 10px;
 }
 
-.navbar-brand:hover {
-  color: $primary-color-light !important;
-}
-
 .nav-link:hover, .nav-link:active, .nav-link.active {
   color: #fff !important;
   text-align: center;
   background-color: $page-background;
+}
+
+.navbar-brand:hover {
+  color: $primary-color-light !important;
 }
 
 .bg-light {
@@ -695,9 +617,6 @@ ul {
       font-size: .8rem
     }
    }
-  .dropdown-item {
-    text-align: center;
-  }
    h1, h2, h3, h4, h5, h6, p {
      margin-left: 0 !important;
    }
