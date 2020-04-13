@@ -4,10 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-//Actions
 import firebase from '../../firebase/firebase.utils';
 
-//Components
 import Mottaget from './Mottaget';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
@@ -16,11 +14,11 @@ const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
     const updatedValues = {
       ...state.inputValues,
-      [action.input]: action.value // From textChangeHandler = (inputIdentifier, text)
+      [action.input]: action.value, // From textChangeHandler = (inputIdentifier, text)
     };
     const updatedValidities = {
       ...state.inputValidities,
-      [action.input]: action.isValid
+      [action.input]: action.isValid,
     };
     let updatedFormIsValid = true;
     for (const key in updatedValidities) {
@@ -29,7 +27,7 @@ const formReducer = (state, action) => {
     return {
       formIsValid: updatedFormIsValid,
       inputValidities: updatedValidities,
-      inputValues: updatedValues
+      inputValues: updatedValues,
     };
   }
   return state;
@@ -48,12 +46,12 @@ const Input = ({ label, placeholder, value, onChange }) => (
   </>
 );
 
-const CancelForm = props => {
+const CancelForm = (props) => {
   const ordrId = null; //TODO: Get the id of the currently edited order, passed from previous screen
 
   //Find order
-  const editedOrder = useSelector(state =>
-    state.orders.availableOrders.find(ordr => ordr.id === ordrId)
+  const editedOrder = useSelector((state) =>
+    state.orders.availableOrders.find((ordr) => ordr.id === ordrId)
   );
 
   //Set states
@@ -64,18 +62,18 @@ const CancelForm = props => {
       telefon: editedOrder ? editedOrder.telefon : '',
       email: editedOrder ? editedOrder.email : '',
       address: editedOrder ? editedOrder.address : '',
-      postkod: editedOrder ? editedOrder.postkod : ''
+      postkod: editedOrder ? editedOrder.postkod : '',
     },
     inputValidities: {
       telefon: editedOrder ? true : false,
       email: editedOrder ? true : false,
       address: editedOrder ? true : false,
-      postkod: editedOrder ? true : false
+      postkod: editedOrder ? true : false,
     },
-    formIsValid: editedOrder ? true : false
+    formIsValid: editedOrder ? true : false,
   });
 
-  const addCancellation = e => {
+  const addCancellation = (e) => {
     e.preventDefault();
 
     const db = firebase.firestore();
@@ -85,7 +83,7 @@ const CancelForm = props => {
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
       datum: new Date().getTime(),
-      status: 'avboka'
+      status: 'avboka',
     });
     setRedirectToThanks(true);
   };
@@ -98,7 +96,7 @@ const CancelForm = props => {
       type: FORM_INPUT_UPDATE,
       value: text.target.value,
       isValid: isValid,
-      input: inputIdentifier
+      input: inputIdentifier,
     });
   };
 

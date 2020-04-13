@@ -9,7 +9,7 @@ export default function MainHeader(props) {
     <>
       <Navbar sticky="top" bg="light" expand="lg">
         <Link to="/" className="navbar-brand">
-          <div className="alla-tillsammans">
+          <div className="brand">
             <img
               alt=""
               src="/logo.png"

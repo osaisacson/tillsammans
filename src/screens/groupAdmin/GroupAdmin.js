@@ -4,25 +4,22 @@ import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
 import moment from 'moment';
 
-//Models
 import Order from './../../models/order';
 import Group from './../../models/group';
 import Volunteer from './../../models/volunteer';
 
-//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-//Components
 import GroupOrders from '../groupAdmin/GroupOrders';
 import GroupVolunteers from '../groupAdmin/GroupVolunteers';
 
-const GroupAdmin = props => {
+const GroupAdmin = (props) => {
   const firestore = firebase.firestore();
 
   //Set up hooks
   const [groupData, setGroupData] = useState({
-    currentGroup: []
+    currentGroup: [],
   });
 
   const [groupOrdersData, setGroupOrdersData] = useState({
@@ -30,7 +27,7 @@ const GroupAdmin = props => {
     distributedVolunteerOrders: [],
     doneOrders: [],
     pausedOrders: [],
-    cancelledOrders: []
+    cancelledOrders: [],
   });
 
   const [groupVolunteersData, setGroupVolunteersData] = useState({
@@ -38,14 +35,14 @@ const GroupAdmin = props => {
     welcomedVolunteers: [],
     activeVolunteers: [],
     pausedVolunteers: [],
-    notSuitableVolunteers: []
+    notSuitableVolunteers: [],
   });
 
   //Get group orders
   async function getGroupOrders() {
     const orders = [];
     const querySnapshot = await firestore.collection('orders').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -76,18 +73,18 @@ const GroupAdmin = props => {
 
     //Only get the orders which match our current group id
     const currentGroupOrders = orders.filter(
-      data => data.gruppId === props.groupId
+      (data) => data.gruppId === props.groupId
     );
     setGroupOrdersData({
       distributedGroupOrders: currentGroupOrders.filter(
-        data => data.status === '2'
+        (data) => data.status === '2'
       ),
       distributedVolunteerOrders: currentGroupOrders.filter(
-        data => data.status === '3'
+        (data) => data.status === '3'
       ),
-      doneOrders: currentGroupOrders.filter(data => data.status === '4'),
-      pausedOrders: currentGroupOrders.filter(data => data.status === '5'),
-      cancelledOrders: currentGroupOrders.filter(data => data.status === '6')
+      doneOrders: currentGroupOrders.filter((data) => data.status === '4'),
+      pausedOrders: currentGroupOrders.filter((data) => data.status === '5'),
+      cancelledOrders: currentGroupOrders.filter((data) => data.status === '6'),
     });
   }
 
@@ -95,7 +92,7 @@ const GroupAdmin = props => {
   async function getGroupVolunteers() {
     const volunteers = [];
     const querySnapshot = await firestore.collection('volunteers').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -131,23 +128,25 @@ const GroupAdmin = props => {
 
     //Only get the orders which match our current group id
     const currentGroupVolunteers = volunteers.filter(
-      data => data.gruppId === props.groupId
+      (data) => data.gruppId === props.groupId
     );
 
     setGroupVolunteersData({
-      newVolunteers: currentGroupVolunteers.filter(data => data.status === '2'),
+      newVolunteers: currentGroupVolunteers.filter(
+        (data) => data.status === '2'
+      ),
       welcomedVolunteers: currentGroupVolunteers.filter(
-        data => data.status === '3'
+        (data) => data.status === '3'
       ),
       activeVolunteers: currentGroupVolunteers.filter(
-        data => data.status === '4'
+        (data) => data.status === '4'
       ),
       pausedVolunteers: currentGroupVolunteers.filter(
-        data => data.status === '5'
+        (data) => data.status === '5'
       ),
       notSuitableVolunteers: currentGroupVolunteers.filter(
-        data => data.status === '6'
-      )
+        (data) => data.status === '6'
+      ),
     });
   }
 
@@ -155,7 +154,7 @@ const GroupAdmin = props => {
   async function getGroups() {
     const groups = [];
     const querySnapshot = await firestore.collection('groups').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -181,7 +180,7 @@ const GroupAdmin = props => {
 
     //set current group data as the object which matches the passed group id
     setGroupData({
-      currentGroup: groups.find(data => data.id === props.groupId)
+      currentGroup: groups.find((data) => data.id === props.groupId),
     });
   }
 

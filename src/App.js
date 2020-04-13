@@ -15,11 +15,13 @@ import MainHeader from './components/MainHeader';
 
 //All screens
 import Home from './screens/Home';
+
 //User screens
 import Apply from './screens/users/Apply';
 import Partners from './screens/info/Partners';
 import Cancel from './screens/users/Cancel';
 import Volunteer from './screens/users/Volunteer';
+
 //Admin screens
 import CheckAdmin from './screens/admin/CheckAdmin';
 import Orders from './screens/admin/Orders';
@@ -27,8 +29,10 @@ import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
+
 //Group Admin screens
 import CheckGroupAdmin from './screens/groupAdmin/CheckGroupAdmin';
+
 //Info screens
 import HowTo from './screens/info/HowTo';
 import Intro from './screens/info/Intro';
@@ -43,7 +47,7 @@ const rootReducer = combineReducers({
   orders: ordersReducer,
   volunteers: volunteersReducer,
   groups: groupsReducer,
-  cancellations: cancellationsReducer
+  cancellations: cancellationsReducer,
 });
 
 //NOTE: remove composeWithDevTools before deploying the app. It is only used for React Native Debugger.

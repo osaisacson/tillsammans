@@ -1,6 +1,5 @@
 import React from 'react';
 
-//Components
 import VolunteerForm from './VolunteerForm';
 
 export default function Volunteer() {

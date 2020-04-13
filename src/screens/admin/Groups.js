@@ -9,24 +9,23 @@ import Badge from 'react-bootstrap/Badge';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-//Components
 import Table from '../tables/Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import GroupForm from '../users/GroupForm';
 import Accordion from './../../components/Accordion';
 
-const Groups = props => {
+const Groups = (props) => {
   const firestore = firebase.firestore();
   const [data, setData] = useState({
     activeGroups: [],
-    inactiveGroups: []
+    inactiveGroups: [],
   });
 
   async function getGroups() {
     const groups = [];
     const querySnapshot = await firestore.collection('groups').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -51,8 +50,8 @@ const Groups = props => {
     });
 
     setData({
-      activeGroups: groups.filter(data => data.status === 'aktiv'),
-      inactiveGroups: groups.filter(data => data.status === 'inaktiv')
+      activeGroups: groups.filter((data) => data.status === 'aktiv'),
+      inactiveGroups: groups.filter((data) => data.status === 'inaktiv'),
     });
   }
   useEffect(() => {

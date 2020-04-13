@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import React from 'react';
 
-//Models
-//Bootstrap
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
 
-//Components
 import Table from '../tables/Table';
 import HelpForm from './../users/HelpForm';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import Accordion from './../../components/Accordion';
 
-const Orders = props => {
+const Orders = (props) => {
   return (
     <div className="page-layout">
       <AddButtonHeader
@@ -48,11 +44,11 @@ const Orders = props => {
             
             <p>1. Gå in på er sida (kontakta asaisacson@gmail.com om ni behöver addressen/login)</p>
             
-            <p>2. Hitta alla detaljer om beställningen där, och tryck på en knapp för att vidarebefordra dom till lämplig volontär</p>
+            <p>2. Hitta alla detaljer om beställningen där, och tryck på en knapp för att vidarebefordra till lämplig volontär</p>
            
             <p>3. Kontakta beställaren och låt dom veta beställningen är mottagen och på gång.</p>
 
-            <p>4. Uppdatera beställningen via er gruppsida. </p>
+            <p>4. Uppdatera beställningen via er gruppsida till 'klar' när den är klar. </p>
 
             <br />
 

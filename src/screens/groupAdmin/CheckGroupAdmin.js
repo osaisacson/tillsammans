@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 
-//Components
 import GroupAdmin from '../groupAdmin/GroupAdmin';
 import GroupSignIn from '../groupAdmin/GroupSignIn';
 
 const CheckGroupAdmin = ({ match }) => {
   //Get id of group as passed via params in Table.js
   const {
-    params: { groupId }
+    params: { groupId },
   } = match;
 
   //Set state
   const [isVerified, setIsVerified] = useState('');
 
-  const checkIfVerified = value => {
+  const checkIfVerified = (value) => {
     setIsVerified(value);
   };
 

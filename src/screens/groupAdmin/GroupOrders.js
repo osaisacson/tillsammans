@@ -1,17 +1,15 @@
 import React from 'react';
 
-//Bootstrap
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
 
-//Components
 import Table from '../tables/Table';
 import HelpForm from '../users/HelpForm';
 import AddButtonHeader from '../../components/AddButtonHeader';
 import RefreshButton from '../../components/RefreshButton';
 
-const GroupOrders = props => {
+const GroupOrders = (props) => {
   return (
     <div className="page-layout">
       <AddButtonHeader

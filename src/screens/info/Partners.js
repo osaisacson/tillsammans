@@ -44,10 +44,7 @@ export default function Partners() {
         till den lokala volontärsplattformen för stöd i samband med utbrottet av
         Covid-19?
       </p>
-      <p>
-        Kontakta oss på tjorn@allatillsammans.se eller ring vår samordnare under
-        'KONTAKT'.
-      </p>
+      <p>Kontakta oss på tjorn@allatillsammans.se</p>
     </div>
   );
 }

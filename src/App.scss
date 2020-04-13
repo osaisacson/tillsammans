@@ -25,6 +25,8 @@ $nav-color: #fff;
 
 $sub-color: grey;
 $main-text-color: #fff;
+$highlight-color: #ffff00;
+
 
 /**
  * ----------------------------------------
@@ -148,6 +150,7 @@ body {
  * Sign In
  * ----------------------------------------
  */
+
 .sign-in {
   width: 380px;
   display: flex;
@@ -213,7 +216,7 @@ body {
  * ----------------------------------------
  */
 
-.alla-tillsammans {
+.brand {
   display: flex;
   align-items: center;
 
@@ -236,6 +239,17 @@ body {
     font-size: 1.2rem;
     font-weight: 800;
     margin: 0;
+  }
+}
+
+.blurb {
+  z-index: 10;
+
+  img {
+    width: 200px;
+    position: absolute;
+    left: 6%;
+    top: 30%;
   }
 }
 
@@ -335,21 +349,6 @@ body {
  * ----------------------------------------
  */
 
- //Blurb - illustration on the front page
- .blurb {
-  z-index: 10;
-
-  img {
-    width: 200px;
-    position: absolute;
-    left: 6%;
-    top: 30%;
-  }
-}
-
-//Accordion 
-
-/* Buttons used to open and close the accordion panel */
 .accordion {
   cursor: pointer;
   background-color: rgba(255, 255, 255, .1);
@@ -367,38 +366,32 @@ body {
   }
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .accordion:hover,
 .active {
   background-color: rgba(255, 255, 255, .3);
 }
 
-/* Style the accordion content title */
-.accordion__title {
+.accordion-title {
   font-weight: 600;
   font-size: 1rem;
 }
 
-/* Style the accordion chevron icon */
-.accordion__icon {
+.accordion-icon {
   margin-left: auto;
   transition: transform 0.3s ease;
 }
 
-/* Style to rotate icon when state is active */
 .rotate {
   transform: rotate(90deg);
 }
 
-/* Style the accordion content panel. Note: hidden by default */
-.accordion__content {
+.accordion-content {
   background-color: rgba(255, 255, 255, .1);
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
 
-/* Style the accordion content text */
-.accordion__text {
+.accordion-text {
   background-color: rgba(255, 255, 255, .1);
   padding: 18px;
   
@@ -437,48 +430,10 @@ body {
 
 /**
  * ----------------------------------------
- * Tables
- * ----------------------------------------
- */
-
-.table {
-  text-align: left;
-  font-size: .8rem;
-  background-color: #fff;
-  color: #000;
-
-  .td, th {
-    padding: .35rem;
-    white-space: nowrap;
-  }
-
-  .btn {
-    font-size: .7rem;
-    background-color: $primary-color-light !important;
-
-    &.active {
-      background-color: $primary-color !important;
-    }
-  }
-
-  a {
-    font-size: .9rem;
-    font-weight: 600;
-    color: $primary-color-light;
-  }
-
-  a:hover {
-    font-weight: 600;
-    color: $primary-color;
-  }
-}
-
-
-/**
- * ----------------------------------------
  * Bootstrap Overrides
  * ----------------------------------------
  */
+
  .container {
   display: flex;
   flex-direction: column;
@@ -531,7 +486,7 @@ a:hover {
   background-color: $nav-color !important;
 }
 
-//overrides the bootstrap navbar class which positions the navbar links to the left. We want them to the right.
+// Overrides the bootstrap navbar class which positions the navbar links to the left. We want them to the right.
 .navbar-nav {
   margin-left: auto !important;
   margin-right: 0;
@@ -570,7 +525,40 @@ ul {
   background-color: $page-background;
 }
 
-//material-table overrides
+// Overrides for tables
+.table {
+  text-align: left;
+  font-size: .8rem;
+  background-color: #fff;
+  color: #000;
+
+  .td, th {
+    padding: .35rem;
+    white-space: nowrap;
+  }
+
+  .btn {
+    font-size: .7rem;
+    background-color: $primary-color-light !important;
+
+    &.active {
+      background-color: $primary-color !important;
+    }
+  }
+
+  a {
+    font-size: .9rem;
+    font-weight: 600;
+    color: $primary-color-light;
+  }
+
+  a:hover {
+    font-weight: 600;
+    color: $primary-color;
+  }
+}
+
+// Overrides for material-table 
 .MuiTableCell-root {
   padding: 4px 5px !important;
   font-size: 13px !important;

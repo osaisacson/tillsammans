@@ -12,7 +12,7 @@ const AddButtonHeader = props => {
     <div className="flex-spread">
       <h2>{props.headerText}</h2>
       <Button className="add-button" onClick={handleShow}>
-        Lägg till ny {props.buttonText}
+        + Lägg till ny {props.buttonText}
       </Button>
 
       <Modal show={show} onHide={handleClose}>

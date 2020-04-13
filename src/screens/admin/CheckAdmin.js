@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
-//Components
 import Admin from './Admin';
 import SignIn from './SignIn';
 
-const CheckAdmin = props => {
+const CheckAdmin = (props) => {
   const [isVerified, setIsVerified] = useState('');
 
-  const checkIfVerified = value => {
+  const checkIfVerified = (value) => {
     setIsVerified(value);
   };
 

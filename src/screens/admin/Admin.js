@@ -4,21 +4,18 @@ import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
 import moment from 'moment';
 
-//Models
 import Order from './../../models/order';
 import Volunteer from './../../models/volunteer';
 
-//Components
 import Volunteers from './Volunteers';
 import Orders from './Orders';
 import Groups from './Groups';
 import Cancellations from './Cancellations';
 
-//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const Admin = props => {
+const Admin = (props) => {
   const firestore = firebase.firestore();
 
   //Set up hooks
@@ -28,7 +25,7 @@ const Admin = props => {
     welcomedVolunteers: [],
     activeVolunteers: [],
     pausedVolunteers: [],
-    notSuitableVolunteers: []
+    notSuitableVolunteers: [],
   });
 
   const [ordersData, setOrdersData] = useState({
@@ -36,14 +33,14 @@ const Admin = props => {
     assignedToGroup: [],
     doneOrders: [],
     pausedOrders: [],
-    cancelledOrders: []
+    cancelledOrders: [],
   });
 
   //Get orders data
   async function getOrders() {
     const orders = [];
     const querySnapshot = await firestore.collection('orders').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -73,11 +70,11 @@ const Admin = props => {
     });
 
     setOrdersData({
-      newOrders: orders.filter(data => data.status === '1'),
-      assignedToGroup: orders.filter(data => data.status === '2'),
-      doneOrders: orders.filter(data => data.status === '4'),
-      pausedOrders: orders.filter(data => data.status === '5'),
-      cancelledOrders: orders.filter(data => data.status === '6')
+      newOrders: orders.filter((data) => data.status === '1'),
+      assignedToGroup: orders.filter((data) => data.status === '2'),
+      doneOrders: orders.filter((data) => data.status === '4'),
+      pausedOrders: orders.filter((data) => data.status === '5'),
+      cancelledOrders: orders.filter((data) => data.status === '6'),
     });
   }
 
@@ -85,7 +82,7 @@ const Admin = props => {
   async function getVolunteers() {
     const volunteers = [];
     const querySnapshot = await firestore.collection('volunteers').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -120,12 +117,12 @@ const Admin = props => {
     });
 
     setVolunteersData({
-      newVolunteers: volunteers.filter(data => data.status === '1'),
-      distributedVolunteers: volunteers.filter(data => data.status === '2'),
-      welcomedVolunteers: volunteers.filter(data => data.status === '3'),
-      activeVolunteers: volunteers.filter(data => data.status === '4'),
-      pausedVolunteers: volunteers.filter(data => data.status === '5'),
-      notSuitableVolunteers: volunteers.filter(data => data.status === '6')
+      newVolunteers: volunteers.filter((data) => data.status === '1'),
+      distributedVolunteers: volunteers.filter((data) => data.status === '2'),
+      welcomedVolunteers: volunteers.filter((data) => data.status === '3'),
+      activeVolunteers: volunteers.filter((data) => data.status === '4'),
+      pausedVolunteers: volunteers.filter((data) => data.status === '5'),
+      notSuitableVolunteers: volunteers.filter((data) => data.status === '6'),
     });
   }
 

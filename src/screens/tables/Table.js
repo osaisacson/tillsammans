@@ -3,14 +3,12 @@ import MaterialTable from 'material-table';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
-//Components
 import RenderBadge from './../../components/RenderBadge';
 
-//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const Table = props => {
+const Table = (props) => {
   //Set up hooks
   const [data, setData] = useState(props.tableData);
 
@@ -21,7 +19,7 @@ const Table = props => {
     DDPDlLcTYYMQEJNlhzgD: 'Yttre Grupp Norra Tjörn',
     uID02NUmUhp9mRqZbLF1: 'Yttre Grupp Centrala Tjörn',
     TmhoPLMU6XmapwTSS6Hi: 'Inre grupp',
-    R0tHIsIvM82th7Elq6zo: 'Kommunikatörerna'
+    R0tHIsIvM82th7Elq6zo: 'Kommunikatörerna',
   };
 
   const groupStatusDropdown = {
@@ -30,7 +28,7 @@ const Table = props => {
     // 3: 'fördelad-volontär', //TBD
     4: 'Klar',
     5: 'Pausad',
-    6: 'Avbokad'
+    6: 'Avbokad',
   };
 
   const groupStatusDropdownForGroups = {
@@ -39,7 +37,7 @@ const Table = props => {
     // 3: 'fördelad-volontär', //TBD
     4: 'Klar',
     5: 'Pausad',
-    6: 'Avbokad'
+    6: 'Avbokad',
   };
 
   const volunteerStatusDropdown = {
@@ -48,7 +46,7 @@ const Table = props => {
     3: 'Välkomnad',
     4: 'Aktiv',
     5: 'Pausad',
-    6: 'Olämplig'
+    6: 'Olämplig',
   };
 
   const volunteerStatusDropdownForGroups = {
@@ -57,32 +55,32 @@ const Table = props => {
     3: 'Välkomnad',
     4: 'Aktiv',
     5: 'Pausad',
-    6: 'Olämplig'
+    6: 'Olämplig',
   };
 
   //Custom cell sizes
   const small = {
     width: 130,
-    minWidth: 130
+    minWidth: 130,
   };
 
   const medium = {
     width: 190,
-    minWidth: 190
+    minWidth: 190,
   };
 
   const large = {
     width: 300,
-    minWidth: 300
+    minWidth: 300,
   };
 
   const xlarge = {
     width: 350,
-    minWidth: 350
+    minWidth: 350,
   };
 
   //Send email
-  const sendEmail = content => {
+  const sendEmail = (content) => {
     const email = 'Email till mottagare här';
     const subject = `Ny beställning från ${
       content.förnamn ? content.förnamn : ''
@@ -122,7 +120,7 @@ const Table = props => {
       cellStyle: medium,
       headerStyle: medium,
       editable: 'never',
-      render: rowData => (
+      render: (rowData) => (
         <Button
           onClick={sendEmail.bind(this, rowData)}
           className="small-button"
@@ -130,7 +128,7 @@ const Table = props => {
         >
           Kopiera detaljer till email
         </Button>
-      )
+      ),
     },
     { title: 'Mottaget', field: 'datum', editable: 'never' },
     {
@@ -138,7 +136,7 @@ const Table = props => {
       field: 'tidsrymd',
       editable: 'never',
       cellStyle: small,
-      headerStyle: small
+      headerStyle: small,
     },
     {
       title: 'Status',
@@ -147,7 +145,7 @@ const Table = props => {
         ? groupStatusDropdownForGroups
         : groupStatusDropdown,
       cellStyle: small,
-      headerStyle: small
+      headerStyle: small,
     },
     {
       title: 'Grupp',
@@ -155,7 +153,7 @@ const Table = props => {
       editable: props.isGroupOrders ? 'never' : 'always',
       lookup: groupDropdown,
       cellStyle: medium,
-      headerStyle: medium
+      headerStyle: medium,
     },
     {
       title: 'Namn',
@@ -163,49 +161,49 @@ const Table = props => {
       editable: 'never',
       cellStyle: medium,
       headerStyle: medium,
-      render: rowData => (
+      render: (rowData) => (
         <div>
           {rowData.förnamn} {rowData.efternamn}
         </div>
-      )
+      ),
     },
     {
       title: 'Beskrivning',
       field: 'beskrivning',
       editable: 'never',
       cellStyle: xlarge,
-      headerStyle: xlarge
+      headerStyle: xlarge,
     },
     {
       title: 'Kommentarer (skriv extra info här)',
       field: 'kommentarer',
       cellStyle: large,
-      headerStyle: large
+      headerStyle: large,
     },
     {
       title: 'Typ',
       field: 'typ',
       editable: 'never',
       cellStyle: medium,
-      headerStyle: medium
+      headerStyle: medium,
     },
     {
       title: 'Swish',
       field: 'swish',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.swish} />
+      render: (rowData) => <RenderBadge bool={rowData.swish} />,
     },
     {
       title: 'Kontant',
       field: 'kontant',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.kontant} />
+      render: (rowData) => <RenderBadge bool={rowData.kontant} />,
     },
     {
       title: 'Faktura',
       field: 'faktura',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.faktura} />
+      render: (rowData) => <RenderBadge bool={rowData.faktura} />,
     },
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
@@ -213,9 +211,9 @@ const Table = props => {
       title: 'Address',
       field: 'address',
       cellStyle: medium,
-      headerStyle: medium
+      headerStyle: medium,
     },
-    { title: 'Postkod', field: 'postkod' }
+    { title: 'Postkod', field: 'postkod' },
   ];
 
   const volunteerColumns = [
@@ -227,7 +225,7 @@ const Table = props => {
         ? volunteerStatusDropdownForGroups
         : volunteerStatusDropdown,
       cellStyle: small,
-      headerStyle: small
+      headerStyle: small,
     },
     {
       title: 'Grupp',
@@ -235,13 +233,13 @@ const Table = props => {
       editable: props.isGroupVolunteers ? 'never' : 'always',
       lookup: groupDropdown,
       cellStyle: medium,
-      headerStyle: medium
+      headerStyle: medium,
     },
     {
       title: 'Kommentarer (skriv extra info här)',
       field: 'kommentarer',
       cellStyle: large,
-      headerStyle: large
+      headerStyle: large,
     },
     {
       title: 'Namn',
@@ -249,18 +247,18 @@ const Table = props => {
       editable: 'never',
       cellStyle: medium,
       headerStyle: medium,
-      render: rowData => (
+      render: (rowData) => (
         <div>
           {rowData.förnamn} {rowData.efternamn}
         </div>
-      )
+      ),
     },
     {
       title: 'Beskrivning',
       field: 'beskrivning',
       editable: 'never',
       cellStyle: xlarge,
-      headerStyle: xlarge
+      headerStyle: xlarge,
     },
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
@@ -272,75 +270,75 @@ const Table = props => {
       title: 'Har körkort',
       field: 'körkort',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.körkort} />
+      render: (rowData) => <RenderBadge bool={rowData.körkort} />,
     },
     {
       title: 'Har bil',
       field: 'bil',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.bil} />
+      render: (rowData) => <RenderBadge bool={rowData.bil} />,
     },
     {
       title: 'Mat',
       field: 'mat',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.mat} />
+      render: (rowData) => <RenderBadge bool={rowData.mat} />,
     },
     {
       title: 'Varor',
       field: 'varor',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.varor} />
+      render: (rowData) => <RenderBadge bool={rowData.varor} />,
     },
     {
       title: 'Ärenden',
       field: 'ärenden',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.ärenden} />
+      render: (rowData) => <RenderBadge bool={rowData.ärenden} />,
     },
     {
       title: 'Djur',
       field: 'djur',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.djur} />
+      render: (rowData) => <RenderBadge bool={rowData.djur} />,
     },
     {
       title: 'Prata',
       field: 'prata',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.prata} />
+      render: (rowData) => <RenderBadge bool={rowData.prata} />,
     },
     {
       title: 'Myndigheter',
       field: 'myndigheter',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.myndigheter} />
+      render: (rowData) => <RenderBadge bool={rowData.myndigheter} />,
     },
     {
       title: 'Teknik',
       field: 'teknik',
       editable: 'never',
-      render: rowData => <RenderBadge bool={rowData.teknik} />
-    }
+      render: (rowData) => <RenderBadge bool={rowData.teknik} />,
+    },
   ];
 
   const groupColumns = [
     {
       title: 'Gruppnamn',
       field: 'gruppnamn',
-      render: rowData => (
+      render: (rowData) => (
         <Link to={`/grupp/${rowData.länkNamn}/${rowData.id}`}>
           {rowData.gruppnamn}
         </Link>
       ),
       cellStyle: medium,
-      headerStyle: medium
+      headerStyle: medium,
     },
     {
       title: 'Beskrivning',
       field: 'kommentarer',
       cellStyle: xlarge,
-      headerStyle: xlarge
+      headerStyle: xlarge,
     },
 
     { title: 'Kontakt', field: 'kontakt' },
@@ -350,7 +348,7 @@ const Table = props => {
     { title: 'Postkod', field: 'postkod' },
     { title: 'Skapad', field: 'datum', editable: 'never' },
     { title: 'adminNamn', field: 'adminNamn' },
-    { title: 'adminPwd', field: 'adminPwd' }
+    { title: 'adminPwd', field: 'adminPwd' },
   ];
 
   const cancelledColumns = [
@@ -359,13 +357,13 @@ const Table = props => {
       title: 'Kommentarer (skriv extra info här)',
       field: 'kommentarer',
       cellStyle: large,
-      headerStyle: large
+      headerStyle: large,
     },
 
     { title: 'Telefon', field: 'telefon' },
     { title: 'Email', field: 'email' },
     { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod' }
+    { title: 'Postkod', field: 'postkod' },
   ];
 
   //Set column headers depending on which screen we are in.
@@ -403,7 +401,7 @@ const Table = props => {
       address: newData.address ? newData.address : '',
       postkod: newData.postkod ? newData.postkod : '',
       status: newData.status ? newData.status : '',
-      kommentarer: newData.kommentarer ? newData.kommentarer : ''
+      kommentarer: newData.kommentarer ? newData.kommentarer : '',
     });
   }
 
@@ -434,7 +432,7 @@ const Table = props => {
       teknik: newData.teknik ? newData.teknik : false,
       datum: newData.datum ? newData.datum : '',
       status: newData.status ? newData.status : '1',
-      kommentarer: newData.kommentarer ? newData.kommentarer : ''
+      kommentarer: newData.kommentarer ? newData.kommentarer : '',
     });
   }
 
@@ -454,7 +452,7 @@ const Table = props => {
       email: newData.email ? newData.email : '',
       address: newData.address ? newData.address : '',
       postkod: newData.postkod ? newData.postkod : '',
-      status: newData.status ? newData.status : '1'
+      status: newData.status ? newData.status : '1',
     });
   }
 
@@ -469,7 +467,7 @@ const Table = props => {
       email: newData.email ? newData.email : '',
       address: newData.address ? newData.address : '',
       postkod: newData.postkod ? newData.postkod : '',
-      status: newData.status ? newData.status : '1'
+      status: newData.status ? newData.status : '1',
     });
   }
 
@@ -488,28 +486,28 @@ const Table = props => {
       options={{
         paging: true,
         exportButton: true,
-        draggable: true
+        draggable: true,
       }}
       localization={{
         pagination: {
-          labelDisplayedRows: '{from}-{to} av {count}'
+          labelDisplayedRows: '{from}-{to} av {count}',
         },
         toolbar: {
-          nRowsSelected: '{0} rader valda'
+          nRowsSelected: '{0} rader valda',
         },
         header: {
-          actions: ' '
+          actions: ' ',
         },
         body: {
           emptyDataSourceMessage: 'Här var det tomt!',
           filterRow: {
-            filterTooltip: 'Filter'
-          }
-        }
+            filterTooltip: 'Filter',
+          },
+        },
       }}
       editable={{
         onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
+          new Promise((resolve) => {
             props.isOrders || props.isGroupOrders
               ? updateOrder(newData, oldData)
               : props.isVolunteers || props.isGroupVolunteers
@@ -519,7 +517,7 @@ const Table = props => {
               : updateCancelled(newData, oldData);
             props.refreshAction();
             resolve();
-          })
+          }),
       }}
     />
   );

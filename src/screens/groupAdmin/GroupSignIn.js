@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-//Components
 import SignInForm from '../../components/SignInForm';
 
-//Models
 import AdminGroup from '../../models/adminGroup';
 
-//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const GroupSignIn = props => {
+const GroupSignIn = (props) => {
   const firestore = firebase.firestore();
 
   //Set up hooks
@@ -18,14 +15,17 @@ const GroupSignIn = props => {
   const [loginPassword, setLoginPassword] = useState('');
 
   const [data, setData] = useState({
-    finalAdminData: []
+    finalAdminData: [],
   });
 
   useEffect(() => {
     async function getAdminData() {
       const loadedAdminData = [];
+      //Not that we are getting the data from the collection 'groups' but
+      //passing it through the AdminGroup model instead of the Group model.
+      //This is because we don't need all the data of the full group.
       const querySnapshot = await firestore.collection('groups').get();
-      querySnapshot.forEach(function(doc) {
+      querySnapshot.forEach(function (doc) {
         // doc.data() is never undefined for query doc snapshots
         const resData = doc.data();
 
@@ -41,10 +41,10 @@ const GroupSignIn = props => {
 
       //Only get the admin data which match our current group id
       const currAdminGroupData = loadedAdminData.filter(
-        data => data.id === props.groupId
+        (data) => data.id === props.groupId
       );
       setData({
-        finalAdminData: currAdminGroupData[0]
+        finalAdminData: currAdminGroupData[0],
       });
     }
     getAdminData();
@@ -52,7 +52,7 @@ const GroupSignIn = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const isVerified =
       loginName === data.finalAdminData.adminNamn &&
@@ -62,7 +62,7 @@ const GroupSignIn = props => {
       : props.checkIfVerified('wrong credentials');
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     if (name === 'adminNamn') {
       setLoginName(value);

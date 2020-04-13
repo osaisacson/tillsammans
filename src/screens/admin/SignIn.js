@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-//Components
 import SignInForm from '../../components/SignInForm';
 
-//Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const SignIn = props => {
+const SignIn = (props) => {
   const firestore = firebase.firestore();
 
   //Set up hooks
@@ -19,8 +17,8 @@ const SignIn = props => {
     firestore
       .collection('admin')
       .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
           // doc.data() is never undefined for query doc snapshots
           const resData = doc.data();
           setAdminData(resData);
@@ -28,7 +26,7 @@ const SignIn = props => {
       });
   }, [firestore]);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const isVerified =
       loginName === adminData.adminNamn && loginPassword === adminData.adminPwd;
@@ -37,7 +35,7 @@ const SignIn = props => {
       : props.checkIfVerified('wrong credentials');
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     if (name === 'adminNamn') {
       setLoginName(value);

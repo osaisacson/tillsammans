@@ -10,24 +10,23 @@ import Badge from 'react-bootstrap/Badge';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-//Components
 import Table from '../tables/Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import CancelForm from './../users/CancelForm';
 import Accordion from './../../components/Accordion';
 
-const Cancellations = props => {
+const Cancellations = (props) => {
   const firestore = firebase.firestore();
   const [data, setData] = useState({
     toCancel: [],
-    cancelled: []
+    cancelled: [],
   });
 
   async function getCancellations() {
     const cancellations = [];
     const querySnapshot = await firestore.collection('cancellations').get();
-    querySnapshot.forEach(function(doc) {
+    querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -45,8 +44,8 @@ const Cancellations = props => {
     });
 
     setData({
-      toCancel: cancellations.filter(data => data.status === 'avboka'),
-      cancelled: cancellations.filter(data => data.status === 'avbokad')
+      toCancel: cancellations.filter((data) => data.status === 'avboka'),
+      cancelled: cancellations.filter((data) => data.status === 'avbokad'),
     });
   }
 

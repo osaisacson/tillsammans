@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//Import images
+
 import School from './../images/illustration-pointer-med-text.png';
 import Icon1 from './../images/symbol2.png';
 import Icon2 from './../images/symbol1.png';
 import Icon3 from './../images/symbol3.png';
 
-//Components
 import IconButton from './../components/IconButton';
 import Footer from './../components/Footer';
 

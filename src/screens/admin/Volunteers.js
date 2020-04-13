@@ -4,14 +4,13 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Badge from 'react-bootstrap/Badge';
 
-//Components
 import Table from '../tables/Table';
 import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import VolunteerForm from './../users/VolunteerForm';
 import Accordion from './../../components/Accordion';
 
-const Volunteers = props => {
+const Volunteers = (props) => {
   return (
     <div className="page-layout">
       <AddButtonHeader
