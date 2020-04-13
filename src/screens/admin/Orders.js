@@ -20,43 +20,21 @@ const Orders = (props) => {
       />
       <Accordion
         title="Hur vi hanterar beställningar"
-        content="<ol>
+        content="
+        <h5>Uppdatera i vårt system</h5>
+        <ol>
         <li>Öppna redigering genom att klicka på pennan till vänster om beställningen</li>
         <li>Välj grupp</li>
         <li>Ändra status till 'Fördelad till grupp'.</li>
-      
-        <li>
-          Klicka på spara symbolen för att spara ändringar
-        </li>
-      <li>Om inte ändringarna syns direkt, klicka refresh-knappen till höger</li>
-      <li>VIKTIGT: Skicka ut ett email till den valda gruppens kontaktperson om att de fått in en ny beställning</li>
+        <li>Klicka på spara symbolen för att spara ändringar - om inte ändringarna syns direkt klicka refresh-knappen till höger</li>
+        </ol>
+        <br/>
+        <h5>Skicka email till gruppledaren om deras nya beställning</h5>
+        <ol>
+        <li>Klicka på knappen 'Kopiera detaljer till email' bredvid beställningen - detta öppnar din email med mailet redan klart.</li>
+        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren det ska skickas till</li>
+        <li>Håll ett öga på beställningen i systemet så gruppledaren markerar den som 'Klar', annars följ upp.</li>
       </ol>
-      
-     
-</br>
-      -----------------------------------------------------------------------
-      </br>
-<p>Hej!</p>
-
-            <p>Ni har fått in en ny beställning till er volontärgrupp från Alla Tillsammans.</p>
-
-            <p>Nästa steg:</p>
-            
-            <p>1. Gå in på er sida (kontakta asaisacson@gmail.com om ni behöver addressen/login)</p>
-            
-            <p>2. Hitta alla detaljer om beställningen där, och tryck på en knapp för att vidarebefordra till lämplig volontär</p>
-           
-            <p>3. Kontakta beställaren och låt dom veta beställningen är mottagen och på gång.</p>
-
-            <p>4. Uppdatera beställningen via er gruppsida till 'klar' när den är klar. </p>
-
-            <br />
-
-            <p>Låt mig veta om ni har några frågor!</p>
-            <p>Vänliga hälsningar,</p>
-
-      -----------------------------------------------------------------------
-      </br>
       </br>"
       />
 

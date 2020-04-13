@@ -21,6 +21,10 @@ const GroupOrders = (props) => {
       <h4>Hur vi hanterar beställningar</h4>
       <ol>
         <li>
+          Skicka beställning till volontär genom knappen 'Kopiera detaljer till
+          email'
+        </li>
+        <li>
           Öppna redigering genom att klicka på pennan till vänster om
           beställningen
         </li>
@@ -31,11 +35,8 @@ const GroupOrders = (props) => {
         </li>
         <li>
           Klicka på bock-ikonen till vänster om beställningen för att spara
-          ändringar
-        </li>
-        <li>
-          Om inte ändringarna syns direkt, klicka den lila refresh-knappen nere
-          till höger
+          ändringar - om inte ändringarna syns direkt, klicka den lila
+          refresh-knappen nere till höger
         </li>
         <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
       </ol>

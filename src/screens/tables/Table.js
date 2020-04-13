@@ -3,6 +3,22 @@ import MaterialTable from 'material-table';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
+import { small, medium, large, xlarge } from './CellSizes';
+import {
+  sendOrderEmail,
+  sendGroupOrderEmail,
+  sendVolunteerEmail,
+  sendGroupVolunteerEmail,
+  sendWelcomeEmail,
+} from './Emails';
+import {
+  groupDropdown,
+  groupStatusDropdown,
+  groupStatusDropdownForGroups,
+  volunteerStatusDropdown,
+  volunteerStatusDropdownForGroups,
+} from './Dropdowns';
+
 import RenderBadge from './../../components/RenderBadge';
 
 import firebase from 'firebase/app';
@@ -11,106 +27,6 @@ import 'firebase/firestore';
 const Table = (props) => {
   //Set up hooks
   const [data, setData] = useState(props.tableData);
-
-  //Dropdowns
-  const groupDropdown = {
-    0: 'Ingen grupp vald',
-    Pn5Uj8h84m5pjqSmL6sA: 'Yttre Grupp Skärhamn',
-    DDPDlLcTYYMQEJNlhzgD: 'Yttre Grupp Norra Tjörn',
-    uID02NUmUhp9mRqZbLF1: 'Yttre Grupp Centrala Tjörn',
-    TmhoPLMU6XmapwTSS6Hi: 'Inre grupp',
-    R0tHIsIvM82th7Elq6zo: 'Kommunikatörerna',
-  };
-
-  const groupStatusDropdown = {
-    1: 'Ny',
-    2: 'Fördelad till grupp',
-    // 3: 'fördelad-volontär', //TBD
-    4: 'Klar',
-    5: 'Pausad',
-    6: 'Avbokad',
-  };
-
-  const groupStatusDropdownForGroups = {
-    // 1: 'ny',
-    2: 'Att bli utförd',
-    // 3: 'fördelad-volontär', //TBD
-    4: 'Klar',
-    5: 'Pausad',
-    6: 'Avbokad',
-  };
-
-  const volunteerStatusDropdown = {
-    1: 'Ny',
-    2: 'Fördelad till grupp',
-    3: 'Välkomnad',
-    4: 'Aktiv',
-    5: 'Pausad',
-    6: 'Olämplig',
-  };
-
-  const volunteerStatusDropdownForGroups = {
-    // 1: 'Ny',
-    2: 'Att bli välkomnad',
-    3: 'Välkomnad',
-    4: 'Aktiv',
-    5: 'Pausad',
-    6: 'Olämplig',
-  };
-
-  //Custom cell sizes
-  const small = {
-    width: 130,
-    minWidth: 130,
-  };
-
-  const medium = {
-    width: 190,
-    minWidth: 190,
-  };
-
-  const large = {
-    width: 300,
-    minWidth: 300,
-  };
-
-  const xlarge = {
-    width: 350,
-    minWidth: 350,
-  };
-
-  //Send email
-  const sendEmail = (content) => {
-    const email = 'Email till mottagare här';
-    const subject = `Ny beställning från ${
-      content.förnamn ? content.förnamn : ''
-    } ${content.efternamn ? content.efternamn : ''}`;
-    const emailBody = `Hej! %0A
-    %0A 
-    Här kommer information om beställningen: %0A 
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : '-'}, %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : '-'} %0A 
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ''} %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ''} %0A
-    Email: ${content.email ? content.email : '-'} %0A
-    Telefon: ${content.telefon ? content.telefon : '-'} %0A
-    Address: ${content.address ? content.address : '-'} %0A
-    Postkod: ${content.postkod ? content.postkod : '-'} %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ''} 
-    %0A
-    Typ: ${content.typ ? content.typ : 'Ingen'} %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} %0A
-    %0A
-    Swish: ${content.swish ? 'Ja' : 'Nej'} %0A
-    Kontant: ${content.kontant ? 'Ja' : 'Nej'} %0A
-    Faktura: ${content.faktura ? 'Ja' : 'Nej'} %0A
-  `;
-    window.open(
-      'mailto:' + email + '?subject=' + subject + '&body=' + emailBody
-    );
-  };
 
   //Column headers
   const orderColumns = [
@@ -122,7 +38,11 @@ const Table = (props) => {
       editable: 'never',
       render: (rowData) => (
         <Button
-          onClick={sendEmail.bind(this, rowData)}
+          onClick={
+            props.isGroupOrders
+              ? sendGroupOrderEmail.bind(this, rowData)
+              : sendOrderEmail.bind(this, rowData)
+          }
           className="small-button"
           size="sm"
         >
@@ -217,6 +137,42 @@ const Table = (props) => {
   ];
 
   const volunteerColumns = [
+    {
+      title: 'Skicka välkomst-email',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <Button
+          onClick={sendWelcomeEmail.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Skicka välkomst-email
+        </Button>
+      ),
+    },
+    {
+      title: 'Kopiera & skicka detaljer',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <Button
+          onClick={
+            props.isGroupVolunteers
+              ? sendGroupVolunteerEmail.bind(this, rowData)
+              : sendVolunteerEmail.bind(this, rowData)
+          }
+          className="small-button"
+          size="sm"
+        >
+          Kopiera detaljer till email
+        </Button>
+      ),
+    },
     { title: 'Mottaget', field: 'datum', editable: 'never' },
     {
       title: 'Status',

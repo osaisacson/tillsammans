@@ -20,43 +20,20 @@ const Volunteers = (props) => {
       />
       <Accordion
         title="Hur vi hanterar Volontärer"
-        content="<ol>
+        content="<h5>Uppdatera i vårt system</h5>
+        <ol>
         <li>Öppna redigering genom att klicka på pennan till vänster om volontären</li>
         <li>Välj grupp</li>
         <li>Ändra status till 'Fördelad till grupp'.</li>
-      
-        <li>
-          Klicka på spara symbolen för att spara ändringar
-        </li>
-      <li>Om inte ändringarna syns direkt, klicka refresh-knappen till höger</li>
-      <li>VIKTIGT: Skicka ut ett email till den valda gruppens kontaktperson om att de fått in en ny volontär</li>
+        <li>Klicka på spara symbolen för att spara ändringar - om inte ändringarna syns direkt klicka refresh-knappen till höger</li>
+        </ol>
+        <br/>
+        <h5>Skicka email till gruppledaren om deras nya volontär</h5>
+        <ol>
+        <li>Klicka på knappen 'Kopiera detaljer till email' bredvid volontären - detta öppnar din email med mailet redan klart.</li>
+        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren den ska skickas till</li>
+        <li>Håll ett öga på volontären i systemet så gruppledaren markerar den som 'Välkomnad' och sen 'Tränad', annars följ upp.</li>
       </ol>
-      
-     
-</br>
-      -----------------------------------------------------------------------
-      </br>
-<p>Hej!</p>
-
-            <p>Ni har fått in en ny volontär till er volontärgrupp från Alla Tillsammans.</p>
-
-            <p>Nästa steg:</p>
-            
-            <p>1. Gå in på er sida (kontakta asaisacson@gmail.com om ni behöver addressen/login)</p>
-            
-            <p>2. Hitta alla detaljer om volontären där</p>
-           
-            <p>3. Kontakta volontären och låt dom veta att de snart kommer bli välkomnade.</p>
-
-            <p>4. Uppdatera volontärens status via er gruppsida när de blivit välkomnade. </p>
-
-            <br />
-
-            <p>Låt mig veta om ni har några frågor!</p>
-            <p>Vänliga hälsningar,</p>
-
-      -----------------------------------------------------------------------
-      </br>
       </br>"
       />
 
