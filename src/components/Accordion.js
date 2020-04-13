@@ -31,7 +31,7 @@ function Accordion(props) {
       >
         <div
           className="accordion-text"
-          dangerouslySetInnerHTML={{ -html: props.content }}
+          dangerouslySetInnerHTML={{ __html: props.content }}
         />
       </div>
     </div>
