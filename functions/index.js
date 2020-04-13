@@ -15,6 +15,7 @@ const gmailPassword = functions.config().gmail.password;
 //To change above configs: firebase functions:config:set gmail.email='email@gmail.com' gmail.password='emailpassword'
 const mailTransport = nodemailer.createTransport({
   service: 'gmail',
+  secure: true,
   auth: {
     user: gmailEmail,
     pass: gmailPassword,
@@ -55,17 +56,17 @@ async function sendNewOrderEmail(orderData) {
             <b>Tid kan vänta: </b>${orderData.tidsrymd}<br>
           </p>
           <p>
-            <b>Telefon: </b>${orderData.telefon}<br>
-            <b>Email: </b>${orderData.email}<br>
-            <b>Address: </b>${orderData.address}<br>
+            <b>Telefon: </b>${orderData.telefon ? orderData.telefon : '-'}<br>
+            <b>Email: </b>${orderData.email ? orderData.email : '-'}<br>
+            <b>Address: </b>${orderData.address ? orderData.address : '-'}<br>
           </p>
           <p>
             <b>Beskrivning: </b>${orderData.beskrivning}<br>
           </p>
           <p>
-          <b>Faktura: </b>${orderData.faktura}<br>
-          <b>Swish: </b>${orderData.swish}<br>
-          <b>Kontant: </b>${orderData.kontant}<br>
+          <b>Faktura: </b>${orderData.faktura ? 'Ja' : 'Nej'}<br>
+          <b>Swish: </b>${orderData.swish ? 'Ja' : 'Nej'}<br>
+          <b>Kontant: </b>${orderData.kontant ? 'Ja' : 'Nej'}<br>
         </p>
         <br>
         <p>
@@ -78,7 +79,12 @@ async function sendNewOrderEmail(orderData) {
             <li>Klart!</li>
           </ol>
         </p>
-        <p>För uppföljning: håll ett öga på fliken 'Fördelad till grupp'. Beställningarna ska försvinna ur denna och in i 'Klar' fliken allteftersom gruppledarna genomför beställningarna. Om någon fastnar - kontakta gruppledaren för statuskoll.</p>
+        <p>För uppföljning: håll ett öga på fliken 'Fördelad till grupp'.</p> 
+        <p>Beställningarna ska försvinna ur denna och in i 'Klar' fliken allteftersom gruppledarna genomför beställningarna. </p>
+        <p>Om någon fastnar - kontakta gruppledaren för statuskoll.</p>
+        <br>
+        <br>
+        <p>Allt gott!</p>
         `,
   };
 
@@ -114,21 +120,21 @@ async function sendNewVolunteerEmail(volunteerData) {
       <b>Språk: </b>${volunteerData.språk}<br>
     </p>
     <p>
-      <b>Körkort: </b>${volunteerData.körkort}<br>
-      <b>Bil: </b>${volunteerData.bil}<br>
+      <b>Körkort: </b>${volunteerData.körkort ? 'Ja' : 'Nej'}<br>
+      <b>Bil: </b>${volunteerData.bil ? 'Ja' : 'Nej'}<br>
     </p>
     <p>
-      <b>Mat: </b>${volunteerData.mat}<br>
-      <b>Varor: </b>${volunteerData.varor}<br>
-      <b>Ärenden: </b>${volunteerData.ärenden}<br>
-      <b>Djur: </b>${volunteerData.djur}<br>
-      <b>Prata: </b>${volunteerData.prata}<br>
-      <b>Myndigheter: </b>${volunteerData.myndigheter}<br>
-      <b>Teknik: </b>${volunteerData.teknik}<br>
+      <b>Mat: </b>${volunteerData.mat ? 'Ja' : 'Nej'}<br>
+      <b>Varor: </b>${volunteerData.varor ? 'Ja' : 'Nej'}<br>
+      <b>Ärenden: </b>${volunteerData.ärenden ? 'Ja' : 'Nej'}<br>
+      <b>Djur: </b>${volunteerData.djur ? 'Ja' : 'Nej'}<br>
+      <b>Prata: </b>${volunteerData.prata ? 'Ja' : 'Nej'}<br>
+      <b>Myndigheter: </b>${volunteerData.myndigheter ? 'Ja' : 'Nej'}<br>
+      <b>Teknik: </b>${volunteerData.teknik ? 'Ja' : 'Nej'}<br>
   </p>
   <br>
   <p>
-    <b>Nästa steg:<br>
+    <b>Nästa steg:</b><br>
     <ol>
       <li>Gå in på <a href="https://tjorn.allatillsammans.se/admin">tjorn.allatillsammans.se/admin</a></li>
       <li>Ändra vilken grupp volontären ska fördelas till</li>
@@ -137,7 +143,12 @@ async function sendNewVolunteerEmail(volunteerData) {
       <li>Klart!</li>
     </ol>
   </p>
-  <p>För uppföljning: håll ett öga på fliken 'Fördelad till grupp'. Volontärerna ska försvinna ur denna och in i 'Välkomnade' och sen 'Aktiva' fliken allteftersom gruppledarna uppdaterar status. Om någon fastnar - kontakta gruppledaren för statuskoll.</p>
+  <p>För uppföljning: håll ett öga på fliken 'Fördelad till grupp'. </p>
+  <p>Volontärerna ska försvinna ur denna och in i 'Välkomnade' och sen 'Aktiva' fliken allteftersom gruppledarna uppdaterar status. </p>
+  <p>Om någon fastnar - kontakta gruppledaren för statuskoll.</p>
+  <br>
+  <br>
+  <p>Allt gott!</p>
   `,
   };
 
