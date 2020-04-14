@@ -5,6 +5,8 @@ export const groupDropdown = {
   Pn5Uj8h84m5pjqSmL6sA: 'Yttre Grupp Skärhamn',
   DDPDlLcTYYMQEJNlhzgD: 'Yttre Grupp Norra Tjörn',
   uID02NUmUhp9mRqZbLF1: 'Yttre Grupp Centrala Tjörn',
+  ZHyAZgDOttiNOkvD3zb6: 'Yttre Grupp Mjörn',
+  DiM537Vye6Wi6SRQJfHT: 'Direkthantering',
   TmhoPLMU6XmapwTSS6Hi: 'Inre grupp',
   R0tHIsIvM82th7Elq6zo: 'Kommunikatörerna',
 };
