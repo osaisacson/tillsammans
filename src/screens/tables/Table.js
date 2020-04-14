@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { small, medium, large, xlarge } from './CellSizes';
 import {
   sendOrderEmail,
+  sendConfirmationEmail,
   sendGroupOrderEmail,
   sendVolunteerEmail,
   sendGroupVolunteerEmail,
@@ -30,6 +31,22 @@ const Table = (props) => {
 
   //Column headers
   const orderColumns = [
+    {
+      title: 'Bekräftelse till beställare',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <Button
+          onClick={sendConfirmationEmail.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Bekräftelse till beställare
+        </Button>
+      ),
+    },
     {
       title: 'Kopiera & skicka detaljer',
       field: 'skicka',
