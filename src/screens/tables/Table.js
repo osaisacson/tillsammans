@@ -15,7 +15,7 @@ import {
   sendConfirmationEmail,
   sendGroupOrderEmail,
   sendVolunteerEmail,
-  sendGroupVolunteerEmail,
+  sendGeneralVolunteerInfo,
   sendWelcomeEmail,
 } from './Emails';
 import {
@@ -204,6 +204,7 @@ const Table = (props) => {
       editable: 'never',
       render: (rowData) => (
         <ConfirmationCustomer
+          isCustomerConfirmation={true}
           buttonText="Skicka bekräftelse"
           refreshAction={props.refreshAction}
           onClickAction={sendConfirmationEmail.bind(this, rowData)}
@@ -220,11 +221,11 @@ const Table = (props) => {
       editable: 'never',
       render: (rowData) => (
         <ConfirmationInternal
-          isVolunteerConfirmation={true}
+          isOrderInfoToVolunteer={true}
           itemId={rowData.id}
           isConfirmed={rowData.skickadVolontär}
           refreshAction={props.refreshAction}
-          onClickAction={sendVolunteerEmail.bind(this, rowData)}
+          onClickAction={sendGroupOrderEmail.bind(this, rowData)}
         />
       ),
     },
@@ -268,7 +269,7 @@ const Table = (props) => {
       editable: 'never',
       render: (rowData) => (
         <ConfirmationCustomer
-          buttonText="Skicka bekräftelse"
+          isCustomerConfirmation={true}
           refreshAction={props.refreshAction}
           onClickAction={sendConfirmationEmail.bind(this, rowData)}
           isConfirmed={rowData.skickadBeställare}
@@ -284,7 +285,7 @@ const Table = (props) => {
       editable: 'never',
       render: (rowData) => (
         <ConfirmationInternal
-          isVolunteerConfirmation={true}
+          isOrderInfoToVolunteer={true}
           itemId={rowData.id}
           isConfirmed={rowData.skickadVolontär}
           refreshAction={props.refreshAction}
@@ -305,43 +306,9 @@ const Table = (props) => {
   ];
 
   const volunteerColumns = [
-    {
-      title: 'Skicka välkomst-email',
-      field: 'skicka',
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: 'never',
-      render: (rowData) => (
-        <Button
-          onClick={sendWelcomeEmail.bind(this, rowData)}
-          className="small-button"
-          size="sm"
-        >
-          Skicka välkomst-email
-        </Button>
-      ),
-    },
-    {
-      title: 'Kopiera & skicka detaljer',
-      field: 'skicka',
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: 'never',
-      render: (rowData) => (
-        <Button
-          onClick={sendVolunteerEmail.bind(this, rowData)}
-          className="small-button"
-          size="sm"
-        >
-          Kopiera detaljer till email
-        </Button>
-      ),
-    },
     mottaget,
     förnamn,
     efternamn,
-    kommentarer,
-    beskrivning,
     {
       title: 'Status',
       field: 'status',
@@ -356,6 +323,56 @@ const Table = (props) => {
       cellStyle: medium,
       headerStyle: medium,
     },
+    {
+      title: 'Detaljer till grupp',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationInternal
+          isVolToGroupConf={true}
+          itemId={rowData.id}
+          isConfirmed={rowData.skickadVolontärTillGrupp}
+          refreshAction={props.refreshAction}
+          onClickAction={sendVolunteerEmail.bind(this, rowData)}
+        />
+      ),
+    },
+    {
+      title: 'Bekräftelse till volontär',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationCustomer
+          isConfToVol={true}
+          refreshAction={props.refreshAction}
+          onClickAction={sendWelcomeEmail.bind(this, rowData)}
+          isConfirmed={rowData.skickadBekräftelseTillVolontär}
+          data={rowData}
+        />
+      ),
+    },
+    {
+      title: 'Kopiera detaljer',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <Button
+          onClick={sendGeneralVolunteerInfo.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Kopiera detaljer
+        </Button>
+      ),
+    },
+    kommentarer,
+    beskrivning,
     telefon,
     email,
     address,
@@ -374,36 +391,9 @@ const Table = (props) => {
   ];
 
   const groupVolunteersColumns = [
-    {
-      title: 'Bekräftelse',
-      field: 'bekräftelse',
-      cellStyle: medium,
-      headerStyle: medium,
-      render: (rowData) => (
-        <div>Fyll i här om bekräftelse har skickats eller inte</div>
-      ),
-    },
-    {
-      title: 'Kopiera & skicka detaljer',
-      field: 'skicka',
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: 'never',
-      render: (rowData) => (
-        <Button
-          onClick={sendGroupVolunteerEmail.bind(this, rowData)}
-          className="small-button"
-          size="sm"
-        >
-          Kopiera detaljer till email
-        </Button>
-      ),
-    },
     mottaget,
     förnamn,
     efternamn,
-    kommentarer,
-    beskrivning,
     {
       title: 'Status',
       field: 'status',
@@ -419,6 +409,40 @@ const Table = (props) => {
       cellStyle: medium,
       headerStyle: medium,
     },
+    {
+      title: 'Bekräftelse till volontär',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationCustomer
+          isConfToVol={true}
+          refreshAction={props.refreshAction}
+          onClickAction={sendWelcomeEmail.bind(this, rowData)}
+          isConfirmed={rowData.skickadBekräftelseTillVolontär}
+          data={rowData}
+        />
+      ),
+    },
+    {
+      title: 'Kopiera detaljer',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <Button
+          onClick={sendGeneralVolunteerInfo.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Kopiera detaljer
+        </Button>
+      ),
+    },
+    kommentarer,
+    beskrivning,
     telefon,
     email,
     address,

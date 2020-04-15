@@ -8,7 +8,9 @@ const ConfirmationCustomer = (props) => (
       itemId={props.data.id}
       refreshAction={props.refreshAction}
       isConfirmed={props.isConfirmed}
-      isCustomerConfirmation={true}
+      isCustomerConfirmation={props.isCustomerConfirmation}
+      isConfToVol={props.isConfToVol}
+      isVolToGroupConf={props.isVolToGroupConf}
     />
     {!props.isConfirmed ? (
       <>
@@ -17,7 +19,7 @@ const ConfirmationCustomer = (props) => (
             onClick={props.onClickAction}
             className="small-button top-margin"
           >
-            {props.buttonText}
+            Skicka bekräftelse
           </Button>
         ) : (
           <div className="confirmation-text">Kontakta {props.data.telefon}</div>

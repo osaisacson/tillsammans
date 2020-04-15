@@ -14,7 +14,9 @@ const ConfirmButtons = (props) => {
 
   async function updateSent(itemId, fieldsToUpdate) {
     setIsLoading(true);
-    db.collection('orders')
+    const collectionToUpdate =
+      props.isConfToVol || props.isVolToGroupConf ? 'volunteers' : 'orders';
+    db.collection(collectionToUpdate)
       .doc(itemId)
       .update(fieldsToUpdate)
       .then(() => {
@@ -32,9 +34,17 @@ const ConfirmButtons = (props) => {
     ? {
         skickadGrupp: true,
       }
-    : props.isVolunteerConfirmation
+    : props.isOrderInfoToVolunteer
     ? {
         skickadVolontär: true,
+      }
+    : props.isConfToVol
+    ? {
+        skickadBekräftelseTillVolontär: true,
+      }
+    : props.isVolToGroupConf
+    ? {
+        skickadVolontärTillGrupp: true,
       }
     : null;
 
@@ -46,9 +56,17 @@ const ConfirmButtons = (props) => {
     ? {
         skickadGrupp: false,
       }
-    : props.isVolunteerConfirmation
+    : props.isOrderInfoToVolunteer
     ? {
         skickadVolontär: false,
+      }
+    : props.isConfToVol
+    ? {
+        skickadBekräftelseTillVolontär: false,
+      }
+    : props.isVolToGroupConf
+    ? {
+        skickadVolontärTillGrupp: false,
       }
     : null;
 
@@ -64,7 +82,9 @@ const ConfirmButtons = (props) => {
               props.isConfirmed ? 'confirm-button-active yes' : 'confirm-button'
             }
           >
-            {props.isCustomerConfirmation ? 'Kontaktad' : 'Skickad'}
+            {props.isCustomerConfirmation || props.isConfToVol
+              ? 'Kontaktad'
+              : 'Skickad'}
           </Button>
           <Button
             onClick={updateSent.bind(this, props.itemId, fieldToUpdateFalse)}
@@ -72,7 +92,9 @@ const ConfirmButtons = (props) => {
               !props.isConfirmed ? 'confirm-button-active no' : 'confirm-button'
             }
           >
-            {props.isCustomerConfirmation ? 'Inte kontaktad' : 'inte Skickad'}
+            {props.isCustomerConfirmation || props.isConfToVol
+              ? 'Inte kontaktad'
+              : 'inte Skickad'}
           </Button>
         </ButtonGroup>
       )}

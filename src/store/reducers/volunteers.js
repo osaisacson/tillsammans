@@ -2,12 +2,12 @@ import {
   DELETE_VOLUNTEER,
   CREATE_VOLUNTEER,
   UPDATE_VOLUNTEER,
-  SET_VOLUNTEERS
+  SET_VOLUNTEERS,
 } from '../actions/volunteers';
 import Volunteer from '../../models/volunteer';
 
 const initialState = {
-  availableVolunteers: []
+  availableVolunteers: [],
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
         action.volunteers
       );
       return {
-        availableVolunteers: action.volunteers
+        availableVolunteers: action.volunteers,
       };
     case CREATE_VOLUNTEER:
       const newVolunteer = new Volunteer(
@@ -44,15 +44,17 @@ export default (state = initialState, action) => {
         action.volunteerData.grupp,
         action.volunteerData.datum,
         action.volunteerData.status,
-        action.volunteerData.kommentarer
+        action.volunteerData.kommentarer,
+        action.volunteerData.skickadVolontärTillGrupp,
+        action.volunteerData.skickadBekräftelseTillVolontär
       );
       return {
         ...state,
-        availableVolunteers: state.availableVolunteers.concat(newVolunteer)
+        availableVolunteers: state.availableVolunteers.concat(newVolunteer),
       };
     case UPDATE_VOLUNTEER:
       const volunteerIndex = state.userVolunteers.findIndex(
-        ordr => ordr.id === action.oid
+        (ordr) => ordr.id === action.oid
       );
       const updatedVolunteer = new Volunteer(
         action.oid,
@@ -75,21 +77,23 @@ export default (state = initialState, action) => {
         action.volunteerData.grupp,
         state.availableVolunteers[volunteerIndex].datum,
         action.volunteerData.status,
-        action.volunteerData.kommentarer
+        action.volunteerData.kommentarer,
+        action.volunteerData.skickadVolontärTillGrupp,
+        action.volunteerData.skickadBekräftelseTillVolontär
       );
       const updatedAvailableVolunteers = [...state.availableVolunteers];
       updatedAvailableVolunteers[volunteerIndex] = updatedVolunteer;
 
       return {
         ...state,
-        availableVolunteers: updatedAvailableVolunteers
+        availableVolunteers: updatedAvailableVolunteers,
       };
     case DELETE_VOLUNTEER:
       return {
         ...state,
         availableVolunteers: state.availableVolunteers.filter(
-          volunteer => volunteer.id !== action.oid
-        )
+          (volunteer) => volunteer.id !== action.oid
+        ),
       };
   }
   return state;

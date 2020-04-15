@@ -9,7 +9,7 @@ export const UPDATE_VOLUNTEER = 'UPDATE_VOLUNTEER';
 export const SET_VOLUNTEERS = 'SET_VOLUNTEERS';
 
 export const fetchVolunteers = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     //Getting data from firestore
     const firestore = firebase.firestore();
 
@@ -19,8 +19,8 @@ export const fetchVolunteers = () => {
       firestore
         .collection('volunteers')
         .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
             loadedVolunteers.push(
@@ -47,7 +47,9 @@ export const fetchVolunteers = () => {
                 resData.grupp,
                 resData.datum,
                 resData.status,
-                resData.kommentarer
+                resData.kommentarer,
+                resData.skickadVolontärTillGrupp,
+                resData.skickadBekräftelseTillVolontär
               )
             );
           });
@@ -62,7 +64,7 @@ export const fetchVolunteers = () => {
 
       dispatch({
         type: SET_VOLUNTEERS,
-        volunteers: loadedVolunteers
+        volunteers: loadedVolunteers,
       });
     } catch (err) {
       // send to custom analytics server
@@ -71,12 +73,12 @@ export const fetchVolunteers = () => {
   };
 };
 
-export const deleteVolunteer = volunteerId => {
+export const deleteVolunteer = (volunteerId) => {
   return async (dispatch, getState) => {
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/volunteers/${volunteerId}.json`,
       {
-        method: 'DELETE'
+        method: 'DELETE',
       }
     );
 
@@ -105,7 +107,7 @@ export const createVolunteer = (
   myndigheter,
   teknik
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     const setDatum = new Date().getTime();
     const setGrupp = '';
     const setStatus = '1';
@@ -130,7 +132,7 @@ export const createVolunteer = (
       teknik,
       grupp: setGrupp,
       datum: setDatum,
-      status: setStatus
+      status: setStatus,
     });
 
     const resData = await response.json();
@@ -159,8 +161,8 @@ export const createVolunteer = (
         teknik,
         grupp: setGrupp,
         datum: setDatum,
-        status: setStatus
-      }
+        status: setStatus,
+      },
     });
   };
 };
@@ -186,13 +188,13 @@ export const updateVolunteer = (
   grupp,
   status
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/volunteers/${id}.json`,
       {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           förnamn,
@@ -212,8 +214,8 @@ export const updateVolunteer = (
           myndigheter,
           teknik,
           grupp,
-          status
-        })
+          status,
+        }),
       }
     );
 
@@ -242,8 +244,8 @@ export const updateVolunteer = (
         myndigheter,
         teknik,
         grupp,
-        status
-      }
+        status,
+      },
     });
   };
 };

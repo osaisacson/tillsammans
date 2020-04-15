@@ -18,26 +18,42 @@ const GroupVolunteers = (props) => {
         formForModal={<VolunteerForm />}
       />
       <br />
-      <h4>Hur vi hanterar volontärer</h4>
+      <h4>Hantera volontärer</h4>
       <ol>
+        <li>
+          När ni får in en volontär, kolla först så 'Bekräftelse till volontär'
+          är 'Kontaktad'. Om inte, ring numret som står där och klicka sen
+          'Kontaktad'.
+        </li>
+        <li>
+          Ändra status till 'Välkomnad' när volontären står som 'Kontaktad'.
+        </li>
+        <li>
+          Bestäm vem ska ta hand om att träna volontären och - om det behövs -
+          vidarebefodra dess detaljer via knappen 'Kopiera detaljer'.
+        </li>
+        <li>När volontären blivit tränad, ändra status till 'Aktiv'.</li>
+        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
+      </ol>
+      <br />
+
+      <h5>TIPS</h5>
+      <ul>
         <li>
           Öppna redigering genom att klicka på pennan till vänster om volontären
         </li>
         <li>
-          Ändra status till det som passar. (Du kan också uppdatera annan
-          information om du vill - till exempel 'kommentarer' - men 'status' är
-          viktigast)
+          Klicka på bocken till vänster om volontären för att spara - om inte
+          ändringarna syns direkt, klicka den lila refresh-knappen nere till
+          höger
         </li>
         <li>
-          Klicka på bock-ikonen till vänster om volontären för att spara
-          ändringar
+          Använd gärna 'Kommentarer' för att skriva in något ni vill förmedla
+          antingen internt eller till samordnaren.
         </li>
-        <li>
-          Om inte ändringarna syns direkt, klicka den lila refresh-knappen nere
-          till höger
-        </li>
-        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
-      </ol>
+      </ul>
+      <br />
+
       <p>
         För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
         systemet och tar gärna emot tips om hur det kan bli bättre!

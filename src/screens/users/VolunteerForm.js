@@ -146,6 +146,8 @@ const VolunteerForm = (props) => {
       gruppId: '0',
       datum: new Date().getTime(),
       status: '1',
+      skickadVolontärTillGrupp: false,
+      skickadBekräftelseTillVolontär: false,
     });
     setRedirectToThanks(true);
   };

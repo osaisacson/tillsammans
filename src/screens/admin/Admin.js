@@ -114,7 +114,9 @@ const Admin = (props) => {
           resData.teknik,
           readableDate,
           resData.status,
-          resData.kommentarer
+          resData.kommentarer,
+          resData.skickadVolontärTillGrupp,
+          resData.skickadBekräftelseTillVolontär
         )
       );
     });

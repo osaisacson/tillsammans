@@ -9,7 +9,8 @@ const ConfirmationInternal = (props) => (
       refreshAction={props.refreshAction}
       isConfirmed={props.isConfirmed}
       isGroupConfirmation={props.isGroupConfirmation}
-      isVolunteerConfirmation={props.isVolunteerConfirmation}
+      isVolToGroupConf={props.isVolToGroupConf}
+      isOrderInfoToVolunteer={props.isOrderInfoToVolunteer}
     />
     {!props.isConfirmed ? (
       <Button onClick={props.onClickAction} className="small-button top-margin">

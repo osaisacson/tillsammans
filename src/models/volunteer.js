@@ -22,7 +22,9 @@ class Volunteer {
     teknik,
     datum,
     status,
-    kommentarer
+    kommentarer,
+    skickadVolontärTillGrupp,
+    skickadBekräftelseTillVolontär
   ) {
     this.id = id;
     this.gruppId = gruppId;
@@ -47,6 +49,8 @@ class Volunteer {
     this.datum = datum;
     this.status = status;
     this.kommentarer = kommentarer;
+    this.skickadVolontärTillGrupp = skickadVolontärTillGrupp;
+    this.skickadBekräftelseTillVolontär = skickadBekräftelseTillVolontär;
   }
 }
 
