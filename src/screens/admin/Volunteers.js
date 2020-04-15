@@ -23,17 +23,27 @@ const Volunteers = (props) => {
         content="<h5>Uppdatera i vårt system</h5>
         <ol>
         <li>Öppna redigering genom att klicka på pennan till vänster om volontären</li>
-        <li>Välj grupp</li>
-        <li>Ändra status till 'Fördelad till grupp'.</li>
+        <li>Välj grupp under 'Grupp'</li>
+        <li>Ändra status till 'Fördelad till grupp' under 'Status'.</li>
         <li>Klicka på spara symbolen för att spara ändringar - om inte ändringarna syns direkt klicka refresh-knappen till höger</li>
         </ol>
         <br/>
-        <h5>Skicka email till gruppledaren om deras nya volontär</h5>
+        <h5>Kommunicera med volontär</h5>
         <ol>
-        <li>Klicka på knappen 'Kopiera detaljer till email' bredvid volontären - detta öppnar din email med mailet redan klart.</li>
-        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren den ska skickas till</li>
-        <li>Håll ett öga på volontären i systemet så gruppledaren markerar den som 'Välkomnad' och sen 'Tränad', annars följ upp.</li>
+        <li>Under 'Bekräftelse till volontär' klicka 'Skicka bekräftelse' - detta öppnar din email med mailet och addressen redan klart.</li>
+        <li>Om det istället för ovan knapp står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta volontären.</li>
+        <li>När skickat - klicka knappen 'Kontaktad'</li>
       </ol>
+      <br/>
+
+        <h5>Kommunicera ny volontär till grupp</h5>
+        <ol>
+        <li>Under 'Detaljer till grupp' klicka 'Skicka detaljer' - detta öppnar din email med mailet redan klart.</li>
+        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren det ska skickas till</li>
+        <li>När skickat - klicka knappen 'Skickad'</li>
+      </ol>
+      <br/>
+      <p>Håll ett öga på volontären i systemet så gruppledaren så småningom markerar den som 'Aktiv', annars följ upp.</p>
       </br>"
       />
 

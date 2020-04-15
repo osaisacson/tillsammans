@@ -18,28 +18,47 @@ const GroupOrders = (props) => {
         formForModal={<HelpForm />}
       />
       <br />
-      <h4>Hur vi hanterar beställningar</h4>
+      <h4>Hantera beställningar</h4>
       <ol>
         <li>
-          Skicka beställning till volontär genom knappen 'Kopiera detaljer till
-          email'
+          När ni får in en beställning, kolla först så 'Bekräftelse till
+          beställare' är 'Kontaktad'. Om inte, ring numret som står där och
+          klicka sen 'Kontaktad'.
         </li>
+        <li>
+          Bestäm vem ska ta hand om beställningen och vidarebefodra dess
+          detaljer via knappen 'Skicka detaljer' under 'Detaljer till volontär'.
+        </li>
+        <li>
+          Skriv vilken volontär som tagit hand om beställningen under
+          'Kommentarer'
+        </li>
+        <li>
+          Slutligen, när beställningen är utförd - ändra fältet under 'Status'
+          till 'Klar'
+        </li>
+        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
+      </ol>
+      <br />
+
+      <h5>TIPS</h5>
+      <ul>
         <li>
           Öppna redigering genom att klicka på pennan till vänster om
           beställningen
         </li>
         <li>
-          Ändra status till det som passar. (Du kan också uppdatera annan
-          information om du vill - till exempel 'kommentarer' - men 'status' är
-          viktigast)
+          Klicka på bocken till vänster om beställningen för att spara - om inte
+          ändringarna syns direkt, klicka den lila refresh-knappen nere till
+          höger
         </li>
         <li>
-          Klicka på bock-ikonen till vänster om beställningen för att spara
-          ändringar - om inte ändringarna syns direkt, klicka den lila
-          refresh-knappen nere till höger
+          Använd gärna 'Kommentarer' för att skriva in något ni vill förmedla
+          antingen internt eller till samordnaren.
         </li>
-        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
-      </ol>
+      </ul>
+      <br />
+
       <p>
         För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
         systemet och tar gärna emot tips om hur det kan bli bättre!

@@ -180,7 +180,6 @@ const Table = (props) => {
       cellStyle: medium,
       headerStyle: medium,
     },
-
     {
       title: 'Detaljer till grupp',
       field: 'skicka',
@@ -242,35 +241,10 @@ const Table = (props) => {
   ];
 
   const groupOrderColumns = [
-    {
-      title: 'Bekräftelse',
-      field: 'bekräftelse',
-      cellStyle: medium,
-      headerStyle: medium,
-      render: (rowData) => (
-        <div>Fyll i här om bekräftelse har skickats eller inte</div>
-      ),
-    },
-    {
-      title: 'Detaljer till volontär',
-      field: 'skicka',
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: 'never',
-      render: (rowData) => (
-        <Button
-          onClick={sendGroupOrderEmail.bind(this, rowData)}
-          className="small-button"
-          size="sm"
-        >
-          Skicka detaljer till volontär
-        </Button>
-      ),
-    },
     mottaget,
+    tidsrymd,
     förnamn,
     efternamn,
-    tidsrymd,
     {
       title: 'Status',
       field: 'status',
@@ -285,6 +259,38 @@ const Table = (props) => {
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
+    },
+    {
+      title: 'Bekräftelse till beställare',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationCustomer
+          buttonText="Skicka bekräftelse"
+          refreshAction={props.refreshAction}
+          onClickAction={sendConfirmationEmail.bind(this, rowData)}
+          isConfirmed={rowData.skickadBeställare}
+          data={rowData}
+        />
+      ),
+    },
+    {
+      title: 'Detaljer till voluntär',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationInternal
+          isVolunteerConfirmation={true}
+          itemId={rowData.id}
+          isConfirmed={rowData.skickadVolontär}
+          refreshAction={props.refreshAction}
+          onClickAction={sendGroupOrderEmail.bind(this, rowData)}
+        />
+      ),
     },
     kommentarer,
     beskrivning,
