@@ -6,8 +6,8 @@ export const small = {
 };
 
 export const medium = {
-  width: 190,
-  minWidth: 190,
+  width: 175,
+  minWidth: 175,
 };
 
 export const large = {

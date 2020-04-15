@@ -1,5 +1,3 @@
-//Dropdowns
-
 export const groupDropdown = {
   0: 'Ingen grupp vald',
   Pn5Uj8h84m5pjqSmL6sA: 'Yttre Grupp Skärhamn',

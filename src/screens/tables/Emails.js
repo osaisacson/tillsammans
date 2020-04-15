@@ -1,5 +1,3 @@
-//Emails
-
 export const sendOrderEmail = (content) => {
   const email = `EMAIL TILL GRUPPLEDARE HÄR, tjorn@allatillsammans.se`;
   const subject = `Ny beställning från ${

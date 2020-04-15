@@ -127,6 +127,10 @@ const HelpForm = (props) => {
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
       status: '1',
+      kommentarer: '',
+      skickadBeställare: false,
+      skickadGrupp: false,
+      skickadVolontär: false,
     });
     setRedirectToThanks(true);
   };

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import MaterialTable from 'material-table';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+
+import ConfirmationCustomer from '../../components/ConfirmationCustomer';
+import ConfirmationInternal from '../../components/ConfirmationInternal';
+
+import RenderBadge from './../../components/RenderBadge';
 
 import { small, medium, large, xlarge } from './CellSizes';
 import {
@@ -20,8 +26,6 @@ import {
   volunteerStatusDropdownForGroups,
 } from './Dropdowns';
 
-import RenderBadge from './../../components/RenderBadge';
-
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -29,8 +33,170 @@ const Table = (props) => {
   //Set up hooks
   const [data, setData] = useState(props.tableData);
 
+  //Common fields
+  const mottaget = { title: 'Mottaget', field: 'datum', editable: 'never' };
+  const förnamn = {
+    title: 'Förnamn',
+    field: 'förnamn',
+    editable: 'never',
+  };
+  const efternamn = {
+    title: 'Efternamn',
+    field: 'efternamn',
+    editable: 'never',
+  };
+  const tidsrymd = {
+    title: 'Tid kan vänta',
+    field: 'tidsrymd',
+    editable: 'never',
+    cellStyle: small,
+    headerStyle: small,
+  };
+  const kommentarer = {
+    title: 'Kommentarer (skriv extra info här)',
+    field: 'kommentarer',
+    cellStyle: large,
+    headerStyle: large,
+  };
+  const beskrivning = {
+    title: 'Beskrivning',
+    field: 'beskrivning',
+    editable: 'never',
+    cellStyle: xlarge,
+    headerStyle: xlarge,
+  };
+  const typ = {
+    title: 'Typ',
+    field: 'typ',
+    editable: 'never',
+    cellStyle: medium,
+    headerStyle: medium,
+  };
+  const swish = {
+    title: 'Swish',
+    field: 'swish',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.swish} />,
+  };
+  const kontant = {
+    title: 'Kontant',
+    field: 'kontant',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.kontant} />,
+  };
+  const faktura = {
+    title: 'Faktura',
+    field: 'faktura',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.faktura} />,
+  };
+  const telefon = { title: 'Telefon', field: 'telefon' };
+  const email = { title: 'Email', field: 'email' };
+  const address = {
+    title: 'Address',
+    field: 'address',
+    cellStyle: medium,
+    headerStyle: medium,
+  };
+  const postkod = { title: 'Postkod', field: 'postkod' };
+  const språk = { title: 'Språk', field: 'språk', editable: 'never' };
+  const födelseår = {
+    title: 'Födelseår',
+    field: 'födelseår',
+    editable: 'never',
+  };
+  const körkort = {
+    title: 'Har körkort',
+    field: 'körkort',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.körkort} />,
+  };
+  const bil = {
+    title: 'Har bil',
+    field: 'bil',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.bil} />,
+  };
+  const mat = {
+    title: 'Mat',
+    field: 'mat',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.mat} />,
+  };
+  const varor = {
+    title: 'Varor',
+    field: 'varor',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.varor} />,
+  };
+  const ärenden = {
+    title: 'Ärenden',
+    field: 'ärenden',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.ärenden} />,
+  };
+  const djur = {
+    title: 'Djur',
+    field: 'djur',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.djur} />,
+  };
+  const prata = {
+    title: 'Prata',
+    field: 'prata',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.prata} />,
+  };
+  const myndigheter = {
+    title: 'Myndigheter',
+    field: 'myndigheter',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.myndigheter} />,
+  };
+  const teknik = {
+    title: 'Teknik',
+    field: 'teknik',
+    editable: 'never',
+    render: (rowData) => <RenderBadge bool={rowData.teknik} />,
+  };
+
   //Column headers
   const orderColumns = [
+    mottaget,
+    tidsrymd,
+    förnamn,
+    efternamn,
+    {
+      title: 'Status',
+      field: 'status',
+      lookup: groupStatusDropdown,
+      cellStyle: small,
+      headerStyle: small,
+    },
+    {
+      title: 'Grupp',
+      field: 'gruppId',
+      lookup: groupDropdown,
+      cellStyle: medium,
+      headerStyle: medium,
+    },
+
+    {
+      title: 'Detaljer till grupp',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationInternal
+          isGroupConfirmation={true}
+          itemId={rowData.id}
+          isConfirmed={rowData.skickadGrupp}
+          refreshAction={props.refreshAction}
+          onClickAction={sendOrderEmail.bind(this, rowData)}
+        />
+      ),
+    },
     {
       title: 'Bekräftelse till beställare',
       field: 'skicka',
@@ -38,119 +204,98 @@ const Table = (props) => {
       headerStyle: medium,
       editable: 'never',
       render: (rowData) => (
-        <Button
-          onClick={sendConfirmationEmail.bind(this, rowData)}
-          className="small-button"
-          size="sm"
-        >
-          Bekräftelse till beställare
-        </Button>
+        <ConfirmationCustomer
+          buttonText="Skicka bekräftelse"
+          refreshAction={props.refreshAction}
+          onClickAction={sendConfirmationEmail.bind(this, rowData)}
+          isConfirmed={rowData.skickadBeställare}
+          data={rowData}
+        />
       ),
     },
     {
-      title: 'Kopiera & skicka detaljer',
+      title: 'Detaljer till voluntär',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: 'never',
+      render: (rowData) => (
+        <ConfirmationInternal
+          isVolunteerConfirmation={true}
+          itemId={rowData.id}
+          isConfirmed={rowData.skickadVolontär}
+          refreshAction={props.refreshAction}
+          onClickAction={sendVolunteerEmail.bind(this, rowData)}
+        />
+      ),
+    },
+    kommentarer,
+    beskrivning,
+    typ,
+    swish,
+    kontant,
+    faktura,
+    telefon,
+    email,
+    address,
+    postkod,
+  ];
+
+  const groupOrderColumns = [
+    {
+      title: 'Bekräftelse',
+      field: 'bekräftelse',
+      cellStyle: medium,
+      headerStyle: medium,
+      render: (rowData) => (
+        <div>Fyll i här om bekräftelse har skickats eller inte</div>
+      ),
+    },
+    {
+      title: 'Detaljer till volontär',
       field: 'skicka',
       cellStyle: medium,
       headerStyle: medium,
       editable: 'never',
       render: (rowData) => (
         <Button
-          onClick={
-            props.isGroupOrders
-              ? sendGroupOrderEmail.bind(this, rowData)
-              : sendOrderEmail.bind(this, rowData)
-          }
+          onClick={sendGroupOrderEmail.bind(this, rowData)}
           className="small-button"
           size="sm"
         >
-          Kopiera detaljer till email
+          Skicka detaljer till volontär
         </Button>
       ),
     },
-    { title: 'Mottaget', field: 'datum', editable: 'never' },
-    {
-      title: 'Tid kan vänta',
-      field: 'tidsrymd',
-      editable: 'never',
-      cellStyle: small,
-      headerStyle: small,
-    },
+    mottaget,
+    förnamn,
+    efternamn,
+    tidsrymd,
     {
       title: 'Status',
       field: 'status',
-      lookup: props.isGroupOrders
-        ? groupStatusDropdownForGroups
-        : groupStatusDropdown,
+      lookup: groupStatusDropdownForGroups,
       cellStyle: small,
       headerStyle: small,
     },
     {
       title: 'Grupp',
       field: 'gruppId',
-      editable: props.isGroupOrders ? 'never' : 'always',
+      editable: 'never',
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
     },
-    {
-      title: 'Namn',
-      field: 'namn',
-      editable: 'never',
-      cellStyle: medium,
-      headerStyle: medium,
-      render: (rowData) => (
-        <div>
-          {rowData.förnamn} {rowData.efternamn}
-        </div>
-      ),
-    },
-    {
-      title: 'Beskrivning',
-      field: 'beskrivning',
-      editable: 'never',
-      cellStyle: xlarge,
-      headerStyle: xlarge,
-    },
-    {
-      title: 'Kommentarer (skriv extra info här)',
-      field: 'kommentarer',
-      cellStyle: large,
-      headerStyle: large,
-    },
-    {
-      title: 'Typ',
-      field: 'typ',
-      editable: 'never',
-      cellStyle: medium,
-      headerStyle: medium,
-    },
-    {
-      title: 'Swish',
-      field: 'swish',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.swish} />,
-    },
-    {
-      title: 'Kontant',
-      field: 'kontant',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.kontant} />,
-    },
-    {
-      title: 'Faktura',
-      field: 'faktura',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.faktura} />,
-    },
-    { title: 'Telefon', field: 'telefon' },
-    { title: 'Email', field: 'email' },
-    {
-      title: 'Address',
-      field: 'address',
-      cellStyle: medium,
-      headerStyle: medium,
-    },
-    { title: 'Postkod', field: 'postkod' },
+    kommentarer,
+    beskrivning,
+    typ,
+    swish,
+    kontant,
+    faktura,
+    telefon,
+    email,
+    address,
+    postkod,
   ];
 
   const volunteerColumns = [
@@ -178,11 +323,7 @@ const Table = (props) => {
       editable: 'never',
       render: (rowData) => (
         <Button
-          onClick={
-            props.isGroupVolunteers
-              ? sendGroupVolunteerEmail.bind(this, rowData)
-              : sendVolunteerEmail.bind(this, rowData)
-          }
+          onClick={sendVolunteerEmail.bind(this, rowData)}
           className="small-button"
           size="sm"
         >
@@ -190,109 +331,103 @@ const Table = (props) => {
         </Button>
       ),
     },
-    { title: 'Mottaget', field: 'datum', editable: 'never' },
+    mottaget,
+    förnamn,
+    efternamn,
+    kommentarer,
+    beskrivning,
     {
       title: 'Status',
       field: 'status',
-      lookup: props.isGroupVolunteers
-        ? volunteerStatusDropdownForGroups
-        : volunteerStatusDropdown,
+      lookup: volunteerStatusDropdown,
       cellStyle: small,
       headerStyle: small,
     },
     {
       title: 'Grupp',
       field: 'gruppId',
-      editable: props.isGroupVolunteers ? 'never' : 'always',
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
     },
+    telefon,
+    email,
+    address,
+    postkod,
+    språk,
+    födelseår,
+    körkort,
+    bil,
+    mat,
+    varor,
+    ärenden,
+    djur,
+    prata,
+    myndigheter,
+    teknik,
+  ];
+
+  const groupVolunteersColumns = [
     {
-      title: 'Kommentarer (skriv extra info här)',
-      field: 'kommentarer',
-      cellStyle: large,
-      headerStyle: large,
-    },
-    {
-      title: 'Namn',
-      field: 'namn',
-      editable: 'never',
+      title: 'Bekräftelse',
+      field: 'bekräftelse',
       cellStyle: medium,
       headerStyle: medium,
       render: (rowData) => (
-        <div>
-          {rowData.förnamn} {rowData.efternamn}
-        </div>
+        <div>Fyll i här om bekräftelse har skickats eller inte</div>
       ),
     },
     {
-      title: 'Beskrivning',
-      field: 'beskrivning',
+      title: 'Kopiera & skicka detaljer',
+      field: 'skicka',
+      cellStyle: medium,
+      headerStyle: medium,
       editable: 'never',
-      cellStyle: xlarge,
-      headerStyle: xlarge,
+      render: (rowData) => (
+        <Button
+          onClick={sendGroupVolunteerEmail.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Kopiera detaljer till email
+        </Button>
+      ),
     },
-    { title: 'Telefon', field: 'telefon' },
-    { title: 'Email', field: 'email' },
-    { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod' },
-    { title: 'Språk', field: 'språk', editable: 'never' },
-    { title: 'Födelseår', field: 'födelseår', editable: 'never' },
+    mottaget,
+    förnamn,
+    efternamn,
+    kommentarer,
+    beskrivning,
     {
-      title: 'Har körkort',
-      field: 'körkort',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.körkort} />,
-    },
-    {
-      title: 'Har bil',
-      field: 'bil',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.bil} />,
-    },
-    {
-      title: 'Mat',
-      field: 'mat',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.mat} />,
+      title: 'Status',
+      field: 'status',
+      lookup: volunteerStatusDropdownForGroups,
+      cellStyle: small,
+      headerStyle: small,
     },
     {
-      title: 'Varor',
-      field: 'varor',
+      title: 'Grupp',
+      field: 'gruppId',
       editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.varor} />,
+      lookup: groupDropdown,
+      cellStyle: medium,
+      headerStyle: medium,
     },
-    {
-      title: 'Ärenden',
-      field: 'ärenden',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.ärenden} />,
-    },
-    {
-      title: 'Djur',
-      field: 'djur',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.djur} />,
-    },
-    {
-      title: 'Prata',
-      field: 'prata',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.prata} />,
-    },
-    {
-      title: 'Myndigheter',
-      field: 'myndigheter',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.myndigheter} />,
-    },
-    {
-      title: 'Teknik',
-      field: 'teknik',
-      editable: 'never',
-      render: (rowData) => <RenderBadge bool={rowData.teknik} />,
-    },
+    telefon,
+    email,
+    address,
+    postkod,
+    språk,
+    födelseår,
+    körkort,
+    bil,
+    mat,
+    varor,
+    ärenden,
+    djur,
+    prata,
+    myndigheter,
+    teknik,
   ];
 
   const groupColumns = [
@@ -307,47 +442,38 @@ const Table = (props) => {
       cellStyle: medium,
       headerStyle: medium,
     },
-    {
-      title: 'Beskrivning',
-      field: 'kommentarer',
-      cellStyle: xlarge,
-      headerStyle: xlarge,
-    },
-
+    beskrivning,
     { title: 'Kontakt', field: 'kontakt' },
-    { title: 'Telefon', field: 'telefon' },
-    { title: 'Email', field: 'email' },
-    { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod' },
+    telefon,
+    email,
+    address,
+    postkod,
     { title: 'Skapad', field: 'datum', editable: 'never' },
     { title: 'adminNamn', field: 'adminNamn' },
     { title: 'adminPwd', field: 'adminPwd' },
   ];
 
   const cancelledColumns = [
-    { title: 'Mottagen', field: 'datum', editable: 'never' },
-    {
-      title: 'Kommentarer (skriv extra info här)',
-      field: 'kommentarer',
-      cellStyle: large,
-      headerStyle: large,
-    },
-
-    { title: 'Telefon', field: 'telefon' },
-    { title: 'Email', field: 'email' },
-    { title: 'Address', field: 'address' },
-    { title: 'Postkod', field: 'postkod' },
+    mottaget,
+    kommentarer,
+    telefon,
+    email,
+    address,
+    postkod,
   ];
 
   //Set column headers depending on which screen we are in.
-  const columndata =
-    props.isOrders || props.isGroupOrders
-      ? orderColumns
-      : props.isVolunteers || props.isGroupVolunteers
-      ? volunteerColumns
-      : props.isGroups
-      ? groupColumns
-      : cancelledColumns;
+  const columndata = props.isOrders
+    ? orderColumns
+    : props.isGroupOrders
+    ? groupOrderColumns
+    : props.isVolunteers
+    ? volunteerColumns
+    : props.isGroupVolunteers
+    ? groupVolunteersColumns
+    : props.isGroups
+    ? groupColumns
+    : cancelledColumns;
 
   //Prep firestore
   const db = firebase.firestore();

@@ -2,12 +2,12 @@ import {
   DELETE_ORDER,
   CREATE_ORDER,
   UPDATE_ORDER,
-  SET_ORDERS
+  SET_ORDERS,
 } from './../actions/orders';
 import Order from '../../models/order';
 
 const initialState = {
-  availableOrders: []
+  availableOrders: [],
 };
 
 export default (state = initialState, action) => {
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
         action.orders
       );
       return {
-        availableOrders: action.orders
+        availableOrders: action.orders,
       };
     case CREATE_ORDER:
       const newOrder = new Order(
@@ -40,16 +40,19 @@ export default (state = initialState, action) => {
         action.orderData.address,
         action.orderData.postkod,
         action.orderData.status,
-        action.orderData.kommentarer
+        action.orderData.kommentarer,
+        action.orderData.skickadBeställare,
+        action.orderData.skickadGrupp,
+        action.orderData.skickadVolontär
       );
 
       return {
         ...state,
-        availableOrders: state.availableOrders.concat(newOrder)
+        availableOrders: state.availableOrders.concat(newOrder),
       };
     case UPDATE_ORDER:
       const orderIndex = state.userOrders.findIndex(
-        ordr => ordr.id === action.oid
+        (ordr) => ordr.id === action.oid
       );
       const updatedOrder = new Order(
         action.oid,
@@ -69,21 +72,24 @@ export default (state = initialState, action) => {
         action.orderData.address,
         action.orderData.postkod,
         action.orderData.status,
-        action.orderData.kommentarer
+        action.orderData.kommentarer,
+        action.orderData.skickadBeställare,
+        action.orderData.skickadGrupp,
+        action.orderData.skickadVolontär
       );
       const updatedAvailableOrders = [...state.availableOrders];
       updatedAvailableOrders[orderIndex] = updatedOrder;
 
       return {
         ...state,
-        availableOrders: updatedAvailableOrders
+        availableOrders: updatedAvailableOrders,
       };
     case DELETE_ORDER:
       return {
         ...state,
         availableOrders: state.availableOrders.filter(
-          order => order.id !== action.oid
-        )
+          (order) => order.id !== action.oid
+        ),
       };
   }
   return state;

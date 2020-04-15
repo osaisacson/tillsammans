@@ -9,7 +9,7 @@ export const UPDATE_ORDER = 'UPDATE_ORDER';
 export const SET_ORDERS = 'SET_ORDERS';
 
 export const fetchOrders = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     //Getting data from firestore
     const firestore = firebase.firestore();
 
@@ -19,8 +19,8 @@ export const fetchOrders = () => {
       firestore
         .collection('orders')
         .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
             const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -42,7 +42,11 @@ export const fetchOrders = () => {
                 resData.email,
                 resData.address,
                 resData.postkod,
-                resData.status
+                resData.status,
+                resData.kommentarer,
+                resData.skickadBeställare,
+                resData.skickadGrupp,
+                resData.skickadVolontär
               )
             );
           });
@@ -55,7 +59,7 @@ export const fetchOrders = () => {
 
       dispatch({
         type: SET_ORDERS,
-        orders: loadedOrders
+        orders: loadedOrders,
       });
     } catch (err) {
       // send to custom analytics server
@@ -77,14 +81,14 @@ export const fetchOrders = () => {
 // console.log('resData.grupp: ', resData.grupp);
 // console.log('resData.status: ', resData.status);
 
-export const deleteOrder = orderId => {
+export const deleteOrder = (orderId) => {
   return async (dispatch, getState) => {
     // const token = getState().auth.token; //TODO: set up authorisation of admin
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/orders/${orderId}.json`,
       // `https://sverige-tillsammans.firebaseio.com/orders/${orderId}.json?auth=${token}`,
       {
-        method: 'DELETE'
+        method: 'DELETE',
       }
     );
 
@@ -136,7 +140,7 @@ export const createOrder = (
       address: address,
       grupp: setGrupp,
       datum: setDatum,
-      status: setStatus
+      status: setStatus,
     });
 
     // const response = await fetch(
@@ -183,8 +187,8 @@ export const createOrder = (
         address,
         postkod,
         grupp: setGrupp,
-        status: setStatus
-      }
+        status: setStatus,
+      },
     });
   };
 };
@@ -207,15 +211,18 @@ export const updateOrder = (
   address,
   postkod,
   status,
-  kommentarer
+  kommentarer,
+  skickadBeställare,
+  skickadGrupp,
+  skickadVolontär
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/orders/${id}.json`,
       {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           gruppId,
@@ -234,8 +241,11 @@ export const updateOrder = (
           address,
           postkod,
           status,
-          kommentarer
-        })
+          kommentarer,
+          skickadBeställare,
+          skickadGrupp,
+          skickadVolontär,
+        }),
       }
     );
 
@@ -262,8 +272,12 @@ export const updateOrder = (
         email,
         address,
         postkod,
-        status
-      }
+        status,
+        kommentarer,
+        skickadBeställare,
+        skickadGrupp,
+        skickadVolontär,
+      },
     });
   };
 };

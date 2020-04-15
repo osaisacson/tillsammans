@@ -64,7 +64,10 @@ const Admin = (props) => {
           resData.address,
           resData.postkod,
           resData.status,
-          resData.kommentarer
+          resData.kommentarer,
+          resData.skickadBeställare,
+          resData.skickadGrupp,
+          resData.skickadVolontär
         )
       );
     });

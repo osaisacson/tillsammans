@@ -17,7 +17,10 @@ class Order {
     address,
     postkod,
     status,
-    kommentarer
+    kommentarer,
+    skickadBeställare,
+    skickadGrupp,
+    skickadVolontär
   ) {
     this.id = id;
     this.gruppId = gruppId;
@@ -37,6 +40,9 @@ class Order {
     this.postkod = postkod;
     this.status = status;
     this.kommentarer = kommentarer;
+    this.skickadBeställare = skickadBeställare;
+    this.skickadGrupp = skickadGrupp;
+    this.skickadVolontär = skickadVolontär;
   }
 }
 
