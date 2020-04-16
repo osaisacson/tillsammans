@@ -16,7 +16,7 @@ We warmly welcome anyone who wants to clone this project for use in their own co
 
 It is in essence a simple platform for organisation of help efforts in a smaller community (a couple thousand at most). It focuses on:
 
-1. Registering needs from self-isolated risk groups - mostly errands. This so these groups do not have to break quarantine and expose themselves to unnecessary contamination risks.
+1. Registering needs from self-isolated risk groups - mostly errands. This so these groups do not have to break quarantine and expose themselves to unnecessary contamination risks
 2. Registering volunteers willing to help out with those needs
 3. Sharing information on local volunteergroups organised through the platform
 
@@ -35,13 +35,16 @@ It is built to be simple to use, and easy to manage even for people with a non-t
 2. Email notification goes to the Coordinator
 3. Coordinator goes to admin section and assigns the order/volunteer to a group
 4. Coordinator generates an email to the user and to the group, confirming receipt and assignment
-5. Group leader goes to their group page and take action on order/volunteer (assigns to a volunteer if order, sets up time for training if volunteer)
+5. Group leader goes to their group page and take action on order/volunteer (if order: assigns to a volunteer, if volunteer: sets up time for training)
 6. When completed/trained, group leader marks status of order as completed/volunteer as active in the system
-7. Coordinator follows updated status of order/volunteer, if not eventually marked as completed/active they follow up
+7. Coordinator follows updated status of order/volunteer, if not eventually marked as completed/active they follow up with the group leader
 
 ### What you'll need
 
-We strongly suggest using the existing networks of your local community who already have experience with helping out risk groups. So start by asking around and see if they want to join the effort and start a group on the platform: we are collaborating with the municipality, the Swedish church, the Red Cross, Lions Club, Save the Children and other local actors.
+We strongly suggest conencting with existing networks in your local community who already have experience with helping out risk groups. So start by asking around and see if they want to join the effort and start a group on the platform.
+We are currently collaborating with the Tjörn municipality, the Swedish church, the Red Cross, Lions Club, Save the Children and other local actors. Having their knowledge and experience on board has been invaluable.
+
+We use a group leader from one of our partners for each group, and new volunteers get assigned to their groups. That said, it is also possible to start volunteer groups from scratch by simply joining together those willing and assigning a group leader among them.
 
 If you want to set up a similar structure to the one we have implemented you'll need:
 
