@@ -79,10 +79,14 @@ const GroupForm = (props) => {
     db.collection('groups').add({
       datum: new Date().getTime(),
       gruppnamn: formState.inputValues.gruppnamn,
+      länkNamn: formState.inputValues.länkNamn,
       kontakt: formState.inputValues.kontakt,
       kommentarer: formState.inputValues.kommentarer,
       telefon: formState.inputValues.telefon,
       email: formState.inputValues.email,
+      reserv: formState.inputValues.reserv,
+      reservTelefon: formState.inputValues.reservTelefon,
+      reservEmail: formState.inputValues.reservEmail,
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
       status: 'aktiv',
@@ -125,11 +129,11 @@ const GroupForm = (props) => {
           </Col>
           <Col>
             <Input
-              placeholder="Kontaktperson"
-              label="kontakt"
-              value={formState.inputValues.kontakt}
+              placeholder="Önskad länk (tex yttre-grupp-skarshamn)"
+              label="länkNamn"
+              value={formState.inputValues.länkNamn}
               type="text"
-              onChange={textChangeHandler.bind(this, 'kontakt')}
+              onChange={textChangeHandler.bind(this, 'länkNamn')}
               required
             />
           </Col>
@@ -137,6 +141,16 @@ const GroupForm = (props) => {
 
         <h3>Kontaktpersonens uppgifter</h3>
         <Form.Row>
+          <Col>
+            <Input
+              placeholder="Gruppledare"
+              label="kontakt"
+              value={formState.inputValues.kontakt}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'kontakt')}
+              required
+            />
+          </Col>
           <Col>
             <Input
               placeholder="Telefon"
@@ -154,6 +168,39 @@ const GroupForm = (props) => {
               value={formState.inputValues.email}
               type="email"
               onChange={textChangeHandler.bind(this, 'email')}
+              required
+            />
+          </Col>
+        </Form.Row>
+        <h3>Reservgruppledares uppgifter</h3>
+        <Form.Row>
+          <Col>
+            <Input
+              placeholder="Reserv gruppledare"
+              label="reserv"
+              value={formState.inputValues.reserv}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'reserv')}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              placeholder="Telefon"
+              label="reservTelefon"
+              value={formState.inputValues.reservTelefon}
+              type="text"
+              onChange={textChangeHandler.bind(this, 'reservTelefon')}
+              required
+            />
+          </Col>
+          <Col>
+            <Input
+              placeholder="E-post"
+              label="reservEmail"
+              value={formState.inputValues.reservEmail}
+              type="email"
+              onChange={textChangeHandler.bind(this, 'reservEmail')}
               required
             />
           </Col>

@@ -29,8 +29,8 @@ import {
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
+//TODO: make below leaner, and split into more components
 const Table = (props) => {
-  //Set up hooks
   const [data, setData] = useState(props.tableData);
 
   //Common fields
@@ -472,10 +472,38 @@ const Table = (props) => {
       cellStyle: medium,
       headerStyle: medium,
     },
-    beskrivning,
-    { title: 'Kontakt', field: 'kontakt' },
+    {
+      title: 'Beskrivning',
+      field: 'kommentarer',
+      cellStyle: medium,
+      headerStyle: medium,
+    },
+    {
+      title: 'Kontakt',
+      field: 'kontakt',
+      cellStyle: medium,
+      headerStyle: medium,
+    },
     telefon,
-    email,
+    {
+      title: 'Email',
+      field: 'email',
+      cellStyle: medium,
+      headerStyle: medium,
+    },
+    {
+      title: 'Reserv',
+      field: 'reserv',
+      cellStyle: medium,
+      headerStyle: medium,
+    },
+    { title: 'Reserv telefon', field: 'reservTelefon' },
+    {
+      title: 'Reserv email',
+      field: 'reservEmail',
+      cellStyle: medium,
+      headerStyle: medium,
+    },
     address,
     postkod,
     { title: 'Skapad', field: 'datum', editable: 'never' },
@@ -579,6 +607,9 @@ const Table = (props) => {
       kommentarer: newData.kommentarer ? newData.kommentarer : '',
       telefon: newData.telefon ? newData.telefon : '',
       email: newData.email ? newData.email : '',
+      reserv: newData.reserv ? newData.reserv : '',
+      reservTelefon: newData.reservTelefon ? newData.reservTelefon : '',
+      reservEmail: newData.reservEmail ? newData.reservEmail : '',
       address: newData.address ? newData.address : '',
       postkod: newData.postkod ? newData.postkod : '',
       status: newData.status ? newData.status : '1',

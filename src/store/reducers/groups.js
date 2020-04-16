@@ -2,12 +2,12 @@ import {
   DELETE_GROUP,
   CREATE_GROUP,
   UPDATE_GROUP,
-  SET_GROUPS
+  SET_GROUPS,
 } from '../actions/groups';
 import Group from '../../models/group';
 
 const initialState = {
-  availableGroups: []
+  availableGroups: [],
 };
 
 export default (state = initialState, action) => {
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_GROUPS:
       return {
-        availableGroups: action.groups
+        availableGroups: action.groups,
       };
     case CREATE_GROUP:
       const newGroup = new Group(
@@ -27,6 +27,9 @@ export default (state = initialState, action) => {
         action.groupData.kommentarer,
         action.groupData.telefon,
         action.groupData.email,
+        action.groupData.reserv,
+        action.groupData.reservTelefon,
+        action.groupData.reservEmail,
         action.groupData.address,
         action.groupData.postkod,
         action.groupData.status,
@@ -35,11 +38,11 @@ export default (state = initialState, action) => {
       );
       return {
         ...state,
-        availableGroups: state.availableGroups.concat(newGroup)
+        availableGroups: state.availableGroups.concat(newGroup),
       };
     case UPDATE_GROUP:
       const groupIndex = state.userGroups.findIndex(
-        ordr => ordr.id === action.oid
+        (ordr) => ordr.id === action.oid
       );
       const updatedGroup = new Group(
         action.oid,
@@ -50,6 +53,9 @@ export default (state = initialState, action) => {
         action.groupData.kommentarer,
         action.groupData.telefon,
         action.groupData.email,
+        action.groupData.reserv,
+        action.groupData.reservTelefon,
+        action.groupData.reservEmail,
         action.groupData.address,
         action.groupData.postkod,
         action.groupData.status,
@@ -61,14 +67,14 @@ export default (state = initialState, action) => {
 
       return {
         ...state,
-        availableGroups: updatedAvailableGroups
+        availableGroups: updatedAvailableGroups,
       };
     case DELETE_GROUP:
       return {
         ...state,
         availableGroups: state.availableGroups.filter(
-          group => group.id !== action.oid
-        )
+          (group) => group.id !== action.oid
+        ),
       };
   }
   return state;

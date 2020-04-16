@@ -9,7 +9,7 @@ export const UPDATE_GROUP = 'UPDATE_GROUP';
 export const SET_GROUPS = 'SET_GROUPS';
 
 export const fetchGroups = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     //Getting data from firestore
     const firestore = firebase.firestore();
 
@@ -19,8 +19,8 @@ export const fetchGroups = () => {
       firestore
         .collection('groups')
         .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
             const readableDate = moment(new Date(resData.datum)).format('lll');
@@ -34,6 +34,9 @@ export const fetchGroups = () => {
                 resData.kommentarer,
                 resData.telefon,
                 resData.email,
+                resData.reserv,
+                resData.reservTelefon,
+                resData.reservEmail,
                 resData.address,
                 resData.postkod,
                 resData.status,
@@ -46,7 +49,7 @@ export const fetchGroups = () => {
 
       dispatch({
         type: SET_GROUPS,
-        groups: loadedGroups
+        groups: loadedGroups,
       });
     } catch (err) {
       // send to custom analytics server
@@ -55,12 +58,12 @@ export const fetchGroups = () => {
   };
 };
 
-export const deleteGroup = groupId => {
+export const deleteGroup = (groupId) => {
   return async (dispatch, getState) => {
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/groups/${groupId}.json`,
       {
-        method: 'DELETE'
+        method: 'DELETE',
       }
     );
 
@@ -112,7 +115,7 @@ export const createGroup = (
       address: address,
       grupp: setGrupp,
       datum: setDatum,
-      status: setStatus
+      status: setStatus,
     });
 
     const resData = await response.json();
@@ -134,8 +137,8 @@ export const createGroup = (
         address,
         postkod,
         grupp: setGrupp,
-        status: setStatus
-      }
+        status: setStatus,
+      },
     });
   };
 };
@@ -162,7 +165,7 @@ export const updateGroup = (
       {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           typ,
@@ -175,8 +178,8 @@ export const updateGroup = (
           address,
           postkod,
           grupp,
-          status
-        })
+          status,
+        }),
       }
     );
 
@@ -198,8 +201,8 @@ export const updateGroup = (
         address,
         postkod,
         grupp,
-        status
-      }
+        status,
+      },
     });
   };
 };

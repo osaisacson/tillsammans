@@ -8,6 +8,9 @@ class Group {
     kommentarer,
     telefon,
     email,
+    reserv,
+    reservTelefon,
+    reservEmail,
     address,
     postkod,
     status,
@@ -22,6 +25,9 @@ class Group {
     this.kommentarer = kommentarer;
     this.telefon = telefon;
     this.email = email;
+    this.reserv = reserv;
+    this.reservTelefon = reservTelefon;
+    this.reservEmail = reservEmail;
     this.address = address;
     this.postkod = postkod;
     this.status = status;
