@@ -1,5 +1,6 @@
 import React from 'react';
 import Accordion from '../../components/Accordion';
+import allaTillsammansPic from './../../images/allatillsammans.PNG';
 
 export default function Contact() {
   return (
@@ -49,6 +50,12 @@ export default function Contact() {
         </p>
         <p>asaisacson@gmail.com
         </p>"
+      />
+      <img
+        alt=""
+        src={allaTillsammansPic}
+        width="100%"
+        className="full-width-pic"
       />
     </div>
   );
