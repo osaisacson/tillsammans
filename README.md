@@ -2,17 +2,62 @@
 
 Organising assistance for self-isolated risk groups of corona/covid-19
 
-Uses React.js/Node.js/Hooks/Redux, firebase for db and deploys with Heroku.
+Uses React.js/Node.js/Redux, Firebase for db and deploys with Heroku.
 
 Find the latest live version at:
 
 ### https://tjorn.allatillsammans.se
 
-## Getting Started
+## Cloning this project - use it for your own community
+
+We warmly welcome anyone who wants to clone this project for use in their own context.
+
+### What it is
+
+It is in essence a simple platform for organisation of help efforts in a smaller community (a couple thousand at most). It focuses on:
+
+1. Registering needs from self-isolated risk groups - mostly errands. This so these groups do not have to break quarantine and expose themselves to unnecessary contamination risks.
+2. Registering volunteers willing to help out with those needs
+3. Sharing information on local volunteergroups organised through the platform
+
+It also includes an administration section where:
+
+1. A coordinator manages and distributes incoming needs and volunteers
+2. Group leaders on their separate group pages manage specific orders and volunteers
+
+...this is what we are using it for at the moment. But as it in its core is a logistics platform for distributing needs to volunteer groups it can be applied to other situations as well.
+
+It is built to be simple to use, and easy to manage even for people with a non-technical background.
+
+### How it works
+
+1. User registers an order or register to be a volunteer
+2. Email notification goes to the Coordinator
+3. Coordinator goes to admin section and assigns the order/volunteer to a group
+4. Coordinator generates an email to the user and to the group, confirming receipt and assignment
+5. Group leader goes to their group page and take action on order/volunteer (assigns to a volunteer if order, sets up time for training if volunteer)
+6. When completed/trained, group leader marks status of order as completed/volunteer as active in the system
+7. Coordinator follows updated status of order/volunteer, if not eventually marked as completed/active they follow up
+
+### What you'll need
+
+We strongly suggest using the existing networks of your local community who already have experience with helping out risk groups. So start by asking around and see if they want to join the effort and start a group on the platform: we are collaborating with the municipality, the Swedish church, the Red Cross, Lions Club, Save the Children and other local actors.
+
+If you want to set up a similar structure to the one we have implemented you'll need:
+
+1. A coordinator: Receives and distributes incoming orders and volunteers to groups. Also handles orders thorough phone.
+2. Group leaders and reserve group leaders for each group: Manages volunteers and implements incoming orders
+3. A developer: Implements the original setup and adjustments of the code to your local context.
+4. A GDPR representative who oversees the handling of data
+
+For the original setup, we will happily help out. If you don't have a developer we can also facilitate finding one.
+Welcome to contact me at asaisacson@gmail.com
+
+## Development
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
-Once your changes are merged (see work work workin and build build buildin section below) you and everyone else will see them live at https://tjorn.allatillsammans.se
+Once your changes are merged (see 'Working' and 'Building' section below) you and everyone else will see them live at https://tjorn.allatillsammans.se (or the url of your own site obviously, if you're cloning this project)
 
 ### Tools
 
@@ -54,7 +99,7 @@ brew install node
 
 ### Original setup - get the latest code for the website
 
-This you only need to do once, when you're first starting to work on the project. After that, you'll have a folder with the code on your computer and will keep it up to date through the 'pull' commands given in the 'Work work workin' section. Don't worry about it now.
+This you only need to do once, when you're first starting to work on the project. After that, you'll have a folder with the code on your computer and will keep it up to date through the 'pull' commands given in the 'Working' section. Don't worry about it now.
 
 1. Go to https://github.com/osaisacson/tillsammans
 
@@ -100,11 +145,11 @@ git init
 
 ```
 
-Your app’s code is now tracked in a local git repository. It has not yet been pushed to any remote servers, so changes you make in the code now will not yet show anywhere apart from on your own machine. You'll push the code to the remote shared repository in the 'Work work workin' section.
+Your code is now tracked in a local git repository. It has not yet been pushed to any remote servers, so changes you make in the code now will not yet show anywhere apart from on your own machine. You'll push the code to the remote shared repository in the 'Working' section.
 
 4. Install npm's.
 
-Npm's are little external code packages that each deal with something useful for a website. It could be animations or special syntax or anything really. By doing the commands below you make sure you install these on your machine as external dependencies so your code can run.
+Npm's are little external code packages that each contain something useful for a website. By doing the commands below you make sure you install these on your machine as external dependencies so your code can run.
 
 ```
 
@@ -116,12 +161,12 @@ npm install
 Done with the installation!
 Now lets DO this.
 
-### Work, work, workin.
+### Working.
 
-You'll be making changes on your local machine, checking them in your browser. Once you're happy you'll make a 'pull request' (sending your local code) to GitHub, where it will get merged into the main project and be made visible to all.
+You'll be making changes on your local machine and checking them in your browser. Once you're happy you'll make a 'pull request' (sending your local code) to GitHub, where it will get merged into the main project and be made visible to all.
 GitHub works in a way that lets you push your changes in a separate branch to a main branch, much like track changes in a Word document.
 
-This is how you create a separate branch, add changes to it and then request to have your changes intergrated into the master branch:
+This is how you create a separate branch, add changes to it and then request to have your changes integrated into the master branch:
 
 1.  Check that you've got the latest version of the remote master branch (always do this. muy importante. If you don't first pull down the latest version of master then you'll be making a new branch off of old code, and get pesky merge conflicts), and then create a new branch of master:
 
@@ -152,16 +197,16 @@ npm start (this opens up a http://localhost:3000 window in your browser)
 git add .
 git commit -m "commit message"
 git push (you'll be prompted to set the upstream branch, use the given suggestion)
-(repeat above until happy and glowing), then:
+(repeat above until happy), then:
 go to https://github.com/osaisacson/tillsammans and make a PR (just press the pretty obvious button called 'Compare & pull request') doublecheck that it is from your branch to the master branch
 
 ```
 
-Done! Let someone know that you've done changes that they can merge, or do the merge yourself (see steps in the Build build buldin section below).
+Done! Let someone know that you've done changes that they can merge, or do the merge yourself (see steps in the 'Building' section below).
 
-### Build, build, buildin.
+### Building
 
-This is for the person who will be approving that the changes you made above should indeed be merged into the main project. Best practice is that someone other than you merge it, but hey, live your dream.
+This is for the person who will be approving that the changes you made above should indeed be merged into the main project. Best practice is that someone other than you merge it. Four eyes are better than two.
 
 1. Go to https://github.com/osaisacson/tillsammans
 

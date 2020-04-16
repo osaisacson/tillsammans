@@ -73,10 +73,7 @@ async function sendNewOrderEmail(orderData) {
           <b>Nästa steg:</b><br>
           <ol>
             <li>Gå in på <a href="https://tjorn.allatillsammans.se/admin">tjorn.allatillsammans.se/admin</a></li>
-            <li>Ändra vilken grupp beställningen ska fördelas till</li>
-            <li>Ändra status till 'Fördelad till grupp'</li>
-            <li>Klicka 'Kopiera detaljer till email' och skicka det genererade emailet till gruppledaren</li>
-            <li>Klart!</li>
+            <li>Följ instruktionerna under 'Hantera beställningar'</li>
           </ol>
         </p>
         <p>För uppföljning: håll ett öga på fliken 'Fördelad till grupp'.</p> 
@@ -137,10 +134,7 @@ async function sendNewVolunteerEmail(volunteerData) {
     <b>Nästa steg:</b><br>
     <ol>
       <li>Gå in på <a href="https://tjorn.allatillsammans.se/admin">tjorn.allatillsammans.se/admin</a></li>
-      <li>Ändra vilken grupp volontären ska fördelas till</li>
-      <li>Ändra status till 'Fördelad till grupp'</li>
-      <li>Klicka 'Kopiera detaljer till email' och skicka det genererade emailet till gruppledaren</li>
-      <li>Klart!</li>
+      <li>Följ instruktionerna under 'Hantera beställningar'</li>
     </ol>
   </p>
   <p>För uppföljning: håll ett öga på fliken 'Fördelad till grupp'. </p>
