@@ -164,7 +164,7 @@ npm install
 Done with the installation!
 Now lets DO this.
 
-### Working.
+### Working
 
 You'll be making changes on your local machine and checking them in your browser. Once you're happy you'll make a 'pull request' (sending your local code) to GitHub, where it will get merged into the main project and be made visible to all.
 GitHub works in a way that lets you push your changes in a separate branch to a main branch, much like track changes in a Word document.
