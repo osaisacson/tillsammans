@@ -214,7 +214,7 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Detaljer till voluntär',
+      title: 'Detaljer till volontär',
       field: 'skicka',
       cellStyle: medium,
       headerStyle: medium,
@@ -278,7 +278,7 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Detaljer till voluntär',
+      title: 'Detaljer till volontär',
       field: 'skicka',
       cellStyle: medium,
       headerStyle: medium,
