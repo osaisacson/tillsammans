@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
@@ -49,7 +51,9 @@ async function sendNewOrderEmail(orderData) {
             <b>Namn: </b>${orderData.förnamn} ${orderData.efternamn}<br>
           </p>
           <p>
-            <b>Mottagen: </b>${orderData.datum}<br>
+            <b>Mottagen: </b>${moment(new Date(orderData.datum)).format(
+              'lll'
+            )}<br>
             <b>Typ: </b>${orderData.typ}<br>
           </p>
           <p>
@@ -101,7 +105,9 @@ async function sendNewVolunteerEmail(volunteerData) {
       <b>Namn: </b>${volunteerData.förnamn} ${volunteerData.efternamn}<br>
     </p>
     <p>
-      <b>Mottagen: </b>${volunteerData.datum}<br>
+      <b>Mottagen: </b>${moment(new Date(volunteerData.datum)).format(
+        'lll'
+      )}<br>
     </p>
     <p>
       <b>Telefon: </b>${volunteerData.telefon}<br>
