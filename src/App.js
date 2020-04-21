@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-//Reducers
+//Reducers TBD: Currently not in use.
 import ordersReducer from './store/reducers/orders';
 import groupsReducer from './store/reducers/groups';
 import volunteersReducer from './store/reducers/volunteers';

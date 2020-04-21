@@ -18,7 +18,6 @@ import 'firebase/firestore';
 const Admin = (props) => {
   const firestore = firebase.firestore();
 
-  //Set up hooks
   const [volunteersData, setVolunteersData] = useState({
     newVolunteers: [],
     distributedVolunteers: [],
