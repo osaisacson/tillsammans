@@ -113,9 +113,9 @@ export const sendConfirmationEmail = (content) => {
     %0A
     YTTRE GRUPP CENTRALA TJÖRN
     %0A
-    Gruppledare: Maria Eriksson
+    Gruppledare: Maria Eriksson,  Erika Andersson, Josefin Ulmfelt
     %0A
-    Telefon: 0733-230515
+    Telefon: 0733-230515, 0733230535, 0733-23053
     %0A
     %0A
     YTTRE GRUPP MJÖRN
@@ -367,9 +367,9 @@ export const sendWelcomeEmail = (content) => {
     %0A
     YTTRE GRUPP CENTRALA TJÖRN
     %0A
-    Gruppledare: Maria Eriksson
+    Gruppledare: Maria Eriksson,  Erika Andersson, Josefin Ulmfelt
     %0A
-    Telefon: 0733-230515
+    Telefon: 0733-230515, 0733230535, 0733-23053
     %0A
     %0A
     YTTRE GRUPP MJÖRN
