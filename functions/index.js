@@ -1,5 +1,4 @@
-import moment from 'moment';
-
+const moment = require('moment');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
@@ -39,6 +38,11 @@ exports.sendNewVolunteerEmail = functions.firestore
     const volunteerData = snap.data();
     return sendNewVolunteerEmail(volunteerData);
   });
+
+// Sends an email from our default email account when a user clicks submit on a form
+exports.sendMailThroughForm = functions.https.onCall((data) => {
+  return sendMailThroughForm(data);
+});
 
 // Email to notify the administrator of a new order - content
 async function sendNewOrderEmail(orderData) {
@@ -154,5 +158,18 @@ async function sendNewVolunteerEmail(volunteerData) {
 
   await mailTransport.sendMail(mailOptions);
   console.log('New volunteer email notification sent!');
+  return null;
+}
+
+async function sendMailThroughForm(data) {
+  const mailOptions = {
+    from: `Alla Tillsammans - Tjörn`,
+    to: data.email,
+    subject: data.subject,
+    html: data.message,
+  };
+
+  await mailTransport.sendMail(mailOptions);
+  alert(`Email skickat till ${data.email}!`);
   return null;
 }

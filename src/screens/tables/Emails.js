@@ -15,7 +15,7 @@ export const sendOrderEmail = (content) => {
   Yttre Grupp Skärhamn: gunilla.e.gustafsson@svenskakyrkan.se, jaana.pollari.lindstrom@svenskakyrkan.se
   %0A 
   %0A 
-  Yttre Grupp Centrala Tjörn: maria.eriksson1@svenskakyrkan.se	
+  Yttre Grupp Centrala Tjörn: maria.eriksson1@svenskakyrkan.se, erika.andersson@svenskakyrkan.se, josefin.ulmfelt@svenskakyrkan.se
   %0A 
   %0A 
   Yttre Grupp Mjörn: erik@egnahemsfabriken.se
@@ -265,7 +265,7 @@ export const sendVolunteerEmail = (content) => {
   Yttre Grupp Skärhamn: gunilla.e.gustafsson@svenskakyrkan.se, jaana.pollari.lindstrom@svenskakyrkan.se
   %0A 
   %0A 
-  Yttre Grupp Centrala Tjörn: maria.eriksson1@svenskakyrkan.se	
+  Yttre Grupp Centrala Tjörn: maria.eriksson1@svenskakyrkan.se, erika.andersson@svenskakyrkan.se, josefin.ulmfelt@svenskakyrkan.se
   %0A 
   %0A 
   Yttre Grupp Mjörn: erik@egnahemsfabriken.se
