@@ -2,6 +2,7 @@ const moment = require('moment');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
+const cors = require('cors')({ origin: true });
 
 admin.initializeApp();
 
@@ -40,8 +41,27 @@ exports.sendNewVolunteerEmail = functions.firestore
   });
 
 // Sends an email from our default email account when a user clicks submit on a form
-exports.sendMailThroughForm = functions.https.onCall((data) => {
-  return sendMailThroughForm(data);
+exports.submit = functions.https.onRequest((req, res) => {
+  cors(req, res, () => {
+    if (req.method !== 'POST') {
+      return;
+    }
+
+    const mailOptions = {
+      from: gmailEmail,
+      replyTo: req.body.email,
+      to: req.body.email,
+      subject: `${req.body.name} just messaged me from my website`,
+      text: req.body.message,
+      html: `<p>${req.body.message}</p>`,
+    };
+
+    return mailTransport.sendMail(mailOptions).then(() => {
+      console.log('New email sent to:', req.body.email);
+      res.status(200).send({ isEmailSend: true });
+      return;
+    });
+  });
 });
 
 // Email to notify the administrator of a new order - content
@@ -158,18 +178,5 @@ async function sendNewVolunteerEmail(volunteerData) {
 
   await mailTransport.sendMail(mailOptions);
   console.log('New volunteer email notification sent!');
-  return null;
-}
-
-async function sendMailThroughForm(data) {
-  const mailOptions = {
-    from: `Alla Tillsammans - Tjörn`,
-    to: data.email,
-    subject: data.subject,
-    html: data.message,
-  };
-
-  await mailTransport.sendMail(mailOptions);
-  alert(`Email skickat till ${data.email}!`);
   return null;
 }

@@ -21,6 +21,9 @@ export const sendOrderEmail = (content) => {
   Yttre Grupp Mjörn: erik@egnahemsfabriken.se
   %0A 
   %0A 
+  Yttre Grupp Rönnäng: se kontakt under 'grupper'
+  %0A 
+  %0A 
   ************************************************************************************************
   Hej! %0A
     %0A 
@@ -125,6 +128,9 @@ export const sendConfirmationEmail = (content) => {
     Telefon: 0703-022574
     %0A
     %0A
+    YTTRE GRUPP RÖNNÄNG: se kontakt under 'grupper'
+    %0A 
+    %0A 
     ***************************************************************************
     %0A
     %0A
@@ -271,6 +277,9 @@ export const sendVolunteerEmail = (content) => {
   Yttre Grupp Mjörn: erik@egnahemsfabriken.se
   %0A 
   %0A 
+  Yttre Grupp Rönnäng: se kontakt under 'grupper'
+  %0A 
+  %0A 
   ************************************************************************************************
   %0A 
   %0A 
@@ -379,6 +388,9 @@ export const sendWelcomeEmail = (content) => {
     Telefon: 0703-022574
     %0A
     %0A
+    YTTRE GRUPP RÖNNÄNG: se kontakt under 'grupper'
+    %0A 
+    %0A 
     ***************************************************************************
     %0A
     %0A

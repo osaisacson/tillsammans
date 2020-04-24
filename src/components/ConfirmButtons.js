@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Spinner from 'react-bootstrap/Spinner';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';

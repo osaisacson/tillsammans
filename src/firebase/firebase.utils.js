@@ -12,7 +12,7 @@ const config = {
   storageBucket: 'sverige-tillsammans.appspot.com',
   messagingSenderId: '1051712811922',
   appId: '1:1051712811922:web:7be6a7bd7fdd3376a6474b',
-  measurementId: 'G-M0919C717V'
+  measurementId: 'G-M0919C717V',
 };
 
 firebase.initializeApp(config);
