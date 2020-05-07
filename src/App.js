@@ -1,14 +1,6 @@
 import React from 'react';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-//Reducers TBD: Currently not in use.
-import ordersReducer from './store/reducers/orders';
-import groupsReducer from './store/reducers/groups';
-import volunteersReducer from './store/reducers/volunteers';
-import cancellationsReducer from './store/reducers/cancellations';
+import { connect } from "react-redux";
+import { Switch, Route } from 'react-router-dom';
 
 //Components
 import MainHeader from './components/MainHeader';
@@ -23,7 +15,7 @@ import Cancel from './screens/users/Cancel';
 import Volunteer from './screens/users/Volunteer';
 
 //Admin screens
-import CheckAdmin from './screens/admin/CheckAdmin';
+import Admin from './screens/admin/Admin';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
@@ -38,29 +30,23 @@ import HowTo from './screens/info/HowTo';
 import Intro from './screens/info/Intro';
 import Contact from './screens/info/Contact';
 
+//Authentication
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './components/Login';
+
 import './App.scss';
 
 require('dotenv').config();
 
-//Combines all the reducers which manages our redux state. This is where we geet our current state from in the child screens.
-const rootReducer = combineReducers({
-  orders: ordersReducer,
-  volunteers: volunteersReducer,
-  groups: groupsReducer,
-  cancellations: cancellationsReducer,
-});
-
 //NOTE: remove composeWithDevTools before deploying the app. It is only used for React Native Debugger.
 // const store = createStore(rootReducer, composeWithDevTools());
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk)); //Redux, manages our state.
+function App(props) {
+  const { isAuthenticated, isVerifying } = props;
 
-export default function App() {
   return (
-    <Provider store={store}>
-      <Router>
+    <div>
         <MainHeader />
-
         <div className="container">
           <Switch>
             {/* For users */}
@@ -87,9 +73,12 @@ export default function App() {
               <Partners />
             </Route>
             {/* For admin */}
-            <Route path="/admin">
-              <CheckAdmin />
-            </Route>
+            <ProtectedRoute 
+              exact path="/admin"
+              component={Admin}
+              isAuthenticated={isAuthenticated}
+              isVerifying={isVerifying}
+              />
             <Route path="/mottaget">
               <Mottaget />
             </Route>
@@ -105,6 +94,10 @@ export default function App() {
             <Route path="/avbokningar">
               <Cancellations />
             </Route>
+            <Route 
+              exact path="/login" 
+              component={Login} 
+              />
             {/* For groupadmin */}
             <Route
               path="/grupp/:groupLink/:groupId"
@@ -117,7 +110,15 @@ export default function App() {
             </Route>
           </Switch>
         </div>
-      </Router>
-    </Provider>
+    </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isVerifying: state.auth.isVerifying
+  };
+}
+
+export default connect(mapStateToProps)(App);
