@@ -108,7 +108,6 @@ const HelpForm = (props) => {
       alert('Det verkar som du inte läst och godkänt våra villkor');
       return;
     }
-    console.log('ADD USER TRIGGERED');
     const db = firebase.firestore();
     db.collection('orders').add({
       gruppId: '0',
@@ -135,64 +134,6 @@ const HelpForm = (props) => {
     setRedirectToThanks(true);
   };
 
-  //For later use: this is the way we want to do it, not the addUser above.
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = useCallback(async () => {
-  //   if (!formState.formIsValid) {
-  //     alert(
-  //       'Ojoj',
-  //       'Det verkar som något saknas i formuläret, kolla om det står någonting under fälten.',
-  //       [{ text: 'OK' }]
-  //     );
-  //     return;
-  //   }
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     if (editedOrder) {
-  //       await dispatch(
-  //         ordersActions.updateOrder(
-  //           ordrId,
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     } else {
-  //       console.log('--------CREATE PRODUCT: dispatch--------');
-  //       console.log(
-  //         'formstate.inputValues.beskrivning:',
-  //         formState.inputValues.beskrivning
-  //       );
-  //       console.log('---------------------------------------');
-  //       await dispatch(
-  //         ordersActions.createOrder(
-  //           formState.inputValues.typ,
-  //           formState.inputValues.beskrivning,
-  //           formState.inputValues.tidsrymd,
-  //           formState.inputValues.telefon,
-  //           formState.inputValues.förnamn,
-  //           formState.inputValues.efternamn,
-  //           formState.inputValues.email,
-  //           formState.inputValues.address
-  //         )
-  //       );
-  //     }
-  //     setRedirectToThanks(true);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-
-  //   setIsLoading(false);
-  // }, [formState, editedOrder, dispatch, ordrId]);
-
   const toggleCheckBox = () => {
     setApprovedConditions(!approvedConditions);
   };
@@ -217,6 +158,14 @@ const HelpForm = (props) => {
     <div className="form">
       <Form onSubmit={addUser}>
         <h2>Beställning</h2>
+        <p>
+          Notera att tjänsten är {''}
+          <span className="bold">GRATIS</span>, enda kostnaden är om din
+          beställning i sig självt innebär någon kostnad - till exempel om du
+          vill vi ska handla. I de fallen ersätts volontären för sina utgifter
+          via antingen swish, kontanter eller faktura. Vi tar aldrig ut någon
+          avgift för själva tjänsten.
+        </p>
         <p>
           Vill du inte använda formuläret kan du även beställa genom att ringa{' '}
           <span>073-3230571</span> eller maila{' '}
