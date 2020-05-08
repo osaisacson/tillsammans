@@ -38,9 +38,6 @@ import './App.scss';
 
 require('dotenv').config();
 
-//NOTE: remove composeWithDevTools before deploying the app. It is only used for React Native Debugger.
-// const store = createStore(rootReducer, composeWithDevTools());
-
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
 
@@ -49,10 +46,6 @@ function App(props) {
       <MainHeader />
       <div className="container">
         <Switch>
-          {/* For all */}
-          <Route path="/">
-            <Home />
-          </Route>
           {/* For users */}
           <Route path="/bestallning">
             <Apply />
@@ -76,61 +69,45 @@ function App(props) {
           <Route path="/partners">
             <Partners />
           </Route>
-          {/* Login */}
-          <Route exact path="/admin" component={Login} />
-          {/* For main admin */}
+          {/* For admin */}
           <ProtectedRoute
             exact
-            path="/main-admin"
+            path="/admin"
             component={Admin}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
-          {/* For group admins */}
+          {/* For groupadmin */}
           <ProtectedRoute
-            path="/grupp/:groupLink"
+            path="/grupp/:groupLink/:groupId"
             exact
             component={GroupAdmin}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
           {/* NOTE TO VISHNU: 
-          These are sub routes of admin */}
-          <ProtectedRoute
-            path="/mottaget"
-            exact
-            component={Mottaget}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
-          <ProtectedRoute
-            path="/beställningar"
-            exact
-            component={Orders}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
-          <ProtectedRoute
-            path="/volontärer"
-            exact
-            component={Volunteers}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
-          <ProtectedRoute
-            path="/grupper"
-            exact
-            component={Groups}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
-          <ProtectedRoute
-            path="/avbokningar"
-            exact
-            component={Cancellations}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
+             These should be sub routes of admin */}
+          <Route path="/mottaget">
+            <Mottaget />
+          </Route>
+          <Route path="/beställningar">
+            <Orders />
+          </Route>
+          <Route path="/volontärer">
+            <Volunteers />
+          </Route>
+          <Route path="/grupper">
+            <Groups />
+          </Route>
+          <Route path="/avbokningar">
+            <Cancellations />
+          </Route>
+          <Route exact path="/login" component={Login} />
+
+          {/* For all */}
+          <Route path="/">
+            <Home />
+          </Route>
         </Switch>
       </div>
     </div>
