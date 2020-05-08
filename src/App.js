@@ -23,7 +23,7 @@ import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
 
 //Group Admin screens
-import CheckGroupAdmin from './screens/groupAdmin/CheckGroupAdmin';
+import GroupAdmin from './screens/groupAdmin/CheckGroupAdmin';
 
 //Info screens
 import HowTo from './screens/info/HowTo';
@@ -99,10 +99,12 @@ function App(props) {
               component={Login} 
               />
             {/* For groupadmin */}
-            <Route
+            <ProtectedRoute
               path="/grupp/:groupLink/:groupId"
               exact
-              component={CheckGroupAdmin}
+              component={GroupAdmin}
+              isAuthenticated={isAuthenticated}
+              isVerifying={isVerifying}
             />
             {/* For all */}
             <Route path="/">
