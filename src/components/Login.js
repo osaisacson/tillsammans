@@ -1,50 +1,56 @@
 
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import { loginUser } from "../store/actions";
 
 import SignInForm from './SignInForm';
 
-class Login extends Component {
-  state = { email: "", password: "" };
+function Login(props) {
 
-  handleChange = (event) => {
+  let history = useHistory();
+  let location = useLocation();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = (event) => {
     event.preventDefault();
     const { value, name } = event.target;
-    if (name === 'adminNamn') {
-      this.setState({ email: value});
+    if (name === 'email') {
+      setEmail(value);
     }
     if (name === 'password') {
-      this.setState({ password: value})
+      setPassword(value);
     }
   };
 
-  handleSubmit = (event) => {
-      event.preventDefault();
-    const { dispatch } = this.props;
-    const { email, password } = this.state;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { dispatch } = props;
 
     dispatch(loginUser(email, password));
   };
 
-  render() {
-    const { loginError, isAuthenticated } = this.props;
+  const { loginError, isAuthenticated } = props;
 
-    if (isAuthenticated) {
-      return <Redirect to="/admin" />;
-    } else {
-      return (
-        <SignInForm
+  if (isAuthenticated) {
+    // if successfully logged in, send user back to the route they want to access
+    let { from } = location.state || { from: { pathname: "/" }};
+    return <Redirect to={from} />
+  } else {
+    return (
+      // render sign in form if not logged in
+      <SignInForm
         header={'Logga in som admin'}
-        loginName={this.state.email}
-        loginPassword={this.state.password}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
+        loginName={email}
+        loginPassword={password}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
       />
-      );
-    }
+    );
   }
+
 }
 
 function mapStateToProps(state) {

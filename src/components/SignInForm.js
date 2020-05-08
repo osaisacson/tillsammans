@@ -11,11 +11,11 @@ const SignInForm = props => {
 
       <form onSubmit={props.handleSubmit}>
         <FormInput
-          name="adminNamn"
+          name="email"
           type="text"
           handleChange={props.handleChange}
           value={props.loginName}
-          label="Administratörsnamn"
+          label="E-mail"
           required
         />
         <FormInput
