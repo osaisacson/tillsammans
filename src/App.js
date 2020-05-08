@@ -94,22 +94,43 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
-          {/* NOTE TO VISHNU: These are sub routes of admin */}
-          <Route path="/mottaget">
-            <Mottaget />
-          </Route>
-          <Route path="/beställningar">
-            <Orders />
-          </Route>
-          <Route path="/volontärer">
-            <Volunteers />
-          </Route>
-          <Route path="/grupper">
-            <Groups />
-          </Route>
-          <Route path="/avbokningar">
-            <Cancellations />
-          </Route>
+          {/* NOTE TO VISHNU: 
+          These are sub routes of admin */}
+          <ProtectedRoute
+            path="/mottaget"
+            exact
+            component={Mottaget}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/beställningar"
+            exact
+            component={Orders}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/volontärer"
+            exact
+            component={Volunteers}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/grupper"
+            exact
+            component={Groups}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/avbokningar"
+            exact
+            component={Cancellations}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
         </Switch>
       </div>
     </div>
