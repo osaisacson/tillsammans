@@ -49,6 +49,10 @@ function App(props) {
       <MainHeader />
       <div className="container">
         <Switch>
+          {/* For all */}
+          <Route path="/">
+            <Home />
+          </Route>
           {/* For users */}
           <Route path="/bestallning">
             <Apply />
@@ -72,7 +76,9 @@ function App(props) {
           <Route path="/partners">
             <Partners />
           </Route>
-          {/* For admin */}
+          {/* Login */}
+          <Route exact path="/admin" component={Login} />
+          {/* For main admin */}
           <ProtectedRoute
             exact
             path="/main-admin"
@@ -80,6 +86,15 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
+          {/* For group admins */}
+          <ProtectedRoute
+            path="/grupp/:groupLink"
+            exact
+            component={GroupAdmin}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          {/* NOTE TO VISHNU: These are sub routes of admin */}
           <Route path="/mottaget">
             <Mottaget />
           </Route>
@@ -94,19 +109,6 @@ function App(props) {
           </Route>
           <Route path="/avbokningar">
             <Cancellations />
-          </Route>
-          <Route exact path="/admin" component={Login} />
-          {/* For groupadmin */}
-          <ProtectedRoute
-            path="/grupp/:groupLink/:groupId"
-            exact
-            component={GroupAdmin}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
-          {/* For all */}
-          <Route path="/">
-            <Home />
           </Route>
         </Switch>
       </div>

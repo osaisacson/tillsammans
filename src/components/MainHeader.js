@@ -48,7 +48,14 @@ export default function MainHeader(props) {
             <Link id="partners" to="/partners" className="nav-link">
               Partners
             </Link>
-            {/* NOTE TO VISHNU: Commented this out as the admins don't want the admin login/logout to be visible on the page which the users see. They want to instead access login by typing /admin after the url. I changed the prev /login to /admin in the related files and updated the previous /admin to /main-admin */}
+            {/* NOTE TO VISHNU: 
+            Commented this out as we don't want the admin login 
+            to be visible on the page which the users see. 
+            The admins want to instead access their login by typing /admin after the main url. 
+            I changed the prev /login to /admin in the related files and updated
+            the previous /admin to /main-admin to not point to the same route.
+            We will need to still logout of course, so awesome if we can update 
+            the below with a flag to only show the logout button if the user is logged in (ie is an admin). */}
             {/* {isAuthenticated ? (
               <a className="nav-link" onClick={() => dispatch(logoutUser())}>
                 Logga ut
