@@ -8,7 +8,6 @@ import SignInForm from './SignInForm';
 
 function Login(props) {
 
-  let history = useHistory();
   let location = useLocation();
 
   const [email, setEmail] = useState('');
@@ -32,7 +31,7 @@ function Login(props) {
     dispatch(loginUser(email, password));
   };
 
-  const { loginError, isAuthenticated } = props;
+  const { isAuthenticated } = props;
 
   if (isAuthenticated) {
     // if successfully logged in, send user back to the route they want to access
