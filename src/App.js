@@ -77,6 +77,41 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
+          <ProtectedRoute
+            path="/admin/mottaget"
+            exact
+            component={Mottaget}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/admin/beställningar"
+            exact
+            component={Orders}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/admin/volontärer"
+            exact
+            component={Volunteers}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/admin/grupper"
+            exact
+            component={Groups}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/admin/avbokningar"
+            exact
+            component={Cancellations}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
           {/* For groupadmin */}
           <ProtectedRoute
             path="/grupp/:groupLink/:groupId"
@@ -85,26 +120,8 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
-          {/* NOTE TO VISHNU: 
-             These should be sub routes of admin */}
-          <Route path="/mottaget">
-            <Mottaget />
-          </Route>
-          <Route path="/beställningar">
-            <Orders />
-          </Route>
-          <Route path="/volontärer">
-            <Volunteers />
-          </Route>
-          <Route path="/grupper">
-            <Groups />
-          </Route>
-          <Route path="/avbokningar">
-            <Cancellations />
-          </Route>
-          <Route exact path="/login" component={Login} />
-
           {/* For all */}
+          <Route exact path="/login" component={Login} />
           <Route path="/">
             <Home />
           </Route>
