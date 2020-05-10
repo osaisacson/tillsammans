@@ -17,7 +17,7 @@ const ProtectedRoute = ({
       ) : (
         <Redirect
           to={{
-            pathname: '/admin',
+            pathname: '/login',
             state: { from: props.location },
           }}
         />

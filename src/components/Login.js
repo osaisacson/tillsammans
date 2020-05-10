@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Redirect, useHistory, useLocation } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import { loginUser } from "../store/actions";
 
 import SignInForm from './SignInForm';
