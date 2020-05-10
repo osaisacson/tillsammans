@@ -203,3 +203,27 @@ async function grantAdminRole(email){
     admin: true
   })
 }
+
+// Grants group admin access to a user
+exports.addGroupAdmin = functions.https.onCall((data, context) => {
+  const email = data.email;
+  const groupID = data.groupID;
+  return grantGroupAdminRole(email, groupID).then(() => {
+    return {
+      result: `${email} is now a group admin.`
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    return {
+      error: err
+    }
+  })
+});
+
+async function grantGroupAdminRole(email, groupID){
+  const user = await admin.auth().getUserByEmail(email);
+  return admin.auth().setCustomUserClaims(user.uid, {
+    groupAdmin: groupID
+  })
+}

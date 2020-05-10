@@ -120,14 +120,14 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
-          {/* For groupadmin */}
+          {/* For groupadmin - now routed through /admin 
           <ProtectedRoute
             path="/grupp/:groupLink/:groupId"
             exact
             component={GroupAdmin}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
-          />
+          /> */}
           {/* For all */}
           <Route exact path="/login" component={Login} />
           <Route path="/">
