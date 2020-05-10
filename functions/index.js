@@ -180,3 +180,26 @@ async function sendNewVolunteerEmail(volunteerData) {
   console.log('New volunteer email notification sent!');
   return null;
 }
+
+// Grants admin access to a user
+exports.addAdmin = functions.https.onCall((data, context) => {
+  const email = data.email;
+  return grantAdminRole(email).then(() => {
+    return {
+      result: `${email} is now an admin.`
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    return {
+      error: err
+    }
+  })
+});
+
+async function grantAdminRole(email){
+  const user = await admin.auth().getUserByEmail(email);
+  return admin.auth().setCustomUserClaims(user.uid, {
+    admin: true
+  })
+}

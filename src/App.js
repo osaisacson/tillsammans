@@ -21,6 +21,7 @@ import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
+import GrantAdminAccess from './screens/admin/GrantAdminAccess';
 
 //Group Admin screens
 import GroupAdmin from './screens/groupAdmin/CheckGroupAdmin';
@@ -109,6 +110,13 @@ function App(props) {
             path="/admin/avbokningar"
             exact
             component={Cancellations}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            path="/admin/add"
+            exact
+            component={GrantAdminAccess}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
