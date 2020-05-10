@@ -15,7 +15,7 @@ import Cancel from './screens/users/Cancel';
 import Volunteer from './screens/users/Volunteer';
 
 //Admin screens
-import Admin from './screens/admin/Admin';
+import CheckAdminClaims from './screens/admin/CheckAdminClaims';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
@@ -74,7 +74,7 @@ function App(props) {
           <ProtectedRoute
             exact
             path="/admin"
-            component={Admin}
+            component={CheckAdminClaims}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
