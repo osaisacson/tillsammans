@@ -16,6 +16,7 @@ import Volunteer from './screens/users/Volunteer';
 
 //Admin screens
 import CheckAdminClaims from './screens/admin/CheckAdminClaims';
+import CheckGroupAdminClaims from './screens/groupAdmin/CheckGroupAdminClaims';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
@@ -24,7 +25,7 @@ import Mottaget from './screens/users/Mottaget';
 import GrantAdminAccess from './screens/admin/GrantAdminAccess';
 
 //Group Admin screens
-import GroupAdmin from './screens/groupAdmin/CheckGroupAdmin';
+import GroupAdmin from './screens/groupAdmin/GroupAdmin';
 
 //Info screens
 import HowTo from './screens/info/HowTo';
@@ -120,14 +121,14 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
-          {/* For groupadmin - now routed through /admin 
+          {/* For groupadmin */}
           <ProtectedRoute
             path="/grupp/:groupLink/:groupId"
             exact
-            component={GroupAdmin}
+            component={CheckGroupAdminClaims}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
-          /> */}
+          /> 
           {/* For all */}
           <Route exact path="/login" component={Login} />
           <Route path="/">
