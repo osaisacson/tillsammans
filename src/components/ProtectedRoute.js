@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import MainAdminOnly from './MainAdminOnly';
 
 const ProtectedRoute = ({
   component: Component,
   isAuthenticated,
   isVerifying,
+  mainAdminOnly,
   ...rest
 }) => (
   <Route
@@ -13,7 +15,8 @@ const ProtectedRoute = ({
       isVerifying ? (
         <div />
       ) : isAuthenticated ? (
-        <Component {...props} />
+        mainAdminOnly ?
+        <MainAdminOnly {...props} component={Component} /> : <Component {...props} />
       ) : (
         <Redirect
           to={{

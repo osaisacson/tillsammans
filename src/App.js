@@ -15,17 +15,14 @@ import Cancel from './screens/users/Cancel';
 import Volunteer from './screens/users/Volunteer';
 
 //Admin screens
-import CheckAdminClaims from './screens/admin/CheckAdminClaims';
-import CheckGroupAdminClaims from './screens/groupAdmin/CheckGroupAdminClaims';
+import AdminRouter from './screens/admin/AdminRouter';
+import GroupAdminRouter from './screens/groupAdmin/GroupAdminRouter';
 import Orders from './screens/admin/Orders';
 import Volunteers from './screens/admin/Volunteers';
 import Groups from './screens/admin/Groups';
 import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
 import GrantAdminAccess from './screens/admin/GrantAdminAccess';
-
-//Group Admin screens
-import GroupAdmin from './screens/groupAdmin/GroupAdmin';
 
 //Info screens
 import HowTo from './screens/info/HowTo';
@@ -75,9 +72,10 @@ function App(props) {
           <ProtectedRoute
             exact
             path="/admin"
-            component={CheckAdminClaims}
+            component={AdminRouter}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={false}
           />
           <ProtectedRoute
             path="/admin/mottaget"
@@ -85,6 +83,7 @@ function App(props) {
             component={Mottaget}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={true}
           />
           <ProtectedRoute
             path="/admin/beställningar"
@@ -92,6 +91,7 @@ function App(props) {
             component={Orders}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={true}
           />
           <ProtectedRoute
             path="/admin/volontärer"
@@ -99,6 +99,7 @@ function App(props) {
             component={Volunteers}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={true}
           />
           <ProtectedRoute
             path="/admin/grupper"
@@ -106,6 +107,7 @@ function App(props) {
             component={Groups}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={true}
           />
           <ProtectedRoute
             path="/admin/avbokningar"
@@ -113,6 +115,7 @@ function App(props) {
             component={Cancellations}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={true}
           />
           <ProtectedRoute
             path="/admin/add"
@@ -120,14 +123,16 @@ function App(props) {
             component={GrantAdminAccess}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={true}
           />
           {/* For groupadmin */}
           <ProtectedRoute
             path="/grupp/:groupLink/:groupId"
             exact
-            component={CheckGroupAdminClaims}
+            component={GroupAdminRouter}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
+            mainAdminOnly={false}
           /> 
           {/* For all */}
           <Route exact path="/login" component={Login} />

@@ -3,32 +3,13 @@ import firebase from 'firebase/app';
 
 import FormInput from '../../components/FormInput';
 import Button from 'react-bootstrap/Button';
-import AccessDenied from './AccessDenied';
 
-const GrantAdminAccess = props => {
-
-  const [isAdmin, setisAdmin] = useState(false);
-
-  useEffect(() => {
-    firebase.auth().currentUser.getIdTokenResult()
-        .then((idTokenResult) => {
-            // Confirm the user is an Admin.
-            if (!!idTokenResult.claims.admin) {
-                setisAdmin(true);
-            } 
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-});
-
+const GrantAdminAccess = () => {
   return (
-    isAdmin ? 
     <React.Fragment>
       <GrantMainAdmin />
       <GrantGroupAdmin />
     </React.Fragment>
-    : <AccessDenied />
   );
 };
 
