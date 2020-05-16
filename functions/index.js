@@ -183,6 +183,11 @@ async function sendNewVolunteerEmail(volunteerData) {
 
 // Grants admin access to a user
 exports.addAdmin = functions.https.onCall((data, context) => {
+  if (context.auth.token.admin !== true){
+    return {
+      error: "User must be an admin to fulfill request."
+    };
+  };
   const email = data.email;
   return grantAdminRole(email).then(() => {
     return {
@@ -206,6 +211,11 @@ async function grantAdminRole(email){
 
 // Grants group admin access to a user
 exports.addGroupAdmin = functions.https.onCall((data, context) => {
+  if (context.auth.token.admin !== true){
+    return {
+      error: "User must be an admin to fulfill request."
+    };
+  };
   const email = data.email;
   const groupID = data.groupID;
   return grantGroupAdminRole(email, groupID).then(() => {

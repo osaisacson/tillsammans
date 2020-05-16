@@ -5,7 +5,7 @@ const AccessDenied = () => {
         <div className="page-layout centered">
             <h3>Access Denied</h3>
             <p>
-                You don't have the required privileges to access the admin page.
+                You don't have the required privileges to access this page.
             </p>
         </div>
     )

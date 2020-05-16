@@ -23,11 +23,12 @@ const GrantAdminAccess = props => {
 });
 
   return (
-    isAdmin &&
+    isAdmin ? 
     <React.Fragment>
       <GrantMainAdmin />
       <GrantGroupAdmin />
     </React.Fragment>
+    : <AccessDenied />
   );
 };
 
