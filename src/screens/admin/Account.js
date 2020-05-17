@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import ChangePasswordForm from '../../components/ChangePasswordForm';
 import firebase from 'firebase/app';
 
@@ -39,17 +41,18 @@ const Account = props => {
         }
     }
 
-    return( 
-    
+    return (
+
         <React.Fragment>
-        <h3>Hej {user.email}</h3>
-        <ChangePasswordForm
-        header={'Ändra ditt lösenord'}
-        message={message}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        newPassword={newPassword}
-        confirmPassword={confirmPassword} />
+            <h3>Hej {user.email}</h3>
+            <Link to="/admin"><Button>Gå till admin</Button></Link>
+            <ChangePasswordForm
+                header={'Ändra ditt lösenord'}
+                message={message}
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                newPassword={newPassword}
+                confirmPassword={confirmPassword} />
         </React.Fragment>
     )
 }
