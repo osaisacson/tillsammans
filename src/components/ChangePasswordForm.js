@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import FormInput from './FormInput';
 
-const ChangePassword = (props) => {
+const ChangePasswordForm = (props) => {
     return (
         <div className="sign-in page-layout">
             {props.topHeader ? <h6>{props.topHeader}</h6> : null}
@@ -34,4 +34,4 @@ const ChangePassword = (props) => {
     )
 }
 
-export default ChangePassword;
+export default ChangePasswordForm;

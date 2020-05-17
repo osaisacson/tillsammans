@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormInput from '../components/FormInput';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const SignInForm = props => {
   return (
@@ -29,6 +30,10 @@ const SignInForm = props => {
         <Button type="submit" block>
           Logga in
         </Button>
+        <br />
+        <Link to="/resetpassword">
+          <Button block>Glömde mitt lösenord</Button>
+        </Link>
       </form>
     </div>
   );

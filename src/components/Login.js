@@ -39,7 +39,7 @@ function Login(props) {
     return <Redirect to={from} />
   } else {
     return (
-      // render sign in form if not logged in
+      // render sign in form if not logged in 
       <SignInForm
         header={'Logga in som admin'}
         loginName={email}
@@ -47,6 +47,7 @@ function Login(props) {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
       />
+  
     );
   }
 

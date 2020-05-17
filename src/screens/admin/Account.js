@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import ChangePassword from '../../components/ChangePassword';
+import { useSelector } from 'react-redux';
+import ChangePasswordForm from '../../components/ChangePasswordForm';
 import firebase from 'firebase/app';
 
 const Account = props => {
@@ -43,7 +43,7 @@ const Account = props => {
     
         <React.Fragment>
         <h3>Hej {user.email}</h3>
-        <ChangePassword
+        <ChangePasswordForm
         header={'Ändra ditt lösenord'}
         message={message}
         handleSubmit={handleSubmit}

@@ -33,6 +33,7 @@ import Contact from './screens/info/Contact';
 //Authentication
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login';
+import ResetPassword from './components/ResetPassword';
 
 import './App.scss';
 
@@ -145,6 +146,7 @@ function App(props) {
           /> 
           {/* For all */}
           <Route exact path="/login" component={Login} />
+          <Route exact path="/resetpassword" component={ResetPassword} />
           <Route path="/">
             <Home />
           </Route>
