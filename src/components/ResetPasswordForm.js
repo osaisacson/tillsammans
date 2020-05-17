@@ -20,11 +20,11 @@ const ResetPasswordForm = (props) => {
                     required
                 />
                 <Button type="submit" block>
-                    Send reset email
+                    Skicka e-mail
                 </Button>
                 <br />
                 <Link to="/login">
-                    <Button block>Return to Login</Button>
+                    <Button block>Tillbaka till inloggningssidan</Button>
                 </Link>
         </form>
     </div>

@@ -28,7 +28,7 @@ const ResetPassword = props => {
 
     return (
         <ResetPasswordForm
-            header={"Reset your password"}
+            header={"Återställ ditt lösenord"}
             email={email}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
