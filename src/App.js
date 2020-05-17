@@ -23,6 +23,7 @@ import Groups from './screens/admin/Groups';
 import Cancellations from './screens/admin/Cancellations';
 import Mottaget from './screens/users/Mottaget';
 import GrantAdminAccess from './screens/admin/GrantAdminAccess';
+import Account from './screens/admin/Account';
 
 //Info screens
 import HowTo from './screens/info/HowTo';
@@ -124,6 +125,14 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
             mainAdminOnly={true}
+          />
+          <ProtectedRoute
+            path="/admin/account"
+            exact
+            component={Account}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+            mainAdminOnly={false}
           />
           {/* For groupadmin */}
           <ProtectedRoute

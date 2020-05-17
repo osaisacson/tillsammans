@@ -49,9 +49,14 @@ export default function MainHeader(props) {
               Partners
             </Link>
             {isAuthenticated && (
+              <React.Fragment>
+              <Link className="nav-link" to="/admin/account">
+                användarkonto
+              </Link>
               <a className="nav-link" onClick={() => dispatch(logoutUser())}>
                 Logga ut
               </a>
+              </React.Fragment>
             )}
           </Nav>
         </Navbar.Collapse>
