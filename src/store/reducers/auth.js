@@ -16,6 +16,7 @@ import {
       isVerifying: false,
       loginError: false,
       logoutError: false,
+      errorMessage: "",
       isAuthenticated: false,
       user: {}
     },
@@ -40,7 +41,8 @@ import {
           ...state,
           isLoggingIn: false,
           isAuthenticated: false,
-          loginError: true
+          loginError: true,
+          errorMessage: action.error
         };
       case LOGOUT_REQUEST:
         return {

@@ -11,6 +11,7 @@ const SignInForm = props => {
       <h2>{props.header}</h2>
 
       <form onSubmit={props.handleSubmit}>
+        <p>{props.loginError ? props.errorMessage : ""}</p>
         <FormInput
           name="email"
           type="text"

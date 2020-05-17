@@ -31,7 +31,7 @@ function Login(props) {
     dispatch(loginUser(email, password));
   };
 
-  const { isAuthenticated } = props;
+  const { isAuthenticated, loginError, errorMessage } = props;
 
   if (isAuthenticated) {
     // if successfully logged in, send user back to the route they want to access
@@ -44,6 +44,8 @@ function Login(props) {
         header={'Logga in som admin'}
         loginName={email}
         loginPassword={password}
+        loginError={loginError}
+        errorMessage={errorMessage}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
       />
@@ -57,6 +59,7 @@ function mapStateToProps(state) {
   return {
     isLoggingIn: state.auth.isLoggingIn,
     loginError: state.auth.loginError,
+    errorMessage: state.auth.errorMessage,
     isAuthenticated: state.auth.isAuthenticated
   };
 }
