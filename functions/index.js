@@ -180,3 +180,60 @@ async function sendNewVolunteerEmail(volunteerData) {
   console.log('New volunteer email notification sent!');
   return null;
 }
+
+// Grants admin access to a user
+exports.addAdmin = functions.https.onCall((data, context) => {
+  if (context.auth.token.admin !== true){
+    return {
+      error: "User must be an admin to fulfill request."
+    };
+  };
+  const email = data.email;
+  return grantAdminRole(email).then(() => {
+    return {
+      result: `${email} is now an admin.`
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    return {
+      error: err
+    }
+  })
+});
+
+async function grantAdminRole(email){
+  const user = await admin.auth().getUserByEmail(email);
+  return admin.auth().setCustomUserClaims(user.uid, {
+    admin: true
+  })
+}
+
+// Grants group admin access to a user
+exports.addGroupAdmin = functions.https.onCall((data, context) => {
+  if (context.auth.token.admin !== true){
+    return {
+      error: "User must be an admin to fulfill request."
+    };
+  };
+  const email = data.email;
+  const groupID = data.groupID;
+  return grantGroupAdminRole(email, groupID).then(() => {
+    return {
+      result: `${email} is now a group admin.`
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    return {
+      error: err
+    }
+  })
+});
+
+async function grantGroupAdminRole(email, groupID){
+  const user = await admin.auth().getUserByEmail(email);
+  return admin.auth().setCustomUserClaims(user.uid, {
+    groupAdmin: groupID
+  })
+}

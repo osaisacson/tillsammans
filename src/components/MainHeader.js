@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../store/actions';
 
 export default function MainHeader(props) {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+
   return (
     <>
       <Navbar sticky="top" bg="light" expand="lg">
@@ -43,15 +48,16 @@ export default function MainHeader(props) {
             <Link id="partners" to="/partners" className="nav-link">
               Partners
             </Link>
-            {/* <NavDropdown id="byt-sprak" title="Byt språk">
-              <NavDropdown.Item href="#action/3.1">Svenska</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Engelska</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Finska</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Arabiska</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Polska</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Kurdiska</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Spanska</NavDropdown.Item>
-            </NavDropdown> */}
+            {isAuthenticated && (
+              <React.Fragment>
+              <Link className="nav-link" to="/admin/account">
+                användarkonto
+              </Link>
+              <Link className="nav-link" onClick={() => dispatch(logoutUser())}>
+                Logga ut
+              </Link>
+              </React.Fragment>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
