@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
 
 import FormInput from '../../components/FormInput';
@@ -69,7 +69,6 @@ const GrantMainAdmin = props => {
 }
 
 const GrantGroupAdmin = props => {
-  const db = firebase.firestore();
 
   const [email, setEmail] = useState("");
   const [groupID, setgroupID] = useState("");

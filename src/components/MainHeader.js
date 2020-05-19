@@ -53,9 +53,9 @@ export default function MainHeader(props) {
               <Link className="nav-link" to="/admin/account">
                 användarkonto
               </Link>
-              <a className="nav-link" onClick={() => dispatch(logoutUser())}>
+              <Link className="nav-link" onClick={() => dispatch(logoutUser())}>
                 Logga ut
-              </a>
+              </Link>
               </React.Fragment>
             )}
           </Nav>
