@@ -9,23 +9,23 @@ const ProtectedRoute = ({
   mainAdminOnly,
   ...rest
 }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      isVerifying ? (
-        <div />
-      ) : isAuthenticated ? (
-        mainAdminOnly ?
-        <MainAdminOnly {...props} component={Component} /> : <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-);
+    <Route
+      {...rest}
+      render={(props) =>
+        isVerifying ? (
+          <div />
+        ) : isAuthenticated ? (
+          mainAdminOnly ?
+            <MainAdminOnly {...props} component={Component} /> : <Component {...props} />
+        ) : (
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: { from: props.location },
+                }}
+              />
+            )
+      }
+    />
+  );
 export default ProtectedRoute;

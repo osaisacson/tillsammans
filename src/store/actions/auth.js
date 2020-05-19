@@ -12,90 +12,90 @@ export const VERIFY_REQUEST = "VERIFY_REQUEST";
 export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 
 const requestLogin = () => {
-    return {
-        type: LOGIN_REQUEST
-    };
+  return {
+    type: LOGIN_REQUEST
+  };
 };
 
 const receiveLogin = user => {
-    return {
-        type: LOGIN_SUCCESS,
-        user
-    };
+  return {
+    type: LOGIN_SUCCESS,
+    user
+  };
 };
 
 const loginError = (error) => {
-    return {
-        type: LOGIN_FAILURE,
-        error
-    };
+  return {
+    type: LOGIN_FAILURE,
+    error
+  };
 };
 
 const requestLogout = () => {
-    return {
-        type: LOGOUT_REQUEST
-    };
+  return {
+    type: LOGOUT_REQUEST
+  };
 };
 
 const recieveLogout = () => {
-    return {
-        type: LOGOUT_SUCCESS
-    };
+  return {
+    type: LOGOUT_SUCCESS
+  };
 };
 
-const logoutError= () => {
-    return {
-        type: LOGOUT_FAILURE
-    };
+const logoutError = () => {
+  return {
+    type: LOGOUT_FAILURE
+  };
 };
 
 
 const verifyRequest = () => {
-    return {
-        type: VERIFY_REQUEST
-    };
+  return {
+    type: VERIFY_REQUEST
+  };
 };
 
 
 const verifySuccess = () => {
-    return {
-        type: VERIFY_SUCCESS
-    };
+  return {
+    type: VERIFY_SUCCESS
+  };
 };
 
 export const loginUser = (email, password) => dispatch => {
-    dispatch(requestLogin());
-    firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(user => {
-            dispatch(receiveLogin(user));
-        })
-        .catch(error => {
-            dispatch(loginError(error.message));
-        })
+  dispatch(requestLogin());
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(user => {
+      dispatch(receiveLogin(user));
+    })
+    .catch(error => {
+      dispatch(loginError(error.message));
+    })
 };
 
 export const logoutUser = () => dispatch => {
-    dispatch(requestLogout());
-    firebase
-        .auth()
-        .signOut()
-        .then(() => {
-            dispatch(recieveLogout());
-        })
-        .catch(error => {
-            console.log(error);
-            dispatch(logoutError());
-        })
+  dispatch(requestLogout());
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      dispatch(recieveLogout());
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(logoutError());
+    })
 };
 
 export const verifyAuth = () => dispatch => {
-    dispatch(verifyRequest());
-    firebase.auth().onAuthStateChanged(user => {
-        if (user !== null){
-            dispatch(receiveLogin(user));
-        }
-        dispatch(verifySuccess());
-    });
+  dispatch(verifyRequest());
+  firebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+      dispatch(receiveLogin(user));
+    }
+    dispatch(verifySuccess());
+  });
 };

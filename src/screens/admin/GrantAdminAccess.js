@@ -5,6 +5,9 @@ import FormInput from '../../components/FormInput';
 import Button from 'react-bootstrap/Button';
 
 const GrantAdminAccess = () => {
+
+  // Allows main admins to grant main admin or group admin privileges to any registered user account
+
   return (
     <React.Fragment>
       <GrantMainAdmin />
@@ -93,7 +96,7 @@ const GrantGroupAdmin = props => {
     if (name === 'email') {
       setEmail(value);
     }
-    if(name === 'groupID'){
+    if (name === 'groupID') {
       setgroupID(value);
     }
   };

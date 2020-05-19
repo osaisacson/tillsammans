@@ -7,54 +7,56 @@ import firebase from 'firebase/app';
 
 const Account = props => {
 
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [message, setMessage] = useState("");
+  // Admin account panel
 
-    const user = useSelector((state) => state.auth.user);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-    console.log(user);
+  const user = useSelector((state) => state.auth.user);
 
-    const handleChange = event => {
-        const { value, name } = event.target;
-        if (name === 'newPassword') {
-            setNewPassword(value);
-        }
-        if (name === 'confirmPassword') {
-            setConfirmPassword(value);
-        }
+  console.log(user);
+
+  const handleChange = event => {
+    const { value, name } = event.target;
+    if (name === 'newPassword') {
+      setNewPassword(value);
     }
-
-    const handleSubmit = event => {
-        event.preventDefault();
-        if (newPassword === confirmPassword) {
-            setMessage("Processing...")
-            var user = firebase.auth().currentUser;
-            user.updatePassword(newPassword).then(() => {
-                setMessage("Password updated successfully.");
-            })
-                .catch((err) => {
-                    setMessage(`${err.message}`)
-                })
-        } else {
-            setMessage("Passwords must match.");
-        }
+    if (name === 'confirmPassword') {
+      setConfirmPassword(value);
     }
+  }
 
-    return (
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (newPassword === confirmPassword) {
+      setMessage("Processing...")
+      var user = firebase.auth().currentUser;
+      user.updatePassword(newPassword).then(() => {
+        setMessage("Password updated successfully.");
+      })
+        .catch((err) => {
+          setMessage(`${err.message}`)
+        })
+    } else {
+      setMessage("Passwords must match.");
+    }
+  }
 
-        <React.Fragment>
-            <h3>Hej {user.email}</h3>
-            <Link to="/admin"><Button>Gå till admin</Button></Link>
-            <ChangePasswordForm
-                header={'Ändra ditt lösenord'}
-                message={message}
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
-                newPassword={newPassword}
-                confirmPassword={confirmPassword} />
-        </React.Fragment>
-    )
+  return (
+
+    <React.Fragment>
+      <h3>Hej {user.email}</h3>
+      <Link to="/admin"><Button>Gå till admin</Button></Link>
+      <ChangePasswordForm
+        header={'Ändra ditt lösenord'}
+        message={message}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        newPassword={newPassword}
+        confirmPassword={confirmPassword} />
+    </React.Fragment>
+  )
 }
 
 export default Account;
