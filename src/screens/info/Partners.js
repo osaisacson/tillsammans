@@ -23,7 +23,7 @@ export default function Partners() {
           </a>
         </li>
         <li>
-          <a href="http://www.lionstjorn.org/">Lions Club</a>
+          <a href="https://www.spfseniorerna.se//">SPF Seniorerna</a>
         </li>
         <li>
           <a href="https://www.egnahemsfabriken.se">Egnahemsfabriken</a>
@@ -35,6 +35,12 @@ export default function Partners() {
           <a href="https://www.facebook.com/Agapes-v%C3%A4nner-evenemang-STO-204569240323939/">
             Agapes vänner
           </a>
+        </li>
+        <li>
+          <a href="https://www.sv.se/">Studieförbundet Vuxenskolan</a>
+        </li>
+        <li>
+          <a href="https://www.civil.se/">Frivilliga Resursgruppen</a>
         </li>
       </ul>
       <br />

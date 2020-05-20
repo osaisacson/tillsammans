@@ -17,18 +17,11 @@ export default function Home() {
           <div className="blurb">
             <img src={School} className="school" alt="" />
           </div>
-          <Link to={`/bestallning`}>
-            <IconButton
-              icon={Icon1}
-              text={'Jag självisolerar mig för att inte smitta andra'}
-            />
-          </Link>
+
           <Link to={`/bestallning`}>
             <IconButton
               icon={Icon2}
-              text={
-                'Jag är riskgrupp och självisolerar för att inte bli smittad'
-              }
+              text={'Jag vill beställa hjälp med yttre ärenden'}
             />
           </Link>
           <Link to={`/bli-volontar`}>
