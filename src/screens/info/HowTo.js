@@ -99,7 +99,7 @@ export default function HowTo() {
           title="VAD KOSTAR DET? HUR FUNGERAR BETALNINGAR?"
           content="
           <ul>
-          <li>Att använda tjänsten är gratis.</li>
+          <li>Att använda tjänsten är GRATIS.</li>
           <li>
             Är det ett inköp som du behöver hjälp med så ersätter du
             kostnaden för inköpet i efterskott. Volontären lägger ut

@@ -21,7 +21,7 @@ export const sendOrderEmail = (content) => {
   Yttre Grupp Mjörn: erik@egnahemsfabriken.se
   %0A 
   %0A 
-  Yttre Grupp Rönnäng: se kontakt under 'grupper'
+  Yttre Grupp Rönnäng: Tina.hallin@bredband2.com, erik@egnahemsfabriken.se
   %0A 
   %0A 
   ************************************************************************************************
@@ -277,7 +277,7 @@ export const sendVolunteerEmail = (content) => {
   Yttre Grupp Mjörn: erik@egnahemsfabriken.se
   %0A 
   %0A 
-  Yttre Grupp Rönnäng: se kontakt under 'grupper'
+  Yttre Grupp Rönnäng: Tina.hallin@bredband2.com, erik@egnahemsfabriken.se
   %0A 
   %0A 
   ************************************************************************************************

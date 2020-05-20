@@ -13,9 +13,7 @@ class Group {
     reservEmail,
     address,
     postkod,
-    status,
-    adminNamn,
-    adminPwd
+    status
   ) {
     this.id = id;
     this.datum = datum;
@@ -31,8 +29,6 @@ class Group {
     this.address = address;
     this.postkod = postkod;
     this.status = status;
-    this.adminNamn = adminNamn;
-    this.adminPwd = adminPwd;
   }
 }
 

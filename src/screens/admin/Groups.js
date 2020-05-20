@@ -14,6 +14,7 @@ import AddButtonHeader from './../../components/AddButtonHeader';
 import RefreshButton from './../../components/RefreshButton';
 import GroupForm from '../users/GroupForm';
 import Accordion from './../../components/Accordion';
+import GrantAdminAccess from './../admin/GrantAdminAccess';
 
 const Groups = (props) => {
   const firestore = firebase.firestore();
@@ -45,9 +46,7 @@ const Groups = (props) => {
           resData.reservEmail,
           resData.address,
           resData.postkod,
-          resData.status,
-          resData.adminNamn,
-          resData.adminPwd
+          resData.status
         )
       );
     });
@@ -68,7 +67,6 @@ const Groups = (props) => {
       <AddButtonHeader
         headerText="Grupper"
         buttonText="grupp"
-        headerLink={'/ny-grupp'}
         formForModal={<GroupForm />}
       />
       <Accordion
@@ -101,6 +99,10 @@ const Groups = (props) => {
             </span>
           }
         >
+          <AddButtonHeader
+            buttonTextSimple="Sätt admin privilegier"
+            formForModal={<GrantAdminAccess groups={data.activeGroups} />}
+          />
           <Table
             isGroups={true}
             tableData={data.activeGroups}

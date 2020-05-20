@@ -179,9 +179,7 @@ const GroupAdmin = (props) => {
           resData.reservEmail,
           resData.address,
           resData.postkod,
-          resData.status,
-          resData.adminNamn,
-          resData.adminPwd
+          resData.status
         )
       );
     });

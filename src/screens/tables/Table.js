@@ -507,8 +507,6 @@ const Table = (props) => {
     address,
     postkod,
     { title: 'Skapad', field: 'datum', editable: 'never' },
-    { title: 'adminNamn', field: 'adminNamn' },
-    { title: 'adminPwd', field: 'adminPwd' },
   ];
 
   const cancelledColumns = [
@@ -601,8 +599,6 @@ const Table = (props) => {
     groupRef.update({
       datum: newData.datum ? newData.datum : '',
       gruppnamn: newData.gruppnamn ? newData.gruppnamn : '',
-      adminNamn: newData.adminNamn ? newData.adminNamn : '',
-      adminPwd: newData.adminPwd ? newData.adminPwd : '',
       kontakt: newData.kontakt ? newData.kontakt : '',
       kommentarer: newData.kommentarer ? newData.kommentarer : '',
       telefon: newData.telefon ? newData.telefon : '',

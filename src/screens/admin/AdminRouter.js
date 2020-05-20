@@ -5,15 +5,16 @@ import GroupAdmin from '../groupAdmin/GroupAdmin';
 import AccessDenied from '../../components/AccessDenied';
 
 const AdminRouter = () => {
-
   // Checks the type of admin (main vs group) and renders appropriate admin page
 
   const [isLoadingClaims, setisLoadingClaims] = useState(true);
   const [isAdmin, setisAdmin] = useState(false);
-  const [groupAdmin, setgroupAdmin] = useState("");
+  const [groupAdmin, setgroupAdmin] = useState('');
 
   useEffect(() => {
-    firebase.auth().currentUser.getIdTokenResult()
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult()
       .then((idTokenResult) => {
         // Check if user is a main admin
         if (!!idTokenResult.claims.admin) {
@@ -22,7 +23,7 @@ const AdminRouter = () => {
 
         // Check if user is a group admin and if so, retrieves the group ID
         if (idTokenResult.claims.groupAdmin) {
-          setgroupAdmin(idTokenResult.claims.groupAdmin)
+          setgroupAdmin(idTokenResult.claims.groupAdmin);
         }
         setisLoadingClaims(false);
       })
@@ -32,24 +33,24 @@ const AdminRouter = () => {
       });
   }, []);
 
-  return (
-    isLoadingClaims ? <LoadingMessage /> :
-      (isAdmin ?
-        <Admin /> :
-        (groupAdmin ? <GroupAdmin groupId={groupAdmin} /> : <AccessDenied />))
-  )
-
-}
+  return isLoadingClaims ? (
+    <LoadingMessage />
+  ) : isAdmin ? (
+    <Admin />
+  ) : groupAdmin ? (
+    <GroupAdmin groupId={groupAdmin} />
+  ) : (
+    <AccessDenied />
+  );
+};
 
 const LoadingMessage = () => {
   return (
     <div className="page-layout centered">
-      <h3>Please wait</h3>
-      <p>
-        We are loading your admin panel.
-        </p>
+      <h3>Var snäll och vänta</h3>
+      <p>Adminpanelen laddas</p>
     </div>
-  )
-}
+  );
+};
 
 export default AdminRouter;

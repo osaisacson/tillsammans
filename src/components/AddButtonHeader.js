@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const AddButtonHeader = props => {
+const AddButtonHeader = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -10,11 +10,12 @@ const AddButtonHeader = props => {
 
   return (
     <div className="flex-spread">
-      <h2>{props.headerText}</h2>
+      {props.headerText ? <h2>{props.headerText}</h2> : null}
       <Button className="add-button" onClick={handleShow}>
-        + Lägg till ny {props.buttonText}
+        {props.buttonTextSimple
+          ? props.buttonTextSimple
+          : `+ Lägg till ny ${props.buttonText}`}
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>{props.formForModal}</Modal.Body>

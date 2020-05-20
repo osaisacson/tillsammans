@@ -32,9 +32,7 @@ export default (state = initialState, action) => {
         action.groupData.reservEmail,
         action.groupData.address,
         action.groupData.postkod,
-        action.groupData.status,
-        action.groupData.adminNamn,
-        action.groupData.adminPwd
+        action.groupData.status
       );
       return {
         ...state,
@@ -58,9 +56,7 @@ export default (state = initialState, action) => {
         action.groupData.reservEmail,
         action.groupData.address,
         action.groupData.postkod,
-        action.groupData.status,
-        action.groupData.adminNamn,
-        action.groupData.adminPwd
+        action.groupData.status
       );
       const updatedAvailableGroups = [...state.availableGroups];
       updatedAvailableGroups[groupIndex] = updatedGroup;
