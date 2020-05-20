@@ -168,7 +168,8 @@ const HelpForm = (props) => {
         </p>
         <p>
           Vill du inte använda formuläret kan du även beställa genom att ringa{' '}
-          <span>073-3230571</span> eller maila{' '}
+          <span>0304 - 60 10 10</span> (kundcenter kommunen, uppge att du vill
+          beställa från Alla Tillsammans) eller maila{' '}
           <span>tjorn@allatillsammans.se</span>
         </p>
         <br />
