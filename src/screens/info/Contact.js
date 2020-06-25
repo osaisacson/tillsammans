@@ -1,6 +1,6 @@
-import React from 'react';
-import Accordion from '../../components/Accordion';
-import allaTillsammansPic from './../../images/allatillsammans.PNG';
+import React from "react";
+import Accordion from "../../components/Accordion";
+import allaTillsammansPic from "./../../images/allatillsammans.PNG";
 
 export default function Contact() {
   return (
@@ -12,11 +12,9 @@ export default function Contact() {
         content=" <p>
           Samordnaren på Tjörn är Anna Berglund (Egnahemsfabriken). Henne når du på tjorn@allatillsammans.se
         </p>
-        <p>
-          Om du istället föredrar att ringa in din beställning kan du
-          kontakta Helena Johannesson (Svenska
-          kyrkan Tjörn) på 0733 230 571.
-        </p>"
+        <p>Föredrar du istället att ringa in din beställning kan du göra detta på 0304 - 60 10 10 (kundcenter kommunen, uppge att du vill
+        beställa från Alla Tillsammans) eller maila 
+        tjorn@allatillsammans.se</p>"
       />
       <Accordion
         title="GRUPPLEDARE OCH VOLONTÄRSGRUPPER"

@@ -1,8 +1,8 @@
 export const sendOrderEmail = (content) => {
   const email = `EMAIL TILL GRUPPLEDARE HÄR, tjorn@allatillsammans.se`;
   const subject = `Ny beställning från ${
-    content.förnamn ? content.förnamn : ''
-  } ${content.efternamn ? content.efternamn : ''}`;
+    content.förnamn ? content.förnamn : ""
+  } ${content.efternamn ? content.efternamn : ""}`;
   const emailBody = `
   %0A 
   %0A 
@@ -24,6 +24,10 @@ export const sendOrderEmail = (content) => {
   Yttre Grupp Rönnäng: Tina.hallin@bredband2.com, erik@egnahemsfabriken.se
   %0A 
   %0A 
+  OBS! Under sommarsemestern vecka 28-32 så går alla beställningar till en grupp: Yttre Grupp Centrala Tjörn. Maila lisa.m.sall@svenskakyrkan.se,
+  helena.johannesson@svenskakyrkan.se,
+  Catharina.Schonback@svenskakyrkan.se,
+  elisabeth.samuelsson@svenskakyrkan.se
   ************************************************************************************************
   Hej! %0A
     %0A 
@@ -33,35 +37,35 @@ export const sendOrderEmail = (content) => {
     --------------------------------------------
     %0A
     %0A
-    Datum mottaget: ${content.datum ? content.datum : '-'}, 
+    Datum mottaget: ${content.datum ? content.datum : "-"}, 
     %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : '-'} 
+    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : "-"} 
     %0A 
     %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ''} 
+    Förnamn: ${content.förnamn ? content.förnamn : ""} 
     %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ''} 
+    Efternamn: ${content.efternamn ? content.efternamn : ""} 
     %0A
-    Email: ${content.email ? content.email : '-'} 
+    Email: ${content.email ? content.email : "-"} 
     %0A
-    Telefon: ${content.telefon ? content.telefon : '-'} 
+    Telefon: ${content.telefon ? content.telefon : "-"} 
     %0A
-    Address: ${content.address ? content.address : '-'} 
+    Address: ${content.address ? content.address : "-"} 
     %0A
-    Postkod: ${content.postkod ? content.postkod : '-'} 
+    Postkod: ${content.postkod ? content.postkod : "-"} 
     %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ''} 
+    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
     %0A
-    Typ: ${content.typ ? content.typ : 'Ingen'} 
+    Typ: ${content.typ ? content.typ : "Ingen"} 
     %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} 
+    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} 
     %0A
     %0A
-    Swish: ${content.swish ? 'Ja' : 'Nej'} 
+    Swish: ${content.swish ? "Ja" : "Nej"} 
     %0A
-    Kontant: ${content.kontant ? 'Ja' : 'Nej'} 
+    Kontant: ${content.kontant ? "Ja" : "Nej"} 
     %0A
-    Faktura: ${content.faktura ? 'Ja' : 'Nej'} 
+    Faktura: ${content.faktura ? "Ja" : "Nej"} 
     %0A
     %0A
     --------------------------------------------
@@ -81,7 +85,7 @@ export const sendOrderEmail = (content) => {
     %0A
     %0A
   `;
-  window.open('mailto:' + email + '?subject=' + subject + '&body=' + emailBody);
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendConfirmationEmail = (content) => {
@@ -91,8 +95,8 @@ export const sendConfirmationEmail = (content) => {
       : `INGEN EMAIL - RING ISTÄLLET ${content.telefon}`
   }, tjorn@allatillsammans.se`;
   const subject =
-    'Alla Tillsammans - Er beställning har fördelats till volontärgrupp!';
-  const emailBody = `Hej ${content.förnamn ? content.förnamn : ''}! %0A
+    "Alla Tillsammans - Er beställning har fördelats till volontärgrupp!";
+  const emailBody = `Hej ${content.förnamn ? content.förnamn : ""}! %0A
     %0A 
     Er beställning på https://tjorn.allatillsammans.se har mottagits och fördelats till volontärgruppen: 
     %0A 
@@ -156,34 +160,34 @@ export const sendConfirmationEmail = (content) => {
     --------------------------------------------
     %0A
     %0A
-    Datum mottaget: ${content.datum ? content.datum : '-'}, 
+    Datum mottaget: ${content.datum ? content.datum : "-"}, 
     %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : '-'} 
+    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : "-"} 
     %0A 
     %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ''} 
+    Förnamn: ${content.förnamn ? content.förnamn : ""} 
     %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ''} 
+    Efternamn: ${content.efternamn ? content.efternamn : ""} 
     %0A
-    Email: ${content.email ? content.email : '-'} 
+    Email: ${content.email ? content.email : "-"} 
     %0A
-    Telefon: ${content.telefon ? content.telefon : '-'} 
+    Telefon: ${content.telefon ? content.telefon : "-"} 
     %0A
-    Address: ${content.address ? content.address : '-'} 
+    Address: ${content.address ? content.address : "-"} 
     %0A
-    Postkod: ${content.postkod ? content.postkod : '-'} 
-    %0A
-    %0A
-    Typ: ${content.typ ? content.typ : 'Ingen'} 
-    %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} 
+    Postkod: ${content.postkod ? content.postkod : "-"} 
     %0A
     %0A
-    Swish: ${content.swish ? 'Ja' : 'Nej'} 
+    Typ: ${content.typ ? content.typ : "Ingen"} 
     %0A
-    Kontant: ${content.kontant ? 'Ja' : 'Nej'} 
+    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} 
     %0A
-    Faktura: ${content.faktura ? 'Ja' : 'Nej'} 
+    %0A
+    Swish: ${content.swish ? "Ja" : "Nej"} 
+    %0A
+    Kontant: ${content.kontant ? "Ja" : "Nej"} 
+    %0A
+    Faktura: ${content.faktura ? "Ja" : "Nej"} 
     %0A
     %0A
     --------------------------------------------
@@ -194,14 +198,14 @@ export const sendConfirmationEmail = (content) => {
     %0A
     %0A
   `;
-  window.open('mailto:' + email + '?subject=' + subject + '&body=' + emailBody);
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendGroupOrderEmail = (content) => {
   const email = `EMAIL TILL VOLONTÄR HÄR, tjorn@allatillsammans.se`;
   const subject = `Ny beställning att utföra: ${
-    content.förnamn ? content.förnamn : ''
-  } ${content.efternamn ? content.efternamn : ''}`;
+    content.förnamn ? content.förnamn : ""
+  } ${content.efternamn ? content.efternamn : ""}`;
   const emailBody = `Hej! 
     %0A
     %0A 
@@ -211,35 +215,35 @@ export const sendGroupOrderEmail = (content) => {
     -------------------------------------------- 
     %0A
     %0A
-    Datum mottaget: ${content.datum ? content.datum : '-'}, 
+    Datum mottaget: ${content.datum ? content.datum : "-"}, 
     %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : '-'} 
+    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : "-"} 
     %0A 
     %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ''} 
+    Förnamn: ${content.förnamn ? content.förnamn : ""} 
     %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ''} 
+    Efternamn: ${content.efternamn ? content.efternamn : ""} 
     %0A
-    Email: ${content.email ? content.email : '-'} 
+    Email: ${content.email ? content.email : "-"} 
     %0A
-    Telefon: ${content.telefon ? content.telefon : '-'} 
+    Telefon: ${content.telefon ? content.telefon : "-"} 
     %0A
-    Address: ${content.address ? content.address : '-'} 
+    Address: ${content.address ? content.address : "-"} 
     %0A
-    Postkod: ${content.postkod ? content.postkod : '-'} 
+    Postkod: ${content.postkod ? content.postkod : "-"} 
     %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ''} 
+    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
     %0A
-    Typ: ${content.typ ? content.typ : 'Ingen'} 
+    Typ: ${content.typ ? content.typ : "Ingen"} 
     %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} 
+    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} 
     %0A
     %0A
-    Swish: ${content.swish ? 'Ja' : 'Nej'} 
+    Swish: ${content.swish ? "Ja" : "Nej"} 
     %0A
-    Kontant: ${content.kontant ? 'Ja' : 'Nej'} 
+    Kontant: ${content.kontant ? "Ja" : "Nej"} 
     %0A
-    Faktura: ${content.faktura ? 'Ja' : 'Nej'} 
+    Faktura: ${content.faktura ? "Ja" : "Nej"} 
     %0A
     %0A
     --------------------------------------------
@@ -253,13 +257,13 @@ export const sendGroupOrderEmail = (content) => {
     %0A
     %0A
   `;
-  window.open('mailto:' + email + '?subject=' + subject + '&body=' + emailBody);
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendVolunteerEmail = (content) => {
   const email = `EMAIL TILL GRUPPLEDARE HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny volontär: ${content.förnamn ? content.förnamn : ''} ${
-    content.efternamn ? content.efternamn : ''
+  const subject = `Ny volontär: ${content.förnamn ? content.förnamn : ""} ${
+    content.efternamn ? content.efternamn : ""
   }`;
   const emailBody = `
   ************ KLIPP IN RELEVANT EMAIL ADDRESS I ADDRESSFÄLTET OVAN, RADERA SEN DET HÄR ************: 
@@ -294,31 +298,31 @@ export const sendVolunteerEmail = (content) => {
     --------------------------------------------
     %0A
     %0A
-    Datum mottaget: ${content.datum ? content.datum : '-'}, %0A
+    Datum mottaget: ${content.datum ? content.datum : "-"}, %0A
     %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ''} %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ''} %0A
-    Email: ${content.email ? content.email : '-'} %0A
-    Telefon: ${content.telefon ? content.telefon : '-'} %0A
-    Address: ${content.address ? content.address : '-'} %0A
-    Postkod: ${content.postkod ? content.postkod : '-'} %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ''} 
+    Förnamn: ${content.förnamn ? content.förnamn : ""} %0A
+    Efternamn: ${content.efternamn ? content.efternamn : ""} %0A
+    Email: ${content.email ? content.email : "-"} %0A
+    Telefon: ${content.telefon ? content.telefon : "-"} %0A
+    Address: ${content.address ? content.address : "-"} %0A
+    Postkod: ${content.postkod ? content.postkod : "-"} %0A
+    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
     %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} %0A
+    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} %0A
     %0A
-    Födelseår: ${content.födelseår ? content.födelseår : '-'} %0A
-    Språk: ${content.språk ? content.språk : '-'} %0A
+    Födelseår: ${content.födelseår ? content.födelseår : "-"} %0A
+    Språk: ${content.språk ? content.språk : "-"} %0A
     %0A
-    Körkort: ${content.körkort ? 'Ja' : 'Nej'} %0A
-    Bil: ${content.bil ? 'Ja' : 'Nej'} %0A
+    Körkort: ${content.körkort ? "Ja" : "Nej"} %0A
+    Bil: ${content.bil ? "Ja" : "Nej"} %0A
     %0A
-    Mat: ${content.mat ? 'Ja' : 'Nej'} %0A
-    Varor: ${content.varor ? 'Ja' : 'Nej'} %0A
-    Ärenden: ${content.ärenden ? 'Ja' : 'Nej'} %0A
-    Djur: ${content.djur ? 'Ja' : 'Nej'} %0A
-    Prat: ${content.prata ? 'Ja' : 'Nej'} %0A
-    Myndigheter: ${content.myndigheter ? 'Ja' : 'Nej'} %0A
-    Teknik: ${content.teknik ? 'Ja' : 'Nej'} %0A
+    Mat: ${content.mat ? "Ja" : "Nej"} %0A
+    Varor: ${content.varor ? "Ja" : "Nej"} %0A
+    Ärenden: ${content.ärenden ? "Ja" : "Nej"} %0A
+    Djur: ${content.djur ? "Ja" : "Nej"} %0A
+    Prat: ${content.prata ? "Ja" : "Nej"} %0A
+    Myndigheter: ${content.myndigheter ? "Ja" : "Nej"} %0A
+    Teknik: ${content.teknik ? "Ja" : "Nej"} %0A
     %0A
     --------------------------------------------
     %0A
@@ -335,7 +339,7 @@ export const sendVolunteerEmail = (content) => {
     %0A
     %0A
   `;
-  window.open('mailto:' + email + '?subject=' + subject + '&body=' + emailBody);
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendWelcomeEmail = (content) => {
@@ -344,9 +348,9 @@ export const sendWelcomeEmail = (content) => {
       ? content.email
       : `INGEN EMAIL - RING ISTÄLLET ${content.telefon}`
   }, tjorn@allatillsammans.se`;
-  const subject = 'Välkommen till Alla Tillsammans - Tjörn!';
-  const emailBody = `Hej ${content.förnamn ? content.förnamn : ''} ${
-    content.efternamn ? content.efternamn : ''
+  const subject = "Välkommen till Alla Tillsammans - Tjörn!";
+  const emailBody = `Hej ${content.förnamn ? content.förnamn : ""} ${
+    content.efternamn ? content.efternamn : ""
   }, välkommen till Alla Tillsammans - Tjörn! 
     %0A
     %0A
@@ -405,43 +409,43 @@ export const sendWelcomeEmail = (content) => {
     %0A
     %0A
   `;
-  window.open('mailto:' + email + '?subject=' + subject + '&body=' + emailBody);
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendGeneralVolunteerInfo = (content) => {
   const email = `EMAIL TILL DEN SOM SKA HANTERA VOLONTÄREN HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny volontär: ${content.förnamn ? content.förnamn : ''} ${
-    content.efternamn ? content.efternamn : ''
+  const subject = `Ny volontär: ${content.förnamn ? content.förnamn : ""} ${
+    content.efternamn ? content.efternamn : ""
   }`;
   const emailBody = `Hej! %0A
     %0A 
     Här kommer informationen om volontären! %0A 
     %0A
-    Datum mottaget: ${content.datum ? content.datum : '-'}, %0A
+    Datum mottaget: ${content.datum ? content.datum : "-"}, %0A
     %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ''} %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ''} %0A
-    Email: ${content.email ? content.email : '-'} %0A
-    Telefon: ${content.telefon ? content.telefon : '-'} %0A
-    Address: ${content.address ? content.address : '-'} %0A
-    Postkod: ${content.postkod ? content.postkod : '-'} %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ''} 
+    Förnamn: ${content.förnamn ? content.förnamn : ""} %0A
+    Efternamn: ${content.efternamn ? content.efternamn : ""} %0A
+    Email: ${content.email ? content.email : "-"} %0A
+    Telefon: ${content.telefon ? content.telefon : "-"} %0A
+    Address: ${content.address ? content.address : "-"} %0A
+    Postkod: ${content.postkod ? content.postkod : "-"} %0A
+    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
     %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : '-'} %0A
+    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} %0A
     %0A
-    Födelseår: ${content.födelseår ? content.födelseår : '-'} %0A
-    Språk: ${content.språk ? content.språk : '-'} %0A
+    Födelseår: ${content.födelseår ? content.födelseår : "-"} %0A
+    Språk: ${content.språk ? content.språk : "-"} %0A
     %0A
-    Körkort: ${content.körkort ? 'Ja' : 'Nej'} %0A
-    Bil: ${content.bil ? 'Ja' : 'Nej'} %0A
+    Körkort: ${content.körkort ? "Ja" : "Nej"} %0A
+    Bil: ${content.bil ? "Ja" : "Nej"} %0A
     %0A
-    Mat: ${content.mat ? 'Ja' : 'Nej'} %0A
-    Varor: ${content.varor ? 'Ja' : 'Nej'} %0A
-    Ärenden: ${content.ärenden ? 'Ja' : 'Nej'} %0A
-    Djur: ${content.djur ? 'Ja' : 'Nej'} %0A
-    Prat: ${content.prata ? 'Ja' : 'Nej'} %0A
-    Myndigheter: ${content.myndigheter ? 'Ja' : 'Nej'} %0A
-    Teknik: ${content.teknik ? 'Ja' : 'Nej'} %0A
+    Mat: ${content.mat ? "Ja" : "Nej"} %0A
+    Varor: ${content.varor ? "Ja" : "Nej"} %0A
+    Ärenden: ${content.ärenden ? "Ja" : "Nej"} %0A
+    Djur: ${content.djur ? "Ja" : "Nej"} %0A
+    Prat: ${content.prata ? "Ja" : "Nej"} %0A
+    Myndigheter: ${content.myndigheter ? "Ja" : "Nej"} %0A
+    Teknik: ${content.teknik ? "Ja" : "Nej"} %0A
     %0A
     --------------------------------------------
     %0A
@@ -454,5 +458,5 @@ export const sendGeneralVolunteerInfo = (content) => {
     %0A
     %0A
   `;
-  window.open('mailto:' + email + '?subject=' + subject + '&body=' + emailBody);
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
