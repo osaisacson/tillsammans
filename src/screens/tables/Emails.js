@@ -460,3 +460,50 @@ export const sendGeneralVolunteerInfo = (content) => {
   `;
   window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
+
+export const sendGeneralFikerInfo = (content) => {
+  const email = `EMAIL TILL DEN SOM SKA HANTERA FIKAINTRESSENTEN HÄR, tjorn@allatillsammans.se`;
+  const subject = `Ny fikaintressent: ${
+    content.förnamn ? content.förnamn : ""
+  } ${content.efternamn ? content.efternamn : ""}`;
+  const emailBody = `Hej! %0A
+    %0A 
+    Här kommer informationen om fikaintressenten! %0A 
+    %0A
+    Datum mottaget: ${content.datum ? content.datum : "-"}, %0A
+    %0A
+    Förnamn: ${content.förnamn ? content.förnamn : ""} %0A
+    Efternamn: ${content.efternamn ? content.efternamn : ""} %0A
+    Email: ${content.email ? content.email : "-"} %0A
+    Telefon: ${content.telefon ? content.telefon : "-"} %0A
+    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
+    %0A
+    Beskrivning: %0A ${content.description ? content.description : "-"} %0A
+    %0A
+    Språkpreferens: ${content.språk ? content.språk : "-"} %0A
+    %0A
+    Intresserad av:
+    Bokklubb: ${content.books ? "Ja" : "Nej"} %0A
+    Trädgård och odling: ${content.gardening ? "Ja" : "Nej"} %0A
+    Lokalpolitik: ${content.localPolitics ? "Ja" : "Nej"} %0A
+    Världsläget: ${content.globalPolitics ? "Ja" : "Nej"} %0A
+    Lokalkultur: ${content.localCulture ? "Ja" : "Nej"} %0A
+    Ny teknik: ${content.newTech ? "Ja" : "Nej"} %0A
+    Föreläsningar: ${content.lectures ? "Ja" : "Nej"} %0A
+    %0A
+    Kan tänka sig att hålla en max 15 minuter lång föreläsning om detta: 
+    ${content.lecture ? content.lecture : ""} %0A
+    %0A
+    --------------------------------------------
+    %0A
+    %0A
+    Allt gott! 
+    %0A
+    %0A
+    %0A
+    %0A
+    %0A
+    %0A
+  `;
+  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
+};

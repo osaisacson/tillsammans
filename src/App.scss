@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,900&display=swap");
 
 /**
  * ----------------------------------------
@@ -9,15 +7,15 @@
  */
 
 $primary-color: #421e78;
-$primary-color-dark: darken($primary-color, 10%); 
-$primary-color-medium: lighten($primary-color, 10%); 
-$primary-color-light: lighten($primary-color, 35%); 
-$primary-color-extra-light: lighten($primary-color, 45%); 
+$primary-color-dark: darken($primary-color, 10%);
+$primary-color-medium: lighten($primary-color, 10%);
+$primary-color-light: lighten($primary-color, 35%);
+$primary-color-extra-light: lighten($primary-color, 45%);
 
 $navigation-color: #fff;
 $navigation-text-color: #000;
 
-$page-background: rgba(17, 27, 64, .8);
+$page-background: rgba(17, 27, 64, 0.8);
 $page-background-contrast: #fff;
 $page-background-contrast-hover: #c0c0c0;
 
@@ -27,18 +25,18 @@ $sub-color: grey;
 $main-text-color: #fff;
 $highlight-color: #ffff00;
 
-
 /**
  * ----------------------------------------
  * Main
  * ----------------------------------------
  */
 
-html { 
+html {
   width: 100vw;
   max-width: 100vw;
-  font-family: 'Roboto', sans-serif;
-  background: url("../src/images/47879864691_8f3d2266d0_k.jpg") no-repeat center center fixed; 
+  font-family: "Roboto", sans-serif;
+  background: url("../src/images/47879864691_8f3d2266d0_k.jpg") no-repeat center
+    center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -82,6 +80,9 @@ body {
   flex-direction: column;
 }
 
+.margin-right-5 {
+  margin-right: 5px;
+}
 
 /**
  * ----------------------------------------
@@ -101,23 +102,26 @@ body {
     a {
       color: $page-background-contrast;
     }
-  
+
     a:hover {
       color: $page-background-contrast-hover;
     }
   }
 
   .nav-tabs {
-    .nav-link:active, .nav-link.active {
+    .nav-link:active,
+    .nav-link.active {
       color: #000 !important;
-    }  
+    }
   }
 
   h2 {
     margin-top: 10px;
   }
 
-  h2, h3, p {
+  h2,
+  h3,
+  p {
     color: $page-background-contrast;
 
     a {
@@ -190,7 +194,7 @@ body {
     }
   }
 
-  input[type='password'] {
+  input[type="password"] {
     letter-spacing: 0.3em;
   }
 
@@ -235,7 +239,7 @@ body {
   }
 
   h3 {
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 300;
     margin: 0;
 
@@ -287,24 +291,22 @@ body {
   padding: 15px;
   color: $highlight-color;
   background-color: $primary-color-dark;
-   
+
   p {
-    margin: 0
+    margin: 0;
   }
 
   a {
-    font-size: .9rem;
+    font-size: 0.9rem;
     margin-left: 6px;
     color: $highlight-color;
     font-weight: 600;
   }
 
   a:hover {
-    color: darken($highlight-color, 10%)
+    color: darken($highlight-color, 10%);
   }
-  
 }
-
 
 /**
  * ----------------------------------------
@@ -319,7 +321,7 @@ body {
 
 .small-button {
   padding: 4px 8px;
-  font-size: .7rem !important;
+  font-size: 0.7rem !important;
   max-width: 130px;
 
   &.top-margin {
@@ -352,7 +354,7 @@ body {
     background-color: #2e856e !important;
     border-color: #2e856e !important;
   }
-   &.no {
+  &.no {
     background-color: #852727 !important;
     border-color: #852727 !important;
   }
@@ -360,7 +362,7 @@ body {
 
 .confirmation-text {
   color: #000;
-  font-size: .8rem;
+  font-size: 0.8rem;
   max-width: 135px;
   text-align: center;
 }
@@ -427,7 +429,8 @@ body {
   margin-bottom: 4px;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
   display: flex;
   flex: 1;
   width: 100%;
@@ -446,7 +449,7 @@ body {
 
 .accordion {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 18px;
   display: flex;
   align-items: center;
@@ -463,7 +466,7 @@ body {
 
 .accordion:hover,
 .active {
-  background-color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .accordion-title {
@@ -481,15 +484,15 @@ body {
 }
 
 .accordion-content {
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.1);
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
 
 .accordion-text {
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 18px;
-  
+
   li {
     margin-bottom: 15px;
   }
@@ -502,7 +505,6 @@ body {
  */
 
 .form {
-
   h3 {
     margin-left: 2px;
     font-size: 1.1rem;
@@ -519,7 +521,7 @@ body {
   }
 
   .error-text {
-    color: 'red'
+    color: "red";
   }
 }
 
@@ -529,7 +531,7 @@ body {
  * ----------------------------------------
  */
 
- .container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -561,13 +563,15 @@ a:hover {
 .nav-link {
   text-align: center;
   text-transform: uppercase;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #000;
   padding-right: 10px;
   margin-right: 10px;
 }
 
-.nav-link:hover, .nav-link:active, .nav-link.active {
+.nav-link:hover,
+.nav-link:active,
+.nav-link.active {
   color: #fff !important;
   text-align: center;
   background-color: $page-background;
@@ -596,7 +600,6 @@ button {
 }
 
 ul {
-
   a {
     color: #fff;
     font-weight: 600;
@@ -608,8 +611,8 @@ ul {
 
 .form-group {
   p {
-    font-size: .9rem;
-    
+    font-size: 0.9rem;
+
     span {
       font-weight: 600;
     }
@@ -623,17 +626,18 @@ ul {
 // Overrides for tables
 .table {
   text-align: left;
-  font-size: .8rem;
+  font-size: 0.8rem;
   background-color: #fff;
   color: #000;
 
-  .td, th {
-    padding: .35rem;
+  .td,
+  th {
+    padding: 0.35rem;
     white-space: nowrap;
   }
 
   .btn {
-    font-size: .7rem;
+    font-size: 0.7rem;
     background-color: $primary-color-light !important;
 
     &.active {
@@ -642,7 +646,7 @@ ul {
   }
 
   a {
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: $primary-color-light;
   }
@@ -653,7 +657,7 @@ ul {
   }
 }
 
-// Overrides for material-table 
+// Overrides for material-table
 .MuiTableCell-root {
   padding: 4px 5px !important;
   font-size: 11.5px !important;
@@ -664,20 +668,19 @@ ul {
   line-height: 1.4rem !important;
 }
 
-
 /**
  * ----------------------------------------
  * Media Queries
  * ----------------------------------------
  */
 
- @media screen and (min-width: 0px) and (max-width: 400px) {
+@media screen and (min-width: 0px) and (max-width: 400px) {
   .container {
     padding-top: 50px;
   }
 
   .footer {
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding: 5px;
   }
 
@@ -692,29 +695,39 @@ ul {
     width: 280px;
     font-size: 1rem;
   }
-   .text-section {
-     h3 {
-       font-size: .6rem
-     }
-     h2 {
-      font-size: .8rem
+  .text-section {
+    h3 {
+      font-size: 0.6rem;
     }
-   }
-   h1, h2, h3, h4, h5, h6, p {
-     margin-left: 0 !important;
-   }
-   h2 {
-     font-size: 1.6rem;
-   }
-   ul {
-     padding-left: 5px;
-   }
-   .header-label {
+    h2 {
+      font-size: 0.8rem;
+    }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-left: 0 !important;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  ul {
+    padding-left: 5px;
+  }
+  .header-label {
     top: 52px;
   }
-  .hide-on-small { display: none; }  /* show it on small screens */
+  .hide-on-small {
+    display: none;
+  } /* show it on small screens */
 }
 
- @media only screen and (max-width: 980px) {
-  .blurb { display: none} 
+@media only screen and (max-width: 980px) {
+  .blurb {
+    display: none;
+  }
 }

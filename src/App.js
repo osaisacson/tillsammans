@@ -13,7 +13,7 @@ import Apply from "./screens/users/Apply";
 import Partners from "./screens/info/Partners";
 import Cancel from "./screens/users/Cancel";
 import Volunteer from "./screens/users/Volunteer";
-import Fika from "./screens/users/Fika";
+import Fiker from "./screens/users/Fiker";
 
 //Admin screens
 import AdminRouter from "./screens/admin/AdminRouter";
@@ -59,7 +59,7 @@ function App(props) {
             <Volunteer />
           </Route>
           <Route path="/corona-fika">
-            <Fika />
+            <Fiker />
           </Route>
           <Route path="/byt-sprak"></Route>
           <Route path="/sahar-funkar-det">

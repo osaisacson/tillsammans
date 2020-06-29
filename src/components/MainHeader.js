@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import React from "react";
+import { Link } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 // import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../store/actions';
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../store/actions";
 
 export default function MainHeader(props) {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -13,7 +13,7 @@ export default function MainHeader(props) {
   return (
     <>
       <Navbar sticky="top" bg="light" expand="lg">
-        <Link to="/" className="navbar-brand">
+        <Link to="/#" className="navbar-brand">
           <div className="brand">
             <img
               alt=""
@@ -50,12 +50,16 @@ export default function MainHeader(props) {
             </Link>
             {isAuthenticated && (
               <React.Fragment>
-              <Link className="nav-link" to="/admin/account">
-                användarkonto
-              </Link>
-              <Link className="nav-link" onClick={() => dispatch(logoutUser())}>
-                Logga ut
-              </Link>
+                <Link className="nav-link" to="/admin/account">
+                  användarkonto
+                </Link>
+                <Link
+                  to="/#"
+                  className="nav-link"
+                  onClick={() => dispatch(logoutUser())}
+                >
+                  Logga ut
+                </Link>
               </React.Fragment>
             )}
           </Nav>

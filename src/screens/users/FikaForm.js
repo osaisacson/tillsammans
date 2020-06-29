@@ -48,15 +48,11 @@ const Input = ({ label, placeholder, value, onChange }) => (
 const FikaForm = (props) => {
   const [approvedConditions, setApprovedConditions] = useState(false);
 
-  const editedFika = false;
+  const editedFiker = false;
 
-  //Set states
-
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
   const [redirectToThanks, setRedirectToThanks] = useState(false);
-  const [hasLicence, setHasLicence] = useState(false);
-  const [hasCar, setHasCar] = useState(false);
+  const [oldSchool, setOldSchool] = useState(false);
+  const [newSchool, setNewSchool] = useState(false);
   const [books, setBooks] = useState(false);
   const [gardening, setGardening] = useState(false);
   const [localPolitics, setLocalPolitics] = useState(false);
@@ -64,46 +60,50 @@ const FikaForm = (props) => {
   const [localCulture, setLocalCulture] = useState(false);
   const [newTech, setNewTech] = useState(false);
   const [lectures, setLectures] = useState(false);
-  const [lecturer, setLecturer] = useState(false);
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      förnamn: editedFika ? editedFika.förnamn : "",
-      efternamn: editedFika ? editedFika.efternamn : "",
-      telefon: editedFika ? editedFika.telefon : "",
-      email: editedFika ? editedFika.email : "",
-      interests: editedFika ? editedFika.interests : "",
-      språk: editedFika ? editedFika.språk : "",
-      books: editedFika ? editedFika.books : "",
-      gardening: editedFika ? editedFika.gardening : "",
-      localPolitics: editedFika ? editedFika.localPolitics : "",
-      globalPolitics: editedFika ? editedFika.globalPolitics : "",
-      localCulture: editedFika ? editedFika.localCulture : "",
-      newTech: editedFika ? editedFika.newTech : "",
-      lectures: editedFika ? editedFika.lectures : "",
-      lecturer: editedFika ? editedFika.lecturer : "",
-      lecture: editedFika ? editedFika.lecturer : "",
+      förnamn: editedFiker ? editedFiker.förnamn : "",
+      efternamn: editedFiker ? editedFiker.efternamn : "",
+      telefon: editedFiker ? editedFiker.telefon : "",
+      email: editedFiker ? editedFiker.email : "",
+      description: editedFiker ? editedFiker.description : "",
+      interests: editedFiker ? editedFiker.interests : "",
+      språk: editedFiker ? editedFiker.språk : "",
+      oldSchool: editedFiker ? editedFiker.oldSchool : "",
+      newSchool: editedFiker ? editedFiker.newSchool : "",
+      books: editedFiker ? editedFiker.books : "",
+      gardening: editedFiker ? editedFiker.gardening : "",
+      localPolitics: editedFiker ? editedFiker.localPolitics : "",
+      globalPolitics: editedFiker ? editedFiker.globalPolitics : "",
+      localCulture: editedFiker ? editedFiker.localCulture : "",
+      newTech: editedFiker ? editedFiker.newTech : "",
+      lectures: editedFiker ? editedFiker.lectures : "",
+      lecture: editedFiker ? editedFiker.lecturer : "",
     },
     inputValidities: {
-      förnamn: editedFika ? true : false,
-      efternamn: editedFika ? true : false,
-      telefon: editedFika ? true : false,
-      email: editedFika ? true : false,
-      interests: editedFika ? true : false,
-      språk: editedFika ? true : false,
-      books: editedFika ? true : false,
-      gardening: editedFika ? true : false,
-      localPolitics: editedFika ? true : false,
-      globalPolitics: editedFika ? true : false,
-      localCulture: editedFika ? true : false,
-      lectures: editedFika ? true : false,
-      lecturer: editedFika ? true : false,
-      lecture: editedFika ? true : false,
+      förnamn: editedFiker ? true : false,
+      efternamn: editedFiker ? true : false,
+      telefon: editedFiker ? true : false,
+      email: editedFiker ? true : false,
+      oldSchool: editedFiker ? true : false,
+      newSchool: editedFiker ? true : false,
+      description: editedFiker ? true : false,
+      interests: editedFiker ? true : false,
+      språk: editedFiker ? true : false,
+      books: editedFiker ? true : false,
+      gardening: editedFiker ? true : false,
+      localPolitics: editedFiker ? true : false,
+      globalPolitics: editedFiker ? true : false,
+      localCulture: editedFiker ? true : false,
+      newTech: editedFiker ? true : false,
+      lectures: editedFiker ? true : false,
+      lecture: editedFiker ? true : false,
     },
-    formIsValid: editedFika ? true : false,
+    formIsValid: editedFiker ? true : false,
   });
 
-  const addFika = (e) => {
+  const addFikaPerson = (e) => {
     e.preventDefault();
     if (!approvedConditions) {
       alert("Det verkar som du inte läst och godkänt våra villkor");
@@ -115,14 +115,29 @@ const FikaForm = (props) => {
       efternamn: formState.inputValues.efternamn,
       telefon: formState.inputValues.telefon,
       email: formState.inputValues.email,
+      oldSchool: oldSchool,
+      newSchool: newSchool,
+      description: formState.inputValues.description,
       interests: formState.inputValues.interests,
       språk: formState.inputValues.språk,
+      books: books,
+      gardening: gardening,
+      localPolitics: localPolitics,
+      globalPolitics: globalPolitics,
+      localCulture: localCulture,
+      newTech: newTech,
+      lectures: lectures,
+      lecture: formState.inputValues.lecture,
       gruppId: "0",
       datum: new Date().getTime(),
       status: "1",
-      skickadVolontärTillGrupp: false,
-      skickadBekräftelseTillVolontär: false,
+      skickadFikapersonTillGrupp: false,
+      skickadBekräftelseTillFikaperson: false,
     });
+    console.log(
+      "FikaForm on submit: formState.inputValues: ",
+      formState.inputValues
+    );
     setRedirectToThanks(true);
   };
 
@@ -148,9 +163,9 @@ const FikaForm = (props) => {
 
   return (
     <div className="form">
-      <Form onSubmit={addFika}>
+      <Form onSubmit={addFikaPerson}>
         <h2>Jag är intresserad av att delta i en coronafikagrupp</h2>
-        <p>
+        <p className="bold">
           Tänk om coronapandemin kunde ge oss nya bekantskaper istället för
           isolering? Det är idén bakom Coronafikagrupperna på Tjörn som
           arrangeras i samarbete mellan Alla Tillsammans och SPF Seniorerna
@@ -162,16 +177,20 @@ const FikaForm = (props) => {
           dator, surfplatta eller smartphone).
         </p>
         <p>
-          Såhär går det till: När vi samlat ihop runt 5-10 intressenter med
-          liknande intressen sätter vi ihop en fikagrupp med en samordnare.
-          Samordnaren kontaktar sen alla i gruppen med tema för distansfikat och
-          föreslagen dag/tid. På utsatt tid ringer du in via detaljerna
-          samordnaren förmedlat, antingen på vanlig telefon eller via
-          dator/surfplatta eller smartphone.
+          Såhär går det till: När vi samlat ihop en grupp med liknande intressen
+          sätter vi ihop en fikagrupp med en samordnare. Samordnaren kontaktar
+          sen alla i gruppen med tema för distansfikat och föreslagen dag/tid.
+          På utsatt tid ringer du in via detaljerna samordnaren förmedlat,
+          antingen på vanlig telefon eller via dator/surfplatta eller
+          smartphone.
         </p>
         <p>
           Nya fikagrupper bildas allteftersom, utifrån intresse. Anmäl dig nedan
           så blir du kontaktad så snart som möjligt!
+        </p>
+        <p>
+          Fikagrupperna är som alla andra initiativ av Alla Tillsammans helt
+          gratis.
         </p>
         <br />
         <Form.Row>
@@ -219,16 +238,33 @@ const FikaForm = (props) => {
             />
           </Col>
         </Form.Row>
+        <h3>Jag kan delta via...</h3>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setOldSchool(!oldSchool);
+            }}
+            label="Vanlig, väggfast telefon"
+          />
+          <Form.Check
+            type="checkbox"
+            onClick={() => {
+              setNewSchool(!newSchool);
+            }}
+            label="Dator, surfplatta eller smartphone"
+          />
+        </Form.Group>
         <h3>Berätta gärna kort om dig själv (frivilligt)</h3>
         <Form.Group controlId="t-1">
           <Form.Control
             as="textarea"
             rows="3"
             placeholder="Jag är en glad kille på 79 jordsnurr..."
-            name="interests"
-            value={formState.inputValues.interests}
+            name="description"
+            value={formState.inputValues.description}
             type="text"
-            onChange={textChangeHandler.bind(this, "interests")}
+            onChange={textChangeHandler.bind(this, "description")}
           />
         </Form.Group>
         <Form.Row>
@@ -289,14 +325,14 @@ const FikaForm = (props) => {
             onClick={() => {
               setNewTech(!newTech);
             }}
-            label="Vi går tillsammans igenom ny teknik (beställa online, kommunikationsappar etc)"
+            label="Tillsammanskurser i ny teknik (beställa online, kommunikationsappar etc)"
           />
           <Form.Check
             type="checkbox"
             onClick={() => {
               setLectures(!lectures);
             }}
-            label="Föreläsningar från lokala föreläsare, med efterföljande diskussion"
+            label="Föreläsningar från lokala föreläsare med efterföljande diskussion"
           />
         </Form.Group>
         <p>

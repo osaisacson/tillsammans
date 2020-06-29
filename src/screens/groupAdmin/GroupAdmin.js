@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import Badge from 'react-bootstrap/Badge';
-import moment from 'moment';
+import React, { useEffect, useState } from "react";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import Badge from "react-bootstrap/Badge";
+import moment from "moment";
 
-import Order from './../../models/order';
-import Group from './../../models/group';
-import Volunteer from './../../models/volunteer';
+import Order from "./../../models/order";
+import Group from "./../../models/group";
+import Volunteer from "./../../models/volunteer";
+import Fiker from "./../../models/fiker";
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
-import GroupOrders from '../groupAdmin/GroupOrders';
-import GroupVolunteers from '../groupAdmin/GroupVolunteers';
+import GroupOrders from "../groupAdmin/GroupOrders";
+import GroupVolunteers from "../groupAdmin/GroupVolunteers";
+import GroupFikers from "../groupAdmin/GroupFikers";
 
 const GroupAdmin = (props) => {
   const firestore = firebase.firestore();
@@ -23,6 +25,7 @@ const GroupAdmin = (props) => {
   });
 
   const [groupOrdersData, setGroupOrdersData] = useState({
+    allGroupOrders: [],
     distributedGroupOrders: [],
     distributedVolunteerOrders: [],
     doneOrders: [],
@@ -31,6 +34,7 @@ const GroupAdmin = (props) => {
   });
 
   const [groupVolunteersData, setGroupVolunteersData] = useState({
+    allGroupVolunteers: [],
     newVolunteers: [],
     welcomedVolunteers: [],
     activeVolunteers: [],
@@ -38,14 +42,23 @@ const GroupAdmin = (props) => {
     notSuitableVolunteers: [],
   });
 
+  const [groupFikersData, setGroupFikersData] = useState({
+    allGroupFikers: [],
+    newFikers: [],
+    welcomedFikers: [],
+    activeFikers: [],
+    pausedFikers: [],
+    notSuitableFikers: [],
+  });
+
   //Get group orders
   async function getGroupOrders() {
     const orders = [];
-    const querySnapshot = await firestore.collection('orders').get();
+    const querySnapshot = await firestore.collection("orders").get();
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format('lll');
+      const readableDate = moment(new Date(resData.datum)).format("lll");
 
       orders.push(
         new Order(
@@ -79,26 +92,83 @@ const GroupAdmin = (props) => {
       (data) => data.gruppId === props.groupId
     );
     setGroupOrdersData({
+      allGroupOrders: currentGroupOrders,
       distributedGroupOrders: currentGroupOrders.filter(
-        (data) => data.status === '2'
+        (data) => data.status === "2"
       ),
       distributedVolunteerOrders: currentGroupOrders.filter(
-        (data) => data.status === '3'
+        (data) => data.status === "3"
       ),
-      doneOrders: currentGroupOrders.filter((data) => data.status === '4'),
-      pausedOrders: currentGroupOrders.filter((data) => data.status === '5'),
-      cancelledOrders: currentGroupOrders.filter((data) => data.status === '6'),
+      doneOrders: currentGroupOrders.filter((data) => data.status === "4"),
+      pausedOrders: currentGroupOrders.filter((data) => data.status === "5"),
+      cancelledOrders: currentGroupOrders.filter((data) => data.status === "6"),
+    });
+  }
+
+  //Get fika data
+  async function getGroupFikers() {
+    const groupFikers = [];
+    const querySnapshot = await firestore.collection("fika").get();
+    querySnapshot.forEach(function (doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(new Date(resData.datum)).format("lll");
+
+      groupFikers.push(
+        new Fiker(
+          doc.id,
+          resData.gruppId,
+          resData.förnamn,
+          resData.efternamn,
+          resData.telefon,
+          resData.email,
+          resData.description,
+          resData.oldSchool,
+          resData.newSchool,
+          resData.interests,
+          resData.språk,
+          resData.books,
+          resData.gardening,
+          resData.localPolitics,
+          resData.globalPolitics,
+          resData.localCulture,
+          resData.newTech,
+          resData.lectures,
+          resData.lecture,
+          readableDate,
+          resData.status,
+          resData.kommentarer,
+          resData.skickadFikapersonTillGrupp,
+          resData.skickadBekräftelseTillFikaperson
+        )
+      );
+    });
+
+    //Only get the orders which match our current group id
+    const currentGroupFikers = groupFikers.filter(
+      (data) => data.gruppId === props.groupId
+    );
+
+    setGroupFikersData({
+      allGroupFikers: currentGroupFikers,
+      newFikers: currentGroupFikers.filter((data) => data.status === "2"),
+      welcomedFikers: currentGroupFikers.filter((data) => data.status === "3"),
+      activeFikers: currentGroupFikers.filter((data) => data.status === "4"),
+      pausedFikers: currentGroupFikers.filter((data) => data.status === "5"),
+      notSuitableFikers: currentGroupFikers.filter(
+        (data) => data.status === "6"
+      ),
     });
   }
 
   //Get group volunteers
   async function getGroupVolunteers() {
     const volunteers = [];
-    const querySnapshot = await firestore.collection('volunteers').get();
+    const querySnapshot = await firestore.collection("volunteers").get();
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format('lll');
+      const readableDate = moment(new Date(resData.datum)).format("lll");
 
       volunteers.push(
         new Volunteer(
@@ -137,20 +207,21 @@ const GroupAdmin = (props) => {
     );
 
     setGroupVolunteersData({
+      allGroupVolunteers: currentGroupVolunteers,
       newVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === '2'
+        (data) => data.status === "2"
       ),
       welcomedVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === '3'
+        (data) => data.status === "3"
       ),
       activeVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === '4'
+        (data) => data.status === "4"
       ),
       pausedVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === '5'
+        (data) => data.status === "5"
       ),
       notSuitableVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === '6'
+        (data) => data.status === "6"
       ),
     });
   }
@@ -158,11 +229,11 @@ const GroupAdmin = (props) => {
   //Get group data
   async function getGroups() {
     const groups = [];
-    const querySnapshot = await firestore.collection('groups').get();
+    const querySnapshot = await firestore.collection("groups").get();
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format('lll');
+      const readableDate = moment(new Date(resData.datum)).format("lll");
 
       groups.push(
         new Group(
@@ -194,6 +265,7 @@ const GroupAdmin = (props) => {
     getGroups();
     getGroupOrders();
     getGroupVolunteers();
+    getGroupFikers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -202,48 +274,111 @@ const GroupAdmin = (props) => {
       <h2>{groupData.currentGroup.gruppnamn}</h2>
       <br />
       <Tabs variant="pills" defaultActiveKey="first" id="0">
-        <Tab
-          title={
-            <span>
-              Beställningar{' '}
-              {groupOrdersData.distributedGroupOrders.length ? (
-                <Badge pill variant="danger">
-                  {groupOrdersData.distributedGroupOrders.length}
+        {groupOrdersData.allGroupOrders.length ? (
+          <Tab
+            title={
+              <div className="flex-spread">
+                <div className="margin-right-5">Beställningar</div>
+                {groupOrdersData.allGroupOrders.length ? (
+                  <>
+                    <Badge pill variant="light" className="margin-right-5">
+                      {groupOrdersData.allGroupOrders.length} TOTALT
+                    </Badge>
+                    <Badge
+                      pill
+                      variant={
+                        groupOrdersData.distributedGroupOrders.length
+                          ? "danger"
+                          : "success"
+                      }
+                    >
+                      {groupOrdersData.distributedGroupOrders.length > 0
+                        ? `${groupOrdersData.distributedGroupOrders.length} ${
+                            groupOrdersData.distributedGroupOrders.length > 1
+                              ? "NYA"
+                              : "NY"
+                          }`
+                        : "ALLA KLARA"}
+                    </Badge>
+                  </>
+                ) : (
+                  <Badge pill variant={"light"}>
+                    ...Laddar
+                  </Badge>
+                )}
+              </div>
+            }
+            eventKey="first"
+          >
+            <GroupOrders
+              groupId={props.groupId}
+              dbData={groupOrdersData}
+              refreshAction={getGroupOrders}
+            />
+          </Tab>
+        ) : null}
+        {groupVolunteersData.allGroupVolunteers.length ? (
+          <Tab
+            title={
+              <div className="flex-spread">
+                <div className="margin-right-5">Volontärer</div>
+                <Badge pill variant="light" className="margin-right-5">
+                  {groupVolunteersData.allGroupVolunteers.length} TOTALT
                 </Badge>
-              ) : (
-                '(0)'
-              )}
-            </span>
-          }
-          eventKey="first"
-        >
-          <GroupOrders
-            groupId={props.groupId}
-            dbData={groupOrdersData}
-            refreshAction={getGroupOrders}
-          />
-        </Tab>
-        <Tab
-          title={
-            <span>
-              Volontärer{' '}
-              {groupVolunteersData.newVolunteers.length ? (
-                <Badge pill variant="danger">
-                  {groupVolunteersData.newVolunteers.length}
+                <Badge
+                  pill
+                  variant={
+                    groupVolunteersData.newVolunteers.length
+                      ? "danger"
+                      : "success"
+                  }
+                >
+                  {groupVolunteersData.newVolunteers.length > 0
+                    ? `${groupVolunteersData.newVolunteers.length} "ATT VÄLKOMNAS"`
+                    : "ALLA VÄLKOMNADE"}
                 </Badge>
-              ) : (
-                '(0)'
-              )}
-            </span>
-          }
-          eventKey="second"
-        >
-          <GroupVolunteers
-            groupId={props.groupId}
-            dbData={groupVolunteersData}
-            refreshAction={getGroupVolunteers}
-          />
-        </Tab>
+              </div>
+            }
+            eventKey="second"
+          >
+            <GroupVolunteers
+              groupId={props.groupId}
+              dbData={groupVolunteersData}
+              refreshAction={getGroupVolunteers}
+            />
+          </Tab>
+        ) : null}
+        {groupFikersData.allGroupFikers.length ? (
+          <Tab
+            title={
+              <div className="flex-spread">
+                <div className="margin-right-5">Fikaintressenter</div>
+                <Badge pill variant="light" className="margin-right-5">
+                  {groupFikersData.allGroupFikers.length} TOTALT
+                </Badge>
+                <Badge
+                  pill
+                  variant={
+                    groupFikersData.newFikers.length ? "danger" : "success"
+                  }
+                >
+                  {groupFikersData.newFikers.length > 0
+                    ? `${groupFikersData.newFikers.length} ${
+                        groupFikersData.newFikers.length > 1 ? "NYA" : "NY"
+                      }`
+                    : "INGA NYA"}
+                </Badge>
+              </div>
+            }
+            eventKey="third"
+          >
+            <GroupFikers
+              groupId={props.groupId}
+              dbData={groupFikersData}
+              refreshAction={getGroupFikers}
+            />
+          </Tab>
+        ) : null}
       </Tabs>
     </div>
   );

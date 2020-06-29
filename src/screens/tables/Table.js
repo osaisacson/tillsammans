@@ -1,163 +1,233 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import MaterialTable from 'material-table';
-import Button from 'react-bootstrap/Button';
+import MaterialTable from "material-table";
+import Button from "react-bootstrap/Button";
 
-import ConfirmationCustomer from '../../components/ConfirmationCustomer';
-import ConfirmationInternal from '../../components/ConfirmationInternal';
+import ConfirmationCustomer from "../../components/ConfirmationCustomer";
+import ConfirmationInternal from "../../components/ConfirmationInternal";
 
-import RenderBadge from './../../components/RenderBadge';
+import RenderBadge from "./../../components/RenderBadge";
 
-import { small, medium, large, xlarge } from './CellSizes';
+import { small, medium, large, xlarge } from "./CellSizes";
 import {
   sendOrderEmail,
   sendConfirmationEmail,
   sendGroupOrderEmail,
   sendVolunteerEmail,
   sendGeneralVolunteerInfo,
+  sendGeneralFikerInfo,
   sendWelcomeEmail,
-} from './Emails';
+} from "./Emails";
 import {
   groupDropdown,
   groupStatusDropdown,
   groupStatusDropdownForGroups,
+  fikerStatusDropdown,
   volunteerStatusDropdown,
   volunteerStatusDropdownForGroups,
-} from './Dropdowns';
+} from "./Dropdowns";
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 //TODO: make below leaner, and split into more components
 const Table = (props) => {
   const [data, setData] = useState(props.tableData);
 
   //Common fields
-  const mottaget = { title: 'Mottaget', field: 'datum', editable: 'never' };
+  const mottaget = { title: "Mottaget", field: "datum", editable: "never" };
   const förnamn = {
-    title: 'Förnamn',
-    field: 'förnamn',
-    editable: 'never',
+    title: "Förnamn",
+    field: "förnamn",
+    editable: "never",
   };
   const efternamn = {
-    title: 'Efternamn',
-    field: 'efternamn',
-    editable: 'never',
+    title: "Efternamn",
+    field: "efternamn",
+    editable: "never",
   };
   const tidsrymd = {
-    title: 'Tid kan vänta',
-    field: 'tidsrymd',
-    editable: 'never',
+    title: "Tid kan vänta",
+    field: "tidsrymd",
+    editable: "never",
     cellStyle: small,
     headerStyle: small,
   };
   const kommentarer = {
-    title: 'Kommentarer (skriv extra info här)',
-    field: 'kommentarer',
+    title: "Kommentarer (skriv extra info här)",
+    field: "kommentarer",
     cellStyle: large,
     headerStyle: large,
   };
   const beskrivning = {
-    title: 'Beskrivning',
-    field: 'beskrivning',
-    editable: 'never',
+    title: "Beskrivning",
+    field: "beskrivning",
+    editable: "never",
+    cellStyle: xlarge,
+    headerStyle: xlarge,
+  };
+  const description = {
+    title: "Beskrivning",
+    field: "description",
+    editable: "never",
+    cellStyle: xlarge,
+    headerStyle: xlarge,
+  };
+  const lecture = {
+    title: "Föreslagen föreläsning",
+    field: "lecture",
+    editable: "never",
     cellStyle: xlarge,
     headerStyle: xlarge,
   };
   const typ = {
-    title: 'Typ',
-    field: 'typ',
-    editable: 'never',
+    title: "Typ",
+    field: "typ",
+    editable: "never",
     cellStyle: medium,
     headerStyle: medium,
   };
   const swish = {
-    title: 'Swish',
-    field: 'swish',
-    editable: 'never',
+    title: "Swish",
+    field: "swish",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.swish} />,
   };
   const kontant = {
-    title: 'Kontant',
-    field: 'kontant',
-    editable: 'never',
+    title: "Kontant",
+    field: "kontant",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.kontant} />,
   };
   const faktura = {
-    title: 'Faktura',
-    field: 'faktura',
-    editable: 'never',
+    title: "Faktura",
+    field: "faktura",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.faktura} />,
   };
-  const telefon = { title: 'Telefon', field: 'telefon' };
-  const email = { title: 'Email', field: 'email' };
+  const telefon = { title: "Telefon", field: "telefon" };
+  const email = { title: "Email", field: "email" };
   const address = {
-    title: 'Address',
-    field: 'address',
+    title: "Address",
+    field: "address",
     cellStyle: medium,
     headerStyle: medium,
   };
-  const postkod = { title: 'Postkod', field: 'postkod' };
-  const språk = { title: 'Språk', field: 'språk', editable: 'never' };
+  const postkod = { title: "Postkod", field: "postkod" };
+  const språk = { title: "Språk", field: "språk", editable: "never" };
   const födelseår = {
-    title: 'Födelseår',
-    field: 'födelseår',
-    editable: 'never',
+    title: "Födelseår",
+    field: "födelseår",
+    editable: "never",
   };
   const körkort = {
-    title: 'Har körkort',
-    field: 'körkort',
-    editable: 'never',
+    title: "Har körkort",
+    field: "körkort",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.körkort} />,
   };
   const bil = {
-    title: 'Har bil',
-    field: 'bil',
-    editable: 'never',
+    title: "Har bil",
+    field: "bil",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.bil} />,
   };
   const mat = {
-    title: 'Mat',
-    field: 'mat',
-    editable: 'never',
+    title: "Mat",
+    field: "mat",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.mat} />,
   };
   const varor = {
-    title: 'Varor',
-    field: 'varor',
-    editable: 'never',
+    title: "Varor",
+    field: "varor",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.varor} />,
   };
   const ärenden = {
-    title: 'Ärenden',
-    field: 'ärenden',
-    editable: 'never',
+    title: "Ärenden",
+    field: "ärenden",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.ärenden} />,
   };
   const djur = {
-    title: 'Djur',
-    field: 'djur',
-    editable: 'never',
+    title: "Djur",
+    field: "djur",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.djur} />,
   };
   const prata = {
-    title: 'Prata',
-    field: 'prata',
-    editable: 'never',
+    title: "Prata",
+    field: "prata",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.prata} />,
   };
   const myndigheter = {
-    title: 'Myndigheter',
-    field: 'myndigheter',
-    editable: 'never',
+    title: "Myndigheter",
+    field: "myndigheter",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.myndigheter} />,
   };
   const teknik = {
-    title: 'Teknik',
-    field: 'teknik',
-    editable: 'never',
+    title: "Teknik",
+    field: "teknik",
+    editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.teknik} />,
+  };
+  const oldSchool = {
+    title: "Via telefon",
+    field: "oldSchool",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.oldSchool} />,
+  };
+  const newSchool = {
+    title: "Via smartphone/platta/dator",
+    field: "newSchool",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.newSchool} />,
+  };
+  const books = {
+    title: "Bokklubb",
+    field: "books",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.books} />,
+  };
+  const gardening = {
+    title: "Trädgård",
+    field: "gardening",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.gardening} />,
+  };
+  const localPolitics = {
+    title: "Lokalpolitik",
+    field: "localPolitics",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.localPolitics} />,
+  };
+  const globalPolitics = {
+    title: "Världsläget",
+    field: "globalPolitics",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.globalPolitics} />,
+  };
+  const localCulture = {
+    title: "LokalKultur",
+    field: "localCulture",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.localCulture} />,
+  };
+  const newTech = {
+    title: "Ny teknik",
+    field: "newTech",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.newTech} />,
+  };
+  const lectures = {
+    title: "Föreläsningar",
+    field: "lectures",
+    editable: "never",
+    render: (rowData) => <RenderBadge bool={rowData.lectures} />,
   };
 
   //Column headers
@@ -167,25 +237,25 @@ const Table = (props) => {
     förnamn,
     efternamn,
     {
-      title: 'Status',
-      field: 'status',
+      title: "Status",
+      field: "status",
       lookup: groupStatusDropdown,
       cellStyle: small,
       headerStyle: small,
     },
     {
-      title: 'Grupp',
-      field: 'gruppId',
+      title: "Grupp",
+      field: "gruppId",
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
     },
     {
-      title: 'Detaljer till grupp',
-      field: 'skicka',
+      title: "Detaljer till grupp",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationInternal
           isGroupConfirmation={true}
@@ -197,11 +267,11 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Bekräftelse till beställare',
-      field: 'skicka',
+      title: "Bekräftelse till beställare",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationCustomer
           isCustomerConfirmation={true}
@@ -214,11 +284,11 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Detaljer till volontär',
-      field: 'skicka',
+      title: "Detaljer till volontär",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationInternal
           isOrderInfoToVolunteer={true}
@@ -247,26 +317,26 @@ const Table = (props) => {
     förnamn,
     efternamn,
     {
-      title: 'Status',
-      field: 'status',
+      title: "Status",
+      field: "status",
       lookup: groupStatusDropdownForGroups,
       cellStyle: small,
       headerStyle: small,
     },
     {
-      title: 'Grupp',
-      field: 'gruppId',
-      editable: 'never',
+      title: "Grupp",
+      field: "gruppId",
+      editable: "never",
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
     },
     {
-      title: 'Bekräftelse till beställare',
-      field: 'skicka',
+      title: "Bekräftelse till beställare",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationCustomer
           isCustomerConfirmation={true}
@@ -278,11 +348,11 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Detaljer till volontär',
-      field: 'skicka',
+      title: "Detaljer till volontär",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationInternal
           isOrderInfoToVolunteer={true}
@@ -305,30 +375,113 @@ const Table = (props) => {
     postkod,
   ];
 
+  const fikersColumns = [
+    mottaget,
+    förnamn,
+    efternamn,
+    {
+      title: "Status",
+      field: "status",
+      lookup: fikerStatusDropdown,
+      cellStyle: small,
+      headerStyle: small,
+    },
+    {
+      title: "Grupp",
+      field: "gruppId",
+      lookup: groupDropdown,
+      cellStyle: medium,
+      headerStyle: medium,
+    },
+    // {
+    //   title: "Detaljer till grupp",
+    //   field: "skicka",
+    //   cellStyle: medium,
+    //   headerStyle: medium,
+    //   editable: "never",
+    //   render: (rowData) => (
+    //     <ConfirmationInternal
+    //       isVolToGroupConf={true}
+    //       itemId={rowData.id}
+    //       isConfirmed={rowData.skickadVolontärTillGrupp}
+    //       refreshAction={props.refreshAction}
+    //       onClickAction={sendVolunteerEmail.bind(this, rowData)}
+    //     />
+    //   ),
+    // },
+    // {
+    //   title: "Bekräftelse till fikaintressent",
+    //   field: "skicka",
+    //   cellStyle: medium,
+    //   headerStyle: medium,
+    //   editable: "never",
+    //   render: (rowData) => (
+    //     <ConfirmationCustomer
+    //       isConfToVol={true}
+    //       refreshAction={props.refreshAction}
+    //       onClickAction={sendWelcomeEmail.bind(this, rowData)}
+    //       isConfirmed={rowData.skickadBekräftelseTillVolontär}
+    //       data={rowData}
+    //     />
+    //   ),
+    // },
+    {
+      title: "Kopiera detaljer",
+      field: "skicka",
+      cellStyle: medium,
+      headerStyle: medium,
+      editable: "never",
+      render: (rowData) => (
+        <Button
+          onClick={sendGeneralFikerInfo.bind(this, rowData)}
+          className="small-button"
+          size="sm"
+        >
+          Kopiera detaljer
+        </Button>
+      ),
+    },
+    kommentarer,
+    description,
+    telefon,
+    email,
+    språk,
+    oldSchool,
+    newSchool,
+    books,
+    gardening,
+    localPolitics,
+    globalPolitics,
+    localCulture,
+    newTech,
+    lectures,
+    lecture,
+  ];
+
   const volunteerColumns = [
     mottaget,
     förnamn,
     efternamn,
     {
-      title: 'Status',
-      field: 'status',
+      title: "Status",
+      field: "status",
       lookup: volunteerStatusDropdown,
       cellStyle: small,
       headerStyle: small,
     },
     {
-      title: 'Grupp',
-      field: 'gruppId',
+      title: "Grupp",
+      field: "gruppId",
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
     },
     {
-      title: 'Detaljer till grupp',
-      field: 'skicka',
+      title: "Detaljer till grupp",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationInternal
           isVolToGroupConf={true}
@@ -340,11 +493,11 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Bekräftelse till volontär',
-      field: 'skicka',
+      title: "Bekräftelse till volontär",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationCustomer
           isConfToVol={true}
@@ -356,11 +509,11 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Kopiera detaljer',
-      field: 'skicka',
+      title: "Kopiera detaljer",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <Button
           onClick={sendGeneralVolunteerInfo.bind(this, rowData)}
@@ -395,26 +548,26 @@ const Table = (props) => {
     förnamn,
     efternamn,
     {
-      title: 'Status',
-      field: 'status',
+      title: "Status",
+      field: "status",
       lookup: volunteerStatusDropdownForGroups,
       cellStyle: small,
       headerStyle: small,
     },
     {
-      title: 'Grupp',
-      field: 'gruppId',
-      editable: 'never',
+      title: "Grupp",
+      field: "gruppId",
+      editable: "never",
       lookup: groupDropdown,
       cellStyle: medium,
       headerStyle: medium,
     },
     {
-      title: 'Bekräftelse till volontär',
-      field: 'skicka',
+      title: "Bekräftelse till volontär",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <ConfirmationCustomer
           isConfToVol={true}
@@ -426,11 +579,11 @@ const Table = (props) => {
       ),
     },
     {
-      title: 'Kopiera detaljer',
-      field: 'skicka',
+      title: "Kopiera detaljer",
+      field: "skicka",
       cellStyle: medium,
       headerStyle: medium,
-      editable: 'never',
+      editable: "never",
       render: (rowData) => (
         <Button
           onClick={sendGeneralVolunteerInfo.bind(this, rowData)}
@@ -462,8 +615,8 @@ const Table = (props) => {
 
   const groupColumns = [
     {
-      title: 'Gruppnamn',
-      field: 'gruppnamn',
+      title: "Gruppnamn",
+      field: "gruppnamn",
       render: (rowData) => (
         <Link to={`/grupp/${rowData.länkNamn}/${rowData.id}`}>
           {rowData.gruppnamn}
@@ -473,40 +626,40 @@ const Table = (props) => {
       headerStyle: medium,
     },
     {
-      title: 'Beskrivning',
-      field: 'kommentarer',
+      title: "Beskrivning",
+      field: "kommentarer",
       cellStyle: medium,
       headerStyle: medium,
     },
     {
-      title: 'Kontakt',
-      field: 'kontakt',
+      title: "Kontakt",
+      field: "kontakt",
       cellStyle: medium,
       headerStyle: medium,
     },
     telefon,
     {
-      title: 'Email',
-      field: 'email',
+      title: "Email",
+      field: "email",
       cellStyle: medium,
       headerStyle: medium,
     },
     {
-      title: 'Reserv',
-      field: 'reserv',
+      title: "Reserv",
+      field: "reserv",
       cellStyle: medium,
       headerStyle: medium,
     },
-    { title: 'Reserv telefon', field: 'reservTelefon' },
+    { title: "Reserv telefon", field: "reservTelefon" },
     {
-      title: 'Reserv email',
-      field: 'reservEmail',
+      title: "Reserv email",
+      field: "reservEmail",
       cellStyle: medium,
       headerStyle: medium,
     },
     address,
     postkod,
-    { title: 'Skapad', field: 'datum', editable: 'never' },
+    { title: "Skapad", field: "datum", editable: "never" },
   ];
 
   const cancelledColumns = [
@@ -525,6 +678,10 @@ const Table = (props) => {
     ? groupOrderColumns
     : props.isVolunteers
     ? volunteerColumns
+    : props.isFikers
+    ? fikersColumns
+    : props.isGroupFikers
+    ? fikersColumns
     : props.isGroupVolunteers
     ? groupVolunteersColumns
     : props.isGroups
@@ -537,45 +694,75 @@ const Table = (props) => {
   //Update existing order
   async function updateOrder(newData, oldData) {
     const currDocId = newData.id;
-    let orderRef = db.collection('orders').doc(currDocId);
+    let orderRef = db.collection("orders").doc(currDocId);
 
     orderRef.update({
-      gruppId: newData.gruppId ? newData.gruppId : '',
-      volontärId: newData.volontärId ? newData.volontärId : '',
-      datum: newData.datum ? newData.datum : '',
-      typ: newData.typ ? newData.typ : 'Ingen',
-      beskrivning: newData.beskrivning ? newData.beskrivning : '',
+      gruppId: newData.gruppId ? newData.gruppId : "",
+      volontärId: newData.volontärId ? newData.volontärId : "",
+      datum: newData.datum ? newData.datum : "",
+      typ: newData.typ ? newData.typ : "Ingen",
+      beskrivning: newData.beskrivning ? newData.beskrivning : "",
       swish: newData.swish ? newData.swish : false,
       kontant: newData.kontant ? newData.kontant : false,
       faktura: newData.faktura ? newData.faktura : false,
-      tidsrymd: newData.tidsrymd ? newData.tidsrymd : '',
-      telefon: newData.telefon ? newData.telefon : '',
-      förnamn: newData.förnamn ? newData.förnamn : '',
-      efternamn: newData.efternamn ? newData.efternamn : '',
-      email: newData.email ? newData.email : '',
-      address: newData.address ? newData.address : '',
-      postkod: newData.postkod ? newData.postkod : '',
-      status: newData.status ? newData.status : '',
-      kommentarer: newData.kommentarer ? newData.kommentarer : '',
+      tidsrymd: newData.tidsrymd ? newData.tidsrymd : "",
+      telefon: newData.telefon ? newData.telefon : "",
+      förnamn: newData.förnamn ? newData.förnamn : "",
+      efternamn: newData.efternamn ? newData.efternamn : "",
+      email: newData.email ? newData.email : "",
+      address: newData.address ? newData.address : "",
+      postkod: newData.postkod ? newData.postkod : "",
+      status: newData.status ? newData.status : "",
+      kommentarer: newData.kommentarer ? newData.kommentarer : "",
+    });
+  }
+
+  //Update existing volunteer
+  async function updateFiker(newData, oldData) {
+    const currDocId = newData.id;
+    let fikerRef = db.collection("fika").doc(currDocId);
+
+    fikerRef.update({
+      gruppId: newData.gruppId ? newData.gruppId : "",
+      förnamn: newData.förnamn ? newData.förnamn : "",
+      efternamn: newData.efternamn ? newData.efternamn : "",
+      telefon: newData.telefon ? newData.telefon : "",
+      email: newData.email ? newData.email : "",
+      description: newData.description ? newData.description : "",
+      oldSchool: newData.oldSchool ? newData.oldSchool : false,
+      newSchool: newData.newSchool ? newData.newSchool : false,
+      interests: newData.interests ? newData.interests : "",
+      språk: newData.språk ? newData.språk : "",
+      books: newData.books ? newData.books : false,
+      gardening: newData.gardening ? newData.gardening : false,
+      localPolitics: newData.localPolitics ? newData.localPolitics : false,
+      globalPolitics: newData.globalPolitics ? newData.globalPolitics : false,
+      localCulture: newData.localCulture ? newData.localCulture : false,
+      newTech: newData.newTech ? newData.newTech : false,
+      lectures: newData.lectures ? newData.lectures : false,
+      lecture: newData.lecture ? newData.lecture : "",
+      date: newData.date ? newData.date : "",
+      status: newData.status ? newData.status : "1",
+      kommentarer: newData.kommentarer ? newData.kommentarer : "",
     });
   }
 
   //Update existing volunteer
   async function updateVolunteer(newData, oldData) {
     const currDocId = newData.id;
-    let volunteerRef = db.collection('volunteers').doc(currDocId);
+    let volunteerRef = db.collection("volunteers").doc(currDocId);
 
     volunteerRef.update({
-      gruppId: newData.gruppId ? newData.gruppId : '',
-      förnamn: newData.förnamn ? newData.förnamn : '',
-      efternamn: newData.efternamn ? newData.efternamn : '',
-      telefon: newData.telefon ? newData.telefon : '',
-      email: newData.email ? newData.email : '',
-      address: newData.address ? newData.address : '',
-      postkod: newData.postkod ? newData.postkod : '',
-      beskrivning: newData.beskrivning ? newData.beskrivning : '',
-      språk: newData.språk ? newData.språk : '',
-      födelseår: newData.födelseår ? newData.födelseår : '',
+      gruppId: newData.gruppId ? newData.gruppId : "",
+      förnamn: newData.förnamn ? newData.förnamn : "",
+      efternamn: newData.efternamn ? newData.efternamn : "",
+      telefon: newData.telefon ? newData.telefon : "",
+      email: newData.email ? newData.email : "",
+      address: newData.address ? newData.address : "",
+      postkod: newData.postkod ? newData.postkod : "",
+      beskrivning: newData.beskrivning ? newData.beskrivning : "",
+      språk: newData.språk ? newData.språk : "",
+      födelseår: newData.födelseår ? newData.födelseår : "",
       körkort: newData.körkort ? newData.körkort : false,
       bil: newData.bil ? newData.bil : false,
       mat: newData.mat ? newData.mat : false,
@@ -585,51 +772,51 @@ const Table = (props) => {
       prata: newData.prata ? newData.prata : false,
       myndigheter: newData.myndigheter ? newData.myndigheter : false,
       teknik: newData.teknik ? newData.teknik : false,
-      datum: newData.datum ? newData.datum : '',
-      status: newData.status ? newData.status : '1',
-      kommentarer: newData.kommentarer ? newData.kommentarer : '',
+      datum: newData.datum ? newData.datum : "",
+      status: newData.status ? newData.status : "1",
+      kommentarer: newData.kommentarer ? newData.kommentarer : "",
     });
   }
 
   //Update existing group
   async function updateGroup(newData, oldData) {
     const currDocId = newData.id;
-    let groupRef = db.collection('groups').doc(currDocId);
+    let groupRef = db.collection("groups").doc(currDocId);
 
     groupRef.update({
-      datum: newData.datum ? newData.datum : '',
-      gruppnamn: newData.gruppnamn ? newData.gruppnamn : '',
-      kontakt: newData.kontakt ? newData.kontakt : '',
-      kommentarer: newData.kommentarer ? newData.kommentarer : '',
-      telefon: newData.telefon ? newData.telefon : '',
-      email: newData.email ? newData.email : '',
-      reserv: newData.reserv ? newData.reserv : '',
-      reservTelefon: newData.reservTelefon ? newData.reservTelefon : '',
-      reservEmail: newData.reservEmail ? newData.reservEmail : '',
-      address: newData.address ? newData.address : '',
-      postkod: newData.postkod ? newData.postkod : '',
-      status: newData.status ? newData.status : '1',
+      datum: newData.datum ? newData.datum : "",
+      gruppnamn: newData.gruppnamn ? newData.gruppnamn : "",
+      kontakt: newData.kontakt ? newData.kontakt : "",
+      kommentarer: newData.kommentarer ? newData.kommentarer : "",
+      telefon: newData.telefon ? newData.telefon : "",
+      email: newData.email ? newData.email : "",
+      reserv: newData.reserv ? newData.reserv : "",
+      reservTelefon: newData.reservTelefon ? newData.reservTelefon : "",
+      reservEmail: newData.reservEmail ? newData.reservEmail : "",
+      address: newData.address ? newData.address : "",
+      postkod: newData.postkod ? newData.postkod : "",
+      status: newData.status ? newData.status : "1",
     });
   }
 
   //Update existing cancellation
   async function updateCancelled(newData, oldData) {
     const currDocId = newData.id;
-    let cancelledRef = db.collection('cancellations').doc(currDocId);
+    let cancelledRef = db.collection("cancellations").doc(currDocId);
 
     cancelledRef.update({
-      datum: newData.datum ? newData.datum : '',
-      telefon: newData.telefon ? newData.telefon : '',
-      email: newData.email ? newData.email : '',
-      address: newData.address ? newData.address : '',
-      postkod: newData.postkod ? newData.postkod : '',
-      status: newData.status ? newData.status : '1',
+      datum: newData.datum ? newData.datum : "",
+      telefon: newData.telefon ? newData.telefon : "",
+      email: newData.email ? newData.email : "",
+      address: newData.address ? newData.address : "",
+      postkod: newData.postkod ? newData.postkod : "",
+      status: newData.status ? newData.status : "1",
     });
   }
 
   //Re-render if the data passed to the table changes - which it should do if we edit a row
   useEffect(() => {
-    console.log('data has changed - rerendering');
+    console.log("data has changed - rerendering");
     setData(props.tableData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.tableData]);
@@ -646,18 +833,18 @@ const Table = (props) => {
       }}
       localization={{
         pagination: {
-          labelDisplayedRows: '{from}-{to} av {count}',
+          labelDisplayedRows: "{from}-{to} av {count}",
         },
         toolbar: {
-          nRowsSelected: '{0} rader valda',
+          nRowsSelected: "{0} rader valda",
         },
         header: {
-          actions: ' ',
+          actions: " ",
         },
         body: {
-          emptyDataSourceMessage: 'Här var det tomt!',
+          emptyDataSourceMessage: "Här var det tomt!",
           filterRow: {
-            filterTooltip: 'Filter',
+            filterTooltip: "Filter",
           },
         },
       }}
@@ -668,6 +855,8 @@ const Table = (props) => {
               ? updateOrder(newData, oldData)
               : props.isVolunteers || props.isGroupVolunteers
               ? updateVolunteer(newData, oldData)
+              : props.isFikers || props.isGroupFikers
+              ? updateFiker(newData, oldData)
               : props.isGroups
               ? updateGroup(newData, oldData)
               : updateCancelled(newData, oldData);

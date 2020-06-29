@@ -1,13 +1,13 @@
-import React, { useState, useReducer } from 'react';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import React, { useState, useReducer } from "react";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
-import firebase from '../../firebase/firebase.utils';
+import firebase from "../../firebase/firebase.utils";
 
-import Mottaget from './Mottaget';
+import Mottaget from "./Mottaget";
 
-const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -75,24 +75,24 @@ const VolunteerForm = (props) => {
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      förnamn: editedVolunteer ? editedVolunteer.förnamn : '',
-      efternamn: editedVolunteer ? editedVolunteer.efternamn : '',
-      telefon: editedVolunteer ? editedVolunteer.telefon : '',
-      email: editedVolunteer ? editedVolunteer.email : '',
-      address: editedVolunteer ? editedVolunteer.address : '',
-      postkod: editedVolunteer ? editedVolunteer.postkod : '',
-      beskrivning: editedVolunteer ? editedVolunteer.beskrivning : '',
-      språk: editedVolunteer ? editedVolunteer.språk : '',
-      födelseår: editedVolunteer ? editedVolunteer.födelseår : '',
-      körkort: editedVolunteer ? editedVolunteer.körkort : '',
-      bil: editedVolunteer ? editedVolunteer.bil : '',
-      mat: editedVolunteer ? editedVolunteer.mat : '',
-      varor: editedVolunteer ? editedVolunteer.varor : '',
-      ärenden: editedVolunteer ? editedVolunteer.ärenden : '',
-      djur: editedVolunteer ? editedVolunteer.djur : '',
-      prata: editedVolunteer ? editedVolunteer.prata : '',
-      myndigheter: editedVolunteer ? editedVolunteer.myndigheter : '',
-      teknik: editedVolunteer ? editedVolunteer.teknik : '',
+      förnamn: editedVolunteer ? editedVolunteer.förnamn : "",
+      efternamn: editedVolunteer ? editedVolunteer.efternamn : "",
+      telefon: editedVolunteer ? editedVolunteer.telefon : "",
+      email: editedVolunteer ? editedVolunteer.email : "",
+      address: editedVolunteer ? editedVolunteer.address : "",
+      postkod: editedVolunteer ? editedVolunteer.postkod : "",
+      beskrivning: editedVolunteer ? editedVolunteer.beskrivning : "",
+      språk: editedVolunteer ? editedVolunteer.språk : "",
+      födelseår: editedVolunteer ? editedVolunteer.födelseår : "",
+      körkort: editedVolunteer ? editedVolunteer.körkort : "",
+      bil: editedVolunteer ? editedVolunteer.bil : "",
+      mat: editedVolunteer ? editedVolunteer.mat : "",
+      varor: editedVolunteer ? editedVolunteer.varor : "",
+      ärenden: editedVolunteer ? editedVolunteer.ärenden : "",
+      djur: editedVolunteer ? editedVolunteer.djur : "",
+      prata: editedVolunteer ? editedVolunteer.prata : "",
+      myndigheter: editedVolunteer ? editedVolunteer.myndigheter : "",
+      teknik: editedVolunteer ? editedVolunteer.teknik : "",
     },
     inputValidities: {
       förnamn: editedVolunteer ? true : false,
@@ -120,11 +120,11 @@ const VolunteerForm = (props) => {
   const addVolunteer = (e) => {
     e.preventDefault();
     if (!approvedConditions) {
-      alert('Det verkar som du inte läst och godkänt våra villkor');
+      alert("Det verkar som du inte läst och godkänt våra villkor");
       return;
     }
     const db = firebase.firestore();
-    db.collection('volunteers').add({
+    db.collection("volunteers").add({
       förnamn: formState.inputValues.förnamn,
       efternamn: formState.inputValues.efternamn,
       telefon: formState.inputValues.telefon,
@@ -143,9 +143,9 @@ const VolunteerForm = (props) => {
       prata: doTalking,
       myndigheter: doAuthorities,
       teknik: doTech,
-      gruppId: '0',
+      gruppId: "0",
       datum: new Date().getTime(),
-      status: '1',
+      status: "1",
       skickadVolontärTillGrupp: false,
       skickadBekräftelseTillVolontär: false,
     });
@@ -190,7 +190,7 @@ const VolunteerForm = (props) => {
               label="förnamn"
               value={formState.inputValues.förnamn}
               type="text"
-              onChange={textChangeHandler.bind(this, 'förnamn')}
+              onChange={textChangeHandler.bind(this, "förnamn")}
               required
             />
           </Col>
@@ -200,7 +200,7 @@ const VolunteerForm = (props) => {
               label="efternamn"
               value={formState.inputValues.efternamn}
               type="text"
-              onChange={textChangeHandler.bind(this, 'efternamn')}
+              onChange={textChangeHandler.bind(this, "efternamn")}
               required
             />
           </Col>
@@ -214,7 +214,7 @@ const VolunteerForm = (props) => {
               label="telefon"
               value={formState.inputValues.telefon}
               type="text"
-              onChange={textChangeHandler.bind(this, 'telefon')}
+              onChange={textChangeHandler.bind(this, "telefon")}
               required
             />
           </Col>
@@ -224,7 +224,7 @@ const VolunteerForm = (props) => {
               label="email"
               value={formState.inputValues.email}
               type="email"
-              onChange={textChangeHandler.bind(this, 'email')}
+              onChange={textChangeHandler.bind(this, "email")}
               required
             />
           </Col>
@@ -237,7 +237,7 @@ const VolunteerForm = (props) => {
               label="address"
               value={formState.inputValues.address}
               type="text"
-              onChange={textChangeHandler.bind(this, 'address')}
+              onChange={textChangeHandler.bind(this, "address")}
               required
             />
           </Col>
@@ -247,7 +247,7 @@ const VolunteerForm = (props) => {
               label="postkod"
               value={formState.inputValues.postkod}
               type="text"
-              onChange={textChangeHandler.bind(this, 'postkod')}
+              onChange={textChangeHandler.bind(this, "postkod")}
               required
             />
           </Col>
@@ -261,7 +261,7 @@ const VolunteerForm = (props) => {
             name="beskrivning"
             value={formState.inputValues.beskrivning}
             type="text"
-            onChange={textChangeHandler.bind(this, 'beskrivning')}
+            onChange={textChangeHandler.bind(this, "beskrivning")}
           />
         </Form.Group>
         <Form.Row>
@@ -271,7 +271,7 @@ const VolunteerForm = (props) => {
               label="språk"
               value={formState.inputValues.språk}
               type="text"
-              onChange={textChangeHandler.bind(this, 'språk')}
+              onChange={textChangeHandler.bind(this, "språk")}
               required
             />
           </Col>
@@ -281,7 +281,7 @@ const VolunteerForm = (props) => {
               label="födelseår"
               value={formState.inputValues.födelseår}
               type="text"
-              onChange={textChangeHandler.bind(this, 'födelseår')}
+              onChange={textChangeHandler.bind(this, "födelseår")}
               required
             />
           </Col>
