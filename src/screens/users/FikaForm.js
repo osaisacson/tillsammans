@@ -260,7 +260,6 @@ const FikaForm = (props) => {
           <Form.Control
             as="textarea"
             rows="3"
-            placeholder="Jag är en glad kille på 79 jordsnurr..."
             name="description"
             value={formState.inputValues.description}
             type="text"
