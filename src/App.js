@@ -1,43 +1,44 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 
 //Components
-import MainHeader from './components/MainHeader';
+import MainHeader from "./components/MainHeader";
 
 //All screens
-import Home from './screens/Home';
+import Home from "./screens/Home";
 
 //User screens
-import Apply from './screens/users/Apply';
-import Partners from './screens/info/Partners';
-import Cancel from './screens/users/Cancel';
-import Volunteer from './screens/users/Volunteer';
+import Apply from "./screens/users/Apply";
+import Partners from "./screens/info/Partners";
+import Cancel from "./screens/users/Cancel";
+import Volunteer from "./screens/users/Volunteer";
+import Fika from "./screens/users/Fika";
 
 //Admin screens
-import AdminRouter from './screens/admin/AdminRouter';
-import GroupAdminRouter from './screens/groupAdmin/GroupAdminRouter';
-import Orders from './screens/admin/Orders';
-import Volunteers from './screens/admin/Volunteers';
-import Groups from './screens/admin/Groups';
-import Cancellations from './screens/admin/Cancellations';
-import Mottaget from './screens/users/Mottaget';
-import GrantAdminAccess from './screens/admin/GrantAdminAccess';
-import Account from './screens/admin/Account';
+import AdminRouter from "./screens/admin/AdminRouter";
+import GroupAdminRouter from "./screens/groupAdmin/GroupAdminRouter";
+import Orders from "./screens/admin/Orders";
+import Volunteers from "./screens/admin/Volunteers";
+import Groups from "./screens/admin/Groups";
+import Cancellations from "./screens/admin/Cancellations";
+import Mottaget from "./screens/users/Mottaget";
+import GrantAdminAccess from "./screens/admin/GrantAdminAccess";
+import Account from "./screens/admin/Account";
 
 //Info screens
-import HowTo from './screens/info/HowTo';
-import Intro from './screens/info/Intro';
-import Contact from './screens/info/Contact';
+import HowTo from "./screens/info/HowTo";
+import Intro from "./screens/info/Intro";
+import Contact from "./screens/info/Contact";
 
 //Authentication
-import ProtectedRoute from './components/ProtectedRoute';
-import Login from './components/Login';
-import ResetPassword from './components/ResetPassword';
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./components/Login";
+import ResetPassword from "./components/ResetPassword";
 
-import './App.scss';
+import "./App.scss";
 
-require('dotenv').config();
+require("dotenv").config();
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
@@ -56,6 +57,9 @@ function App(props) {
           </Route>
           <Route path="/bli-volontar">
             <Volunteer />
+          </Route>
+          <Route path="/corona-fika">
+            <Fika />
           </Route>
           <Route path="/byt-sprak"></Route>
           <Route path="/sahar-funkar-det">
@@ -143,7 +147,7 @@ function App(props) {
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
             mainAdminOnly={false}
-          /> 
+          />
           {/* For all */}
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetpassword" component={ResetPassword} />
