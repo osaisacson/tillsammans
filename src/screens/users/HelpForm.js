@@ -1,17 +1,17 @@
 // import React, { useState, useEffect, useCallback, useReducer } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
-import React, { useState, useReducer } from 'react';
-import { useSelector } from 'react-redux';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import React, { useState, useReducer } from "react";
+import { useSelector } from "react-redux";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
-import firebase from '../../firebase/firebase.utils';
+import firebase from "../../firebase/firebase.utils";
 // import * as ordersActions from '../../../store/actions/orders';
 
-import Mottaget from './Mottaget';
+import Mottaget from "./Mottaget";
 
-const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -70,19 +70,19 @@ const HelpForm = (props) => {
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      typ: editedOrder ? editedOrder.typ : '',
-      beskrivning: editedOrder ? editedOrder.beskrivning : '',
-      swish: editedOrder ? editedOrder.swish : '',
-      kontant: editedOrder ? editedOrder.kontant : '',
-      faktura: editedOrder ? editedOrder.faktura : '',
-      tidsrymd: editedOrder ? editedOrder.tidsrymd : '',
-      telefon: editedOrder ? editedOrder.telefon : '',
-      förnamn: editedOrder ? editedOrder.förnamn : '',
-      efternamn: editedOrder ? editedOrder.efternamn : '',
-      email: editedOrder ? editedOrder.email : '',
-      address: editedOrder ? editedOrder.address : '',
-      postkod: editedOrder ? editedOrder.postkod : '',
-      conditions: editedOrder ? editedOrder.conditions : '',
+      typ: editedOrder ? editedOrder.typ : "",
+      beskrivning: editedOrder ? editedOrder.beskrivning : "",
+      swish: editedOrder ? editedOrder.swish : "",
+      kontant: editedOrder ? editedOrder.kontant : "",
+      faktura: editedOrder ? editedOrder.faktura : "",
+      tidsrymd: editedOrder ? editedOrder.tidsrymd : "",
+      telefon: editedOrder ? editedOrder.telefon : "",
+      förnamn: editedOrder ? editedOrder.förnamn : "",
+      efternamn: editedOrder ? editedOrder.efternamn : "",
+      email: editedOrder ? editedOrder.email : "",
+      address: editedOrder ? editedOrder.address : "",
+      postkod: editedOrder ? editedOrder.postkod : "",
+      conditions: editedOrder ? editedOrder.conditions : "",
     },
     inputValidities: {
       typ: editedOrder ? true : false,
@@ -105,13 +105,13 @@ const HelpForm = (props) => {
   const addUser = (e) => {
     e.preventDefault();
     if (!approvedConditions) {
-      alert('Det verkar som du inte läst och godkänt våra villkor');
+      alert("Det verkar som du inte läst och godkänt våra villkor");
       return;
     }
     const db = firebase.firestore();
-    db.collection('orders').add({
-      gruppId: '0',
-      volontärId: '0',
+    db.collection("orders").add({
+      gruppId: "0",
+      volontärId: "0",
       datum: new Date().getTime(),
       typ: formState.inputValues.typ,
       beskrivning: formState.inputValues.beskrivning,
@@ -125,8 +125,8 @@ const HelpForm = (props) => {
       email: formState.inputValues.email,
       address: formState.inputValues.address,
       postkod: formState.inputValues.postkod,
-      status: '1',
-      kommentarer: '',
+      status: "1",
+      kommentarer: "",
       skickadBeställare: false,
       skickadGrupp: false,
       skickadVolontär: false,
@@ -159,7 +159,7 @@ const HelpForm = (props) => {
       <Form onSubmit={addUser}>
         <h2>Beställning</h2>
         <p>
-          Notera att tjänsten är {''}
+          Notera att tjänsten är {""}
           <span className="bold">GRATIS</span>, enda kostnaden är om din
           beställning i sig självt innebär någon kostnad - till exempel om du
           vill vi ska handla. I de fallen ersätts volontären för sina utgifter
@@ -167,21 +167,21 @@ const HelpForm = (props) => {
           avgift för själva tjänsten.
         </p>
         <p>
-          Vill du inte använda formuläret kan du även beställa genom att ringa{' '}
+          Vill du inte använda formuläret kan du även beställa genom att ringa{" "}
           <span>0304 - 60 10 10</span> (kundcenter kommunen, uppge att du vill
-          beställa från Alla Tillsammans) eller maila{' '}
+          beställa från Alla Tillsammans) eller maila{" "}
           <span>tjorn@allatillsammans.se</span>
         </p>
         <br />
 
         <h3>Vad behöver du hjälp med?</h3>
-        <Form.Group controlId={'typ'}>
+        <Form.Group controlId={"typ"}>
           <Form.Control
             as="select"
-            name={'typ'}
+            name={"typ"}
             value={formState.inputValues.typ}
             type="text"
-            onChange={textChangeHandler.bind(this, 'typ')}
+            onChange={textChangeHandler.bind(this, "typ")}
             required
           >
             <option value="inget val">Välj typ</option>
@@ -210,7 +210,7 @@ const HelpForm = (props) => {
             name="beskrivning"
             value={formState.inputValues.beskrivning}
             type="text"
-            onChange={textChangeHandler.bind(this, 'beskrivning')}
+            onChange={textChangeHandler.bind(this, "beskrivning")}
             placeholder="Inköpslista eller annan information om din beställning."
           />
         </Form.Group>
@@ -243,19 +243,25 @@ const HelpForm = (props) => {
         </Form.Group>
 
         <h3>Hur länge kan du vänta?</h3>
-        <Form.Group controlId={'tidsrymd'}>
+        <Form.Group controlId={"tidsrymd"}>
           <Form.Control
             as="select"
-            name={'tidsrymd'}
+            name={"tidsrymd"}
             value={formState.inputValues.tidsrymd}
             type="text"
-            onChange={textChangeHandler.bind(this, 'tidsrymd')}
+            onChange={textChangeHandler.bind(this, "tidsrymd")}
             required
           >
             <option value="Inget val">Välj</option>
-            <option value="Upp till två dagar">Upp till två dagar</option>
-            <option value="Upp till tre dagar">Upp till tre dagar</option>
-            <option value="Upp till fyra dagar">Upp till fyra dagar</option>
+            <option value="Upp till två arbetsdagar">
+              Upp till två arbetsdagar
+            </option>
+            <option value="Upp till tre arbetsdagar">
+              Upp till tre arbetsdagar
+            </option>
+            <option value="Upp till fyra arbetsdagar">
+              Upp till fyra arbetsdagar
+            </option>
             <option value="Ta det när det går">Ta det när det går</option>
           </Form.Control>
         </Form.Group>
@@ -268,7 +274,7 @@ const HelpForm = (props) => {
               placeholder="Telefon"
               value={formState.inputValues.telefon}
               type="text"
-              onChange={textChangeHandler.bind(this, 'telefon')}
+              onChange={textChangeHandler.bind(this, "telefon")}
               required
             />
           </Col>
@@ -278,7 +284,7 @@ const HelpForm = (props) => {
               placeholder="E-post"
               value={formState.inputValues.email}
               type="email"
-              onChange={textChangeHandler.bind(this, 'email')}
+              onChange={textChangeHandler.bind(this, "email")}
               required
             />
           </Col>
@@ -290,7 +296,7 @@ const HelpForm = (props) => {
               placeholder="Förnamn (frivilligt)"
               value={formState.inputValues.förnamn}
               type="text"
-              onChange={textChangeHandler.bind(this, 'förnamn')}
+              onChange={textChangeHandler.bind(this, "förnamn")}
               required
             />
           </Col>
@@ -300,7 +306,7 @@ const HelpForm = (props) => {
               placeholder="Efternamn (frivilligt)"
               value={formState.inputValues.efternamn}
               type="text"
-              onChange={textChangeHandler.bind(this, 'efternamn')}
+              onChange={textChangeHandler.bind(this, "efternamn")}
               required
             />
           </Col>
@@ -312,7 +318,7 @@ const HelpForm = (props) => {
               placeholder="Address"
               value={formState.inputValues.address}
               type="text"
-              onChange={textChangeHandler.bind(this, 'address')}
+              onChange={textChangeHandler.bind(this, "address")}
               required
             />
           </Col>
@@ -322,7 +328,7 @@ const HelpForm = (props) => {
               placeholder="Postkod (frivilligt)"
               value={formState.inputValues.postkod}
               type="text"
-              onChange={textChangeHandler.bind(this, 'postkod')}
+              onChange={textChangeHandler.bind(this, "postkod")}
               required
             />
           </Col>
