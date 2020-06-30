@@ -178,11 +178,8 @@ const FikaForm = (props) => {
         </p>
         <p>
           Såhär går det till: När vi samlat ihop en grupp med liknande intressen
-          sätter vi ihop en fikagrupp med en samordnare. Samordnaren kontaktar
-          sen alla i gruppen med tema för distansfikat och föreslagen dag/tid.
-          På utsatt tid ringer du in via detaljerna samordnaren förmedlat,
-          antingen på vanlig telefon eller via dator/surfplatta eller
-          smartphone.
+          sätter vi ihop en fikagrupp. Kaffechefen kontaktar sen alla i gruppen
+          med föreslagen på dag/tid.
         </p>
         <p>
           Nya fikagrupper bildas allteftersom, utifrån intresse. Anmäl dig nedan
@@ -245,14 +242,14 @@ const FikaForm = (props) => {
             onClick={() => {
               setOldSchool(!oldSchool);
             }}
-            label="Vanlig, väggfast telefon"
+            label="Enbart telefon (ingen video)"
           />
           <Form.Check
             type="checkbox"
             onClick={() => {
               setNewSchool(!newSchool);
             }}
-            label="Dator, surfplatta eller smartphone"
+            label="Dator, surfplatta eller telefon (video)"
           />
         </Form.Group>
         <h3>Berätta gärna kort om dig själv (frivilligt)</h3>

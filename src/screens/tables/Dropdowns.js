@@ -8,7 +8,7 @@ export const groupDropdown = {
   DiM537Vye6Wi6SRQJfHT: "Direkthantering",
   TmhoPLMU6XmapwTSS6Hi: "Inre grupp",
   R0tHIsIvM82th7Elq6zo: "Kommunikatörerna",
-  cZlguxifFGkwLDClylzE: "Fikagrupp - Ny teknik",
+  cZlguxifFGkwLDClylzE: "Fikagrupp",
 };
 
 export const groupStatusDropdown = {
