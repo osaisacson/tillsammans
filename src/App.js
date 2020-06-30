@@ -14,6 +14,7 @@ import Partners from "./screens/info/Partners";
 import Cancel from "./screens/users/Cancel";
 import Volunteer from "./screens/users/Volunteer";
 import Fiker from "./screens/users/Fiker";
+import News from "./screens/info/News";
 
 //Admin screens
 import AdminRouter from "./screens/admin/AdminRouter";
@@ -73,6 +74,9 @@ function App(props) {
           </Route>
           <Route path="/partners">
             <Partners />
+          </Route>
+          <Route path="/tips">
+            <News />
           </Route>
           {/* For admin */}
           <ProtectedRoute
