@@ -170,7 +170,6 @@ const Admin = (props) => {
           resData.språk,
           resData.books,
           resData.gardening,
-          resData.localPolitics,
           resData.globalPolitics,
           resData.localCulture,
           resData.newTech,

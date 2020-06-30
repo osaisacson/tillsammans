@@ -55,7 +55,6 @@ const FikaForm = (props) => {
   const [newSchool, setNewSchool] = useState(false);
   const [books, setBooks] = useState(false);
   const [gardening, setGardening] = useState(false);
-  const [localPolitics, setLocalPolitics] = useState(false);
   const [globalPolitics, setGlobalPolitics] = useState(false);
   const [localCulture, setLocalCulture] = useState(false);
   const [newTech, setNewTech] = useState(false);
@@ -74,7 +73,6 @@ const FikaForm = (props) => {
       newSchool: editedFiker ? editedFiker.newSchool : "",
       books: editedFiker ? editedFiker.books : "",
       gardening: editedFiker ? editedFiker.gardening : "",
-      localPolitics: editedFiker ? editedFiker.localPolitics : "",
       globalPolitics: editedFiker ? editedFiker.globalPolitics : "",
       localCulture: editedFiker ? editedFiker.localCulture : "",
       newTech: editedFiker ? editedFiker.newTech : "",
@@ -93,7 +91,6 @@ const FikaForm = (props) => {
       språk: editedFiker ? true : false,
       books: editedFiker ? true : false,
       gardening: editedFiker ? true : false,
-      localPolitics: editedFiker ? true : false,
       globalPolitics: editedFiker ? true : false,
       localCulture: editedFiker ? true : false,
       newTech: editedFiker ? true : false,
@@ -122,7 +119,6 @@ const FikaForm = (props) => {
       språk: formState.inputValues.språk,
       books: books,
       gardening: gardening,
-      localPolitics: localPolitics,
       globalPolitics: globalPolitics,
       localCulture: localCulture,
       newTech: newTech,
@@ -179,7 +175,7 @@ const FikaForm = (props) => {
         <p>
           Såhär går det till: När vi samlat ihop en grupp med liknande intressen
           sätter vi ihop en fikagrupp. Kaffechefen kontaktar sen alla i gruppen
-          med föreslagen på dag/tid.
+          med förslag på dag/tid.
         </p>
         <p>
           Nya fikagrupper bildas allteftersom, utifrån intresse. Anmäl dig nedan
@@ -295,13 +291,7 @@ const FikaForm = (props) => {
             }}
             label="Trädgård och odling"
           />
-          <Form.Check
-            type="checkbox"
-            onClick={() => {
-              setLocalPolitics(!localPolitics);
-            }}
-            label="Lokalpolitik"
-          />
+
           <Form.Check
             type="checkbox"
             onClick={() => {

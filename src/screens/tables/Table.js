@@ -199,12 +199,6 @@ const Table = (props) => {
     editable: "never",
     render: (rowData) => <RenderBadge bool={rowData.gardening} />,
   };
-  const localPolitics = {
-    title: "Lokalpolitik",
-    field: "localPolitics",
-    editable: "never",
-    render: (rowData) => <RenderBadge bool={rowData.localPolitics} />,
-  };
   const globalPolitics = {
     title: "Världsläget",
     field: "globalPolitics",
@@ -450,7 +444,6 @@ const Table = (props) => {
     newSchool,
     books,
     gardening,
-    localPolitics,
     globalPolitics,
     localCulture,
     newTech,
@@ -735,7 +728,6 @@ const Table = (props) => {
       språk: newData.språk ? newData.språk : "",
       books: newData.books ? newData.books : false,
       gardening: newData.gardening ? newData.gardening : false,
-      localPolitics: newData.localPolitics ? newData.localPolitics : false,
       globalPolitics: newData.globalPolitics ? newData.globalPolitics : false,
       localCulture: newData.localCulture ? newData.localCulture : false,
       newTech: newData.newTech ? newData.newTech : false,

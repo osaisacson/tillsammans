@@ -485,7 +485,6 @@ export const sendGeneralFikerInfo = (content) => {
     Intresserad av:
     Bokklubb: ${content.books ? "Ja" : "Nej"} %0A
     Trädgård och odling: ${content.gardening ? "Ja" : "Nej"} %0A
-    Lokalpolitik: ${content.localPolitics ? "Ja" : "Nej"} %0A
     Världsläget: ${content.globalPolitics ? "Ja" : "Nej"} %0A
     Lokalkultur: ${content.localCulture ? "Ja" : "Nej"} %0A
     Ny teknik: ${content.newTech ? "Ja" : "Nej"} %0A

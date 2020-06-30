@@ -13,7 +13,6 @@ class Fiker {
     språk,
     books,
     gardening,
-    localPolitics,
     globalPolitics,
     localCulture,
     newTech,
@@ -38,7 +37,6 @@ class Fiker {
     this.språk = språk;
     this.books = books;
     this.gardening = gardening;
-    this.localPolitics = localPolitics;
     this.globalPolitics = globalPolitics;
     this.localCulture = localCulture;
     this.newTech = newTech;

@@ -3,16 +3,20 @@ import React from "react";
 export default function Partners() {
   return (
     <div className="page-layout">
-      <h2>Sociala Aktiviteter</h2>
+      <h1>Sociala Aktiviteter</h1>
       <br />
       <br />
 
-      <h3>Studiecirklar</h3>
+      <h2>Studiecirklar</h2>
 
       <p>
         Nu planeras som bäst höstens studiecirklar i samarbete mellan Alla
-        Tillsammans, SPF Seniorerna och Studieförbundet Vuxenskolan. Två
-        studiecirklar online är nu öppna för intresseanmälan:{" "}
+        Tillsammans,
+        <a href="https://www.spfseniorerna.se/distrikt/bohusdistriktet/foreningslista/Tjornveteranerna/">
+          SPF Tjörnseniorerna
+        </a>
+        och Studieförbundet Vuxenskolan. Två studiecirklar online är nu öppna
+        för intresseanmälan:{" "}
       </p>
       <ul>
         <li>
@@ -37,7 +41,7 @@ export default function Partners() {
 
       <br />
       <br />
-      <h3>Andra Coronasäkra aktiviteter</h3>
+      <h2>Andra Coronasäkra aktiviteter</h2>
 
       <ul>
         <li>
