@@ -30,7 +30,8 @@ import {
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import FormToEmailButton from "../../components/FormToEmailButton";
+import ButtonToFormEmail from "../../components/ButtonToFormEmail";
+import ButtonToAction from "../../components/ButtonToAction";
 
 //TODO: make below leaner, and split into more components
 const Table = (props) => {
@@ -239,26 +240,46 @@ const Table = (props) => {
       headerStyle: large,
       render: (rowData) => (
         <>
-          <FormToEmailButton
+          <ButtonToAction
+            conditionForGreen={rowData.gruppId && rowData.gruppId !== "0"}
+            buttonCopy={
+              rowData.gruppId && rowData.gruppId !== "0"
+                ? rowData.gruppId
+                : "Ingen grupp vald"
+            }
+            formData={rowData}
+          />
+          <ButtonToFormEmail
             conditionForGreen={rowData.skickadGrupp}
             buttonCopy={rowData.skickadGrupp ? "Skicka igen" : "Skicka grupp"}
             formData={rowData}
           />
-          <FormToEmailButton
-            conditionForGreen={rowData.skickadBeställare}
-            conditionForDisabled={!rowData.email}
-            buttonCopy={
-              rowData.skickadBeställare
-                ? "Skicka igen"
-                : rowData.email
-                ? "Skicka bekräftelse"
-                : !rowData.email && rowData.telefon
-                ? `Ingen email, ring ${rowData.telefon}`
-                : "Ingen email eller telefon"
-            }
-            formData={rowData}
-          />
-          <FormToEmailButton
+          {!rowData.email ? (
+            <ButtonToAction
+              conditionForGreen={rowData.skickadBeställare}
+              statusCopy={
+                !rowData.email && rowData.telefon
+                  ? `Ring ${rowData.telefon}`
+                  : "Ingen email eller telefon"
+              }
+              buttonCopy={
+                rowData.skickadBeställare
+                  ? "Konfirmerat med beställare"
+                  : "Klicka när konfirmerat"
+              }
+              formData={rowData}
+            />
+          ) : (
+            <ButtonToFormEmail
+              conditionForGreen={rowData.skickadBeställare}
+              conditionForDisabled={!rowData.email}
+              buttonCopy={
+                rowData.skickadBeställare ? "Skicka igen" : "Skicka bekräftelse"
+              }
+              formData={rowData}
+            />
+          )}
+          <ButtonToFormEmail
             conditionForGreen={rowData.skickadVolontär}
             buttonCopy={
               rowData.skickadVolontär ? "Skicka igen" : "Skicka volontär"
@@ -290,7 +311,7 @@ const Table = (props) => {
       headerStyle: medium,
       editable: "never",
       render: (rowData) => (
-        <FormToEmailButton
+        <ButtonToFormEmail
           conditionForGreen={rowData.skickadGrupp}
           buttonCopy={"Sätt grupp"}
           formData={rowData}
@@ -313,7 +334,7 @@ const Table = (props) => {
       editable: "never",
       render: (rowData) =>
         rowData.email ? (
-          <FormToEmailButton
+          <ButtonToFormEmail
             conditionForGreen={rowData.skickadBeställare}
             buttonCopy={"Skicka bekräftelse"}
             formData={rowData}

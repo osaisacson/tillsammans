@@ -5,9 +5,9 @@ import Modal from "react-bootstrap/Modal";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-import FormToEmail from "../components/FormToEmail";
+import FormToEmail from "./FormToEmail";
 
-const FormToEmailButton = (props) => {
+const ButtonToAction = (props) => {
   const db = firebase.firestore();
 
   const [show, setShow] = useState(false);
@@ -34,7 +34,6 @@ const FormToEmailButton = (props) => {
 
   console.log("formData: ", props.formData);
 
-  let statusCopy = "";
   let actionInForm;
 
   if (status === "1") {
@@ -46,26 +45,20 @@ const FormToEmailButton = (props) => {
   }
 
   if (status === "2" && telefon) {
-    statusCopy = `Fördelad till grupp.`; //Add name of group
     actionInForm = "sendToVolunteer";
   }
 
   if (status === "2" && skickadBeställare) {
-    statusCopy = "Fördelad till grupp"; //Add name of group
     actionInForm = "sendToVolunteer";
   }
 
-  if (status === "3") {
-    statusCopy = "Fördelad till volontär"; //Add name of group
-  }
-
   return (
-    <div className="flex-spread">
+    <div className="status-field">
       {isLoading ? (
         <div>...laddar</div>
       ) : (
         <>
-          <div>{statusCopy}</div>
+          <div>{props.statusCopy}</div>
           <Button
             disabled={props.conditionForDisabled}
             className={`form-to-email-button ${
@@ -77,19 +70,8 @@ const FormToEmailButton = (props) => {
           </Button>
         </>
       )}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <FormToEmail actionInForm={actionInForm} formData={props.formData} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Stäng
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
 
-export default FormToEmailButton;
+export default ButtonToAction;

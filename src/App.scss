@@ -522,6 +522,13 @@ body {
  * ----------------------------------------
  */
 
+.status-field {
+  @extend .flex-spread;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  padding: 5px;
+}
+
 .form {
   h3 {
     margin-left: 2px;
@@ -550,12 +557,11 @@ body {
  */
 
 .container {
+  padding: 80px 0 120px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 120px;
-  padding-top: 80px;
 }
 
 a:hover {
