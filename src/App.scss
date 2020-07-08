@@ -314,6 +314,24 @@ body {
  * ----------------------------------------
  */
 
+.btn {
+  &.form-to-email-button {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    min-width: 120px;
+    margin: 5px;
+    color: #fff;
+    &.green {
+      background-color: #2e856e !important;
+      border-color: #2e856e !important;
+    }
+    &.red {
+      background-color: #852727 !important;
+      border-color: #852727 !important;
+    }
+  }
+}
+
 .add-button {
   background-color: $primary-color;
   color: #fff;

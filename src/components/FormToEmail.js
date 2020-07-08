@@ -1,19 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
+
 import { Editor } from "@tinymce/tinymce-react";
-
-import FormInput from "../components/FormInput";
 import Button from "react-bootstrap/Button";
+import moment from "moment";
 
-const ContactForm = (props) => {
+import Group from "./../models/group";
+
+import FormInput from "./FormInput";
+
+const FormToEmail = (props) => {
+  const [groupData, setGroupData] = useState({
+    currentGroup: [],
+  });
+
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
-  const [html, setHtml] = useState("");
-
+  const [html, setHtml] = useState("Välj ovan för att se mail mallar");
   const [resultMessage, setResultMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const firestore = firebase.firestore();
+
+  //Get group data
+  async function getGroups() {
+    const groups = [];
+    const querySnapshot = await firestore.collection("groups").get();
+    querySnapshot.forEach(function (doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(new Date(resData.datum)).format("lll");
+
+      groups.push(
+        new Group(
+          doc.id,
+          readableDate,
+          resData.gruppnamn,
+          resData.länkNamn,
+          resData.kontakt,
+          resData.kommentarer,
+          resData.telefon,
+          resData.email,
+          resData.reserv,
+          resData.reservTelefon,
+          resData.reservEmail,
+          resData.address,
+          resData.postkod,
+          resData.status
+        )
+      );
+    });
+
+    //set current group data as the object which matches the passed group id
+    setGroupData({
+      currentGroup: groups.find((data) => data.id === props.groupId),
+    });
+  }
+
+  useEffect(() => {
+    getGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -77,7 +126,7 @@ const ContactForm = (props) => {
           />
           <Editor
             apiKey="xofwa8g6vmgtapxbm8yb9vr3ho8qghrlss2oplxwybnop9z6"
-            initialValue="<p>Välj grupp ovan</p>"
+            initialValue={`<p>${html}</p>`}
             init={{
               height: 500,
               menubar: false,
@@ -105,4 +154,4 @@ const ContactForm = (props) => {
   );
 };
 
-export default ContactForm;
+export default FormToEmail;

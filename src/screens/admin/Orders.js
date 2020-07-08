@@ -7,7 +7,6 @@ import Badge from "react-bootstrap/Badge";
 import Table from "../tables/Table";
 import HelpForm from "./../users/HelpForm";
 
-import ContactForm from "./../../components/ContactForm";
 import AddButtonHeader from "./../../components/AddButtonHeader";
 import RefreshButton from "./../../components/RefreshButton";
 import Accordion from "./../../components/Accordion";
@@ -20,17 +19,7 @@ const Orders = (props) => {
         buttonText="beställning"
         formForModal={<HelpForm />}
       />
-      <AddButtonHeader
-        headerText="Email"
-        buttonText="email"
-        formForModal={
-          <ContactForm
-            email={"asaisacson@gmail.com"}
-            message="det funkar"
-            name="Åsa"
-          />
-        }
-      />
+
       <Accordion
         title="Hur vi hanterar beställningar"
         content="

@@ -30,6 +30,7 @@ import {
 
 import firebase from "firebase/app";
 import "firebase/firestore";
+import FormToEmailButton from "../../components/FormToEmailButton";
 
 //TODO: make below leaner, and split into more components
 const Table = (props) => {
@@ -234,8 +235,46 @@ const Table = (props) => {
       title: "Status",
       field: "status",
       lookup: groupStatusDropdown,
-      cellStyle: small,
-      headerStyle: small,
+      cellStyle: large,
+      headerStyle: large,
+      render: (rowData) => (
+        <>
+          <FormToEmailButton
+            conditionForGreen={rowData.skickadGrupp}
+            buttonCopy={rowData.skickadGrupp ? "Skicka igen" : "Skicka grupp"}
+            formData={rowData}
+          />
+          <FormToEmailButton
+            conditionForGreen={rowData.skickadBeställare}
+            conditionForDisabled={!rowData.email}
+            buttonCopy={
+              rowData.skickadBeställare
+                ? "Skicka igen"
+                : rowData.email
+                ? "Skicka bekräftelse"
+                : !rowData.email && rowData.telefon
+                ? `Ingen email, ring ${rowData.telefon}`
+                : "Ingen email eller telefon"
+            }
+            formData={rowData}
+          />
+          <FormToEmailButton
+            conditionForGreen={rowData.skickadVolontär}
+            buttonCopy={
+              rowData.skickadVolontär ? "Skicka igen" : "Skicka volontär"
+            }
+            formData={rowData}
+          />
+        </>
+
+        // <ConfirmationInternal
+        //   isGroupConfirmation={true}
+        //   itemId={rowData.id}
+        //   isConfirmed={rowData.skickadGrupp}
+        //   refreshAction={props.refreshAction}
+        //   onClickAction={sendOrderEmail.bind(this, rowData)}
+        // />
+      ),
     },
     {
       title: "Grupp",
@@ -251,13 +290,19 @@ const Table = (props) => {
       headerStyle: medium,
       editable: "never",
       render: (rowData) => (
-        <ConfirmationInternal
-          isGroupConfirmation={true}
-          itemId={rowData.id}
-          isConfirmed={rowData.skickadGrupp}
-          refreshAction={props.refreshAction}
-          onClickAction={sendOrderEmail.bind(this, rowData)}
+        <FormToEmailButton
+          conditionForGreen={rowData.skickadGrupp}
+          buttonCopy={"Sätt grupp"}
+          formData={rowData}
         />
+
+        // <ConfirmationInternal
+        //   isGroupConfirmation={true}
+        //   itemId={rowData.id}
+        //   isConfirmed={rowData.skickadGrupp}
+        //   refreshAction={props.refreshAction}
+        //   onClickAction={sendOrderEmail.bind(this, rowData)}
+        // />
       ),
     },
     {
@@ -266,16 +311,24 @@ const Table = (props) => {
       cellStyle: medium,
       headerStyle: medium,
       editable: "never",
-      render: (rowData) => (
-        <ConfirmationCustomer
-          isCustomerConfirmation={true}
-          buttonText="Skicka bekräftelse"
-          refreshAction={props.refreshAction}
-          onClickAction={sendConfirmationEmail.bind(this, rowData)}
-          isConfirmed={rowData.skickadBeställare}
-          data={rowData}
-        />
-      ),
+      render: (rowData) =>
+        rowData.email ? (
+          <FormToEmailButton
+            conditionForGreen={rowData.skickadBeställare}
+            buttonCopy={"Skicka bekräftelse"}
+            formData={rowData}
+          />
+        ) : (
+          <div>Ingen email angiven, ring istället {rowData.telefon}</div>
+        ),
+      // <ConfirmationCustomer
+      //   isCustomerConfirmation={true}
+      //   buttonText="Skicka bekräftelse"
+      //   refreshAction={props.refreshAction}
+      //   onClickAction={sendConfirmationEmail.bind(this, rowData)}
+      //   isConfirmed={rowData.skickadBeställare}
+      //   data={rowData}
+      // />
     },
     {
       title: "Detaljer till volontär",
