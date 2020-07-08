@@ -242,15 +242,25 @@ const Table = (props) => {
         <>
           <ButtonToAction
             conditionForGreen={rowData.gruppId && rowData.gruppId !== "0"}
-            buttonCopy={
+            statusCopy={
               rowData.gruppId && rowData.gruppId !== "0"
                 ? rowData.gruppId
                 : "Ingen grupp vald"
+            }
+            buttonCopy={
+              rowData.gruppId && rowData.gruppId !== "0"
+                ? "Välj annan grupp"
+                : "Välj grupp"
             }
             formData={rowData}
           />
           <ButtonToFormEmail
             conditionForGreen={rowData.skickadGrupp}
+            statusCopy={
+              rowData.skickadVolontär
+                ? "Skickad till grupp"
+                : "Inte skickad till grupp ännu"
+            }
             buttonCopy={rowData.skickadGrupp ? "Skicka igen" : "Skicka grupp"}
             formData={rowData}
           />
@@ -259,13 +269,13 @@ const Table = (props) => {
               conditionForGreen={rowData.skickadBeställare}
               statusCopy={
                 !rowData.email && rowData.telefon
-                  ? `Ring ${rowData.telefon}`
+                  ? `Bekräfta via ${rowData.telefon}`
                   : "Ingen email eller telefon"
               }
               buttonCopy={
                 rowData.skickadBeställare
-                  ? "Konfirmerat med beställare"
-                  : "Klicka när konfirmerat"
+                  ? "Beställare kontaktad"
+                  : "Klicka när kontaktat"
               }
               formData={rowData}
             />
@@ -273,6 +283,11 @@ const Table = (props) => {
             <ButtonToFormEmail
               conditionForGreen={rowData.skickadBeställare}
               conditionForDisabled={!rowData.email}
+              statusCopy={
+                rowData.skickadBeställare
+                  ? "Bekräftelse skickad"
+                  : "Ingen bekräftelse skickad"
+              }
               buttonCopy={
                 rowData.skickadBeställare ? "Skicka igen" : "Skicka bekräftelse"
               }
@@ -281,6 +296,11 @@ const Table = (props) => {
           )}
           <ButtonToFormEmail
             conditionForGreen={rowData.skickadVolontär}
+            statusCopy={
+              rowData.skickadVolontär
+                ? "Skickad till volontär"
+                : "Ingen volontär ännu"
+            }
             buttonCopy={
               rowData.skickadVolontär ? "Skicka igen" : "Skicka volontär"
             }
