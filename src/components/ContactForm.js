@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
+import { Editor } from "@tinymce/tinymce-react";
+
 import FormInput from "../components/FormInput";
 import Button from "react-bootstrap/Button";
 
@@ -20,9 +22,6 @@ const ContactForm = (props) => {
     }
     if (name === "subject") {
       setSubject(value);
-    }
-    if (name === "html") {
-      setHtml(value);
     }
   };
 
@@ -48,19 +47,18 @@ const ContactForm = (props) => {
       });
   };
 
+  const handleEditorChange = (content, editor) => {
+    setHtml(content);
+    console.log("Content was updated:", content);
+  };
+
   return (
     <>
       <div className="page-layout">
         <h4>Sätt grupp och skicka email</h4>
         <p>Välj grupp beställningen ska gå till nedan</p>
+
         <form onSubmit={handleSubmit}>
-
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-  <label className="form-check-label" for="exampleRadios1">
-    Default radio
-  </label>
-
-          
           <FormInput
             name="email"
             type="text"
@@ -77,13 +75,23 @@ const ContactForm = (props) => {
             label="Ämne"
             required
           />
-          <FormInput
-            name="html"
-            type="textarea"
-            handleChange={handleChange}
-            value={html}
-            label="Innehåll"
-            required
+          <Editor
+            apiKey="xofwa8g6vmgtapxbm8yb9vr3ho8qghrlss2oplxwybnop9z6"
+            initialValue="<p>Välj grupp ovan</p>"
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount",
+              ],
+              toolbar:
+                "undo redo | formatselect | bold italic backcolor | \
+             alignleft aligncenter alignright alignjustify | \
+             bullist numlist outdent indent | removeformat | help",
+            }}
+            onEditorChange={handleEditorChange}
           />
           <Button type="submit" block>
             Skicka mail
