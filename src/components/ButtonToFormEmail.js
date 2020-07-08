@@ -13,8 +13,6 @@ const ButtonToFormEmail = (props) => {
 
   const { id, status, telefon, email, skickadBeställare } = props.formData;
 
-  console.log("formData: ", props.formData);
-
   let actionInForm;
 
   if (status === "1") {

@@ -1,29 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-import FormToEmail from "./FormToEmail";
-
 const ButtonToAction = (props) => {
   const db = firebase.firestore();
 
-  const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedGroupId, setSelectedGroupId] = useState("");
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const { id, status, telefon, email, skickadBeställare } = props.formData;
-
-  async function hasCalled() {
+  async function updateGroup() {
     setIsLoading(true);
     db.collection("orders")
-      .doc(id)
+      .doc(props.orderId)
       .update({
-        status: "3",
+        groupId: selectedGroupId,
       })
       .then(() => {
         props.refreshAction().then(() => {
@@ -32,24 +25,20 @@ const ButtonToAction = (props) => {
       });
   }
 
-  console.log("formData: ", props.formData);
-
   let actionInForm;
+  let statusCopy = "";
+  let currentGroup = "";
 
-  if (status === "1") {
-    actionInForm = "sendToGroup";
-  }
-
-  if (status === "2" && email) {
-    actionInForm = "sendReceipt"; //this should in when sending the form update 'skickadBeställare' to true
-  }
-
-  if (status === "2" && telefon) {
-    actionInForm = "sendToVolunteer";
-  }
-
-  if (status === "2" && skickadBeställare) {
-    actionInForm = "sendToVolunteer";
+  if (props.groupId) {
+    if (props.groupData) {
+      currentGroup = props.groupData.find((data) => data.id === props.groupId);
+      statusCopy =
+        currentGroup && currentGroup.gruppnamn
+          ? currentGroup.gruppnamn
+          : "Ingen grupp ännu";
+      console.log("currentGroup: ", currentGroup);
+    }
+    actionInForm = updateGroup;
   }
 
   return (
@@ -58,13 +47,13 @@ const ButtonToAction = (props) => {
         <div>...laddar</div>
       ) : (
         <>
-          <div>{props.statusCopy}</div>
+          <div>{props.statusCopy ? props.statusCopy : statusCopy}</div>
           <Button
             disabled={props.conditionForDisabled}
             className={`form-to-email-button ${
               props.conditionForGreen ? "green" : "red"
             }`}
-            onClick={handleShow}
+            onClick={actionInForm}
           >
             {props.buttonCopy}
           </Button>

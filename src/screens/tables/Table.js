@@ -4,10 +4,18 @@ import { Link } from "react-router-dom";
 import MaterialTable from "material-table";
 import Button from "react-bootstrap/Button";
 
+import firebase from "firebase/app";
+import "firebase/firestore";
+
+import moment from "moment";
+
+import Group from "../../models/group";
+
 import ConfirmationCustomer from "../../components/ConfirmationCustomer";
 import ConfirmationInternal from "../../components/ConfirmationInternal";
-
-import RenderBadge from "./../../components/RenderBadge";
+import RenderBadge from "../../components/RenderBadge";
+import ButtonToFormEmail from "../../components/ButtonToFormEmail";
+import ButtonToAction from "../../components/ButtonToAction";
 
 import { small, medium, large, xlarge } from "./CellSizes";
 import {
@@ -28,14 +36,53 @@ import {
   volunteerStatusDropdownForGroups,
 } from "./Dropdowns";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import ButtonToFormEmail from "../../components/ButtonToFormEmail";
-import ButtonToAction from "../../components/ButtonToAction";
-
 //TODO: make below leaner, and split into more components
 const Table = (props) => {
   const [data, setData] = useState(props.tableData);
+  const db = firebase.firestore();
+
+  const [groupData, setGroupData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedGroupId, setSelectedGroupId] = useState("");
+
+  //Get group data
+  async function getGroups() {
+    const groups = [];
+    const querySnapshot = await db.collection("groups").get();
+    querySnapshot.forEach(function (doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(new Date(resData.datum)).format("lll");
+
+      groups.push(
+        new Group(
+          doc.id,
+          readableDate,
+          resData.gruppnamn,
+          resData.länkNamn,
+          resData.kontakt,
+          resData.kommentarer,
+          resData.telefon,
+          resData.email,
+          resData.reserv,
+          resData.reservTelefon,
+          resData.reservEmail,
+          resData.address,
+          resData.postkod,
+          resData.status
+        )
+      );
+    });
+
+    //set current group data as the object which matches the passed group id
+    setGroupData(groups);
+  }
+
+  useEffect(() => {
+    getGroups();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //Common fields
   const mottaget = { title: "Mottaget", field: "datum", editable: "never" };
@@ -242,17 +289,14 @@ const Table = (props) => {
         <>
           <ButtonToAction
             conditionForGreen={rowData.gruppId && rowData.gruppId !== "0"}
-            statusCopy={
-              rowData.gruppId && rowData.gruppId !== "0"
-                ? rowData.gruppId
-                : "Ingen grupp vald"
-            }
             buttonCopy={
               rowData.gruppId && rowData.gruppId !== "0"
                 ? "Välj annan grupp"
                 : "Välj grupp"
             }
-            formData={rowData}
+            groupData={groupData}
+            orderId={rowData.id}
+            groupId={rowData.gruppId}
           />
           <ButtonToFormEmail
             conditionForGreen={rowData.skickadGrupp}
@@ -317,76 +361,71 @@ const Table = (props) => {
         // />
       ),
     },
-    {
-      title: "Grupp",
-      field: "gruppId",
-      lookup: groupDropdown,
-      cellStyle: medium,
-      headerStyle: medium,
-    },
-    {
-      title: "Detaljer till grupp",
-      field: "skicka",
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: "never",
-      render: (rowData) => (
-        <ButtonToFormEmail
-          conditionForGreen={rowData.skickadGrupp}
-          buttonCopy={"Sätt grupp"}
-          formData={rowData}
-        />
+    // {
+    //   title: "Grupp",
+    //   field: "gruppId",
+    //   lookup: groupDropdown,
+    //   cellStyle: medium,
+    //   headerStyle: medium,
+    // },
+    // {
+    //   title: "Detaljer till grupp",
+    //   field: "skicka",
+    //   cellStyle: medium,
+    //   headerStyle: medium,
+    //   editable: "never",
+    //   render: (rowData) => (
 
-        // <ConfirmationInternal
-        //   isGroupConfirmation={true}
-        //   itemId={rowData.id}
-        //   isConfirmed={rowData.skickadGrupp}
-        //   refreshAction={props.refreshAction}
-        //   onClickAction={sendOrderEmail.bind(this, rowData)}
-        // />
-      ),
-    },
-    {
-      title: "Bekräftelse till beställare",
-      field: "skicka",
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: "never",
-      render: (rowData) =>
-        rowData.email ? (
-          <ButtonToFormEmail
-            conditionForGreen={rowData.skickadBeställare}
-            buttonCopy={"Skicka bekräftelse"}
-            formData={rowData}
-          />
-        ) : (
-          <div>Ingen email angiven, ring istället {rowData.telefon}</div>
-        ),
-      // <ConfirmationCustomer
-      //   isCustomerConfirmation={true}
-      //   buttonText="Skicka bekräftelse"
-      //   refreshAction={props.refreshAction}
-      //   onClickAction={sendConfirmationEmail.bind(this, rowData)}
-      //   isConfirmed={rowData.skickadBeställare}
-      //   data={rowData}
-      // />
-    },
-    {
-      title: "Detaljer till volontär",
-      field: "skicka",
-      cellStyle: medium,
-      headerStyle: medium,
-      editable: "never",
-      render: (rowData) => (
-        <ConfirmationInternal
-          isOrderInfoToVolunteer={true}
-          itemId={rowData.id}
-          isConfirmed={rowData.skickadVolontär}
-          refreshAction={props.refreshAction}
-          onClickAction={sendGroupOrderEmail.bind(this, rowData)}
-        />
-      ),
-    },
+    //     <ConfirmationInternal
+    //       isGroupConfirmation={true}
+    //       itemId={rowData.id}
+    //       isConfirmed={rowData.skickadGrupp}
+    //       refreshAction={props.refreshAction}
+    //       onClickAction={sendOrderEmail.bind(this, rowData)}
+    //     />
+    //   ),
+    // },
+    // {
+    //   title: "Bekräftelse till beställare",
+    //   field: "skicka",
+    //   cellStyle: medium,
+    //   headerStyle: medium,
+    //   editable: "never",
+    //   render: (rowData) =>
+    //     rowData.email ? (
+    //       <ButtonToFormEmail
+    //         conditionForGreen={rowData.skickadBeställare}
+    //         buttonCopy={"Skicka bekräftelse"}
+    //         formData={rowData}
+    //       />
+    //     ) : (
+    //       <div>Ingen email angiven, ring istället {rowData.telefon}</div>
+    //     ),
+    // <ConfirmationCustomer
+    //   isCustomerConfirmation={true}
+    //   buttonText="Skicka bekräftelse"
+    //   refreshAction={props.refreshAction}
+    //   onClickAction={sendConfirmationEmail.bind(this, rowData)}
+    //   isConfirmed={rowData.skickadBeställare}
+    //   data={rowData}
+    // />
+    // },
+    // {
+    //   title: "Detaljer till volontär",
+    //   field: "skicka",
+    //   cellStyle: medium,
+    //   headerStyle: medium,
+    //   editable: "never",
+    //   render: (rowData) => (
+    //     <ConfirmationInternal
+    //       isOrderInfoToVolunteer={true}
+    //       itemId={rowData.id}
+    //       isConfirmed={rowData.skickadVolontär}
+    //       refreshAction={props.refreshAction}
+    //       onClickAction={sendGroupOrderEmail.bind(this, rowData)}
+    //     />
+    //   ),
+    // },
     kommentarer,
     beskrivning,
     typ,
@@ -774,9 +813,6 @@ const Table = (props) => {
     : props.isGroups
     ? groupColumns
     : cancelledColumns;
-
-  //Prep firestore
-  const db = firebase.firestore();
 
   //Update existing order
   async function updateOrder(newData, oldData) {
