@@ -294,9 +294,11 @@ const Table = (props) => {
                 ? "Välj annan grupp"
                 : "Välj grupp"
             }
+            isSetGroups
             groupData={groupData}
             orderId={rowData.id}
             groupId={rowData.gruppId}
+            refreshAction={props.refreshAction}
           />
           <ButtonToFormEmail
             conditionForGreen={rowData.skickadGrupp}
@@ -305,7 +307,9 @@ const Table = (props) => {
                 ? "Skickad till grupp"
                 : "Inte skickad till grupp ännu"
             }
-            buttonCopy={rowData.skickadGrupp ? "Skicka igen" : "Skicka grupp"}
+            buttonCopy={
+              rowData.skickadGrupp ? "Skicka igen" : "Skicka till grupp"
+            }
             formData={rowData}
           />
           {!rowData.email ? (
@@ -346,7 +350,7 @@ const Table = (props) => {
                 : "Ingen volontär ännu"
             }
             buttonCopy={
-              rowData.skickadVolontär ? "Skicka igen" : "Skicka volontär"
+              rowData.skickadVolontär ? "Skicka igen" : "Skicka till volontär"
             }
             formData={rowData}
           />
