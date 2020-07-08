@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import Badge from 'react-bootstrap/Badge';
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import Badge from "react-bootstrap/Badge";
 
-import Table from '../tables/Table';
-import HelpForm from './../users/HelpForm';
+import Table from "../tables/Table";
+import HelpForm from "./../users/HelpForm";
 
-// import ContactForm from './../../components/ContactForm';
-import AddButtonHeader from './../../components/AddButtonHeader';
-import RefreshButton from './../../components/RefreshButton';
-import Accordion from './../../components/Accordion';
+import ContactForm from "./../../components/ContactForm";
+import AddButtonHeader from "./../../components/AddButtonHeader";
+import RefreshButton from "./../../components/RefreshButton";
+import Accordion from "./../../components/Accordion";
 
 const Orders = (props) => {
   return (
@@ -20,17 +20,17 @@ const Orders = (props) => {
         buttonText="beställning"
         formForModal={<HelpForm />}
       />
-      {/* <AddButtonHeader
+      <AddButtonHeader
         headerText="Email"
         buttonText="email"
         formForModal={
           <ContactForm
-            email={'asaisacson@gmail.com'}
+            email={"asaisacson@gmail.com"}
             message="det funkar"
             name="Åsa"
           />
         }
-      /> */}
+      />
       <Accordion
         title="Hur vi hanterar beställningar"
         content="
@@ -68,7 +68,7 @@ const Orders = (props) => {
           eventKey="nya"
           title={
             <span>
-              Ej fördelade Beställningar{' '}
+              Ej fördelade Beställningar{" "}
               {props.dbData.newOrders.length ? (
                 <Badge pill variant="danger">
                   {props.dbData.newOrders.length}

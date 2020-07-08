@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
-import Button from 'react-bootstrap/Button';
-import FormInput from '../../components/FormInput';
+import Button from "react-bootstrap/Button";
+import FormInput from "../../components/FormInput";
 
 const GrantAdminAccess = (props) => {
   // Allows main admins to grant main admin or group admin privileges to any registered user account
@@ -19,14 +19,14 @@ const GrantAdminAccess = (props) => {
 };
 
 const GrantMainAdmin = (props) => {
-  const [email, setEmail] = useState('');
-  const [resultMessage, setResultMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [resultMessage, setResultMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setResultMessage('Uppdaterar...');
-    var addAdmin = firebase.functions().httpsCallable('addAdmin');
+    setResultMessage("Uppdaterar...");
+    var addAdmin = firebase.functions().httpsCallable("addAdmin");
     addAdmin({ email: email })
       .then(function (result) {
         var resultMessage = result.data.result;
@@ -42,7 +42,7 @@ const GrantMainAdmin = (props) => {
 
   const handleChange = (event) => {
     const { value, name } = event.target;
-    if (name === 'email') {
+    if (name === "email") {
       setEmail(value);
     }
   };
@@ -76,15 +76,15 @@ const GrantMainAdmin = (props) => {
 };
 
 const GrantGroupAdmin = (props) => {
-  const [email, setEmail] = useState('');
-  const [groupID, setgroupID] = useState('');
-  const [resultMessage, setResultMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [groupID, setgroupID] = useState("");
+  const [resultMessage, setResultMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setResultMessage('Jobbar...');
-    var addAdmin = firebase.functions().httpsCallable('addGroupAdmin');
+    setResultMessage("Jobbar...");
+    var addAdmin = firebase.functions().httpsCallable("addGroupAdmin");
     addAdmin({ email: email, groupID: groupID })
       .then(function (result) {
         var resultMessage = result.data.result;
@@ -101,10 +101,10 @@ const GrantGroupAdmin = (props) => {
   const handleChange = (event) => {
     const { value, name } = event.target;
 
-    if (name === 'email') {
+    if (name === "email") {
       setEmail(value);
     }
-    if (name === 'groupID') {
+    if (name === "groupID") {
       setgroupID(value);
     }
   };
@@ -131,7 +131,7 @@ const GrantGroupAdmin = (props) => {
               <label>
                 <input
                   type="radio"
-                  name={'groupID'}
+                  name={"groupID"}
                   value={item.id}
                   checked={groupID === item.id}
                   className="form-check-input"

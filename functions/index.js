@@ -1,8 +1,13 @@
-const moment = require('moment');
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const nodemailer = require('nodemailer');
-const cors = require('cors')({ origin: true });
+const moment = require("moment");
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
+// const cors = require("cors")({ origin: true });
+const cors = require("cors")({
+  origin: "*",
+  credentials: true,
+  methods: "GET",
+});
 
 admin.initializeApp();
 
@@ -16,7 +21,7 @@ const gmailPassword = functions.config().gmail.password;
 //To check above configs: firebase functions:config:get
 //To change above configs: firebase functions:config:set gmail.email='email@gmail.com' gmail.password='emailpassword'
 const mailTransport = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   secure: true,
   auth: {
     user: gmailEmail,
@@ -26,7 +31,7 @@ const mailTransport = nodemailer.createTransport({
 
 // Sends an email to notify the administrator of a new order, upon creation
 exports.sendNewOrderEmail = functions.firestore
-  .document('orders/{orderId}')
+  .document("orders/{orderId}")
   .onCreate((snap, context) => {
     const orderData = snap.data();
     return sendNewOrderEmail(orderData);
@@ -34,7 +39,7 @@ exports.sendNewOrderEmail = functions.firestore
 
 // Sends an email to notify the administrator of a new volunteer, upon creation
 exports.sendNewVolunteerEmail = functions.firestore
-  .document('volunteers/{volunteerId}')
+  .document("volunteers/{volunteerId}")
   .onCreate((snap, context) => {
     const volunteerData = snap.data();
     return sendNewVolunteerEmail(volunteerData);
@@ -43,7 +48,7 @@ exports.sendNewVolunteerEmail = functions.firestore
 // Sends an email from our default email account when a user clicks submit on a form
 exports.submit = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
-    if (req.method !== 'POST') {
+    if (req.method !== "POST") {
       return;
     }
 
@@ -57,7 +62,7 @@ exports.submit = functions.https.onRequest((req, res) => {
     };
 
     return mailTransport.sendMail(mailOptions).then(() => {
-      console.log('New email sent to:', req.body.email);
+      console.log("New email sent to:", req.body.email);
       res.status(200).send({ isEmailSend: true });
       return;
     });
@@ -68,7 +73,7 @@ exports.submit = functions.https.onRequest((req, res) => {
 async function sendNewOrderEmail(orderData) {
   const mailOptions = {
     from: `Alla Tillsammans - Tjörn`,
-    to: 'tjorn@allatillsammans.se',
+    to: "tjorn@allatillsammans.se",
     subject: `Ny beställning mottagen från ${orderData.förnamn} ${orderData.efternamn}`,
     html: `<h2>Ny beställning mottagen</h2>
           <p>
@@ -76,7 +81,7 @@ async function sendNewOrderEmail(orderData) {
           </p>
           <p>
             <b>Mottagen: </b>${moment(new Date(orderData.datum)).format(
-              'lll'
+              "lll"
             )}<br>
             <b>Typ: </b>${orderData.typ}<br>
           </p>
@@ -84,17 +89,17 @@ async function sendNewOrderEmail(orderData) {
             <b>Tid kan vänta: </b>${orderData.tidsrymd}<br>
           </p>
           <p>
-            <b>Telefon: </b>${orderData.telefon ? orderData.telefon : '-'}<br>
-            <b>Email: </b>${orderData.email ? orderData.email : '-'}<br>
-            <b>Address: </b>${orderData.address ? orderData.address : '-'}<br>
+            <b>Telefon: </b>${orderData.telefon ? orderData.telefon : "-"}<br>
+            <b>Email: </b>${orderData.email ? orderData.email : "-"}<br>
+            <b>Address: </b>${orderData.address ? orderData.address : "-"}<br>
           </p>
           <p>
             <b>Beskrivning: </b>${orderData.beskrivning}<br>
           </p>
           <p>
-          <b>Faktura: </b>${orderData.faktura ? 'Ja' : 'Nej'}<br>
-          <b>Swish: </b>${orderData.swish ? 'Ja' : 'Nej'}<br>
-          <b>Kontant: </b>${orderData.kontant ? 'Ja' : 'Nej'}<br>
+          <b>Faktura: </b>${orderData.faktura ? "Ja" : "Nej"}<br>
+          <b>Swish: </b>${orderData.swish ? "Ja" : "Nej"}<br>
+          <b>Kontant: </b>${orderData.kontant ? "Ja" : "Nej"}<br>
         </p>
         <br>
         <p>
@@ -114,7 +119,7 @@ async function sendNewOrderEmail(orderData) {
   };
 
   await mailTransport.sendMail(mailOptions);
-  console.log('New order email notification sent!');
+  console.log("New order email notification sent!");
   return null;
 }
 
@@ -122,7 +127,7 @@ async function sendNewOrderEmail(orderData) {
 async function sendNewVolunteerEmail(volunteerData) {
   const mailOptions = {
     from: `Alla Tillsammans - Tjörn`,
-    to: 'tjorn@allatillsammans.se',
+    to: "tjorn@allatillsammans.se",
     subject: `Ny volontär mottagen: ${volunteerData.förnamn} ${volunteerData.efternamn}`,
     html: `<h2>Ny volontär</h2>
     <p>
@@ -130,7 +135,7 @@ async function sendNewVolunteerEmail(volunteerData) {
     </p>
     <p>
       <b>Mottagen: </b>${moment(new Date(volunteerData.datum)).format(
-        'lll'
+        "lll"
       )}<br>
     </p>
     <p>
@@ -147,17 +152,17 @@ async function sendNewVolunteerEmail(volunteerData) {
       <b>Språk: </b>${volunteerData.språk}<br>
     </p>
     <p>
-      <b>Körkort: </b>${volunteerData.körkort ? 'Ja' : 'Nej'}<br>
-      <b>Bil: </b>${volunteerData.bil ? 'Ja' : 'Nej'}<br>
+      <b>Körkort: </b>${volunteerData.körkort ? "Ja" : "Nej"}<br>
+      <b>Bil: </b>${volunteerData.bil ? "Ja" : "Nej"}<br>
     </p>
     <p>
-      <b>Mat: </b>${volunteerData.mat ? 'Ja' : 'Nej'}<br>
-      <b>Varor: </b>${volunteerData.varor ? 'Ja' : 'Nej'}<br>
-      <b>Ärenden: </b>${volunteerData.ärenden ? 'Ja' : 'Nej'}<br>
-      <b>Djur: </b>${volunteerData.djur ? 'Ja' : 'Nej'}<br>
-      <b>Prata: </b>${volunteerData.prata ? 'Ja' : 'Nej'}<br>
-      <b>Myndigheter: </b>${volunteerData.myndigheter ? 'Ja' : 'Nej'}<br>
-      <b>Teknik: </b>${volunteerData.teknik ? 'Ja' : 'Nej'}<br>
+      <b>Mat: </b>${volunteerData.mat ? "Ja" : "Nej"}<br>
+      <b>Varor: </b>${volunteerData.varor ? "Ja" : "Nej"}<br>
+      <b>Ärenden: </b>${volunteerData.ärenden ? "Ja" : "Nej"}<br>
+      <b>Djur: </b>${volunteerData.djur ? "Ja" : "Nej"}<br>
+      <b>Prata: </b>${volunteerData.prata ? "Ja" : "Nej"}<br>
+      <b>Myndigheter: </b>${volunteerData.myndigheter ? "Ja" : "Nej"}<br>
+      <b>Teknik: </b>${volunteerData.teknik ? "Ja" : "Nej"}<br>
   </p>
   <br>
   <p>
@@ -177,63 +182,98 @@ async function sendNewVolunteerEmail(volunteerData) {
   };
 
   await mailTransport.sendMail(mailOptions);
-  console.log('New volunteer email notification sent!');
+  console.log("New volunteer email notification sent!");
+  return null;
+}
+
+// Sends an email from a form on click
+exports.sendEmailFromForm = functions.https.onCall((data, context) => {
+  const email = data.email;
+  return createEmailFromForm(data)
+    .then(() => {
+      return {
+        result: `Email sent to ${email}!`,
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+      return {
+        result: `Fel! ${err}`,
+        error: err,
+      };
+    });
+});
+
+async function createEmailFromForm(formData) {
+  const mailOptions = {
+    from: `Alla Tillsammans - Tjörn`,
+    to: formData.email,
+    subject: formData.subject,
+    html: formData.html,
+  };
+
+  await mailTransport.sendMail(mailOptions);
+  console.log(
+    `New email with subject ${formData.subject} created, To be sent to ${formData.email}!`
+  );
   return null;
 }
 
 // Grants admin access to a user
 exports.addAdmin = functions.https.onCall((data, context) => {
-  if (context.auth.token.admin !== true){
+  if (context.auth.token.admin !== true) {
     return {
-      error: "User must be an admin to fulfill request."
+      error: "User must be an admin to fulfill request.",
     };
-  };
+  }
   const email = data.email;
-  return grantAdminRole(email).then(() => {
-    return {
-      result: `${email} is now an admin.`
-    }
-  })
-  .catch(err => {
-    console.log(err);
-    return {
-      error: err
-    }
-  })
+  return grantAdminRole(email)
+    .then(() => {
+      return {
+        result: `${email} is now an admin.`,
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+      return {
+        error: err,
+      };
+    });
 });
 
-async function grantAdminRole(email){
+async function grantAdminRole(email) {
   const user = await admin.auth().getUserByEmail(email);
   return admin.auth().setCustomUserClaims(user.uid, {
-    admin: true
-  })
+    admin: true,
+  });
 }
 
 // Grants group admin access to a user
 exports.addGroupAdmin = functions.https.onCall((data, context) => {
-  if (context.auth.token.admin !== true){
+  if (context.auth.token.admin !== true) {
     return {
-      error: "User must be an admin to fulfill request."
+      error: "User must be an admin to fulfill request.",
     };
-  };
+  }
   const email = data.email;
   const groupID = data.groupID;
-  return grantGroupAdminRole(email, groupID).then(() => {
-    return {
-      result: `${email} is now a group admin.`
-    }
-  })
-  .catch(err => {
-    console.log(err);
-    return {
-      error: err
-    }
-  })
+  return grantGroupAdminRole(email, groupID)
+    .then(() => {
+      return {
+        result: `${email} is now a group admin.`,
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+      return {
+        error: err,
+      };
+    });
 });
 
-async function grantGroupAdminRole(email, groupID){
+async function grantGroupAdminRole(email, groupID) {
   const user = await admin.auth().getUserByEmail(email);
   return admin.auth().setCustomUserClaims(user.uid, {
-    groupAdmin: groupID
-  })
+    groupAdmin: groupID,
+  });
 }
