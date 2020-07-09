@@ -18,8 +18,7 @@ const ButtonToAction = (props) => {
 
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [groupID, setGroupID] = useState(props.groupId);
-
+  const [groupID, setGroupID] = useState(props.groupId ? props.groupId : "");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -37,8 +36,10 @@ const ButtonToAction = (props) => {
   }
 
   const handleChange = (e) => {
-    setGroupID(e.target.value);
-    console.log("groupID: ", groupID);
+    const { name, value } = e.target;
+    if (name === "groupID") {
+      setGroupID(value);
+    }
   };
 
   //Actions if the button action is to set/change a group
@@ -86,9 +87,8 @@ const ButtonToAction = (props) => {
       </>
     );
     fieldsToUpdate = {
-      skickadGrupp: true,
       status: !groupID || groupID === "0" ? "1" : "2",
-      groupId: groupID,
+      gruppId: groupID,
     };
   }
 
@@ -99,7 +99,6 @@ const ButtonToAction = (props) => {
       "Har du kontaktat beställaren för att bekräfta att vi mottagit beställningen och att en volontär är på väg?";
     fieldsToUpdate = {
       skickadBeställare: true,
-      status: "3",
     };
   }
 

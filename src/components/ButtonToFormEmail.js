@@ -31,6 +31,7 @@ const ButtonToFormEmail = (props) => {
             actionInForm={props.actionInForm}
             formData={props.formData}
             groupData={props.groupData}
+            refreshAction={props.refreshAction}
           />
         </Modal.Body>
         <Modal.Footer>

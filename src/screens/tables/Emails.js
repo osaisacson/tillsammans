@@ -1,508 +1,220 @@
+const orderInfo = (content) => {
+  return `
+  <p>&nbsp;</p>
+  <p>--------------------------------------------------</p>
+  <pre><strong>Datum mottaget: </strong> ${
+    content.datum ? content.datum : "-"
+  }</pre>
+<pre><strong>Tid kan vänta: </strong> ${
+    content.tidsrymd ? content.tidsrymd : "-"
+  } </pre>
+<pre><strong>Förnamn: </strong> ${content.förnamn ? content.förnamn : ""}</pre>
+<pre><strong>Efternamn: </strong> ${
+    content.efternamn ? content.efternamn : ""
+  } </pre>
+<pre><strong>Email: </strong> ${content.email ? content.email : "-"} </pre>
+<pre><strong>Telefon: </strong> ${
+    content.telefon ? content.telefon : "-"
+  } </pre>
+<pre><strong>Address: </strong> ${
+    content.address ? content.address : "-"
+  } </pre>
+<pre><strong>Postkod: </strong> ${
+    content.postkod ? content.postkod : "-"
+  } </pre>
+<pre><strong>Typ: </strong>${content.typ ? content.typ : "Ingen"} </pre>
+<pre><strong>Beskrivning: </strong>${
+    content.beskrivning ? content.beskrivning : "-"
+  } </pre>
+<pre><strong>Swish:</strong> ${content.swish ? "Ja" : "Nej"} </pre>
+<pre><strong>Kontant:</strong> ${content.kontant ? "Ja" : "Nej"} </pre>
+<pre><strong>Faktura:</strong> ${content.faktura ? "Ja" : "Nej"}</pre>
+<p>--------------------------------------------------</p>
+<p>&nbsp;</p>
+`;
+};
+
+const volunteerInfo = (content) => {
+  return `
+  <p>&nbsp;</p>
+  <p>--------------------------------------------------</p>
+  <pre><strong>Datum mottaget: </strong> ${
+    content.datum ? content.datum : "-"
+  }</pre>
+  <pre><strong>Förnamn:</strong> ${content.förnamn ? content.förnamn : ""}</pre>
+  <pre><strong>Efternamn:</strong> ${
+    content.efternamn ? content.efternamn : ""
+  }</pre>
+  <pre><strong>Email:</strong> ${content.email ? content.email : "-"}</pre>
+  <pre><strong>Telefon:</strong> ${
+    content.telefon ? content.telefon : "-"
+  }</pre>
+  <pre><strong>Address:</strong> ${
+    content.address ? content.address : "-"
+  }</pre>
+  <pre><strong>Postkod:</strong> ${
+    content.postkod ? content.postkod : "-"
+  }</pre>
+  <pre><strong>Beskrivning:</strong> ${
+    content.beskrivning ? content.beskrivning : "-"
+  }</pre>
+  <pre><strong>Födelseår:</strong> ${
+    content.födelseår ? content.födelseår : "-"
+  }</pre>
+  <pre><strong>Språk:</strong> ${content.språk ? content.språk : "-"}</pre>
+  <pre><strong>Körkort:</strong> ${content.körkort ? "Ja" : "Nej"}</pre>
+  <pre><strong>Bil:</strong> ${content.bil ? "Ja" : "Nej"}</pre>
+  <pre><strong>Mat:</strong> ${content.mat ? "Ja" : "Nej"}</pre>
+  <pre><strong>Varor:</strong> ${content.varor ? "Ja" : "Nej"}</pre>
+  <pre><strong>Ärenden:</strong> ${content.ärenden ? "Ja" : "Nej"}</pre>
+  <pre><strong>Djur:</strong> ${content.djur ? "Ja" : "Nej"}</pre>
+  <pre><strong>Prat:</strong> ${content.prata ? "Ja" : "Nej"}</pre>
+  <pre><strong>Myndigheter:</strong> ${content.myndigheter ? "Ja" : "Nej"}</pre>
+  <pre><strong>Teknik:</strong> ${content.teknik ? "Ja" : "Nej"}</pre>
+<p>--------------------------------------------------</p>
+<p>&nbsp;</p>
+`;
+};
+
+const fikaInfo = (content) => {
+  return `
+  <p>&nbsp;</p>
+  <p>--------------------------------------------------</p>
+  <pre><strong>Datum mottaget: </strong> ${
+    content.datum ? content.datum : "-"
+  }</pre>
+  <pre><strong>Förnamn: </strong> ${
+    content.förnamn ? content.förnamn : ""
+  } </pre>
+  <pre><strong>Efternamn: </strong> ${
+    content.efternamn ? content.efternamn : ""
+  } </pre>
+  <pre><strong> Email: </strong> ${content.email ? content.email : "-"} </pre>
+  <pre><strong> Telefon: </strong> ${
+    content.telefon ? content.telefon : "-"
+  } </pre>
+  <pre><strong> Beskrivning:  </strong> ${
+    content.description ? content.description : "-"
+  } </pre>
+  <pre><strong>  Språkpreferens: </strong> ${
+    content.språk ? content.språk : "-"
+  } </pre>
+  <div><strong>  Intresserad av:</strong> </div>
+  <pre><strong> Bokklubb: </strong> ${content.books ? "Ja" : "Nej"} </pre>
+  <pre><strong>  Trädgård och odling: </strong> ${
+    content.gardening ? "Ja" : "Nej"
+  } </pre>
+  <pre><strong> Världsläget: </strong> ${
+    content.globalPolitics ? "Ja" : "Nej"
+  } </pre>
+  <pre><strong> Lokalkultur: </strong> ${
+    content.localCulture ? "Ja" : "Nej"
+  } </pre>
+  <pre><strong> Ny teknik: </strong> ${content.newTech ? "Ja" : "Nej"} </pre>
+  <pre><strong> Föreläsningar: </strong> ${
+    content.lectures ? "Ja" : "Nej"
+  } </pre>
+  <pre><strong>Kan tänka sig att hålla en max 15 minuter lång föreläsning om detta: </strong> 
+    ${content.lecture ? content.lecture : ""} </pre>
+<p>--------------------------------------------------</p>
+<p>&nbsp;</p>
+`;
+};
+
 export const sendOrderEmail = (content) => {
-  const email = `EMAIL TILL GRUPPLEDARE HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny beställning från ${
-    content.förnamn ? content.förnamn : ""
-  } ${content.efternamn ? content.efternamn : ""}`;
-  const emailBody = `
-  %0A 
-  %0A 
-  ************ KLIPP IN RELEVANT EMAIL ADDRESS I ADDRESSFÄLTET OVAN, RADERA SEN DET HÄR ************: 
-  %0A 
-  %0A 
-  Yttre Grupp Norra Tjörn: helena.johannesson@svenskakyrkan.se, catharina.schonback@svenskakyrkan.se
-  %0A 
-  %0A 
-  Yttre Grupp Skärhamn: gunilla.e.gustafsson@svenskakyrkan.se, jaana.pollari.lindstrom@svenskakyrkan.se
-  %0A 
-  %0A 
-  Yttre Grupp Centrala Tjörn: maria.eriksson1@svenskakyrkan.se, erika.andersson@svenskakyrkan.se, josefin.ulmfelt@svenskakyrkan.se
-  %0A 
-  %0A 
-  Yttre Grupp Mjörn: erik@egnahemsfabriken.se
-  %0A 
-  %0A 
-  Yttre Grupp Rönnäng: Tina.hallin@bredband2.com, erik@egnahemsfabriken.se
-  %0A 
-  %0A 
-  OBS! Under sommarsemestern vecka 28-32 så går alla beställningar till en grupp: Yttre Grupp Centrala Tjörn. Maila lisa.m.sall@svenskakyrkan.se,
-  helena.johannesson@svenskakyrkan.se,
-  Catharina.Schonback@svenskakyrkan.se,
-  elisabeth.samuelsson@svenskakyrkan.se
-  ************************************************************************************************
-  Hej! %0A
-    %0A 
-    Ni har fått in en ny beställning till er volontärgrupp från Alla Tillsammans: 
-    %0A 
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : "-"}, 
-    %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : "-"} 
-    %0A 
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ""} 
-    %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ""} 
-    %0A
-    Email: ${content.email ? content.email : "-"} 
-    %0A
-    Telefon: ${content.telefon ? content.telefon : "-"} 
-    %0A
-    Address: ${content.address ? content.address : "-"} 
-    %0A
-    Postkod: ${content.postkod ? content.postkod : "-"} 
-    %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
-    %0A
-    Typ: ${content.typ ? content.typ : "Ingen"} 
-    %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} 
-    %0A
-    %0A
-    Swish: ${content.swish ? "Ja" : "Nej"} 
-    %0A
-    Kontant: ${content.kontant ? "Ja" : "Nej"} 
-    %0A
-    Faktura: ${content.faktura ? "Ja" : "Nej"} 
-    %0A
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) 
-    %0A
-    Hitta alla detaljer om beställningen där, och information om nästa steg! 
-    %0A
-    %0A
-    Låt mig veta om ni har några frågor! %0A
-    Vänliga hälsningar, 
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+  return `
+  <p>Hej!</p>
+  <p>Ni har fått in en ny beställning till er volontärgrupp från Alla Tillsammans: </p>
+  ${orderInfo(content)}
+  <div>Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) </div>
+  <div> Hitta alla detaljer om beställningen där, och information om nästa steg! </div>
+  <p>&nbsp;</p>
+  <p> Med vänliga hälsningar,</p>
+  <div> Samordnaren</div>
+  <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+  <div> tjorn@allatillsammans.se</div>
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
-export const sendConfirmationEmail = (content) => {
-  const email = `${
-    content.email
-      ? content.email
-      : `INGEN EMAIL - RING ISTÄLLET ${content.telefon}`
-  }, tjorn@allatillsammans.se`;
-  const subject =
-    "Alla Tillsammans - Er beställning har fördelats till volontärgrupp!";
-  const emailBody = `Hej ${content.förnamn ? content.förnamn : ""}! %0A
-    %0A 
-    Er beställning på https://tjorn.allatillsammans.se har mottagits och fördelats till volontärgruppen: 
-    %0A 
-    %0A 
-    ************ RADERA DE SOM INTE ÄR AKTUELLA NEDAN ************: 
-    %0A 
-    %0A
-    YTTRE GRUPP NORRA TJÖRN
-    %0A
-    Gruppledare: Catharina Schönbeck, Helena Johannesson
-    %0A
-    Telefon: 0733-230587, 0733-230571
-    %0A
-    %0A
-    YTTRE GRUPP SKÄRHAMN
-    %0A
-    Gruppledare: Gunilla Gustafsson, Jaana Pollari Lindström
-    %0A
-    Telefon: 0733-230514, 0733- 230506
-    %0A
-    %0A
-    YTTRE GRUPP CENTRALA TJÖRN
-    %0A
-    Gruppledare: Maria Eriksson,  Erika Andersson, Josefin Ulmfelt
-    %0A
-    Telefon: 0733-230515, 0733230535, 0733-23053
-    %0A
-    %0A
-    YTTRE GRUPP MJÖRN
-    %0A
-    Gruppledare: Erik Berg
-    %0A
-    Telefon: 0703-022574
-    %0A
-    %0A
-    YTTRE GRUPP RÖNNÄNG: se kontakt under 'grupper'
-    %0A 
-    %0A 
-    ***************************************************************************
-    %0A
-    %0A
-    Så snart vi har möjlighet kommer en volontär från gruppen att kontakta er för att utföra ärendet.
-    %0A
-    %0A
-    Med vänliga hälsningar,
-    %0A
-    Volontärplattform Tjörn - civilsamhället i samverkan
-    %0A
-    %0A
-    Anna Berglund
-    %0A
-    Samordnare
-    %0A
-    tjorn@allatillsammans.se
-    %0A
-    %0A
-    %0A
-    %0A
-    KOPIA AV DIN BESTÄLLNING:
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : "-"}, 
-    %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : "-"} 
-    %0A 
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ""} 
-    %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ""} 
-    %0A
-    Email: ${content.email ? content.email : "-"} 
-    %0A
-    Telefon: ${content.telefon ? content.telefon : "-"} 
-    %0A
-    Address: ${content.address ? content.address : "-"} 
-    %0A
-    Postkod: ${content.postkod ? content.postkod : "-"} 
-    %0A
-    %0A
-    Typ: ${content.typ ? content.typ : "Ingen"} 
-    %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} 
-    %0A
-    %0A
-    Swish: ${content.swish ? "Ja" : "Nej"} 
-    %0A
-    Kontant: ${content.kontant ? "Ja" : "Nej"} 
-    %0A
-    Faktura: ${content.faktura ? "Ja" : "Nej"} 
-    %0A
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+export const sendConfirmationEmail = (content, group) => {
+  return `
+  <p>Hej!</p>
+  <p>Er beställning på tjorn.allatillsammans.se har mottagits och fördelats till ${
+    group.gruppnamn
+  }.</p>
+  <p>&nbsp;</p>
+  <p>Kontaktpersoner:</p>
+  <p>${group.kontakt}: ${group.email} ${group.telefon}</p>
+  <p>${group.reserv}: ${group.reservEmail} ${group.reservTelefon}</p>
+  ${orderInfo(content)}
+  </br>
+  <p>Så snart vi har möjlighet kommer en volontär från gruppen att kontakta er för att utföra ärendet.</p>>
+  <p>&nbsp;</p>
+  <p> Med vänliga hälsningar,</p>
+  <div> Samordnaren</div>
+  <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+  <div> tjorn@allatillsammans.se</div>
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
-export const sendGroupOrderEmail = (content) => {
-  const email = `EMAIL TILL VOLONTÄR HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny beställning att utföra: ${
-    content.förnamn ? content.förnamn : ""
-  } ${content.efternamn ? content.efternamn : ""}`;
-  const emailBody = `Hej! 
-    %0A
-    %0A 
-    Jag har satt upp dig som volontär för att utföra nedan beställning. Kontakta gärna mig om du har några frågor!
-    %0A 
-    %0A
-    -------------------------------------------- 
-    %0A
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : "-"}, 
-    %0A
-    Tid kan vänta: ${content.tidsrymd ? content.tidsrymd : "-"} 
-    %0A 
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ""} 
-    %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ""} 
-    %0A
-    Email: ${content.email ? content.email : "-"} 
-    %0A
-    Telefon: ${content.telefon ? content.telefon : "-"} 
-    %0A
-    Address: ${content.address ? content.address : "-"} 
-    %0A
-    Postkod: ${content.postkod ? content.postkod : "-"} 
-    %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
-    %0A
-    Typ: ${content.typ ? content.typ : "Ingen"} 
-    %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} 
-    %0A
-    %0A
-    Swish: ${content.swish ? "Ja" : "Nej"} 
-    %0A
-    Kontant: ${content.kontant ? "Ja" : "Nej"} 
-    %0A
-    Faktura: ${content.faktura ? "Ja" : "Nej"} 
-    %0A
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    Vänliga hälsningar,
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+export const sendVolunteerOrderEmail = (content, group) => {
+  return `
+  <p>Hej!</p>
+  <p>Jag har satt upp dig som volontär för att utföra nedan beställning. Kontakta gärna mig om du har några frågor!</p>
+  <p>Kontaktpersoner ${group.gruppnamn}:</p>
+  <p>${group.kontakt}: ${group.email} ${group.telefon}</p>
+  <p>${group.reserv}: ${group.reservEmail} ${group.reservTelefon}</p>
+  ${orderInfo(content)}
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendVolunteerEmail = (content) => {
-  const email = `EMAIL TILL GRUPPLEDARE HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny volontär: ${content.förnamn ? content.förnamn : ""} ${
-    content.efternamn ? content.efternamn : ""
-  }`;
-  const emailBody = `
-  ************ KLIPP IN RELEVANT EMAIL ADDRESS I ADDRESSFÄLTET OVAN, RADERA SEN DET HÄR ************: 
-  %0A 
-  %0A 
-  Yttre Grupp Norra Tjörn: helena.johannesson@svenskakyrkan.se, catharina.schonback@svenskakyrkan.se
-  %0A 
-  %0A 
-  Yttre Grupp Skärhamn: gunilla.e.gustafsson@svenskakyrkan.se, jaana.pollari.lindstrom@svenskakyrkan.se
-  %0A 
-  %0A 
-  Yttre Grupp Centrala Tjörn: maria.eriksson1@svenskakyrkan.se, erika.andersson@svenskakyrkan.se, josefin.ulmfelt@svenskakyrkan.se
-  %0A 
-  %0A 
-  Yttre Grupp Mjörn: erik@egnahemsfabriken.se
-  %0A 
-  %0A 
-  Yttre Grupp Rönnäng: Tina.hallin@bredband2.com, erik@egnahemsfabriken.se
-  %0A 
-  %0A 
-  ************************************************************************************************
-  %0A 
-  %0A 
-  %0A 
-  
-  Hej! 
-  %0A
-    %0A 
-    Ni har fått in en ny volontär till er volontärgrupp från Alla Tillsammans: 
-    %0A
-    %0A 
-    --------------------------------------------
-    %0A
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : "-"}, %0A
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ""} %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ""} %0A
-    Email: ${content.email ? content.email : "-"} %0A
-    Telefon: ${content.telefon ? content.telefon : "-"} %0A
-    Address: ${content.address ? content.address : "-"} %0A
-    Postkod: ${content.postkod ? content.postkod : "-"} %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
-    %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} %0A
-    %0A
-    Födelseår: ${content.födelseår ? content.födelseår : "-"} %0A
-    Språk: ${content.språk ? content.språk : "-"} %0A
-    %0A
-    Körkort: ${content.körkort ? "Ja" : "Nej"} %0A
-    Bil: ${content.bil ? "Ja" : "Nej"} %0A
-    %0A
-    Mat: ${content.mat ? "Ja" : "Nej"} %0A
-    Varor: ${content.varor ? "Ja" : "Nej"} %0A
-    Ärenden: ${content.ärenden ? "Ja" : "Nej"} %0A
-    Djur: ${content.djur ? "Ja" : "Nej"} %0A
-    Prat: ${content.prata ? "Ja" : "Nej"} %0A
-    Myndigheter: ${content.myndigheter ? "Ja" : "Nej"} %0A
-    Teknik: ${content.teknik ? "Ja" : "Nej"} %0A
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    %0A
-    Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) och hitta alla detaljer om nästa steg där.
-    %0A
-    %0A
-    Allt gott! 
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+  return `
+  <p>Hej!</p>
+  <p>Ni har fått in en ny volontär till er volontärgrupp från Alla Tillsammans: </p>
+  ${volunteerInfo(content)}
+  <p>Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) och hitta alla detaljer om nästa steg där.</p>
+  <p> Med vänliga hälsningar,</p>
+  <div> Samordnaren</div>
+  <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+  <div> tjorn@allatillsammans.se</div>
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
-export const sendWelcomeEmail = (content) => {
-  const email = `${
-    content.email
-      ? content.email
-      : `INGEN EMAIL - RING ISTÄLLET ${content.telefon}`
-  }, tjorn@allatillsammans.se`;
-  const subject = "Välkommen till Alla Tillsammans - Tjörn!";
-  const emailBody = `Hej ${content.förnamn ? content.förnamn : ""} ${
+export const sendWelcomeEmail = (content, group) => {
+  return `
+  <p>Hej ${content.förnamn ? content.förnamn : ""} ${
     content.efternamn ? content.efternamn : ""
-  }, välkommen till Alla Tillsammans - Tjörn! 
-    %0A
-    %0A
-    Vi har tagit emot din anmälan om att som volontär hjälpa människor med sin vardag mot covid-19. Tack!
-    %0A
-    %0A
-    Du har blivit uppsatt på gruppen nedan. Du kommer snart bli kontaktad av någon därifrån för att träffas och checka av innan det blir avstamp.
-    %0A
-    %0A 
-    %0A 
-    ************ RADERA DE SOM INTE ÄR AKTUELLA NEDAN ************: 
-    %0A 
-    %0A
-    YTTRE GRUPP NORRA TJÖRN
-    %0A
-    Gruppledare: Catharina Schönbeck, Helena Johannesson
-    %0A
-    Telefon: 0733-230587, 0733-230571
-    %0A
-    %0A
-    YTTRE GRUPP SKÄRHAMN
-    %0A
-    Gruppledare: Gunilla Gustafsson, Jaana Pollari Lindström
-    %0A
-    Telefon: 0733-230514, 0733- 230506
-    %0A
-    %0A
-    YTTRE GRUPP CENTRALA TJÖRN
-    %0A
-    Gruppledare: Maria Eriksson,  Erika Andersson, Josefin Ulmfelt
-    %0A
-    Telefon: 0733-230515, 0733230535, 0733-23053
-    %0A
-    %0A
-    YTTRE GRUPP MJÖRN
-    %0A
-    Gruppledare: Erik Berg
-    %0A
-    Telefon: 0703-022574
-    %0A
-    %0A
-    YTTRE GRUPP RÖNNÄNG: se kontakt under 'grupper'
-    %0A 
-    %0A 
-    ***************************************************************************
-    %0A
-    %0A
-    Om du har några frågor under tiden, kontakta gärna gruppledaren ovan eller tjorn@allatillsammans.se!
-    %0A
-    %0A
-    Allt gott! 
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+  }, välkommen till Alla Tillsammans - Tjörn!</p>
+  <p>Vi har tagit emot din anmälan om att som volontär hjälpa människor med sin vardag mot covid-19. Tack!</p>
+  <p>Du har blivit uppsatt på gruppen ${
+    group.gruppnamn
+  }. Du kommer snart bli kontaktad av någon därifrån för att träffas och checka av innan det blir avstamp.</p>
+  <p>Om du har några frågor under tiden, kontakta gärna gruppledarna nedan eller tjorn@allatillsammans.se!</p>
+  <div>Kontaktpersoner för ${group.gruppnamn}</div>
+  <p>Gruppledare: ${group.kontakt} - ${group.email}, ${group.telefon}</p>
+  <p>Reserv: ${group.reserv} - ${group.reservEmail}, ${group.reservTelefon}</p>
+  <p> Med vänliga hälsningar,</p>
+  <div> Samordnaren</div>
+  <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+  <div> tjorn@allatillsammans.se</div>
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendGeneralVolunteerInfo = (content) => {
-  const email = `EMAIL TILL DEN SOM SKA HANTERA VOLONTÄREN HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny volontär: ${content.förnamn ? content.förnamn : ""} ${
-    content.efternamn ? content.efternamn : ""
-  }`;
-  const emailBody = `Hej! %0A
-    %0A 
-    Här kommer informationen om volontären! %0A 
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : "-"}, %0A
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ""} %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ""} %0A
-    Email: ${content.email ? content.email : "-"} %0A
-    Telefon: ${content.telefon ? content.telefon : "-"} %0A
-    Address: ${content.address ? content.address : "-"} %0A
-    Postkod: ${content.postkod ? content.postkod : "-"} %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
-    %0A
-    Beskrivning: %0A ${content.beskrivning ? content.beskrivning : "-"} %0A
-    %0A
-    Födelseår: ${content.födelseår ? content.födelseår : "-"} %0A
-    Språk: ${content.språk ? content.språk : "-"} %0A
-    %0A
-    Körkort: ${content.körkort ? "Ja" : "Nej"} %0A
-    Bil: ${content.bil ? "Ja" : "Nej"} %0A
-    %0A
-    Mat: ${content.mat ? "Ja" : "Nej"} %0A
-    Varor: ${content.varor ? "Ja" : "Nej"} %0A
-    Ärenden: ${content.ärenden ? "Ja" : "Nej"} %0A
-    Djur: ${content.djur ? "Ja" : "Nej"} %0A
-    Prat: ${content.prata ? "Ja" : "Nej"} %0A
-    Myndigheter: ${content.myndigheter ? "Ja" : "Nej"} %0A
-    Teknik: ${content.teknik ? "Ja" : "Nej"} %0A
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    Allt gott! 
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+  return `<p>Hej! </p>
+ <p>Här kommer informationen om volontären!</p>
+    ${volunteerInfo(content)}
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };
 
 export const sendGeneralFikerInfo = (content) => {
-  const email = `EMAIL TILL DEN SOM SKA HANTERA FIKAINTRESSENTEN HÄR, tjorn@allatillsammans.se`;
-  const subject = `Ny fikaintressent: ${
-    content.förnamn ? content.förnamn : ""
-  } ${content.efternamn ? content.efternamn : ""}`;
-  const emailBody = `Hej! %0A
-    %0A 
-    Här kommer informationen om fikaintressenten! %0A 
-    %0A
-    Datum mottaget: ${content.datum ? content.datum : "-"}, %0A
-    %0A
-    Förnamn: ${content.förnamn ? content.förnamn : ""} %0A
-    Efternamn: ${content.efternamn ? content.efternamn : ""} %0A
-    Email: ${content.email ? content.email : "-"} %0A
-    Telefon: ${content.telefon ? content.telefon : "-"} %0A
-    ${content.kommentarer ? `%0A Kommentarer: ${content.kommentarer} %0A` : ""} 
-    %0A
-    Beskrivning: %0A ${content.description ? content.description : "-"} %0A
-    %0A
-    Språkpreferens: ${content.språk ? content.språk : "-"} %0A
-    %0A
-    Intresserad av:
-    Bokklubb: ${content.books ? "Ja" : "Nej"} %0A
-    Trädgård och odling: ${content.gardening ? "Ja" : "Nej"} %0A
-    Världsläget: ${content.globalPolitics ? "Ja" : "Nej"} %0A
-    Lokalkultur: ${content.localCulture ? "Ja" : "Nej"} %0A
-    Ny teknik: ${content.newTech ? "Ja" : "Nej"} %0A
-    Föreläsningar: ${content.lectures ? "Ja" : "Nej"} %0A
-    %0A
-    Kan tänka sig att hålla en max 15 minuter lång föreläsning om detta: 
-    ${content.lecture ? content.lecture : ""} %0A
-    %0A
-    --------------------------------------------
-    %0A
-    %0A
-    Allt gott! 
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
-    %0A
+  return `<p>Hej! </p>
+ <p>Här kommer informationen om fikaintressenten!  </p>
+    ${fikaInfo(content)}
+    <p> Med vänliga hälsningar,</p>
+    <div> Samordnaren</div>
+    <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+    <div> tjorn@allatillsammans.se</div>
   `;
-  window.open("mailto:" + email + "?subject=" + subject + "&body=" + emailBody);
 };

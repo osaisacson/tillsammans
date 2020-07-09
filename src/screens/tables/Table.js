@@ -21,7 +21,7 @@ import { small, medium, large, xlarge } from "./CellSizes";
 import {
   sendOrderEmail,
   sendConfirmationEmail,
-  sendGroupOrderEmail,
+  sendVolunteerOrderEmail,
   sendVolunteerEmail,
   sendGeneralVolunteerInfo,
   sendGeneralFikerInfo,
@@ -309,21 +309,29 @@ const Table = (props) => {
             statusCopy={
               !rowData.gruppId || rowData.gruppId === "0"
                 ? "Välj grupp först"
-                : rowData.skickadVolontär
+                : rowData.skickadGrupp
                 ? "Skickad till grupp"
                 : "Inte skickad till grupp ännu"
             }
             buttonCopy={
               rowData.skickadGrupp ? "Skicka igen" : "Skicka till grupp"
             }
+            refreshAction={props.refreshAction}
           />
           {!rowData.email ? (
             <ButtonToAction
               isSetConfirmed
+              orderId={rowData.id}
               conditionForGreen={rowData.skickadBeställare}
-              conditionForDisabled={rowData.skickadBeställare}
-              statusCopy={
+              conditionForDisabled={
+                !rowData.gruppId ||
+                rowData.gruppId === "0" ||
                 rowData.skickadBeställare
+              }
+              statusCopy={
+                !rowData.gruppId || rowData.gruppId === "0"
+                  ? "Välj grupp först"
+                  : rowData.skickadBeställare
                   ? "Beställning bekräftad"
                   : !rowData.email && rowData.telefon
                   ? `Bekräfta via ${rowData.telefon}`
@@ -335,21 +343,28 @@ const Table = (props) => {
                   : "Klicka när kontaktad"
               }
               formData={rowData}
+              refreshAction={props.refreshAction}
             />
           ) : (
             <ButtonToFormEmail
               actionInForm={"sendAndUpdateToConfirmed"}
+              groupData={groupData}
               formData={rowData}
               conditionForGreen={rowData.skickadBeställare}
-              conditionForDisabled={!rowData.email}
+              conditionForDisabled={
+                !rowData.gruppId || rowData.gruppId === "0" || !rowData.email
+              }
               statusCopy={
-                rowData.skickadBeställare
+                !rowData.gruppId || rowData.gruppId === "0"
+                  ? "Välj grupp först"
+                  : rowData.skickadBeställare
                   ? "Bekräftelse skickad"
                   : "Ingen bekräftelse skickad"
               }
               buttonCopy={
                 rowData.skickadBeställare ? "Skicka igen" : "Skicka bekräftelse"
               }
+              refreshAction={props.refreshAction}
             />
           )}
           <ButtonToFormEmail
@@ -357,20 +372,30 @@ const Table = (props) => {
             formData={rowData}
             groupData={groupData}
             conditionForGreen={rowData.skickadVolontär}
+            conditionForDisabled={!rowData.gruppId || rowData.gruppId === "0"}
             statusCopy={
-              rowData.skickadVolontär
+              !rowData.gruppId || rowData.gruppId === "0"
+                ? "Välj grupp först"
+                : rowData.skickadVolontär
                 ? "Skickad till volontär"
                 : "Ingen volontär ännu"
             }
             buttonCopy={
               rowData.skickadVolontär ? "Skicka igen" : "Skicka till volontär"
             }
+            refreshAction={props.refreshAction}
           />
           <ButtonToAction
             conditionForGreen={rowData.status === "4"}
-            conditionForDisabled={rowData.status === "4"}
-            statusCopy={
+            conditionForDisabled={
+              !rowData.gruppId ||
+              rowData.gruppId === "0" ||
               rowData.status === "4"
+            }
+            statusCopy={
+              !rowData.gruppId || rowData.gruppId === "0"
+                ? "Välj grupp först"
+                : rowData.status === "4"
                 ? "Beställningen utförd"
                 : "Inte utförd ännu"
             }
@@ -451,7 +476,7 @@ const Table = (props) => {
     //       itemId={rowData.id}
     //       isConfirmed={rowData.skickadVolontär}
     //       refreshAction={props.refreshAction}
-    //       onClickAction={sendGroupOrderEmail.bind(this, rowData)}
+    //       onClickAction={sendVolunteerOrderEmail.bind(this, rowData)}
     //     />
     //   ),
     // },
@@ -515,7 +540,7 @@ const Table = (props) => {
           itemId={rowData.id}
           isConfirmed={rowData.skickadVolontär}
           refreshAction={props.refreshAction}
-          onClickAction={sendGroupOrderEmail.bind(this, rowData)}
+          onClickAction={sendVolunteerOrderEmail.bind(this, rowData)}
         />
       ),
     },
