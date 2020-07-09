@@ -286,7 +286,7 @@ const VolunteerForm = (props) => {
             />
           </Col>
         </Form.Row>
-        <Form.Group controlId="formBasicCheckbox">
+        <Form.Group controlId="formBasicCheckbox5">
           <Form.Check
             type="checkbox"
             onClick={() => {
@@ -304,7 +304,7 @@ const VolunteerForm = (props) => {
         </Form.Group>
 
         <h3>Exempel på uppgifter jag kan utföra:</h3>
-        <Form.Group controlId="formBasicCheckbox">
+        <Form.Group controlId="formBasicCheckbox6">
           <Form.Check
             type="checkbox"
             onClick={() => {

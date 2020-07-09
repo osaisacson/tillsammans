@@ -232,7 +232,7 @@ const FikaForm = (props) => {
           </Col>
         </Form.Row>
         <h3>Jag kan delta via...</h3>
-        <Form.Group controlId="formBasicCheckbox">
+        <Form.Group controlId="formBasicCheckbox1">
           <Form.Check
             type="checkbox"
             onClick={() => {
@@ -276,7 +276,7 @@ const FikaForm = (props) => {
         <h2>
           Vilka möjliga ämnen är du intresserad av som teman i fikagruppen?
         </h2>
-        <Form.Group controlId="formBasicCheckbox">
+        <Form.Group controlId="formBasicCheckbox2">
           <Form.Check
             type="checkbox"
             onClick={() => {

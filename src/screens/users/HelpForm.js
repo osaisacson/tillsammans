@@ -218,7 +218,7 @@ const HelpForm = (props) => {
           Om min beställning innebär kostnader (exempelvis inköp) så ersätter
           jag volontärens utlägg via:
         </h3>
-        <Form.Group controlId="formBasicCheckbox">
+        <Form.Group controlId="formBasicCheckbox3">
           <Form.Check
             type="checkbox"
             onClick={() => {
@@ -333,7 +333,7 @@ const HelpForm = (props) => {
             />
           </Col>
         </Form.Row>
-        <Form.Group controlId="formBasicCheckbox">
+        <Form.Group controlId="formBasicCheckbox4">
           <p>
             <span>INFORMATION FÖR DIN TRYGGHET:</span> I och med att du skickar
             oss din beställning så godkänner du att vi tillfälligt sparar dina

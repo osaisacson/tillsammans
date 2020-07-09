@@ -7,17 +7,44 @@ import { Editor } from "@tinymce/tinymce-react";
 import Button from "react-bootstrap/Button";
 import moment from "moment";
 
-import Group from "./../models/group";
+import Volunteer from "./../models/volunteer";
 
 import FormInput from "./FormInput";
 
 const FormToEmail = (props) => {
-  const [groupData, setGroupData] = useState({
-    currentGroup: [],
-  });
+  let currentGroup;
+  let defaultEmail = "";
+  let defaultSubject = "";
+  let volunteersForGroup;
+  let title;
+  let formTemplate;
 
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const { actionInForm, groupData, formData } = props;
+
+  if (actionInForm === "sendAndUpdateGroup") {
+    currentGroup = groupData.find((data) => data.id === formData.gruppId);
+    title = `Skicka information om beställningen till gruppledare och reserv för ${currentGroup.gruppnamn}`;
+    defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
+    defaultSubject = `Ny beställning mottagen från ${formData.förnamn} ${formData.efternamn}`;
+    formTemplate = ""; //TBD: Template for sending order to a group
+  }
+
+  if (actionInForm === "sendAndUpdateToConfirmed") {
+    title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi mottagit deras beställning`;
+    defaultEmail = formData.email;
+    defaultSubject = `Tack för din beställning!`;
+    formTemplate = ""; //TBD: Template for sending a confirmation of receipt to the ordering individual
+  }
+
+  if (actionInForm === "sendAndUpdateVolunteer") {
+    if (formData.gruppId && formData.gruppId !== "0") {
+      volunteersForGroup = getVolunteers(formData.groupId);
+    }
+    formTemplate = ""; //TBD: Template for sending a confirmation of receipt to the ordering individual
+  }
+
+  const [email, setEmail] = useState(defaultEmail);
+  const [subject, setSubject] = useState(defaultSubject);
   const [html, setHtml] = useState("Välj ovan för att se mail mallar");
   const [resultMessage, setResultMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,16 +52,16 @@ const FormToEmail = (props) => {
   const firestore = firebase.firestore();
 
   //Get group data
-  async function getGroups() {
-    const groups = [];
-    const querySnapshot = await firestore.collection("groups").get();
+  async function getVolunteers(groupId) {
+    const volunteers = [];
+    const querySnapshot = await firestore.collection("volunteers").get();
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
       const readableDate = moment(new Date(resData.datum)).format("lll");
 
-      groups.push(
-        new Group(
+      volunteers.push(
+        new Volunteer(
           doc.id,
           readableDate,
           resData.gruppnamn,
@@ -53,16 +80,11 @@ const FormToEmail = (props) => {
       );
     });
 
-    //set current group data as the object which matches the passed group id
-    setGroupData({
-      currentGroup: groups.find((data) => data.id === props.groupId),
-    });
+    const currentVolunteers = volunteers.find(
+      (data) => data.gruppId === groupId
+    );
+    return currentVolunteers;
   }
-
-  useEffect(() => {
-    getGroups();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -104,8 +126,8 @@ const FormToEmail = (props) => {
   return (
     <>
       <div className="page-layout">
-        <h4>Sätt grupp och skicka email</h4>
-        <p>Välj grupp beställningen ska gå till nedan</p>
+        <h4>Skicka email</h4>
+        <p>{title}</p>
 
         <form onSubmit={handleSubmit}>
           <FormInput

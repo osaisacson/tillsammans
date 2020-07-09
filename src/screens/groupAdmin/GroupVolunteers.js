@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import Badge from 'react-bootstrap/Badge';
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import Badge from "react-bootstrap/Badge";
 
-import Table from '../tables/Table';
-import AddButtonHeader from '../../components/AddButtonHeader';
-import RefreshButton from '../../components/RefreshButton';
-import VolunteerForm from '../users/VolunteerForm';
+import Table from "../tables/Table";
+import AddButtonHeader from "../../components/AddButtonHeader";
+import RefreshButton from "../../components/RefreshButton";
+import VolunteerForm from "../users/VolunteerForm";
 
 const GroupVolunteers = (props) => {
   return (
@@ -70,7 +70,7 @@ const GroupVolunteers = (props) => {
           eventKey="nya"
           title={
             <span>
-              Nya Volontärer - att bli välkomnade{' '}
+              Nya Volontärer - att bli välkomnade{" "}
               {props.dbData.newVolunteers.length ? (
                 <Badge pill variant="danger">
                   {props.dbData.newVolunteers.length}

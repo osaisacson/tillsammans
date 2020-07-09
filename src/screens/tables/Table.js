@@ -301,34 +301,45 @@ const Table = (props) => {
             refreshAction={props.refreshAction}
           />
           <ButtonToFormEmail
+            actionInForm={"sendAndUpdateGroup"}
+            groupData={groupData}
+            formData={rowData}
+            conditionForDisabled={!rowData.gruppId || rowData.gruppId === "0"}
             conditionForGreen={rowData.skickadGrupp}
             statusCopy={
-              rowData.skickadVolontär
+              !rowData.gruppId || rowData.gruppId === "0"
+                ? "Välj grupp först"
+                : rowData.skickadVolontär
                 ? "Skickad till grupp"
                 : "Inte skickad till grupp ännu"
             }
             buttonCopy={
               rowData.skickadGrupp ? "Skicka igen" : "Skicka till grupp"
             }
-            formData={rowData}
           />
           {!rowData.email ? (
             <ButtonToAction
+              isSetConfirmed
               conditionForGreen={rowData.skickadBeställare}
+              conditionForDisabled={rowData.skickadBeställare}
               statusCopy={
-                !rowData.email && rowData.telefon
+                rowData.skickadBeställare
+                  ? "Beställning bekräftad"
+                  : !rowData.email && rowData.telefon
                   ? `Bekräfta via ${rowData.telefon}`
                   : "Ingen email eller telefon"
               }
               buttonCopy={
                 rowData.skickadBeställare
-                  ? "Beställare kontaktad"
-                  : "Klicka när kontaktat"
+                  ? "Beställare uppringd"
+                  : "Klicka när kontaktad"
               }
               formData={rowData}
             />
           ) : (
             <ButtonToFormEmail
+              actionInForm={"sendAndUpdateToConfirmed"}
+              formData={rowData}
               conditionForGreen={rowData.skickadBeställare}
               conditionForDisabled={!rowData.email}
               statusCopy={
@@ -339,10 +350,12 @@ const Table = (props) => {
               buttonCopy={
                 rowData.skickadBeställare ? "Skicka igen" : "Skicka bekräftelse"
               }
-              formData={rowData}
             />
           )}
           <ButtonToFormEmail
+            actionInForm={"sendAndUpdateVolunteer"}
+            formData={rowData}
+            groupData={groupData}
             conditionForGreen={rowData.skickadVolontär}
             statusCopy={
               rowData.skickadVolontär
@@ -352,7 +365,19 @@ const Table = (props) => {
             buttonCopy={
               rowData.skickadVolontär ? "Skicka igen" : "Skicka till volontär"
             }
-            formData={rowData}
+          />
+          <ButtonToAction
+            conditionForGreen={rowData.status === "4"}
+            conditionForDisabled={rowData.status === "4"}
+            statusCopy={
+              rowData.status === "4"
+                ? "Beställningen utförd"
+                : "Inte utförd ännu"
+            }
+            buttonCopy={rowData.status === "4" ? "Klar!" : "Klicka när klar"}
+            isSetReady
+            orderId={rowData.id}
+            refreshAction={props.refreshAction}
           />
         </>
 
