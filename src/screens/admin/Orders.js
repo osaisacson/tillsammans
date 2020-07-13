@@ -4,7 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
 
-import Table from "../tables/Table";
+import OrdersTable from "../tables/OrdersTable";
 import HelpForm from "./../users/HelpForm";
 
 import AddButtonHeader from "./../../components/AddButtonHeader";
@@ -52,29 +52,27 @@ const Orders = (props) => {
 
       <RefreshButton refreshAction={props.refreshAction} />
 
-      <Tabs defaultActiveKey="nya" id="0">
-        <Tab
-          eventKey="nya"
-          title={
-            <span>
-              Ej fördelade Beställningar{" "}
-              {props.dbData.newOrders.length ? (
+      <Tabs id="0">
+        {props.dbData.newOrders.length ? (
+          <Tab
+            eventKey="nya"
+            title={
+              <span>
+                Ej fördelade Beställningar{" "}
                 <Badge pill variant="danger">
                   {props.dbData.newOrders.length}
                 </Badge>
-              ) : (
-                0
-              )}
-            </span>
-          }
-        >
-          <Table
-            isAdmin
-            isOrders
-            tableData={props.dbData.newOrders}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
+              </span>
+            }
+          >
+            <OrdersTable
+              isAdmin
+              groupData={props.groupData}
+              tableData={props.dbData.newOrders}
+              refreshAction={props.refreshAction}
+            />
+          </Tab>
+        ) : null}
         <Tab
           eventKey="gruppfördelade"
           title={`Fördelade till grupp (${
@@ -83,9 +81,9 @@ const Orders = (props) => {
               : 0
           })`}
         >
-          <Table
+          <OrdersTable
             isAdmin
-            isOrders
+            groupData={props.groupData}
             tableData={props.dbData.assignedToGroup}
             refreshAction={props.refreshAction}
           />
@@ -96,9 +94,9 @@ const Orders = (props) => {
             props.dbData.doneOrders.length ? props.dbData.doneOrders.length : 0
           })`}
         >
-          <Table
+          <OrdersTable
             isAdmin
-            isOrders
+            groupData={props.groupData}
             tableData={props.dbData.doneOrders}
             refreshAction={props.refreshAction}
           />
@@ -111,9 +109,9 @@ const Orders = (props) => {
               : 0
           })`}
         >
-          <Table
+          <OrdersTable
             isAdmin
-            isOrders
+            groupData={props.groupData}
             tableData={props.dbData.pausedOrders}
             refreshAction={props.refreshAction}
           />

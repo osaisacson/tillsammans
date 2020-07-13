@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import MaterialTable from "material-table";
+import ReactHtmlParser from "react-html-parser";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -10,8 +11,6 @@ import ButtonToFormEmail from "../../components/ButtonToFormEmail";
 import ButtonToAction from "../../components/ButtonToAction";
 
 import { large, xlarge } from "./CellSizes";
-
-import { fikerStatusDropdown } from "./Dropdowns";
 
 const FikersTable = (props) => {
   const { isAdmin, tableData, groupData, refreshAction } = props;
@@ -39,7 +38,6 @@ const FikersTable = (props) => {
     {
       title: "Status",
       field: "status",
-      lookup: fikerStatusDropdown, //TBD see if this changes whether we are on orders, volunteers, fikers, groups...
       cellStyle: large,
       headerStyle: large,
       render: (rowData) => (
@@ -97,6 +95,17 @@ const FikersTable = (props) => {
       field: "kommentarer",
       cellStyle: large,
       headerStyle: large,
+      render: (rowData) => (
+        <>
+          <div>{ReactHtmlParser(rowData.kommentarer)}</div>
+          <ButtonToAction
+            isFiker
+            isEditComments
+            formData={rowData}
+            refreshAction={refreshAction}
+          />
+        </>
+      ),
     },
     {
       title: "Beskrivning",

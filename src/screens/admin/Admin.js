@@ -26,7 +26,6 @@ const Admin = (props) => {
     welcomedFikers: [],
     activeFikers: [],
     pausedFikers: [],
-    notSuitableFikers: [],
   });
 
   const [volunteersData, setVolunteersData] = useState({
@@ -36,7 +35,6 @@ const Admin = (props) => {
     welcomedVolunteers: [],
     activeVolunteers: [],
     pausedVolunteers: [],
-    notSuitableVolunteers: [],
   });
 
   const [ordersData, setOrdersData] = useState({
@@ -139,7 +137,6 @@ const Admin = (props) => {
       welcomedVolunteers: volunteers.filter((data) => data.status === "3"),
       activeVolunteers: volunteers.filter((data) => data.status === "4"),
       pausedVolunteers: volunteers.filter((data) => data.status === "5"),
-      notSuitableVolunteers: volunteers.filter((data) => data.status === "6"),
     });
   }
 
@@ -188,7 +185,6 @@ const Admin = (props) => {
       welcomedFikers: fikers.filter((data) => data.status === "3"),
       activeFikers: fikers.filter((data) => data.status === "4"),
       pausedFikers: fikers.filter((data) => data.status === "5"),
-      notSuitableFikers: fikers.filter((data) => data.status === "6"),
     });
   }
 
@@ -237,7 +233,11 @@ const Admin = (props) => {
           }
           eventKey="first"
         >
-          <Orders refreshAction={getOrders} dbData={ordersData} />
+          <Orders
+            groupData={props.groupData}
+            refreshAction={getOrders}
+            dbData={ordersData}
+          />
         </Tab>
         <Tab
           title={
@@ -270,7 +270,11 @@ const Admin = (props) => {
           }
           eventKey="second"
         >
-          <Volunteers refreshAction={getVolunteers} dbData={volunteersData} />
+          <Volunteers
+            groupData={props.groupData}
+            refreshAction={getVolunteers}
+            dbData={volunteersData}
+          />
         </Tab>
         <Tab
           title={
@@ -301,10 +305,14 @@ const Admin = (props) => {
           }
           eventKey="third"
         >
-          <Fikers refreshAction={getFikers} dbData={fikersData} />
+          <Fikers
+            groupData={props.groupData}
+            refreshAction={getFikers}
+            dbData={fikersData}
+          />
         </Tab>
         <Tab className="fat-tab" title="Grupper" eventKey="fourth">
-          <Groups />
+          <Groups groupData={props.groupData} />
         </Tab>
       </Tabs>
     </div>

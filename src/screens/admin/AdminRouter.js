@@ -1,15 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/app';
-import Admin from './Admin';
-import GroupAdmin from '../groupAdmin/GroupAdmin';
-import AccessDenied from '../../components/AccessDenied';
+import React, { useState, useEffect } from "react";
+import firebase from "firebase/app";
+import Admin from "./Admin";
+import GroupAdmin from "../groupAdmin/GroupAdmin";
+import AccessDenied from "../../components/AccessDenied";
+
+import "firebase/firestore";
+
+import moment from "moment";
+
+import Group from "../../models/group";
 
 const AdminRouter = () => {
   // Checks the type of admin (main vs group) and renders appropriate admin page
 
   const [isLoadingClaims, setisLoadingClaims] = useState(true);
+  const [isLoadingGroups, setisLoadingGroups] = useState(true);
   const [isAdmin, setisAdmin] = useState(false);
-  const [groupAdmin, setgroupAdmin] = useState('');
+  const [groupAdmin, setgroupAdmin] = useState("");
+
+  const db = firebase.firestore();
+
+  const [groupData, setGroupData] = useState({});
+
+  //Get group data
+  async function getGroups() {
+    const groups = [];
+    const querySnapshot = await db.collection("groups").get();
+    querySnapshot.forEach(function (doc) {
+      // doc.data() is never undefined for query doc snapshots
+      const resData = doc.data();
+      const readableDate = moment(new Date(resData.datum)).format("lll");
+
+      groups.push(
+        new Group(
+          doc.id,
+          readableDate,
+          resData.gruppnamn,
+          resData.länkNamn,
+          resData.kontakt,
+          resData.kommentarer,
+          resData.telefon,
+          resData.email,
+          resData.reserv,
+          resData.reservTelefon,
+          resData.reservEmail,
+          resData.address,
+          resData.postkod,
+          resData.status
+        )
+      );
+    });
+
+    setGroupData(groups);
+  }
+
+  useEffect(() => {
+    getGroups()
+      .then(() => {
+        setisLoadingGroups(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setisLoadingGroups(false);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     firebase
@@ -33,12 +88,12 @@ const AdminRouter = () => {
       });
   }, []);
 
-  return isLoadingClaims ? (
+  return isLoadingClaims || isLoadingGroups ? (
     <LoadingMessage />
   ) : isAdmin ? (
-    <Admin />
+    <Admin groupData={groupData} />
   ) : groupAdmin ? (
-    <GroupAdmin groupId={groupAdmin} />
+    <GroupAdmin groupId={groupAdmin} groupData={groupData} />
   ) : (
     <AccessDenied />
   );

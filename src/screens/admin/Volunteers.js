@@ -4,7 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
 
-import Table from "../tables/Table";
+import VolunteersTable from "../tables/VolunteersTable";
 import AddButtonHeader from "./../../components/AddButtonHeader";
 import RefreshButton from "./../../components/RefreshButton";
 import VolunteerForm from "./../users/VolunteerForm";
@@ -49,30 +49,28 @@ const Volunteers = (props) => {
 
       <RefreshButton refreshAction={props.refreshAction} />
 
-      <Tabs defaultActiveKey="nya" id="0">
-        <Tab
-          eventKey="nya"
-          title={
-            <span>
-              Nya {""}
-              {props.dbData.newVolunteers.length ? (
+      <Tabs id="0">
+        {props.dbData.newVolunteers.length ? (
+          <Tab
+            eventKey="nya"
+            title={
+              <span>
+                Nya {""}
                 <Badge pill variant="danger">
                   {props.dbData.newVolunteers.length}
                 </Badge>
-              ) : (
-                0
-              )}
-            </span>
-          }
-        >
-          <Table
-            isAdmin
-            isVolunteers
-            groupId={props.groupId}
-            tableData={props.dbData.newVolunteers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
+              </span>
+            }
+          >
+            <VolunteersTable
+              isAdmin
+              groupData={props.groupData}
+              groupId={props.groupId}
+              tableData={props.dbData.newVolunteers}
+              refreshAction={props.refreshAction}
+            />
+          </Tab>
+        ) : null}
         <Tab
           eventKey="fördelade"
           title={`Fördelade till grupper (${
@@ -81,9 +79,9 @@ const Volunteers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <VolunteersTable
             isAdmin
-            isVolunteers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.distributedVolunteers}
             refreshAction={props.refreshAction}
@@ -97,9 +95,9 @@ const Volunteers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <VolunteersTable
             isAdmin
-            isVolunteers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.welcomedVolunteers}
             refreshAction={props.refreshAction}
@@ -113,10 +111,10 @@ const Volunteers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <VolunteersTable
             groupId={props.groupId}
             isAdmin
-            isVolunteers
+            groupData={props.groupData}
             tableData={props.dbData.activeVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -129,27 +127,11 @@ const Volunteers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <VolunteersTable
             isAdmin
-            isVolunteers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.pausedVolunteers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="olämpliga"
-          title={`Olämpliga (${
-            props.dbData.notSuitableVolunteers.length
-              ? props.dbData.notSuitableVolunteers.length
-              : 0
-          })`}
-        >
-          <Table
-            isAdmin
-            isVolunteers
-            groupId={props.groupId}
-            tableData={props.dbData.notSuitableVolunteers}
             refreshAction={props.refreshAction}
           />
         </Tab>

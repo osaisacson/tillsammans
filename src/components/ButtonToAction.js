@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
 import Button from "react-bootstrap/Button";
+import FormInput from "./FormInput";
+import ReactHtmlParser from "react-html-parser";
+
+import moment from "moment";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -26,21 +30,44 @@ const ButtonToAction = (props) => {
     isSetGroups,
     isSetConfirmed,
     isSetReady,
+    isEditComments,
     isToggleActive,
     groupData,
     refreshAction,
     successKey,
   } = props;
 
-  const { status, email, telefon, gruppId, id } = props.formData;
+  const { status, email, telefon, gruppId, id, kommentarer } = props.formData;
 
   const db = firebase.firestore();
 
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [groupID, setGroupID] = useState(gruppId ? gruppId : "");
+  const [signature, setSignature] = useState("");
+  const [comments, setComments] = useState("");
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    if (name === "groupID") {
+      setGroupID(value);
+    }
+    if (name === "comments") {
+      setComments(value);
+    }
+    if (name === "signature") {
+      setSignature(value);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setComments("");
+    dbUpdate();
+  };
 
   const collectionToUpdate = isOrder
     ? "orders"
@@ -64,13 +91,6 @@ const ButtonToAction = (props) => {
         });
       });
   }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "groupID") {
-      setGroupID(value);
-    }
-  };
 
   //Actions if the button action is to set/change a group
   if (isSetGroups && gruppId) {
@@ -119,7 +139,6 @@ const ButtonToAction = (props) => {
       </>
     );
     fieldsToUpdate = {
-      status: !groupID || groupID === "0" ? "1" : "2",
       gruppId: groupID,
     };
   }
@@ -127,10 +146,13 @@ const ButtonToAction = (props) => {
   //Actions if the button action is to set the order status as ready
   if (isSetConfirmed) {
     conditionForGreen = successKey;
-    conditionForDisabled = !gruppId || gruppId === "0" || successKey;
+    conditionForDisabled =
+      !gruppId || gruppId === "0" || status === "1" || successKey;
     statusCopy =
       !gruppId || gruppId === "0"
         ? "Välj grupp först"
+        : status === "1"
+        ? "Skicka till grupp först"
         : successKey
         ? "Beställning bekräftad"
         : !email && telefon
@@ -186,8 +208,48 @@ const ButtonToAction = (props) => {
     };
   }
 
+  if (isEditComments) {
+    buttonCopy = "Kommentera";
+    modalTitle = "Kommentarer";
+    modalContent = (
+      <>
+        <form onSubmit={handleSubmit}>
+          <div>{ReactHtmlParser(kommentarer)}</div>
+          <FormInput
+            autoComplete="off"
+            name="comments"
+            type="textarea"
+            handleChange={handleChange}
+            value={comments}
+            label="Kommentar"
+            required
+          />
+          <FormInput
+            autoComplete="off"
+            name="signature"
+            type="text"
+            handleChange={handleChange}
+            value={signature}
+            label="Ditt namn"
+            required
+          />
+          <Button type="submit" block>
+            Spara kommentarer
+          </Button>
+        </form>
+      </>
+    );
+    fieldsToUpdate = {
+      kommentarer: `${kommentarer}
+          ${moment(new Date())
+            .locale("sv")
+            .format("YYYY-MM-DD HH:MM")}: <i>${comments}
+          /${signature}</i> <br/><br/>`,
+    };
+  }
+
   return (
-    <div className="status-field">
+    <div className={isEditComments ? "flex-spread" : "status-field"}>
       {isLoading ? (
         <div>...sparar</div>
       ) : (
@@ -205,14 +267,16 @@ const ButtonToAction = (props) => {
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>{modalTitle}</Modal.Header>
             <Modal.Body>{modalContent}</Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={dbUpdate}>
-                Ja, spara
-              </Button>
-              <Button variant="secondary" onClick={handleClose}>
-                Stäng
-              </Button>
-            </Modal.Footer>
+            {isEditComments ? null : (
+              <Modal.Footer>
+                <Button variant="primary" onClick={dbUpdate}>
+                  Ja, spara
+                </Button>
+                <Button variant="secondary" onClick={handleClose}>
+                  Stäng
+                </Button>
+              </Modal.Footer>
+            )}
           </Modal>
         </>
       )}

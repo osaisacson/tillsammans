@@ -524,8 +524,8 @@ body {
 
 .status-field {
   @extend .flex-spread;
-  border-right: 1px solid grey;
-  border-left: 1px solid grey;
+  border-right: 1px solid rgba(224, 224, 224, 1);
+  border-left: 1px solid rgba(224, 224, 224, 1);
   padding: 5px;
 }
 

@@ -19,6 +19,8 @@ import GroupFikers from "../groupAdmin/GroupFikers";
 const GroupAdmin = (props) => {
   const firestore = firebase.firestore();
 
+  console.log("GROUPDATA FROM UP UP ORDERS: ", props.groupData);
+
   //Set up hooks
   const [groupData, setGroupData] = useState({
     currentGroup: [],
@@ -38,7 +40,6 @@ const GroupAdmin = (props) => {
     welcomedVolunteers: [],
     activeVolunteers: [],
     pausedVolunteers: [],
-    notSuitableVolunteers: [],
   });
 
   const [groupFikersData, setGroupFikersData] = useState({
@@ -47,7 +48,6 @@ const GroupAdmin = (props) => {
     welcomedFikers: [],
     activeFikers: [],
     pausedFikers: [],
-    notSuitableFikers: [],
   });
 
   //Get group orders
@@ -152,9 +152,6 @@ const GroupAdmin = (props) => {
       welcomedFikers: currentGroupFikers.filter((data) => data.status === "3"),
       activeFikers: currentGroupFikers.filter((data) => data.status === "4"),
       pausedFikers: currentGroupFikers.filter((data) => data.status === "5"),
-      notSuitableFikers: currentGroupFikers.filter(
-        (data) => data.status === "6"
-      ),
     });
   }
 
@@ -216,9 +213,6 @@ const GroupAdmin = (props) => {
       ),
       pausedVolunteers: currentGroupVolunteers.filter(
         (data) => data.status === "5"
-      ),
-      notSuitableVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === "6"
       ),
     });
   }
@@ -308,6 +302,7 @@ const GroupAdmin = (props) => {
             eventKey="first"
           >
             <GroupOrders
+              groupData={props.groupData}
               groupId={props.groupId}
               dbData={groupOrdersData}
               refreshAction={getGroupOrders}
@@ -339,6 +334,7 @@ const GroupAdmin = (props) => {
             eventKey="second"
           >
             <GroupVolunteers
+              groupData={props.groupData}
               groupId={props.groupId}
               dbData={groupVolunteersData}
               refreshAction={getGroupVolunteers}
@@ -370,6 +366,7 @@ const GroupAdmin = (props) => {
             eventKey="third"
           >
             <GroupFikers
+              groupData={props.groupData}
               groupId={props.groupId}
               dbData={groupFikersData}
               refreshAction={getGroupFikers}

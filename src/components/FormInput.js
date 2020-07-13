@@ -5,7 +5,7 @@ const FormInput = ({ handleChange, label, type, ...otherProps }) => (
     {type === "textarea" ? (
       <textarea
         className="form-control"
-        rows="8"
+        rows="6"
         onChange={handleChange}
         {...otherProps}
       />
@@ -16,7 +16,7 @@ const FormInput = ({ handleChange, label, type, ...otherProps }) => (
     {label ? (
       <label
         className={`${
-          otherProps.value.length ? "shrink" : ""
+          otherProps.value && otherProps.value.length ? "shrink" : ""
         } form-input-label`}
       >
         {label}

@@ -108,6 +108,12 @@ const HelpForm = (props) => {
       alert("Det verkar som du inte läst och godkänt våra villkor");
       return;
     }
+    if (!formState.inputValues.email && !formState.inputValues.telefon) {
+      alert(
+        "Det verkar som du inte har angett vare sig email eller telefon där vi kan nå dig"
+      );
+      return;
+    }
     const db = firebase.firestore();
     db.collection("orders").add({
       gruppId: "0",

@@ -124,7 +124,7 @@ const fikaInfo = (content) => {
 export const sendOrderToGroup = (content) => {
   return `
   <p>Hej!</p>
-  <p>Ni har fått in en ny beställning till er volontärgrupp från Alla Tillsammans: </p>
+  <p>Ni har fått in en ny beställning till er grupp från Alla Tillsammans: </p>
   ${orderInfo(content)}
   <div>Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) </div>
   <div> Hitta alla detaljer om beställningen där, och information om nästa steg! </div>
@@ -171,7 +171,7 @@ export const sendOrderInfoToVolonteerEmail = (content, group) => {
 export const sendVolunteerInfoToGroupEmail = (content) => {
   return `
   <p>Hej!</p>
-  <p>Ni har fått in en ny volontär till er volontärgrupp från Alla Tillsammans: </p>
+  <p>Ni har fått in en ny volontär till er grupp från Alla Tillsammans: </p>
   ${volunteerInfo(content)}
   <p>Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) och hitta alla detaljer om nästa steg där.</p>
   <p> Med vänliga hälsningar,</p>
@@ -196,8 +196,8 @@ export const sendFikerInfoToGroupEmail = (content) => {
 
 export const sendWelcomeToFikerEmail = (content, group) => {
   return `
-  <p>Hej ${content.förnamn ? content.förnamn : ""} ${
-    content.efternamn ? content.efternamn : ""
+  <p>Hej ${
+    content.förnamn ? content.förnamn : ""
   }, välkommen till Alla Tillsammans - Tjörn!</p>
   <p>Vi har tagit emot din anmälan om att vara med på Corona fika. Tack!</p>
   <p>Du har blivit uppsatt på gruppen ${

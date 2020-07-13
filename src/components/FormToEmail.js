@@ -16,10 +16,10 @@ import {
   sendWelcomeToVolunteerEmail,
   sendFikerInfoToGroupEmail,
   sendWelcomeToFikerEmail,
-  sendGeneralFikerInfo,
 } from "./../screens/tables/Emails";
 
 const FormToEmail = (props) => {
+  let collectionToUpdate;
   let fieldsToUpdate = {};
   let defaultEmail = "";
   let defaultSubject = "";
@@ -31,7 +31,9 @@ const FormToEmail = (props) => {
   const currentGroup = groupData.find((data) => data.id === formData.gruppId);
 
   if (actionInForm === "sendAndUpdateGroup") {
+    collectionToUpdate = "orders";
     fieldsToUpdate = {
+      status: !formData.gruppId || formData.gruppId === "0" ? "1" : "2",
       skickadGrupp: true,
     };
     title = `Skicka information om beställningen till gruppledare och reserv för ${currentGroup.gruppnamn}`;
@@ -40,27 +42,8 @@ const FormToEmail = (props) => {
     defaultTemplate = sendOrderToGroup(formData); //Template for sending order to a group
   }
 
-  if (actionInForm === "sendVolunteerInfoToGroup") {
-    fieldsToUpdate = {
-      skickadVolontärTillGrupp: true,
-    };
-    title = `Skicka information om volontären till gruppledare och reserv för ${currentGroup.gruppnamn}`;
-    defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
-    defaultSubject = `Ny volontär mottagen: ${formData.förnamn} ${formData.efternamn}`;
-    defaultTemplate = sendVolunteerInfoToGroupEmail(formData); //Template for sending volunteer to a group
-  }
-
-  if (actionInForm === "sendVolunteerWelcome") {
-    fieldsToUpdate = {
-      skickadBekräftelseTillVolontär: true,
-    };
-    title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi registrerat deras intresse att bli volontär`;
-    defaultEmail = formData.email;
-    defaultSubject = `Tack för ditt intresse att bli volontär!`;
-    defaultTemplate = sendWelcomeToVolunteerEmail(formData, currentGroup); //Template for sending a welcome email to the volunteer
-  }
-
   if (actionInForm === "sendAndUpdateToConfirmed") {
+    collectionToUpdate = "orders";
     fieldsToUpdate = {
       skickadBeställare: true,
     };
@@ -71,6 +54,7 @@ const FormToEmail = (props) => {
   }
 
   if (actionInForm === "sendAndUpdateVolunteer") {
+    collectionToUpdate = "orders";
     fieldsToUpdate = {
       skickadVolontär: true,
     };
@@ -79,9 +63,33 @@ const FormToEmail = (props) => {
     defaultTemplate = sendOrderInfoToVolonteerEmail(formData, currentGroup); //Template for sending a confirmation of receipt to the ordering individual
   }
 
+  if (actionInForm === "sendVolunteerInfoToGroup") {
+    collectionToUpdate = "volunteers";
+    fieldsToUpdate = {
+      skickadVolontärTillGrupp: true,
+    };
+    title = `Skicka information om volontären till gruppledare och reserv för ${currentGroup.gruppnamn}`;
+    defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
+    defaultSubject = `Ny volontär mottagen: ${formData.förnamn} ${formData.efternamn}`;
+    defaultTemplate = sendVolunteerInfoToGroupEmail(formData); //Template for sending volunteer to a group
+  }
+
+  if (actionInForm === "sendVolunteerWelcome") {
+    collectionToUpdate = "volunteers";
+    fieldsToUpdate = {
+      skickadBekräftelseTillVolontär: true,
+    };
+    title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi registrerat deras intresse att bli volontär`;
+    defaultEmail = formData.email;
+    defaultSubject = `Tack för ditt intresse att bli volontär!`;
+    defaultTemplate = sendWelcomeToVolunteerEmail(formData, currentGroup); //Template for sending a welcome email to the volunteer
+  }
+
   if (actionInForm === "sendFikerInfoToGroup") {
+    collectionToUpdate = "fika";
     fieldsToUpdate = {
       skickadFikapersonTillGrupp: true,
+      status: "2",
     };
     title = `Skicka information om personen som är intresserad av att vara med på fika till gruppledare och reserv för ${currentGroup.gruppnamn}`;
     defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
@@ -90,6 +98,7 @@ const FormToEmail = (props) => {
   }
 
   if (actionInForm === "sendFikerWelcome") {
+    collectionToUpdate = "fika";
     fieldsToUpdate = {
       skickadBekräftelseTillFikaperson: true,
     };
@@ -110,7 +119,7 @@ const FormToEmail = (props) => {
 
   async function dbUpdate() {
     setIsLoading(true);
-    db.collection("orders")
+    db.collection(collectionToUpdate)
       .doc(formData.id)
       .update(fieldsToUpdate)
       .then(() => {
@@ -201,6 +210,7 @@ const FormToEmail = (props) => {
                     "insertdatetime media table paste code help wordcount",
                   ],
                   toolbar:
+                    // eslint-disable-next-line no-multi-str
                     "undo redo | formatselect | bold italic backcolor | \
              alignleft aligncenter alignright alignjustify | \
              bullist numlist outdent indent | removeformat | help",

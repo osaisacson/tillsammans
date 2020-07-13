@@ -9,7 +9,7 @@ import Badge from "react-bootstrap/Badge";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-import Table from "../tables/Table";
+import GroupsTable from "../tables/GroupsTable";
 import AddButtonHeader from "./../../components/AddButtonHeader";
 import RefreshButton from "./../../components/RefreshButton";
 import GroupForm from "../users/GroupForm";
@@ -103,8 +103,8 @@ const Groups = (props) => {
             buttonTextSimple="Sätt admin privilegier"
             formForModal={<GrantAdminAccess groups={data.activeGroups} />}
           />
-          <Table
-            isGroups
+          <GroupsTable
+            groupData={props.groupData}
             tableData={data.activeGroups}
             refreshAction={getGroups}
           />
@@ -115,8 +115,8 @@ const Groups = (props) => {
             data.inactiveGroups.length ? data.inactiveGroups.length : 0
           })`}
         >
-          <Table
-            isGroups
+          <GroupsTable
+            groupData={props.groupData}
             tableData={data.inactiveGroups}
             refreshAction={getGroups}
           />

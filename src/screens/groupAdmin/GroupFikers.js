@@ -4,7 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
 
-import Table from "../tables/Table";
+import FikersTable from "../tables/FikersTable";
 import AddButtonHeader from "../../components/AddButtonHeader";
 import RefreshButton from "../../components/RefreshButton";
 import FikaForm from "../users/FikaForm";
@@ -84,8 +84,8 @@ const GroupFikers = (props) => {
             </span>
           }
         >
-          <Table
-            isFikers
+          <FikersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.newFikers}
             refreshAction={props.refreshAction}
@@ -99,8 +99,8 @@ const GroupFikers = (props) => {
               : 0
           })`}
         >
-          <Table
-            isFikers
+          <FikersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.welcomedFikers}
             refreshAction={props.refreshAction}
@@ -114,8 +114,8 @@ const GroupFikers = (props) => {
               : 0
           })`}
         >
-          <Table
-            isFikers
+          <FikersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.activeFikers}
             refreshAction={props.refreshAction}
@@ -129,25 +129,10 @@ const GroupFikers = (props) => {
               : 0
           })`}
         >
-          <Table
-            isFikers
+          <FikersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.pausedFikers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="olämpliga"
-          title={`Olämpliga (${
-            props.dbData.notSuitableFikers.length
-              ? props.dbData.notSuitableFikers.length
-              : 0
-          })`}
-        >
-          <Table
-            isFikers
-            groupId={props.groupId}
-            tableData={props.dbData.notSuitableFikers}
             refreshAction={props.refreshAction}
           />
         </Tab>

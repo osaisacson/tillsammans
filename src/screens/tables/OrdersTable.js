@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import MaterialTable from "material-table";
 
+import ReactHtmlParser from "react-html-parser";
+
 import firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -14,7 +16,8 @@ import { small, medium, large, xlarge } from "./CellSizes";
 import { groupStatusDropdown } from "./Dropdowns";
 
 const OrdersTable = (props) => {
-  const { isAdmin, tableData, groupData, refreshAction, groupId } = props;
+  const { isAdmin, tableData, groupData, refreshAction } = props;
+  console.log("GROUPDATA FROM ORDERS: ", groupData);
 
   const [data, setData] = useState(tableData);
   const db = firebase.firestore();
@@ -112,6 +115,17 @@ const OrdersTable = (props) => {
       field: "kommentarer",
       cellStyle: large,
       headerStyle: large,
+      render: (rowData) => (
+        <>
+          <div>{ReactHtmlParser(rowData.kommentarer)}</div>
+          <ButtonToAction
+            isOrder
+            isEditComments
+            formData={rowData}
+            refreshAction={refreshAction}
+          />
+        </>
+      ),
     },
     {
       title: "Beskrivning",

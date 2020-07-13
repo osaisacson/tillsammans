@@ -4,7 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
 
-import Table from "../tables/Table";
+import VolunteersTable from "../tables/VolunteersTable";
 import AddButtonHeader from "../../components/AddButtonHeader";
 import RefreshButton from "../../components/RefreshButton";
 import VolunteerForm from "../users/VolunteerForm";
@@ -81,8 +81,8 @@ const GroupVolunteers = (props) => {
             </span>
           }
         >
-          <Table
-            isVolunteers
+          <VolunteersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.newVolunteers}
             refreshAction={props.refreshAction}
@@ -96,8 +96,8 @@ const GroupVolunteers = (props) => {
               : 0
           })`}
         >
-          <Table
-            isVolunteers
+          <VolunteersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.welcomedVolunteers}
             refreshAction={props.refreshAction}
@@ -111,8 +111,8 @@ const GroupVolunteers = (props) => {
               : 0
           })`}
         >
-          <Table
-            isVolunteers
+          <VolunteersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.activeVolunteers}
             refreshAction={props.refreshAction}
@@ -126,25 +126,10 @@ const GroupVolunteers = (props) => {
               : 0
           })`}
         >
-          <Table
-            isVolunteers
+          <VolunteersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.pausedVolunteers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="olämpliga"
-          title={`Olämpliga (${
-            props.dbData.notSuitableVolunteers.length
-              ? props.dbData.notSuitableVolunteers.length
-              : 0
-          })`}
-        >
-          <Table
-            isVolunteers
-            groupId={props.groupId}
-            tableData={props.dbData.notSuitableVolunteers}
             refreshAction={props.refreshAction}
           />
         </Tab>

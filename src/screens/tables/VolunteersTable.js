@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import MaterialTable from "material-table";
 
+import ReactHtmlParser from "react-html-parser";
+
 import firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -97,6 +99,17 @@ const VolunteersTable = (props) => {
       field: "kommentarer",
       cellStyle: large,
       headerStyle: large,
+      render: (rowData) => (
+        <>
+          <div>{ReactHtmlParser(rowData.kommentarer)}</div>
+          <ButtonToAction
+            isVolunteer
+            isEditComments
+            formData={rowData}
+            refreshAction={refreshAction}
+          />
+        </>
+      ),
     },
     {
       title: "Beskrivning",

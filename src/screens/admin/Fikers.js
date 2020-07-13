@@ -4,7 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
 
-import Table from "../tables/Table";
+import FikersTable from "../tables/FikersTable";
 import AddButtonHeader from "../../components/AddButtonHeader";
 import RefreshButton from "../../components/RefreshButton";
 import FikaForm from "../users/FikaForm";
@@ -49,30 +49,28 @@ const Fikers = (props) => {
 
       <RefreshButton refreshAction={props.refreshAction} />
 
-      <Tabs defaultActiveKey="nya" id="0">
-        <Tab
-          eventKey="nya"
-          title={
-            <span>
-              Nya {""}
-              {props.dbData.newFikers.length ? (
+      <Tabs id="0">
+        {props.dbData.newFikers.length ? (
+          <Tab
+            eventKey="nya"
+            title={
+              <span>
+                Nya {""}
                 <Badge pill variant="danger">
                   {props.dbData.newFikers.length}
                 </Badge>
-              ) : (
-                0
-              )}
-            </span>
-          }
-        >
-          <Table
-            isAdmin
-            isFikers
-            groupId={props.groupId}
-            tableData={props.dbData.newFikers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
+              </span>
+            }
+          >
+            <FikersTable
+              isAdmin
+              groupData={props.groupData}
+              groupId={props.groupId}
+              tableData={props.dbData.newFikers}
+              refreshAction={props.refreshAction}
+            />
+          </Tab>
+        ) : null}
         <Tab
           eventKey="fördelade"
           title={`Fördelade till grupper (${
@@ -81,9 +79,9 @@ const Fikers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <FikersTable
             isAdmin
-            isFikers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.distributedFikers}
             refreshAction={props.refreshAction}
@@ -97,9 +95,9 @@ const Fikers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <FikersTable
             isAdmin
-            isFikers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.welcomedFikers}
             refreshAction={props.refreshAction}
@@ -113,9 +111,9 @@ const Fikers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <FikersTable
             isAdmin
-            isFikers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.activeFikers}
             refreshAction={props.refreshAction}
@@ -129,27 +127,11 @@ const Fikers = (props) => {
               : 0
           })`}
         >
-          <Table
+          <FikersTable
             isAdmin
-            isFikers
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.pausedFikers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="olämpliga"
-          title={`Olämpliga (${
-            props.dbData.notSuitableFikers.length
-              ? props.dbData.notSuitableFikers.length
-              : 0
-          })`}
-        >
-          <Table
-            isAdmin
-            isFikers
-            groupId={props.groupId}
-            tableData={props.dbData.notSuitableFikers}
             refreshAction={props.refreshAction}
           />
         </Tab>

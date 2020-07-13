@@ -4,12 +4,14 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
 
-import Table from "../tables/Table";
+import OrdersTable from "../tables/OrdersTable";
 import HelpForm from "../users/HelpForm";
 import AddButtonHeader from "../../components/AddButtonHeader";
 import RefreshButton from "../../components/RefreshButton";
 
 const GroupOrders = (props) => {
+  console.log("GROUPDATA FROM UP ORDERS: ", props.groupData);
+
   return (
     <div className="page-layout">
       <AddButtonHeader
@@ -70,7 +72,7 @@ const GroupOrders = (props) => {
       </a>
       <RefreshButton refreshAction={props.refreshAction} />
 
-      <Tabs defaultActiveKey="nya" id="0">
+      <Tabs id="0">
         <Tab
           eventKey="nya"
           title={
@@ -86,37 +88,21 @@ const GroupOrders = (props) => {
             </span>
           }
         >
-          <Table
-            isOrders
+          <OrdersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.distributedGroupOrders}
             refreshAction={props.refreshAction}
           />
         </Tab>
-        {/* <Tab
-          eventKey="aktiva"
-          title={`Fördelade (${
-            props.dbData.distributedVolunteerOrders.length
-              ? props.dbData.distributedVolunteerOrders.length
-              : 0
-          })`}
-        >
-          <Table
-          isOrders
-            groupId={props.groupId}
-        
-            tableData={props.dbData.distributedVolunteerOrders}
-            refreshAction={props.refreshAction}
-          />
-        </Tab> */}
         <Tab
           eventKey="klara"
           title={`Klara (${
             props.dbData.doneOrders.length ? props.dbData.doneOrders.length : 0
           })`}
         >
-          <Table
-            isOrders
+          <OrdersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.doneOrders}
             refreshAction={props.refreshAction}
@@ -130,8 +116,8 @@ const GroupOrders = (props) => {
               : 0
           })`}
         >
-          <Table
-            isOrders
+          <OrdersTable
+            groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.pausedOrders}
             refreshAction={props.refreshAction}
