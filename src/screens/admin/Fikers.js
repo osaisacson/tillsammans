@@ -66,8 +66,9 @@ const Fikers = (props) => {
           }
         >
           <Table
+            isAdmin
+            isFikers
             groupId={props.groupId}
-            isFikers={true}
             tableData={props.dbData.newFikers}
             refreshAction={props.refreshAction}
           />
@@ -81,8 +82,9 @@ const Fikers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isFikers
             groupId={props.groupId}
-            isFikers={true}
             tableData={props.dbData.distributedFikers}
             refreshAction={props.refreshAction}
           />
@@ -96,8 +98,9 @@ const Fikers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isFikers
             groupId={props.groupId}
-            isFikers={true}
             tableData={props.dbData.welcomedFikers}
             refreshAction={props.refreshAction}
           />
@@ -111,8 +114,9 @@ const Fikers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isFikers
             groupId={props.groupId}
-            isFikers={true}
             tableData={props.dbData.activeFikers}
             refreshAction={props.refreshAction}
           />
@@ -126,8 +130,9 @@ const Fikers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isFikers
             groupId={props.groupId}
-            isFikers={true}
             tableData={props.dbData.pausedFikers}
             refreshAction={props.refreshAction}
           />
@@ -141,8 +146,9 @@ const Fikers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isFikers
             groupId={props.groupId}
-            isFikers={true}
             tableData={props.dbData.notSuitableFikers}
             refreshAction={props.refreshAction}
           />

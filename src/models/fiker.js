@@ -6,7 +6,7 @@ class Fiker {
     efternamn,
     telefon,
     email,
-    description,
+    beskrivning,
     oldSchool,
     newSchool,
     interests,
@@ -30,7 +30,7 @@ class Fiker {
     this.efternamn = efternamn;
     this.telefon = telefon;
     this.email = email;
-    this.description = description;
+    this.beskrivning = beskrivning;
     this.oldSchool = oldSchool;
     this.newSchool = newSchool;
     this.interests = interests;

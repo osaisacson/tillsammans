@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import Group from './../../models/group';
-import moment from 'moment';
+import React, { useEffect, useState } from "react";
+import Group from "./../../models/group";
+import moment from "moment";
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import Badge from 'react-bootstrap/Badge';
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import Badge from "react-bootstrap/Badge";
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
-import Table from '../tables/Table';
-import AddButtonHeader from './../../components/AddButtonHeader';
-import RefreshButton from './../../components/RefreshButton';
-import GroupForm from '../users/GroupForm';
-import Accordion from './../../components/Accordion';
-import GrantAdminAccess from './../admin/GrantAdminAccess';
+import Table from "../tables/Table";
+import AddButtonHeader from "./../../components/AddButtonHeader";
+import RefreshButton from "./../../components/RefreshButton";
+import GroupForm from "../users/GroupForm";
+import Accordion from "./../../components/Accordion";
+import GrantAdminAccess from "./../admin/GrantAdminAccess";
 
 const Groups = (props) => {
   const firestore = firebase.firestore();
@@ -25,11 +25,11 @@ const Groups = (props) => {
 
   async function getGroups() {
     const groups = [];
-    const querySnapshot = await firestore.collection('groups').get();
+    const querySnapshot = await firestore.collection("groups").get();
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format('lll');
+      const readableDate = moment(new Date(resData.datum)).format("lll");
 
       groups.push(
         new Group(
@@ -52,8 +52,8 @@ const Groups = (props) => {
     });
 
     setData({
-      activeGroups: groups.filter((data) => data.status === 'aktiv'),
-      inactiveGroups: groups.filter((data) => data.status === 'inaktiv'),
+      activeGroups: groups.filter((data) => data.status === "aktiv"),
+      inactiveGroups: groups.filter((data) => data.status === "inaktiv"),
     });
   }
   useEffect(() => {
@@ -88,7 +88,7 @@ const Groups = (props) => {
           eventKey="aktiva"
           title={
             <span>
-              Aktiva Grupper{' '}
+              Aktiva Grupper{" "}
               {data.activeGroups.length ? (
                 <Badge pill variant="danger">
                   {data.activeGroups.length}
@@ -104,7 +104,7 @@ const Groups = (props) => {
             formForModal={<GrantAdminAccess groups={data.activeGroups} />}
           />
           <Table
-            isGroups={true}
+            isGroups
             tableData={data.activeGroups}
             refreshAction={getGroups}
           />
@@ -116,7 +116,7 @@ const Groups = (props) => {
           })`}
         >
           <Table
-            isGroups={true}
+            isGroups
             tableData={data.inactiveGroups}
             refreshAction={getGroups}
           />

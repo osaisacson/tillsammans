@@ -69,7 +69,8 @@ const Orders = (props) => {
           }
         >
           <Table
-            isOrders={true}
+            isAdmin
+            isOrders
             tableData={props.dbData.newOrders}
             refreshAction={props.refreshAction}
           />
@@ -83,7 +84,8 @@ const Orders = (props) => {
           })`}
         >
           <Table
-            isOrders={true}
+            isAdmin
+            isOrders
             tableData={props.dbData.assignedToGroup}
             refreshAction={props.refreshAction}
           />
@@ -95,7 +97,8 @@ const Orders = (props) => {
           })`}
         >
           <Table
-            isOrders={true}
+            isAdmin
+            isOrders
             tableData={props.dbData.doneOrders}
             refreshAction={props.refreshAction}
           />
@@ -109,22 +112,9 @@ const Orders = (props) => {
           })`}
         >
           <Table
-            isOrders={true}
+            isAdmin
+            isOrders
             tableData={props.dbData.pausedOrders}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="avbokad"
-          title={`Avbokade (${
-            props.dbData.cancelledOrders.length
-              ? props.dbData.cancelledOrders.length
-              : 0
-          })`}
-        >
-          <Table
-            isOrders={true}
-            tableData={props.dbData.cancelledOrders}
             refreshAction={props.refreshAction}
           />
         </Tab>

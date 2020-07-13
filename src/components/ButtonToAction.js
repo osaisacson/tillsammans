@@ -8,28 +8,58 @@ import "firebase/firestore";
 import Modal from "react-bootstrap/Modal";
 
 const ButtonToAction = (props) => {
+  let conditionForGreen;
+  let conditionForDisabled;
   let fieldsToUpdate;
-  let statusCopy = "";
+  let localStatusCopy = "";
   let currentGroup = "";
+  let buttonCopy = "";
+  let statusCopy = "";
   let modalTitle;
   let modalContent;
+
+  const {
+    isOrder,
+    isVolunteer,
+    isFiker,
+    isGroup,
+    isSetGroups,
+    isSetConfirmed,
+    isSetReady,
+    isToggleActive,
+    groupData,
+    refreshAction,
+    successKey,
+  } = props;
+
+  const { status, email, telefon, gruppId, id } = props.formData;
 
   const db = firebase.firestore();
 
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [groupID, setGroupID] = useState(props.groupId ? props.groupId : "");
+  const [groupID, setGroupID] = useState(gruppId ? gruppId : "");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const collectionToUpdate = isOrder
+    ? "orders"
+    : isVolunteer
+    ? "volunteers"
+    : isFiker
+    ? "fika"
+    : isGroup
+    ? "groups"
+    : null;
 
   async function dbUpdate() {
     setIsLoading(true);
     handleClose();
-    db.collection("orders")
-      .doc(props.orderId)
+    db.collection(collectionToUpdate)
+      .doc(id)
       .update(fieldsToUpdate)
       .then(() => {
-        props.refreshAction().then(() => {
+        refreshAction().then(() => {
           setIsLoading(false);
         });
       });
@@ -43,14 +73,16 @@ const ButtonToAction = (props) => {
   };
 
   //Actions if the button action is to set/change a group
-  if (props.isSetGroups && props.groupId) {
-    if (props.groupData) {
-      currentGroup = props.groupData.find((data) => data.id === groupID);
-      statusCopy =
+  if (isSetGroups && gruppId) {
+    if (groupData) {
+      currentGroup = groupData.find((data) => data.id === groupID);
+      localStatusCopy =
         currentGroup && currentGroup.gruppnamn
           ? currentGroup.gruppnamn
           : "Ingen grupp ännu";
     }
+    conditionForGreen = groupData && groupData !== "0";
+    buttonCopy = gruppId && gruppId !== "0" ? "Välj annan grupp" : "Välj grupp";
     modalTitle = "Fördela till grupp";
     modalContent = (
       <>
@@ -67,7 +99,7 @@ const ButtonToAction = (props) => {
             Ingen grupp
           </label>
         </div>
-        {props.groupData.map((item) => {
+        {groupData.map((item) => {
           return (
             <div className="form-check" key={item.id}>
               <label>
@@ -93,7 +125,18 @@ const ButtonToAction = (props) => {
   }
 
   //Actions if the button action is to set the order status as ready
-  if (props.isSetConfirmed) {
+  if (isSetConfirmed) {
+    conditionForGreen = successKey;
+    conditionForDisabled = !gruppId || gruppId === "0" || successKey;
+    statusCopy =
+      !gruppId || gruppId === "0"
+        ? "Välj grupp först"
+        : successKey
+        ? "Beställning bekräftad"
+        : !email && telefon
+        ? `Bekräfta via ${telefon}`
+        : "Ingen email eller telefon";
+    buttonCopy = successKey ? "Beställare uppringd" : "Klicka när kontaktad";
     modalTitle = "Markera beställningen som bekräftad";
     modalContent =
       "Har du kontaktat beställaren för att bekräfta att vi mottagit beställningen och att en volontär är på väg?";
@@ -103,12 +146,43 @@ const ButtonToAction = (props) => {
   }
 
   //Actions if the button action is to set the order status as ready
-  if (props.isSetReady) {
+  if (isSetReady) {
+    conditionForGreen = status === "4";
+    conditionForDisabled = !gruppId || gruppId === "0" || status === "4";
+    statusCopy =
+      !gruppId || gruppId === "0"
+        ? "Välj grupp först"
+        : status === "4"
+        ? "Beställningen utförd"
+        : "Inte utförd ännu";
+
+    buttonCopy = status === "4" ? "Klar!" : "Klicka när klar";
     modalTitle = "Markera beställningen som klar";
     modalContent =
       "Har du bekräftat att beställningen är utförd och vill markera den som klar i systemet? Du kan inte ångra det efteråt.";
     fieldsToUpdate = {
       status: "4",
+    };
+  }
+
+  if (isToggleActive) {
+    conditionForGreen = status === "4";
+    conditionForDisabled = !gruppId || gruppId === "0";
+    statusCopy =
+      !gruppId || gruppId === "0"
+        ? "Välj grupp först"
+        : status === "4"
+        ? "Satt som aktiv"
+        : "Klicka för att ändra till aktiv";
+
+    buttonCopy = status === "4" ? "Aktiv" : "Inte aktiv";
+    modalTitle = "Sätt volontären som 'aktiv'";
+    modalContent =
+      status === "4"
+        ? "Vill du sätta volontären som 'inte aktiv' i systemet?"
+        : "Har du bekräftat att volontären har blivit välkomnad och tränad och är redo att bli satt som 'aktiv' i systemet?";
+    fieldsToUpdate = {
+      status: status === "4" ? "5" : "4",
     };
   }
 
@@ -118,15 +192,15 @@ const ButtonToAction = (props) => {
         <div>...sparar</div>
       ) : (
         <>
-          <div>{props.statusCopy ? props.statusCopy : statusCopy}</div>
+          <div>{statusCopy ? statusCopy : localStatusCopy}</div>
           <Button
-            disabled={props.conditionForDisabled}
+            disabled={conditionForDisabled}
             className={`form-to-email-button ${
-              props.conditionForGreen ? "green" : "red"
+              conditionForGreen ? "green" : "red"
             }`}
             onClick={handleShow}
           >
-            {props.buttonCopy}
+            {buttonCopy}
           </Button>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>{modalTitle}</Modal.Header>

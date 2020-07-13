@@ -66,7 +66,7 @@ const FikaForm = (props) => {
       efternamn: editedFiker ? editedFiker.efternamn : "",
       telefon: editedFiker ? editedFiker.telefon : "",
       email: editedFiker ? editedFiker.email : "",
-      description: editedFiker ? editedFiker.description : "",
+      beskrivning: editedFiker ? editedFiker.beskrivning : "",
       interests: editedFiker ? editedFiker.interests : "",
       språk: editedFiker ? editedFiker.språk : "",
       oldSchool: editedFiker ? editedFiker.oldSchool : "",
@@ -86,7 +86,7 @@ const FikaForm = (props) => {
       email: editedFiker ? true : false,
       oldSchool: editedFiker ? true : false,
       newSchool: editedFiker ? true : false,
-      description: editedFiker ? true : false,
+      beskrivning: editedFiker ? true : false,
       interests: editedFiker ? true : false,
       språk: editedFiker ? true : false,
       books: editedFiker ? true : false,
@@ -114,7 +114,7 @@ const FikaForm = (props) => {
       email: formState.inputValues.email,
       oldSchool: oldSchool,
       newSchool: newSchool,
-      description: formState.inputValues.description,
+      beskrivning: formState.inputValues.beskrivning,
       interests: formState.inputValues.interests,
       språk: formState.inputValues.språk,
       books: books,
@@ -253,10 +253,10 @@ const FikaForm = (props) => {
           <Form.Control
             as="textarea"
             rows="3"
-            name="description"
-            value={formState.inputValues.description}
+            name="beskrivning"
+            value={formState.inputValues.beskrivning}
             type="text"
-            onChange={textChangeHandler.bind(this, "description")}
+            onChange={textChangeHandler.bind(this, "beskrivning")}
           />
         </Form.Group>
         <Form.Row>

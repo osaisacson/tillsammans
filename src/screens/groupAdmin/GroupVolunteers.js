@@ -82,8 +82,8 @@ const GroupVolunteers = (props) => {
           }
         >
           <Table
+            isVolunteers
             groupId={props.groupId}
-            isGroupVolunteers={true}
             tableData={props.dbData.newVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -97,8 +97,8 @@ const GroupVolunteers = (props) => {
           })`}
         >
           <Table
+            isVolunteers
             groupId={props.groupId}
-            isGroupVolunteers={true}
             tableData={props.dbData.welcomedVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -112,8 +112,8 @@ const GroupVolunteers = (props) => {
           })`}
         >
           <Table
+            isVolunteers
             groupId={props.groupId}
-            isGroupVolunteers={true}
             tableData={props.dbData.activeVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -127,8 +127,8 @@ const GroupVolunteers = (props) => {
           })`}
         >
           <Table
+            isVolunteers
             groupId={props.groupId}
-            isGroupVolunteers={true}
             tableData={props.dbData.pausedVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -142,8 +142,8 @@ const GroupVolunteers = (props) => {
           })`}
         >
           <Table
+            isVolunteers
             groupId={props.groupId}
-            isGroupVolunteers={true}
             tableData={props.dbData.notSuitableVolunteers}
             refreshAction={props.refreshAction}
           />

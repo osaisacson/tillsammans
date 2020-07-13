@@ -11,7 +11,6 @@ import Home from "./screens/Home";
 //User screens
 import Apply from "./screens/users/Apply";
 import Partners from "./screens/info/Partners";
-import Cancel from "./screens/users/Cancel";
 import Volunteer from "./screens/users/Volunteer";
 import Fiker from "./screens/users/Fiker";
 import News from "./screens/info/News";
@@ -22,7 +21,6 @@ import GroupAdminRouter from "./screens/groupAdmin/GroupAdminRouter";
 import Orders from "./screens/admin/Orders";
 import Volunteers from "./screens/admin/Volunteers";
 import Groups from "./screens/admin/Groups";
-import Cancellations from "./screens/admin/Cancellations";
 import Mottaget from "./screens/users/Mottaget";
 import GrantAdminAccess from "./screens/admin/GrantAdminAccess";
 import Account from "./screens/admin/Account";
@@ -52,9 +50,6 @@ function App(props) {
           {/* For users */}
           <Route path="/bestallning">
             <Apply />
-          </Route>
-          <Route path="/avboka">
-            <Cancel />
           </Route>
           <Route path="/bli-volontar">
             <Volunteer />
@@ -115,14 +110,6 @@ function App(props) {
             path="/admin/grupper"
             exact
             component={Groups}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-            mainAdminOnly={true}
-          />
-          <ProtectedRoute
-            path="/admin/avbokningar"
-            exact
-            component={Cancellations}
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
             mainAdminOnly={true}

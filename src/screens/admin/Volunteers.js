@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import Badge from 'react-bootstrap/Badge';
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import Badge from "react-bootstrap/Badge";
 
-import Table from '../tables/Table';
-import AddButtonHeader from './../../components/AddButtonHeader';
-import RefreshButton from './../../components/RefreshButton';
-import VolunteerForm from './../users/VolunteerForm';
-import Accordion from './../../components/Accordion';
+import Table from "../tables/Table";
+import AddButtonHeader from "./../../components/AddButtonHeader";
+import RefreshButton from "./../../components/RefreshButton";
+import VolunteerForm from "./../users/VolunteerForm";
+import Accordion from "./../../components/Accordion";
 
 const Volunteers = (props) => {
   return (
@@ -54,7 +54,7 @@ const Volunteers = (props) => {
           eventKey="nya"
           title={
             <span>
-              Nya {''}
+              Nya {""}
               {props.dbData.newVolunteers.length ? (
                 <Badge pill variant="danger">
                   {props.dbData.newVolunteers.length}
@@ -66,8 +66,9 @@ const Volunteers = (props) => {
           }
         >
           <Table
+            isAdmin
+            isVolunteers
             groupId={props.groupId}
-            isVolunteers={true}
             tableData={props.dbData.newVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -81,8 +82,9 @@ const Volunteers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isVolunteers
             groupId={props.groupId}
-            isVolunteers={true}
             tableData={props.dbData.distributedVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -96,8 +98,9 @@ const Volunteers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isVolunteers
             groupId={props.groupId}
-            isVolunteers={true}
             tableData={props.dbData.welcomedVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -112,7 +115,8 @@ const Volunteers = (props) => {
         >
           <Table
             groupId={props.groupId}
-            isVolunteers={true}
+            isAdmin
+            isVolunteers
             tableData={props.dbData.activeVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -126,8 +130,9 @@ const Volunteers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isVolunteers
             groupId={props.groupId}
-            isVolunteers={true}
             tableData={props.dbData.pausedVolunteers}
             refreshAction={props.refreshAction}
           />
@@ -141,8 +146,9 @@ const Volunteers = (props) => {
           })`}
         >
           <Table
+            isAdmin
+            isVolunteers
             groupId={props.groupId}
-            isVolunteers={true}
             tableData={props.dbData.notSuitableVolunteers}
             refreshAction={props.refreshAction}
           />

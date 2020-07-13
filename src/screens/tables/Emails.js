@@ -94,7 +94,7 @@ const fikaInfo = (content) => {
     content.telefon ? content.telefon : "-"
   } </pre>
   <pre><strong> Beskrivning:  </strong> ${
-    content.description ? content.description : "-"
+    content.beskrivning ? content.beskrivning : "-"
   } </pre>
   <pre><strong>  Språkpreferens: </strong> ${
     content.språk ? content.språk : "-"
@@ -121,7 +121,7 @@ const fikaInfo = (content) => {
 `;
 };
 
-export const sendOrderEmail = (content) => {
+export const sendOrderToGroup = (content) => {
   return `
   <p>Hej!</p>
   <p>Ni har fått in en ny beställning till er volontärgrupp från Alla Tillsammans: </p>
@@ -136,7 +136,7 @@ export const sendOrderEmail = (content) => {
   `;
 };
 
-export const sendConfirmationEmail = (content, group) => {
+export const sendConfirmationToRecipientEmail = (content, group) => {
   return `
   <p>Hej!</p>
   <p>Er beställning på tjorn.allatillsammans.se har mottagits och fördelats till ${
@@ -157,7 +157,7 @@ export const sendConfirmationEmail = (content, group) => {
   `;
 };
 
-export const sendVolunteerOrderEmail = (content, group) => {
+export const sendOrderInfoToVolonteerEmail = (content, group) => {
   return `
   <p>Hej!</p>
   <p>Jag har satt upp dig som volontär för att utföra nedan beställning. Kontakta gärna mig om du har några frågor!</p>
@@ -168,7 +168,7 @@ export const sendVolunteerOrderEmail = (content, group) => {
   `;
 };
 
-export const sendVolunteerEmail = (content) => {
+export const sendVolunteerInfoToGroupEmail = (content) => {
   return `
   <p>Hej!</p>
   <p>Ni har fått in en ny volontär till er volontärgrupp från Alla Tillsammans: </p>
@@ -181,7 +181,40 @@ export const sendVolunteerEmail = (content) => {
   `;
 };
 
-export const sendWelcomeEmail = (content, group) => {
+export const sendFikerInfoToGroupEmail = (content) => {
+  return `
+  <p>Hej!</p>
+  <p>Ni har fått in en ny intressent till er fikagrupp från Alla Tillsammans: </p>
+  ${fikaInfo(content)}
+  <p>Gå in på er sida (kontakta tjorn@allatillsammans.se om ni behöver adressen/login) och hitta alla detaljer om nästa steg där.</p>
+  <p> Med vänliga hälsningar,</p>
+  <div> Samordnaren</div>
+  <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+  <div> tjorn@allatillsammans.se</div>
+  `;
+};
+
+export const sendWelcomeToFikerEmail = (content, group) => {
+  return `
+  <p>Hej ${content.förnamn ? content.förnamn : ""} ${
+    content.efternamn ? content.efternamn : ""
+  }, välkommen till Alla Tillsammans - Tjörn!</p>
+  <p>Vi har tagit emot din anmälan om att vara med på Corona fika. Tack!</p>
+  <p>Du har blivit uppsatt på gruppen ${
+    group.gruppnamn
+  }. Du kommer bli kontaktad av fikachefen om tid, datum och tema för nästa fika när detta är på gång.</p>
+  <p>Om du har några frågor under tiden kontakta gärna gruppledarna nedan eller tjorn@allatillsammans.se!</p>
+  <div>Kontaktpersoner för ${group.gruppnamn}</div>
+  <p>Gruppledare: ${group.kontakt} - ${group.email}, ${group.telefon}</p>
+  <p>Reserv: ${group.reserv} - ${group.reservEmail}, ${group.reservTelefon}</p>
+  <p> Med vänliga hälsningar,</p>
+  <div> Samordnaren</div>
+  <div> Volontärplattform Tjörn - civilsamhället i samverkan</div>
+  <div> tjorn@allatillsammans.se</div>
+  `;
+};
+
+export const sendWelcomeToVolunteerEmail = (content, group) => {
   return `
   <p>Hej ${content.förnamn ? content.förnamn : ""} ${
     content.efternamn ? content.efternamn : ""

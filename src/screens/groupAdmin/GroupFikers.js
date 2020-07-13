@@ -85,8 +85,8 @@ const GroupFikers = (props) => {
           }
         >
           <Table
+            isFikers
             groupId={props.groupId}
-            isGroupFikers={true}
             tableData={props.dbData.newFikers}
             refreshAction={props.refreshAction}
           />
@@ -100,8 +100,8 @@ const GroupFikers = (props) => {
           })`}
         >
           <Table
+            isFikers
             groupId={props.groupId}
-            isGroupFikers={true}
             tableData={props.dbData.welcomedFikers}
             refreshAction={props.refreshAction}
           />
@@ -115,8 +115,8 @@ const GroupFikers = (props) => {
           })`}
         >
           <Table
+            isFikers
             groupId={props.groupId}
-            isGroupFikers={true}
             tableData={props.dbData.activeFikers}
             refreshAction={props.refreshAction}
           />
@@ -130,8 +130,8 @@ const GroupFikers = (props) => {
           })`}
         >
           <Table
+            isFikers
             groupId={props.groupId}
-            isGroupFikers={true}
             tableData={props.dbData.pausedFikers}
             refreshAction={props.refreshAction}
           />
@@ -145,8 +145,8 @@ const GroupFikers = (props) => {
           })`}
         >
           <Table
+            isFikers
             groupId={props.groupId}
-            isGroupFikers={true}
             tableData={props.dbData.notSuitableFikers}
             refreshAction={props.refreshAction}
           />

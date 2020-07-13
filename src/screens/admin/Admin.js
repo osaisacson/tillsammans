@@ -12,7 +12,6 @@ import Fikers from "./Fikers";
 import Volunteers from "./Volunteers";
 import Orders from "./Orders";
 import Groups from "./Groups";
-// import Cancellations from "./Cancellations";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -46,7 +45,6 @@ const Admin = (props) => {
     assignedToGroup: [],
     doneOrders: [],
     pausedOrders: [],
-    cancelledOrders: [],
   });
 
   //Get orders data
@@ -91,7 +89,6 @@ const Admin = (props) => {
       assignedToGroup: orders.filter((data) => data.status === "2"),
       doneOrders: orders.filter((data) => data.status === "4"),
       pausedOrders: orders.filter((data) => data.status === "5"),
-      cancelledOrders: orders.filter((data) => data.status === "6"),
     });
   }
 
@@ -163,7 +160,7 @@ const Admin = (props) => {
           resData.efternamn,
           resData.telefon,
           resData.email,
-          resData.description,
+          resData.beskrivning,
           resData.oldSchool,
           resData.newSchool,
           resData.interests,
@@ -309,9 +306,6 @@ const Admin = (props) => {
         <Tab className="fat-tab" title="Grupper" eventKey="fourth">
           <Groups />
         </Tab>
-        {/* <Tab title="Avbokningar" eventKey="fifth">
-          <Cancellations />
-        </Tab> */}
       </Tabs>
     </div>
   );

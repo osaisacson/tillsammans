@@ -9,13 +9,14 @@ import Button from "react-bootstrap/Button";
 import FormInput from "./FormInput";
 
 import {
-  sendOrderEmail,
-  sendConfirmationEmail,
-  sendVolunteerOrderEmail,
-  sendVolunteerEmail,
-  sendGeneralVolunteerInfo,
+  sendOrderToGroup,
+  sendConfirmationToRecipientEmail,
+  sendOrderInfoToVolonteerEmail,
+  sendVolunteerInfoToGroupEmail,
+  sendWelcomeToVolunteerEmail,
+  sendFikerInfoToGroupEmail,
+  sendWelcomeToFikerEmail,
   sendGeneralFikerInfo,
-  sendWelcomeEmail,
 } from "./../screens/tables/Emails";
 
 const FormToEmail = (props) => {
@@ -36,7 +37,27 @@ const FormToEmail = (props) => {
     title = `Skicka information om beställningen till gruppledare och reserv för ${currentGroup.gruppnamn}`;
     defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
     defaultSubject = `Ny beställning mottagen från ${formData.förnamn} ${formData.efternamn}`;
-    defaultTemplate = sendOrderEmail(formData); //Template for sending order to a group
+    defaultTemplate = sendOrderToGroup(formData); //Template for sending order to a group
+  }
+
+  if (actionInForm === "sendVolunteerInfoToGroup") {
+    fieldsToUpdate = {
+      skickadVolontärTillGrupp: true,
+    };
+    title = `Skicka information om volontären till gruppledare och reserv för ${currentGroup.gruppnamn}`;
+    defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
+    defaultSubject = `Ny volontär mottagen: ${formData.förnamn} ${formData.efternamn}`;
+    defaultTemplate = sendVolunteerInfoToGroupEmail(formData); //Template for sending volunteer to a group
+  }
+
+  if (actionInForm === "sendVolunteerWelcome") {
+    fieldsToUpdate = {
+      skickadBekräftelseTillVolontär: true,
+    };
+    title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi registrerat deras intresse att bli volontär`;
+    defaultEmail = formData.email;
+    defaultSubject = `Tack för ditt intresse att bli volontär!`;
+    defaultTemplate = sendWelcomeToVolunteerEmail(formData, currentGroup); //Template for sending a welcome email to the volunteer
   }
 
   if (actionInForm === "sendAndUpdateToConfirmed") {
@@ -46,7 +67,7 @@ const FormToEmail = (props) => {
     title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi mottagit deras beställning`;
     defaultEmail = formData.email;
     defaultSubject = `Tack för din beställning!`;
-    defaultTemplate = sendConfirmationEmail(formData, currentGroup); //Template for sending a confirmation of receipt to the ordering individual
+    defaultTemplate = sendConfirmationToRecipientEmail(formData, currentGroup); //Template for sending a confirmation of receipt to the ordering individual
   }
 
   if (actionInForm === "sendAndUpdateVolunteer") {
@@ -55,7 +76,27 @@ const FormToEmail = (props) => {
     };
     title = `Skicka information om beställningen till den volontär som du fördelar ärendet till`;
     defaultSubject = `Ny beställning att utföra från ${formData.förnamn} ${formData.efternamn}`;
-    defaultTemplate = sendVolunteerOrderEmail(formData, currentGroup); //Template for sending a confirmation of receipt to the ordering individual
+    defaultTemplate = sendOrderInfoToVolonteerEmail(formData, currentGroup); //Template for sending a confirmation of receipt to the ordering individual
+  }
+
+  if (actionInForm === "sendFikerInfoToGroup") {
+    fieldsToUpdate = {
+      skickadFikapersonTillGrupp: true,
+    };
+    title = `Skicka information om personen som är intresserad av att vara med på fika till gruppledare och reserv för ${currentGroup.gruppnamn}`;
+    defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
+    defaultSubject = `Ny intressent till fikagrupp mottagen: ${formData.förnamn} ${formData.efternamn}`;
+    defaultTemplate = sendFikerInfoToGroupEmail(formData); //Template for sending person interested in a fika to a fika group
+  }
+
+  if (actionInForm === "sendFikerWelcome") {
+    fieldsToUpdate = {
+      skickadBekräftelseTillFikaperson: true,
+    };
+    title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi registrerat deras intresse för fika`;
+    defaultEmail = formData.email;
+    defaultSubject = `Tack för ditt intresse att vara med på fika!`;
+    defaultTemplate = sendWelcomeToFikerEmail(formData, currentGroup); //Template for sending a welcome email to the volunteer
   }
 
   const [email, setEmail] = useState(defaultEmail);
