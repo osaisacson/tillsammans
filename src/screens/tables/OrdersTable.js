@@ -28,6 +28,7 @@ const OrdersTable = (props) => {
       title: "Mottaget",
       field: "datum",
       editable: "never",
+      defaultSort: "desc",
     },
     {
       title: "Tid kan vänta",

@@ -27,6 +27,7 @@ const VolunteersTable = (props) => {
       title: "Mottaget",
       field: "datum",
       editable: "never",
+      defaultSort: "desc",
     },
     {
       title: "Förnamn",
