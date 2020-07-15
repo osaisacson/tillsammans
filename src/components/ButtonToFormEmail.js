@@ -33,7 +33,7 @@ const ButtonToFormEmail = (props) => {
       : successKey
       ? `Skickad till grupp`
       : `Inte skickad till grupp ännu`;
-    buttonCopy = successKey ? "Skicka igen" : `Skicka till grupp`;
+    buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka till grupp`;
   }
 
   if (isSendToRecipient) {
@@ -42,7 +42,7 @@ const ButtonToFormEmail = (props) => {
       : successKey
       ? `Bekräftelse skickad`
       : `Ingen bekräftelse skickad`;
-    buttonCopy = successKey ? "Skicka igen" : `Skicka bekräftelse`;
+    buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka bekräftelse`;
   }
 
   if (isSendToVolunteer) {
@@ -51,7 +51,7 @@ const ButtonToFormEmail = (props) => {
       : successKey
       ? `Skickad till volontär`
       : `Ingen volontär ännu`;
-    buttonCopy = successKey ? "Skicka igen" : `Skicka till volontär`;
+    buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka till volontär`;
   }
 
   return (
