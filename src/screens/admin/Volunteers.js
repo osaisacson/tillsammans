@@ -88,8 +88,8 @@ const Volunteers = (props) => {
           />
         </Tab>
         <Tab
-          eventKey="välkomnade"
-          title={`Välkomnade (${
+          eventKey="Att tränas"
+          title={`Att tränas (${
             props.dbData.toBeTrainedVolunteers.length
               ? props.dbData.toBeTrainedVolunteers.length
               : 0

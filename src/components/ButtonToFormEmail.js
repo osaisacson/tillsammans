@@ -43,7 +43,7 @@ const ButtonToFormEmail = (props) => {
       ? "Välj grupp först"
       : successKey
       ? actionInForm === "sendVolunteerWelcome"
-        ? "Volontär välkomnad"
+        ? "Volontär välkomnad!"
         : `Bekräftelse skickad!`
       : actionInForm === "sendVolunteerWelcome"
       ? "Voluntär inte välkomnad ännu"

@@ -16,6 +16,6 @@ export const large = {
 };
 
 export const xlarge = {
-  width: 350,
-  minWidth: 350,
+  width: 360,
+  minWidth: 360,
 };

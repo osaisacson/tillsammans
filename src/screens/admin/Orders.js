@@ -11,7 +11,7 @@ import AddButtonHeader from "./../../components/AddButtonHeader";
 import RefreshButton from "./../../components/RefreshButton";
 import Accordion from "./../../components/Accordion";
 
-const Orders = (props) => {
+const Orders = ({ groupData, dbData, refreshAction }) => {
   return (
     <div className="page-layout">
       <AddButtonHeader
@@ -24,84 +24,75 @@ const Orders = (props) => {
         title="Hur vi hanterar beställningar"
         content="
         <h5>Uppdatera i vårt system</h5>
-        <ol>
-        <li>Öppna redigering genom att klicka på pennan till vänster om beställningen</li>
-        <li>Välj grupp under 'Grupp'</li>
-        <li>Ändra status till 'Fördelad till grupp' under 'Status'.</li>
-        <li>Klicka på spara symbolen för att spara ändringar - om inte ändringarna syns direkt klicka refresh-knappen till höger</li>
-        </ol>
+        <ul>
+        <li>Generellt: samordnaren ansvarar för att de första två (och om beställaren har en email, tre) knapparna under 'status' blir gröna.</li>
+        </ul>
         <br/>
-        <h5>Kommunicera med beställare</h5>
+        <h5>Steg för hantering</h5>
         <ol>
-        <li>Under 'Bekräftelse till beställare' klicka 'Skicka bekräftelse' - detta öppnar din email med mailet och addressen redan klart.</li>
-        <li>Om det istället för ovan knapp står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta beställaren.</li>
-        <li>När skickat - klicka knappen 'Kontaktad'</li>
-      </ol>
-      <br/>
-
-        <h5>Kommunicera beställning till grupp</h5>
-        <ol>
-        <li>Under 'Detaljer till grupp' klicka 'Skicka detaljer' - detta öppnar din email med mailet redan klart.</li>
-        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren det ska skickas till</li>
-        <li>När skickat - klicka knappen 'Skickad'</li>
+        <li>Under 'Status' klicka 'Välj grupp'</li>
+        <li>När detta är klart klicka 'Skicka till grupp'</li>
+        <li>Om beställaren har registrerat en email så är det samordnarens jobb att skicka bekräftelsemailet till beställaren via knappen 'Skicka bekräftelse'. Annars om det står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta beställaren.</li>
+        <li>Klart!</li>
       </ol>
       <br/>
       <p>Håll ett öga på beställningen i systemet så gruppledaren så småningom markerar den som 'Klar', annars följ upp.</p>
       </br>"
       />
 
-      <RefreshButton refreshAction={props.refreshAction} />
-
-      <Tabs id="0">
-        {props.dbData.newOrders.length ? (
+      <RefreshButton refreshAction={refreshAction} />
+      {dbData.allOrders.length ? (
+        <Tabs id="0">
+          {dbData.newOrders.length ? (
+            <Tab
+              eventKey="nya"
+              title={
+                <span>
+                  Ej fördelade Beställningar{" "}
+                  <Badge pill variant="danger">
+                    {dbData.newOrders.length}
+                  </Badge>
+                </span>
+              }
+            >
+              <OrdersTable
+                isAdmin
+                groupData={groupData}
+                tableData={dbData.newOrders}
+                refreshAction={refreshAction}
+              />
+            </Tab>
+          ) : null}
           <Tab
-            eventKey="nya"
-            title={
-              <span>
-                Ej fördelade Beställningar{" "}
-                <Badge pill variant="danger">
-                  {props.dbData.newOrders.length}
-                </Badge>
-              </span>
-            }
+            eventKey="gruppfördelade"
+            title={`Fördelade till grupp (${
+              dbData.assignedToGroup.length ? dbData.assignedToGroup.length : 0
+            })`}
           >
             <OrdersTable
               isAdmin
-              groupData={props.groupData}
-              tableData={props.dbData.newOrders}
-              refreshAction={props.refreshAction}
+              groupData={groupData}
+              tableData={dbData.assignedToGroup}
+              refreshAction={refreshAction}
             />
           </Tab>
-        ) : null}
-        <Tab
-          eventKey="gruppfördelade"
-          title={`Fördelade till grupp (${
-            props.dbData.assignedToGroup.length
-              ? props.dbData.assignedToGroup.length
-              : 0
-          })`}
-        >
-          <OrdersTable
-            isAdmin
-            groupData={props.groupData}
-            tableData={props.dbData.assignedToGroup}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="klara"
-          title={`Klara (${
-            props.dbData.doneOrders.length ? props.dbData.doneOrders.length : 0
-          })`}
-        >
-          <OrdersTable
-            isAdmin
-            groupData={props.groupData}
-            tableData={props.dbData.doneOrders}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-      </Tabs>
+          <Tab
+            eventKey="klara"
+            title={`Klara (${
+              dbData.doneOrders.length ? dbData.doneOrders.length : 0
+            })`}
+          >
+            <OrdersTable
+              isAdmin
+              groupData={groupData}
+              tableData={dbData.doneOrders}
+              refreshAction={refreshAction}
+            />
+          </Tab>
+        </Tabs>
+      ) : (
+        <h2>Laddar...</h2>
+      )}
     </div>
   );
 };

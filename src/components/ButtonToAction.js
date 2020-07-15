@@ -157,8 +157,8 @@ const ButtonToAction = (props) => {
         ? "Skicka till grupp först"
         : successKey
         ? isVolunteer
-          ? "Volontär välkomnad"
-          : "Beställning bekräftad"
+          ? "Volontär välkomnad!"
+          : "Beställning bekräftad!"
         : !email && telefon
         ? `Bekräfta via ${telefon}`
         : "Ingen email eller telefon";
@@ -193,7 +193,7 @@ const ButtonToAction = (props) => {
       !gruppId || gruppId === "0"
         ? "Välj grupp först"
         : status === "4"
-        ? "Beställningen utförd"
+        ? "Beställningen utförd!"
         : "Inte utförd ännu";
 
     statusColor =
