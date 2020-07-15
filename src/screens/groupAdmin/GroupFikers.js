@@ -36,7 +36,6 @@ const GroupFikers = (props) => {
         </li>
       </ul>
       <br />
-
       <p>
         För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
         systemet och tar gärna emot tips om hur det kan bli bättre!
