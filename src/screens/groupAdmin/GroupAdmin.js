@@ -29,7 +29,6 @@ const GroupAdmin = (props) => {
     distributedGroupOrders: [],
     distributedVolunteerOrders: [],
     doneOrders: [],
-    pausedOrders: [],
   });
 
   const [groupVolunteersData, setGroupVolunteersData] = useState({
@@ -99,7 +98,6 @@ const GroupAdmin = (props) => {
         (data) => data.status === "3"
       ),
       doneOrders: currentGroupOrders.filter((data) => data.status === "4"),
-      pausedOrders: currentGroupOrders.filter((data) => data.status === "5"),
     });
   }
 

@@ -42,7 +42,6 @@ const Admin = (props) => {
     newOrders: [],
     assignedToGroup: [],
     doneOrders: [],
-    pausedOrders: [],
   });
 
   //Get orders data
@@ -88,7 +87,6 @@ const Admin = (props) => {
       newOrders: orders.filter((data) => data.status === "1"),
       assignedToGroup: orders.filter((data) => data.status === "2"),
       doneOrders: orders.filter((data) => data.status === "4"),
-      pausedOrders: orders.filter((data) => data.status === "5"),
     });
   }
 
