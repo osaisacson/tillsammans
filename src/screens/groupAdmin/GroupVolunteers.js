@@ -70,10 +70,10 @@ const GroupVolunteers = (props) => {
           eventKey="nya"
           title={
             <span>
-              Nya Volontärer - att bli välkomnade{" "}
-              {props.dbData.newVolunteers.length ? (
-                <Badge pill variant="danger">
-                  {props.dbData.newVolunteers.length}
+              Nya Volontärer - väntar på att bli tränade{" "}
+              {props.dbData.toBeTrainedVolunteers.length ? (
+                <Badge pill variant="warning">
+                  {props.dbData.toBeTrainedVolunteers.length}
                 </Badge>
               ) : (
                 0
@@ -84,22 +84,7 @@ const GroupVolunteers = (props) => {
           <VolunteersTable
             groupData={props.groupData}
             groupId={props.groupId}
-            tableData={props.dbData.newVolunteers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="välkomnade"
-          title={`Välkomnade - att tränas (${
-            props.dbData.welcomedVolunteers.length
-              ? props.dbData.welcomedVolunteers.length
-              : 0
-          })`}
-        >
-          <VolunteersTable
-            groupData={props.groupData}
-            groupId={props.groupId}
-            tableData={props.dbData.welcomedVolunteers}
+            tableData={props.dbData.toBeTrainedVolunteers}
             refreshAction={props.refreshAction}
           />
         </Tab>

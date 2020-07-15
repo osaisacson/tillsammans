@@ -16,6 +16,8 @@ import GroupOrders from "../groupAdmin/GroupOrders";
 import GroupVolunteers from "../groupAdmin/GroupVolunteers";
 import GroupFikers from "../groupAdmin/GroupFikers";
 
+import LoadingBadge from "./../../components/LoadingBadge";
+
 const GroupAdmin = (props) => {
   const firestore = firebase.firestore();
 
@@ -33,8 +35,7 @@ const GroupAdmin = (props) => {
 
   const [groupVolunteersData, setGroupVolunteersData] = useState({
     allGroupVolunteers: [],
-    newVolunteers: [],
-    welcomedVolunteers: [],
+    toBeTrainedVolunteers: [],
     activeVolunteers: [],
     pausedVolunteers: [],
   });
@@ -204,11 +205,8 @@ const GroupAdmin = (props) => {
 
     setGroupVolunteersData({
       allGroupVolunteers: currentGroupVolunteers,
-      newVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === "2"
-      ),
-      welcomedVolunteers: currentGroupVolunteers.filter(
-        (data) => data.status === "3"
+      toBeTrainedVolunteers: currentGroupVolunteers.filter(
+        (data) => data.status === "2" || data.status === "3" //Has been distributed to group or have been welcomed
       ),
       activeVolunteers: currentGroupVolunteers.filter(
         (data) => data.status === "4"
@@ -274,33 +272,13 @@ const GroupAdmin = (props) => {
             title={
               <div className="flex-spread">
                 <div className="margin-right-5">Beställningar</div>
-                {groupOrdersData.allGroupOrders.length ? (
-                  <>
-                    <Badge pill variant="light" className="margin-right-5">
-                      {groupOrdersData.allGroupOrders.length} TOTALT
-                    </Badge>
-                    <Badge
-                      pill
-                      variant={
-                        groupOrdersData.distributedGroupOrders.length
-                          ? "danger"
-                          : "success"
-                      }
-                    >
-                      {groupOrdersData.distributedGroupOrders.length > 0
-                        ? `${groupOrdersData.distributedGroupOrders.length} ${
-                            groupOrdersData.distributedGroupOrders.length > 1
-                              ? "NYA"
-                              : "NY"
-                          }`
-                        : "ALLA KLARA"}
-                    </Badge>
-                  </>
-                ) : (
-                  <Badge pill variant={"light"}>
-                    ...Laddar
-                  </Badge>
-                )}
+                <LoadingBadge
+                  allDataLength={groupOrdersData.allGroupOrders.length}
+                  inProgressDataLength={
+                    groupOrdersData.distributedGroupOrders.length
+                  }
+                  inProgressCopy={"PÅGÅENDE"}
+                />
               </div>
             }
             eventKey="first"
@@ -318,21 +296,15 @@ const GroupAdmin = (props) => {
             title={
               <div className="flex-spread">
                 <div className="margin-right-5">Volontärer</div>
-                <Badge pill variant="light" className="margin-right-5">
-                  {groupVolunteersData.allGroupVolunteers.length} TOTALT
-                </Badge>
-                <Badge
-                  pill
-                  variant={
-                    groupVolunteersData.newVolunteers.length
-                      ? "danger"
-                      : "success"
+                <LoadingBadge
+                  allDataLength={groupVolunteersData.allGroupVolunteers.length}
+                  inProgressDataLength={
+                    groupVolunteersData.toBeTrainedVolunteers.length
                   }
-                >
-                  {groupVolunteersData.newVolunteers.length > 0
-                    ? `${groupVolunteersData.newVolunteers.length} "ATT VÄLKOMNAS"`
-                    : "ALLA VÄLKOMNADE"}
-                </Badge>
+                  inProgressCopy={"VÄNTAR PÅ TRÄNING"}
+                  readyDataLength={groupVolunteersData.activeVolunteers.length}
+                  readyDataCopy={"REDO FÖR UPPDRAG"}
+                />
               </div>
             }
             eventKey="second"

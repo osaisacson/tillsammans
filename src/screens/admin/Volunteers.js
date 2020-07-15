@@ -90,8 +90,8 @@ const Volunteers = (props) => {
         <Tab
           eventKey="välkomnade"
           title={`Välkomnade (${
-            props.dbData.welcomedVolunteers.length
-              ? props.dbData.welcomedVolunteers.length
+            props.dbData.toBeTrainedVolunteers.length
+              ? props.dbData.toBeTrainedVolunteers.length
               : 0
           })`}
         >
@@ -99,7 +99,7 @@ const Volunteers = (props) => {
             isAdmin
             groupData={props.groupData}
             groupId={props.groupId}
-            tableData={props.dbData.welcomedVolunteers}
+            tableData={props.dbData.toBeTrainedVolunteers}
             refreshAction={props.refreshAction}
           />
         </Tab>

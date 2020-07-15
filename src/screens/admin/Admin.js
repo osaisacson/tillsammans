@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Badge from "react-bootstrap/Badge";
 import moment from "moment";
 
 import Fiker from "./../../models/fiker";
@@ -12,6 +11,8 @@ import Fikers from "./Fikers";
 import Volunteers from "./Volunteers";
 import Orders from "./Orders";
 import Groups from "./Groups";
+
+import LoadingBadge from "./../../components/LoadingBadge";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -32,7 +33,7 @@ const Admin = (props) => {
     allVolunteers: [],
     newVolunteers: [],
     distributedVolunteers: [],
-    welcomedVolunteers: [],
+    toBeTrainedVolunteers: [],
     activeVolunteers: [],
     pausedVolunteers: [],
   });
@@ -136,7 +137,7 @@ const Admin = (props) => {
       allVolunteers: volunteers,
       newVolunteers: volunteers.filter((data) => data.status === "1"),
       distributedVolunteers: volunteers.filter((data) => data.status === "2"),
-      welcomedVolunteers: volunteers.filter((data) => data.status === "3"),
+      toBeTrainedVolunteers: volunteers.filter((data) => data.status === "3"),
       activeVolunteers: volunteers.filter((data) => data.status === "4"),
       pausedVolunteers: volunteers.filter((data) => data.status === "5"),
     });
@@ -206,33 +207,12 @@ const Admin = (props) => {
           title={
             <div className="flex-spread">
               <div className="margin-right-5">Beställningar</div>
-              {ordersData.allOrders.length ? (
-                <>
-                  <Badge pill variant="light" className="margin-right-5">
-                    {ordersData.allOrders.length} TOTALT
-                  </Badge>
-                  <Badge
-                    className="margin-right-5"
-                    pill
-                    variant={ordersData.newOrders.length ? "danger" : "success"}
-                  >
-                    {ordersData.newOrders.length
-                      ? `${ordersData.newOrders.length} ${
-                          ordersData.newOrders.length > 1 ? "NYA" : "NY"
-                        }`
-                      : "0 NYA"}
-                  </Badge>
-                  {ordersData.assignedToGroup.length ? (
-                    <Badge pill variant={"warning"}>
-                      {ordersData.assignedToGroup.length} PÅGÅENDE
-                    </Badge>
-                  ) : null}
-                </>
-              ) : (
-                <Badge pill variant={"light"}>
-                  ...Laddar
-                </Badge>
-              )}
+              <LoadingBadge
+                allDataLength={ordersData.allOrders.length}
+                newDataLength={ordersData.newOrders.length}
+                inProgressDataLength={ordersData.assignedToGroup.length}
+                inProgressCopy={"PÅGÅENDE"}
+              />
             </div>
           }
           eventKey="first"
@@ -247,29 +227,14 @@ const Admin = (props) => {
           title={
             <div className="flex-spread">
               <div className="margin-right-5">Volontärer</div>
-              {volunteersData.allVolunteers.length ? (
-                <>
-                  <Badge pill variant="light" className="margin-right-5">
-                    {volunteersData.allVolunteers.length} TOTALT
-                  </Badge>
-                  <Badge
-                    pill
-                    variant={
-                      volunteersData.newVolunteers.length ? "danger" : "success"
-                    }
-                  >
-                    {volunteersData.newVolunteers.length
-                      ? `${volunteersData.newVolunteers.length} ${
-                          volunteersData.newVolunteers.length > 1 ? "NYA" : "NY"
-                        }`
-                      : "0 NYA"}
-                  </Badge>
-                </>
-              ) : (
-                <Badge pill variant={"light"}>
-                  ...Laddar
-                </Badge>
-              )}
+              <LoadingBadge
+                allDataLength={volunteersData.allVolunteers.length}
+                newDataLength={volunteersData.newVolunteers.length}
+                inProgressDataLength={
+                  volunteersData.toBeTrainedVolunteers.length
+                }
+                inProgressCopy={"ATT TRÄNAS"}
+              />
             </div>
           }
           eventKey="second"
@@ -284,27 +249,12 @@ const Admin = (props) => {
           title={
             <div className="flex-spread">
               <div className="margin-right-5">Fikaintressenter</div>
-              {fikersData.allFikers.length ? (
-                <>
-                  <Badge pill variant="light" className="margin-right-5">
-                    {fikersData.allFikers.length} TOTALT
-                  </Badge>
-                  <Badge
-                    pill
-                    variant={fikersData.newFikers.length ? "danger" : "success"}
-                  >
-                    {fikersData.newFikers.length
-                      ? `${fikersData.newFikers.length} ${
-                          fikersData.newFikers.length > 1 ? "NYA" : "NY"
-                        }`
-                      : "0 NYA"}
-                  </Badge>
-                </>
-              ) : (
-                <Badge pill variant={"light"}>
-                  ...Laddar
-                </Badge>
-              )}
+              <LoadingBadge
+                allDataLength={fikersData.allFikers.length}
+                newDataLength={fikersData.newFikers.length}
+                inProgressDataLength={fikersData.welcomedFikers.length}
+                inProgressCopy={"Välkomnade, väntar på datum/tid"}
+              />
             </div>
           }
           eventKey="third"

@@ -41,8 +41,9 @@ const GroupOrders = (props) => {
       <br />
 
       <p>
-        För frågor, kontakta asaisacson@gmail.com. Vi uppdaterar hela tiden
-        systemet och tar gärna emot tips om hur det kan bli bättre!
+        För frågor, kontakta asaisacson@gmail.com (+34 623 049 041). Vi
+        uppdaterar hela tiden systemet och tar gärna emot tips om hur det kan
+        bli bättre!
       </p>
       <br />
       <h5>Mer information här</h5>
@@ -56,9 +57,9 @@ const GroupOrders = (props) => {
           eventKey="nya"
           title={
             <span>
-              Att bli utförda{" "}
+              Pågående{" "}
               {props.dbData.distributedGroupOrders.length ? (
-                <Badge pill variant="danger">
+                <Badge pill variant="warning">
                   {props.dbData.distributedGroupOrders.length}
                 </Badge>
               ) : (

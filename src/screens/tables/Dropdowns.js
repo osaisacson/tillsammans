@@ -32,7 +32,7 @@ export const groupStatusDropdownForGroups = {
 export const volunteerStatusDropdown = {
   1: "Ny",
   2: "Fördelad till grupp",
-  3: "Välkomnad",
+  3: "Att tränas",
   4: "Aktiv",
   5: "Pausad",
   6: "Olämplig",

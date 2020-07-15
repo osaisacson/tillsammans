@@ -42,7 +42,11 @@ const ButtonToFormEmail = (props) => {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
       : successKey
-      ? `Bekräftelse skickad!`
+      ? actionInForm === "sendVolunteerWelcome"
+        ? "Volontär välkomnad"
+        : `Bekräftelse skickad!`
+      : actionInForm === "sendVolunteerWelcome"
+      ? "Voluntär inte välkomnad ännu"
       : `Ingen bekräftelse skickad`;
     buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka bekräftelse`;
   }

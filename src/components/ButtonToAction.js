@@ -156,7 +156,9 @@ const ButtonToAction = (props) => {
         : status === "1"
         ? "Skicka till grupp först"
         : successKey
-        ? "Beställning bekräftad"
+        ? isVolunteer
+          ? "Volontär välkomnad"
+          : "Beställning bekräftad"
         : !email && telefon
         ? `Bekräfta via ${telefon}`
         : "Ingen email eller telefon";
@@ -170,7 +172,11 @@ const ButtonToAction = (props) => {
         : !email && telefon
         ? "red"
         : "Ingen email eller telefon";
-    buttonCopy = successKey ? "Beställare uppringd" : "Klicka när kontaktad";
+    buttonCopy = successKey
+      ? isVolunteer
+        ? "Volontär uppringd"
+        : "Beställare uppringd"
+      : "Klicka när kontaktad";
     modalTitle = "Markera beställningen som bekräftad";
     modalContent =
       "Har du kontaktat beställaren för att bekräfta att vi mottagit beställningen och att en volontär är på väg?";
@@ -209,12 +215,12 @@ const ButtonToAction = (props) => {
       !gruppId || gruppId === "0"
         ? "Välj grupp först"
         : status === "4"
-        ? "Satt som aktiv"
-        : "Klicka för att ändra till aktiv";
+        ? "Tränad och redo för uppdrag!"
+        : "Inte tränad ännu";
     statusColor =
       !gruppId || gruppId === "0" ? "red" : status === "4" ? "green" : "red";
 
-    buttonCopy = status === "4" ? "Aktiv" : "Inte aktiv";
+    buttonCopy = status === "4" ? "Pausa" : "Tränad? Sätt som aktiv";
     modalTitle = "Sätt volontären som 'aktiv'";
     modalContent =
       status === "4"
