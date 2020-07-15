@@ -41,7 +41,6 @@ const GroupAdmin = ({ groupId, groupData }) => {
   const [groupFikersData, setGroupFikersData] = useState({
     allGroupFikers: [],
     newFikers: [],
-    welcomedFikers: [],
     activeFikers: [],
     pausedFikers: [],
   });
@@ -148,7 +147,6 @@ const GroupAdmin = ({ groupId, groupData }) => {
     setGroupFikersData({
       allGroupFikers: currentGroupFikers,
       newFikers: currentGroupFikers.filter((data) => data.status === "2"),
-      welcomedFikers: currentGroupFikers.filter((data) => data.status === "3"),
       activeFikers: currentGroupFikers.filter((data) => data.status === "4"),
       pausedFikers: currentGroupFikers.filter((data) => data.status === "5"),
     });
@@ -226,7 +224,7 @@ const GroupAdmin = ({ groupId, groupData }) => {
     <div className="page-layout">
       <h2>{currentGroup.gruppnamn}</h2>
       <br />
-      <Tabs variant="pills" defaultActiveKey="first" id="0">
+      <Tabs variant="pills" id="0">
         {groupOrdersData.allGroupOrders.length ? (
           <Tab
             title={

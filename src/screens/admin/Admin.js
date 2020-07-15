@@ -24,7 +24,6 @@ const Admin = (props) => {
     allFikers: [],
     newFikers: [],
     distributedFikers: [],
-    welcomedFikers: [],
     activeFikers: [],
     pausedFikers: [],
   });
@@ -187,7 +186,6 @@ const Admin = (props) => {
       allFikers: fikers,
       newFikers: fikers.filter((data) => data.status === "1"),
       distributedFikers: fikers.filter((data) => data.status === "2"),
-      welcomedFikers: fikers.filter((data) => data.status === "3"),
       activeFikers: fikers.filter((data) => data.status === "4"),
       pausedFikers: fikers.filter((data) => data.status === "5"),
     });
@@ -252,8 +250,8 @@ const Admin = (props) => {
               <LoadingBadge
                 allDataLength={fikersData.allFikers.length}
                 newDataLength={fikersData.newFikers.length}
-                inProgressDataLength={fikersData.welcomedFikers.length}
-                inProgressCopy={"Välkomnade, väntar på datum/tid"}
+                readyDataLength={fikersData.activeFikers.length}
+                readyDataCopy={"Aktiva"}
               />
             </div>
           }

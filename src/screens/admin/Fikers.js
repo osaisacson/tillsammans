@@ -19,28 +19,19 @@ const Fikers = (props) => {
         formForModal={<FikaForm />}
       />
       <Accordion
-        title="Hur vi hanterar Fikaintressenter"
-        content="<h5>Uppdatera i vårt system</h5>
-        <ol>
-        <li>Öppna redigering genom att klicka på pennan till vänster om fikaintressenten</li>
-        <li>Kolla vilka intressen fikaintressenten angivit och välj baserat på detta en grupp till intressenten under 'Grupp'</li>
-        <li>Ändra status till 'Fördelad till grupp' under 'Status'.</li>
-        <li>Klicka på spara symbolen för att spara ändringar - om inte ändringarna syns direkt klicka refresh-knappen till höger</li>
-        </ol>
+        title="Hur vi hanterar fikaintressenter"
+        content="
+        <h5>Uppdatera i vårt system</h5>
+        <ul>
+        <li>Generellt: samordnaren ansvarar för att de första två (och om fikaintressenten har en email, tre) knapparna under 'status' blir gröna.</li>
+        </ul>
         <br/>
-        <h5>Kommunicera med fikaintressent</h5>
+        <h5>Steg för hantering</h5>
         <ol>
-        <li>Under 'Bekräftelse till fikaintressent' klicka 'Skicka bekräftelse' - detta öppnar din email med mailet och addressen redan klart.</li>
-        <li>Om det istället för ovan knapp står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta fikaintressenten.</li>
-        <li>När skickat - klicka knappen 'Kontaktad'</li>
-      </ol>
-      <br/>
-
-        <h5>Kommunicera ny fikaintressent till grupp</h5>
-        <ol>
-        <li>Under 'Detaljer till grupp' klicka 'Skicka detaljer' - detta öppnar din email med mailet redan klart.</li>
-        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren det ska skickas till</li>
-        <li>När skickat - klicka knappen 'Skickad'</li>
+        <li>Under 'Status' klicka 'Välj grupp'</li>
+        <li>När detta är klart klicka 'Skicka till grupp'</li>
+        <li>Om fikaintressenten har registrerat en email så är det samordnarens jobb att skicka välkomstemailet till fikaintressenten via knappen 'Skicka bekräftelse'. Annars om det står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta fikaintressenten.</li>
+        <li>Klart!</li>
       </ol>
       <br/>
       <p>Håll ett öga på fikaintressenten i systemet så gruppledaren så småningom markerar den som 'Aktiv', annars följ upp.</p>
@@ -84,22 +75,6 @@ const Fikers = (props) => {
             groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.distributedFikers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="välkomnade"
-          title={`Välkomnade (${
-            props.dbData.welcomedFikers.length
-              ? props.dbData.welcomedFikers.length
-              : 0
-          })`}
-        >
-          <FikersTable
-            isAdmin
-            groupData={props.groupData}
-            groupId={props.groupId}
-            tableData={props.dbData.welcomedFikers}
             refreshAction={props.refreshAction}
           />
         </Tab>

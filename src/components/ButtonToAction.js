@@ -214,21 +214,33 @@ const ButtonToAction = ({
     statusCopy = conditionForDisabled
       ? "Välj grupp först"
       : isActive
-      ? "Tränad och redo för uppdrag!"
+      ? isFiker
+        ? "Välkomnad och redo för fika!"
+        : "Tränad och redo för uppdrag!"
       : isPaused
-      ? "Tränad, men pausad"
+      ? isFiker
+        ? "Välkomnad, men pausad"
+        : "Tränad, men pausad"
+      : isFiker
+      ? "Inte välkomnad av gruppledare ännu"
       : "Inte tränad ännu";
     statusColor = conditionForDisabled ? "red" : isActive ? "green" : "red";
     buttonCopy = isActive
       ? "Pausa"
       : isPaused
       ? "Pausad. Ändra till aktiv"
+      : isFiker
+      ? "Klicka här när välkomnad"
       : "Klicka här när tränad";
-    modalTitle = "Sätt volontären som 'aktiv'";
+    modalTitle = isFiker
+      ? "Sätt fikaintressenten som 'aktiv'"
+      : "Sätt volontären som 'aktiv'";
     modalContent = isActive
-      ? "Vill du sätta volontären som 'pausad' i systemet? Du kan ändra tillbaka till aktiv efteråt i 'Pausade' tabben."
+      ? "Vill du sätta personen som 'pausad' i systemet? Du kan ändra tillbaka till aktiv efteråt i 'Pausade' tabben."
       : isPaused
-      ? "Vill du sätta volontären som aktiv igen i systemet?"
+      ? "Vill du sätta personen som aktiv igen i systemet?"
+      : isFiker
+      ? "Har du bekräftat att fikaintressenten har blivit välkomnad och är redo att bli satt som 'aktiv' i systemet?"
       : "Har du bekräftat att volontären har blivit tränad och är redo att bli satt som 'aktiv' i systemet?";
     fieldsToUpdate = {
       status: isActive ? "5" : "4",

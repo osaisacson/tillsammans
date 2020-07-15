@@ -20,38 +20,15 @@ const GroupFikers = (props) => {
       <br />
       <h4>Hantera fikaintressenter</h4>
       <ol>
-        <li>
-          När ni får in en fikaintressent, kolla först så 'Bekräftelse till
-          fikaintressent' är 'Kontaktad'. Om inte, ring numret som står där och
-          klicka sen 'Kontaktad'.
-        </li>
-        <li>
-          Ändra status till 'Välkomnad' när fikaintressenten står som
-          'Kontaktad'.
-        </li>
-        <li>
-          Bestäm vem ska ta hand om att introducera fikaintressenten och - om
-          det behövs - vidarebefodra dess detaljer till denna person via knappen
-          'Kopiera detaljer'.
-        </li>
-        <li>
-          När fikaintressenten blivit introducerad i hur allt funkar, ändra
-          status till 'Aktiv'.
-        </li>
-        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
+        <li>Generellt: allt under 'status' ska vara grönt :)</li>
       </ol>
       <br />
 
       <h5>TIPS</h5>
       <ul>
         <li>
-          Öppna redigering genom att klicka på pennan till vänster om
-          fikaintressenten
-        </li>
-        <li>
-          Klicka på bocken till vänster om fikaintressenten för att spara - om
-          ändringarna inte syns direkt, klicka den lila refresh-knappen nere
-          till höger
+          Om dina ändringar inte syns direkt, klicka den lila refresh-knappen
+          nere till höger
         </li>
         <li>
           Använd gärna 'Kommentarer' för att skriva in något ni vill förmedla
@@ -88,21 +65,6 @@ const GroupFikers = (props) => {
             groupData={props.groupData}
             groupId={props.groupId}
             tableData={props.dbData.newFikers}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
-        <Tab
-          eventKey="välkomnade"
-          title={`Välkomnade - att introduceras (${
-            props.dbData.welcomedFikers.length
-              ? props.dbData.welcomedFikers.length
-              : 0
-          })`}
-        >
-          <FikersTable
-            groupData={props.groupData}
-            groupId={props.groupId}
-            tableData={props.dbData.welcomedFikers}
             refreshAction={props.refreshAction}
           />
         </Tab>

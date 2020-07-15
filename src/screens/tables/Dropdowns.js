@@ -17,7 +17,6 @@ export const groupStatusDropdown = {
   // 3: 'fördelad-volontär', //TBD
   4: "Klar",
   5: "Pausad",
-  6: "Avbokad",
 };
 
 export const groupStatusDropdownForGroups = {
@@ -26,7 +25,6 @@ export const groupStatusDropdownForGroups = {
   // 3: 'fördelad-volontär', //TBD
   4: "Klar",
   5: "Pausad",
-  6: "Avbokad",
 };
 
 export const volunteerStatusDropdown = {
@@ -35,7 +33,6 @@ export const volunteerStatusDropdown = {
   3: "Att tränas",
   4: "Aktiv",
   5: "Pausad",
-  6: "Olämplig",
 };
 
 export const fikerStatusDropdown = {
@@ -44,7 +41,6 @@ export const fikerStatusDropdown = {
   3: "Välkomnad",
   4: "Aktiv",
   5: "Pausad",
-  6: "Olämplig",
 };
 
 export const volunteerStatusDropdownForGroups = {
@@ -53,5 +49,4 @@ export const volunteerStatusDropdownForGroups = {
   3: "Välkomnad",
   4: "Aktiv",
   5: "Pausad",
-  6: "Olämplig",
 };
