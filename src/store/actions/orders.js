@@ -1,12 +1,12 @@
-import Order from './../../models/order';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import moment from 'moment';
+import Order from "./../../models/order";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import moment from "moment";
 
-export const DELETE_ORDER = 'DELETE_ORDER';
-export const CREATE_ORDER = 'CREATE_ORDER';
-export const UPDATE_ORDER = 'UPDATE_ORDER';
-export const SET_ORDERS = 'SET_ORDERS';
+export const DELETE_ORDER = "DELETE_ORDER";
+export const CREATE_ORDER = "CREATE_ORDER";
+export const UPDATE_ORDER = "UPDATE_ORDER";
+export const SET_ORDERS = "SET_ORDERS";
 
 export const fetchOrders = () => {
   return async (dispatch) => {
@@ -17,13 +17,15 @@ export const fetchOrders = () => {
       const loadedOrders = [];
 
       firestore
-        .collection('orders')
+        .collection("orders")
         .get()
         .then(function (querySnapshot) {
           querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(new Date(resData.datum)).format('lll');
+            const readableDate = moment(new Date(resData.datum)).format(
+              "YYYY-MM-DD HH:MM"
+            );
             loadedOrders.push(
               new Order(
                 doc.id,
@@ -53,7 +55,7 @@ export const fetchOrders = () => {
         });
 
       console.log(
-        'store/actions/orders.js:47 getting data from firebase and passing it through model - THIS WORKS: ',
+        "store/actions/orders.js:47 getting data from firebase and passing it through model - THIS WORKS: ",
         loadedOrders
       );
 
@@ -88,12 +90,12 @@ export const deleteOrder = (orderId) => {
       `https://sverige-tillsammans.firebaseio.com/orders/${orderId}.json`,
       // `https://sverige-tillsammans.firebaseio.com/orders/${orderId}.json?auth=${token}`,
       {
-        method: 'DELETE',
+        method: "DELETE",
       }
     );
 
     if (!response.ok) {
-      throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
     dispatch({ type: DELETE_ORDER, oid: orderId });
   };
@@ -111,25 +113,25 @@ export const createOrder = (
   postkod
 ) => {
   return async (dispatch, getState) => {
-    console.log('------createOrder was triggered-------');
-    console.log('received data:');
-    console.log('typ:', typ);
-    console.log('beskrivning:', beskrivning);
-    console.log('tidsrymd:', tidsrymd);
-    console.log('telefon:', telefon);
-    console.log('förnamn:', förnamn);
-    console.log('efternamn:', efternamn);
-    console.log('email:', email);
-    console.log('address:', address);
-    console.log('postkod:', postkod);
-    console.log('---------');
+    console.log("------createOrder was triggered-------");
+    console.log("received data:");
+    console.log("typ:", typ);
+    console.log("beskrivning:", beskrivning);
+    console.log("tidsrymd:", tidsrymd);
+    console.log("telefon:", telefon);
+    console.log("förnamn:", förnamn);
+    console.log("efternamn:", efternamn);
+    console.log("email:", email);
+    console.log("address:", address);
+    console.log("postkod:", postkod);
+    console.log("---------");
 
     const setDatum = new Date().getTime();
-    const setGrupp = '';
-    const setStatus = '1';
+    const setGrupp = "";
+    const setStatus = "1";
 
     const db = firebase.firestore();
-    const response = await db.collection('orders').add({
+    const response = await db.collection("orders").add({
       typ: typ,
       beskrivning: beskrivning,
       tidsrymd: tidsrymd,
@@ -169,8 +171,8 @@ export const createOrder = (
     // );
 
     const resData = await response.json();
-    console.log('resData efter post/fetch firebase:', resData);
-    console.log('-------------------END-----------');
+    console.log("resData efter post/fetch firebase:", resData);
+    console.log("-------------------END-----------");
 
     dispatch({
       type: CREATE_ORDER,
@@ -220,9 +222,9 @@ export const updateOrder = (
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/orders/${id}.json`,
       {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           gruppId,
@@ -250,7 +252,7 @@ export const updateOrder = (
     );
 
     if (!response.ok) {
-      throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
 
     dispatch({

@@ -1,12 +1,12 @@
-import Group from '../../models/group';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import moment from 'moment';
+import Group from "../../models/group";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import moment from "moment";
 
-export const DELETE_GROUP = 'DELETE_GROUP';
-export const CREATE_GROUP = 'CREATE_GROUP';
-export const UPDATE_GROUP = 'UPDATE_GROUP';
-export const SET_GROUPS = 'SET_GROUPS';
+export const DELETE_GROUP = "DELETE_GROUP";
+export const CREATE_GROUP = "CREATE_GROUP";
+export const UPDATE_GROUP = "UPDATE_GROUP";
+export const SET_GROUPS = "SET_GROUPS";
 
 export const fetchGroups = () => {
   return async (dispatch) => {
@@ -17,13 +17,15 @@ export const fetchGroups = () => {
       const loadedGroups = [];
 
       firestore
-        .collection('groups')
+        .collection("groups")
         .get()
         .then(function (querySnapshot) {
           querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             const resData = doc.data();
-            const readableDate = moment(new Date(resData.datum)).format('lll');
+            const readableDate = moment(new Date(resData.datum)).format(
+              "YYYY-MM-DD HH:MM"
+            );
             loadedGroups.push(
               new Group(
                 doc.id,
@@ -61,12 +63,12 @@ export const deleteGroup = (groupId) => {
     const response = await fetch(
       `https://sverige-tillsammans.firebaseio.com/groups/${groupId}.json`,
       {
-        method: 'DELETE',
+        method: "DELETE",
       }
     );
 
     if (!response.ok) {
-      throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
     dispatch({ type: DELETE_GROUP, oid: groupId });
   };
@@ -84,25 +86,25 @@ export const createGroup = (
   postkod
 ) => {
   return async (dispatch, getState) => {
-    console.log('------createGroup was triggered-------');
-    console.log('received data:');
-    console.log('typ:', typ);
-    console.log('beskrivning:', beskrivning);
-    console.log('tidsrymd:', tidsrymd);
-    console.log('telefon:', telefon);
-    console.log('förnamn:', förnamn);
-    console.log('efternamn:', efternamn);
-    console.log('email:', email);
-    console.log('address:', address);
-    console.log('postkod:', postkod);
-    console.log('---------');
+    console.log("------createGroup was triggered-------");
+    console.log("received data:");
+    console.log("typ:", typ);
+    console.log("beskrivning:", beskrivning);
+    console.log("tidsrymd:", tidsrymd);
+    console.log("telefon:", telefon);
+    console.log("förnamn:", förnamn);
+    console.log("efternamn:", efternamn);
+    console.log("email:", email);
+    console.log("address:", address);
+    console.log("postkod:", postkod);
+    console.log("---------");
 
     const setDatum = new Date().getTime();
-    const setGrupp = '';
-    const setStatus = '1';
+    const setGrupp = "";
+    const setStatus = "1";
 
     const db = firebase.firestore();
-    const response = await db.collection('groups').add({
+    const response = await db.collection("groups").add({
       typ: typ,
       beskrivning: beskrivning,
       tidsrymd: tidsrymd,
@@ -117,8 +119,8 @@ export const createGroup = (
     });
 
     const resData = await response.json();
-    console.log('resData efter post/fetch firebase:', resData);
-    console.log('-------------------END-----------');
+    console.log("resData efter post/fetch firebase:", resData);
+    console.log("-------------------END-----------");
 
     dispatch({
       type: CREATE_GROUP,
@@ -161,9 +163,9 @@ export const updateGroup = (
       `https://sverige-tillsammans.firebaseio.com/groups/${id}.json`,
       // `https://sverige-tillsammans.firebaseio.com/groups/${id}.json?auth=${token}`,
       {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           typ,
@@ -182,7 +184,7 @@ export const updateGroup = (
     );
 
     if (!response.ok) {
-      throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
 
     dispatch({

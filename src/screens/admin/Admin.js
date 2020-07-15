@@ -52,7 +52,9 @@ const Admin = (props) => {
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format("lll");
+      const readableDate = moment(new Date(resData.datum)).format(
+        "YYYY-MM-DD HH:MM"
+      );
 
       orders.push(
         new Order(
@@ -97,7 +99,9 @@ const Admin = (props) => {
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format("lll");
+      const readableDate = moment(new Date(resData.datum)).format(
+        "YYYY-MM-DD HH:MM"
+      );
 
       volunteers.push(
         new Volunteer(
@@ -147,7 +151,9 @@ const Admin = (props) => {
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format("lll");
+      const readableDate = moment(new Date(resData.datum)).format(
+        "YYYY-MM-DD HH:MM"
+      );
 
       fikers.push(
         new Fiker(
