@@ -101,21 +101,6 @@ const Orders = (props) => {
             refreshAction={props.refreshAction}
           />
         </Tab>
-        <Tab
-          eventKey="pausad"
-          title={`Pausade (${
-            props.dbData.pausedOrders.length
-              ? props.dbData.pausedOrders.length
-              : 0
-          })`}
-        >
-          <OrdersTable
-            isAdmin
-            groupData={props.groupData}
-            tableData={props.dbData.pausedOrders}
-            refreshAction={props.refreshAction}
-          />
-        </Tab>
       </Tabs>
     </div>
   );
