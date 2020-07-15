@@ -101,6 +101,7 @@ const ButtonToAction = (props) => {
         currentGroup && currentGroup.gruppnamn
           ? currentGroup.gruppnamn
           : "Ingen grupp ännu";
+      statusColor = currentGroup && currentGroup.gruppnamn ? "green" : "red";
     }
     conditionForGreen = groupData && groupData !== "0";
     buttonCopy = gruppId && gruppId !== "0" ? "Välj annan grupp" : "Välj grupp";
