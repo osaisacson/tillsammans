@@ -5,7 +5,6 @@ import Badge from "react-bootstrap/Badge";
 import moment from "moment";
 
 import Order from "./../../models/order";
-import Group from "./../../models/group";
 import Volunteer from "./../../models/volunteer";
 import Fiker from "./../../models/fiker";
 
@@ -18,13 +17,12 @@ import GroupFikers from "../groupAdmin/GroupFikers";
 
 import LoadingBadge from "./../../components/LoadingBadge";
 
-const GroupAdmin = (props) => {
-  const firestore = firebase.firestore();
+const GroupAdmin = ({ groupId, groupData }) => {
+  const currentGroup = groupData
+    ? groupData.find((data) => data.id === groupId)
+    : {};
 
-  //Set up hooks
-  const [groupData, setGroupData] = useState({
-    currentGroup: [],
-  });
+  const firestore = firebase.firestore();
 
   const [groupOrdersData, setGroupOrdersData] = useState({
     allGroupOrders: [],
@@ -88,7 +86,7 @@ const GroupAdmin = (props) => {
 
     //Only get the orders which match our current group id
     const currentGroupOrders = orders.filter(
-      (data) => data.gruppId === props.groupId
+      (data) => data.gruppId === groupId
     );
     setGroupOrdersData({
       allGroupOrders: currentGroupOrders,
@@ -144,7 +142,7 @@ const GroupAdmin = (props) => {
 
     //Only get the orders which match our current group id
     const currentGroupFikers = groupFikers.filter(
-      (data) => data.gruppId === props.groupId
+      (data) => data.gruppId === groupId
     );
 
     setGroupFikersData({
@@ -200,7 +198,7 @@ const GroupAdmin = (props) => {
 
     //Only get the orders which match our current group id
     const currentGroupVolunteers = volunteers.filter(
-      (data) => data.gruppId === props.groupId
+      (data) => data.gruppId === groupId
     );
 
     setGroupVolunteersData({
@@ -217,45 +215,7 @@ const GroupAdmin = (props) => {
     });
   }
 
-  //Get group data
-  async function getGroups() {
-    const groups = [];
-    const querySnapshot = await firestore.collection("groups").get();
-    querySnapshot.forEach(function (doc) {
-      // doc.data() is never undefined for query doc snapshots
-      const resData = doc.data();
-      const readableDate = moment(new Date(resData.datum)).format(
-        "YYYY-MM-DD HH:MM"
-      );
-
-      groups.push(
-        new Group(
-          doc.id,
-          readableDate,
-          resData.gruppnamn,
-          resData.länkNamn,
-          resData.kontakt,
-          resData.kommentarer,
-          resData.telefon,
-          resData.email,
-          resData.reserv,
-          resData.reservTelefon,
-          resData.reservEmail,
-          resData.address,
-          resData.postkod,
-          resData.status
-        )
-      );
-    });
-
-    //set current group data as the object which matches the passed group id
-    setGroupData({
-      currentGroup: groups.find((data) => data.id === props.groupId),
-    });
-  }
-
   useEffect(() => {
-    getGroups();
     getGroupOrders();
     getGroupVolunteers();
     getGroupFikers();
@@ -264,7 +224,7 @@ const GroupAdmin = (props) => {
 
   return (
     <div className="page-layout">
-      <h2>{groupData.currentGroup.gruppnamn}</h2>
+      <h2>{currentGroup.gruppnamn}</h2>
       <br />
       <Tabs variant="pills" defaultActiveKey="first" id="0">
         {groupOrdersData.allGroupOrders.length ? (
@@ -284,8 +244,8 @@ const GroupAdmin = (props) => {
             eventKey="first"
           >
             <GroupOrders
-              groupData={props.groupData}
-              groupId={props.groupId}
+              groupData={groupData}
+              groupId={groupId}
               dbData={groupOrdersData}
               refreshAction={getGroupOrders}
             />
@@ -310,8 +270,8 @@ const GroupAdmin = (props) => {
             eventKey="second"
           >
             <GroupVolunteers
-              groupData={props.groupData}
-              groupId={props.groupId}
+              groupData={groupData}
+              groupId={groupId}
               dbData={groupVolunteersData}
               refreshAction={getGroupVolunteers}
             />
@@ -342,8 +302,8 @@ const GroupAdmin = (props) => {
             eventKey="third"
           >
             <GroupFikers
-              groupData={props.groupData}
-              groupId={props.groupId}
+              groupData={groupData}
+              groupId={groupId}
               dbData={groupFikersData}
               refreshAction={getGroupFikers}
             />

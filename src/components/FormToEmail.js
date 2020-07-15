@@ -18,15 +18,13 @@ import {
   sendWelcomeToFikerEmail,
 } from "./../screens/tables/Emails";
 
-const FormToEmail = (props) => {
+const FormToEmail = ({ actionInForm, groupData, formData, refreshAction }) => {
   let collectionToUpdate;
   let fieldsToUpdate = {};
   let defaultEmail = "";
   let defaultSubject = "";
   let defaultTemplate = "";
   let title;
-
-  const { actionInForm, groupData, formData, refreshAction } = props;
 
   const currentGroup = groupData.find((data) => data.id === formData.gruppId);
 
@@ -67,6 +65,7 @@ const FormToEmail = (props) => {
     collectionToUpdate = "volunteers";
     fieldsToUpdate = {
       skickadVolontärTillGrupp: true,
+      status: "2",
     };
     title = `Skicka information om volontären till gruppledare och reserv för ${currentGroup.gruppnamn}`;
     defaultEmail = `${currentGroup.email}, ${currentGroup.reservEmail}`;
@@ -78,6 +77,7 @@ const FormToEmail = (props) => {
     collectionToUpdate = "volunteers";
     fieldsToUpdate = {
       skickadBekräftelseTillVolontär: true,
+      status: "3",
     };
     title = `Skicka bekräftelse till ${formData.förnamn} ${formData.efternamn} att vi registrerat deras intresse att bli volontär`;
     defaultEmail = formData.email;

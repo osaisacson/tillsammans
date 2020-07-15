@@ -1,37 +1,45 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import FormInput from './FormInput';
+import React from "react";
+import { Button } from "react-bootstrap";
+import FormInput from "./FormInput";
 
-const ChangePasswordForm = (props) => {
+const ChangePasswordForm = ({
+  topHeader,
+  header,
+  message,
+  handleSubmit,
+  handleChange,
+  newPassword,
+  confirmPassword,
+}) => {
   return (
     <div className="sign-in page-layout">
-      {props.topHeader ? <h6>{props.topHeader}</h6> : null}
-      <h2>{props.header}</h2>
-      <p>{props.message}</p>
+      {topHeader ? <h6>{topHeader}</h6> : null}
+      <h2>{header}</h2>
+      <p>{message}</p>
 
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormInput
           name="newPassword"
           type="password"
-          handleChange={props.handleChange}
-          value={props.newPassword}
+          handleChange={handleChange}
+          value={newPassword}
           label="nytt lösenord"
           required
         />
         <FormInput
           name="confirmPassword"
           type="password"
-          value={props.confirmPassword}
-          handleChange={props.handleChange}
+          value={confirmPassword}
+          handleChange={handleChange}
           label="bekräfta lösenord"
           required
         />
         <Button type="submit" block>
           ändra
-                </Button>
+        </Button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default ChangePasswordForm;

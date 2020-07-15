@@ -1,37 +1,37 @@
-import React, { useState, useRef } from 'react';
-import Chevron from './Chevron';
+import React, { useState, useRef } from "react";
+import Chevron from "./Chevron";
 
-function Accordion(props) {
-  const [setActive, setActiveState] = useState('');
-  const [setHeight, setHeightState] = useState('0px');
-  const [setRotate, setRotateState] = useState('accordion-icon');
+function Accordion({ title, content }) {
+  const [setActive, setActiveState] = useState("");
+  const [setHeight, setHeightState] = useState("0px");
+  const [setRotate, setRotateState] = useState("accordion-icon");
 
-  const content = useRef(null);
+  const localContent = useRef(null);
 
   function toggleAccordion() {
-    setActiveState(setActive === '' ? 'active' : '');
+    setActiveState(setActive === "" ? "active" : "");
     setHeightState(
-      setActive === 'active' ? '0px' : `${content.current.scrollHeight}px`
+      setActive === "active" ? "0px" : `${localContent.current.scrollHeight}px`
     );
     setRotateState(
-      setActive === 'active' ? 'accordion-icon' : 'accordion-icon rotate'
+      setActive === "active" ? "accordion-icon" : "accordion-icon rotate"
     );
   }
 
   return (
     <div className="flex-column">
       <button className={`accordion ${setActive}`} onClick={toggleAccordion}>
-        <p className="accordion-title">{props.title}</p>
-        <Chevron className={`${setRotate}`} width={10} fill={'#fff'} />
+        <p className="accordion-title">{title}</p>
+        <Chevron className={`${setRotate}`} width={10} fill={"#fff"} />
       </button>
       <div
-        ref={content}
+        ref={localContent}
         style={{ maxHeight: `${setHeight}` }}
         className="accordion-content"
       >
         <div
           className="accordion-text"
-          dangerouslySetInnerHTML={{ __html: props.content }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>
     </div>

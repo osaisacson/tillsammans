@@ -11,7 +11,23 @@ import "firebase/firestore";
 
 import Modal from "react-bootstrap/Modal";
 
-const ButtonToAction = (props) => {
+const ButtonToAction = ({
+  isOrder,
+  isVolunteer,
+  isFiker,
+  isGroup,
+  isSetGroups,
+  isSetConfirmed,
+  isSetReady,
+  isEditComments,
+  isToggleActive,
+  groupData,
+  formData,
+  refreshAction,
+  successKey,
+}) => {
+  const { status, email, telefon, gruppId, id, kommentarer } = formData;
+
   let conditionForGreen;
   let conditionForDisabled;
   let fieldsToUpdate;
@@ -23,22 +39,7 @@ const ButtonToAction = (props) => {
   let modalTitle;
   let modalContent;
 
-  const {
-    isOrder,
-    isVolunteer,
-    isFiker,
-    isGroup,
-    isSetGroups,
-    isSetConfirmed,
-    isSetReady,
-    isEditComments,
-    isToggleActive,
-    groupData,
-    refreshAction,
-    successKey,
-  } = props;
-
-  const { status, email, telefon, gruppId, id, kommentarer } = props.formData;
+  const hasNoGroup = !gruppId || gruppId === "0";
 
   const db = firebase.firestore();
 
@@ -147,31 +148,30 @@ const ButtonToAction = (props) => {
 
   //Actions if the button action is to set the order status as ready
   if (isSetConfirmed) {
+    const isNew = status === "1";
+    conditionForDisabled = hasNoGroup || isNew || successKey;
     conditionForGreen = successKey;
-    conditionForDisabled =
-      !gruppId || gruppId === "0" || status === "1" || successKey;
-    statusCopy =
-      !gruppId || gruppId === "0"
-        ? "Välj grupp först"
-        : status === "1"
-        ? "Skicka till grupp först"
-        : successKey
-        ? isVolunteer
-          ? "Volontär välkomnad!"
-          : "Beställning bekräftad!"
-        : !email && telefon
-        ? `Bekräfta via ${telefon}`
-        : "Ingen email eller telefon";
-    statusColor =
-      !gruppId || gruppId === "0"
-        ? "red"
-        : status === "1"
-        ? "red"
-        : successKey
-        ? "green"
-        : !email && telefon
-        ? "red"
-        : "Ingen email eller telefon";
+
+    statusCopy = hasNoGroup
+      ? "Välj grupp först"
+      : isNew
+      ? "Skicka till grupp först"
+      : successKey
+      ? isVolunteer
+        ? "Volontär välkomnad!"
+        : "Beställning bekräftad!"
+      : !email && telefon
+      ? `Bekräfta via ${telefon}`
+      : "Ingen email eller telefon";
+    statusColor = hasNoGroup
+      ? "red"
+      : isNew
+      ? "red"
+      : successKey
+      ? "green"
+      : !email && telefon
+      ? "red"
+      : "Ingen email eller telefon";
     buttonCopy = successKey
       ? isVolunteer
         ? "Volontär uppringd"
@@ -187,19 +187,17 @@ const ButtonToAction = (props) => {
 
   //Actions if the button action is to set the order status as ready
   if (isSetReady) {
-    conditionForGreen = status === "4";
-    conditionForDisabled = !gruppId || gruppId === "0" || status === "4";
-    statusCopy =
-      !gruppId || gruppId === "0"
-        ? "Välj grupp först"
-        : status === "4"
-        ? "Beställningen utförd!"
-        : "Inte utförd ännu";
+    const isReady = status === "4";
+    conditionForGreen = isReady;
+    conditionForDisabled = hasNoGroup || isReady;
+    statusCopy = hasNoGroup
+      ? "Välj grupp först"
+      : isReady
+      ? "Beställningen utförd!"
+      : "Inte utförd ännu";
 
-    statusColor =
-      !gruppId || gruppId === "0" ? "red" : status === "4" ? "green" : "red";
-
-    buttonCopy = status === "4" ? "Klar!" : "Klicka när klar";
+    statusColor = hasNoGroup ? "red" : isReady ? "green" : "red";
+    buttonCopy = isReady ? "Klar!" : "Klicka när klar";
     modalTitle = "Markera beställningen som klar";
     modalContent =
       "Har du bekräftat att beställningen är utförd och vill markera den som klar i systemet? Du kan inte ångra det efteråt.";
@@ -209,25 +207,31 @@ const ButtonToAction = (props) => {
   }
 
   if (isToggleActive) {
-    conditionForGreen = status === "4";
+    const isActive = status === "4";
+    const isPaused = status === "5";
+    conditionForGreen = isActive;
     conditionForDisabled = !gruppId || gruppId === "0";
-    statusCopy =
-      !gruppId || gruppId === "0"
-        ? "Välj grupp först"
-        : status === "4"
-        ? "Tränad och redo för uppdrag!"
-        : "Inte tränad ännu";
-    statusColor =
-      !gruppId || gruppId === "0" ? "red" : status === "4" ? "green" : "red";
-
-    buttonCopy = status === "4" ? "Pausa" : "Tränad? Sätt som aktiv";
+    statusCopy = conditionForDisabled
+      ? "Välj grupp först"
+      : isActive
+      ? "Tränad och redo för uppdrag!"
+      : isPaused
+      ? "Tränad, men pausad"
+      : "Inte tränad ännu";
+    statusColor = conditionForDisabled ? "red" : isActive ? "green" : "red";
+    buttonCopy = isActive
+      ? "Pausa"
+      : isPaused
+      ? "Pausad. Ändra till aktiv"
+      : "Klicka här när tränad";
     modalTitle = "Sätt volontären som 'aktiv'";
-    modalContent =
-      status === "4"
-        ? "Vill du sätta volontären som 'inte aktiv' i systemet?"
-        : "Har du bekräftat att volontären har blivit välkomnad och tränad och är redo att bli satt som 'aktiv' i systemet?";
+    modalContent = isActive
+      ? "Vill du sätta volontären som 'pausad' i systemet? Du kan ändra tillbaka till aktiv efteråt i 'Pausade' tabben."
+      : isPaused
+      ? "Vill du sätta volontären som aktiv igen i systemet?"
+      : "Har du bekräftat att volontären har blivit tränad och är redo att bli satt som 'aktiv' i systemet?";
     fieldsToUpdate = {
-      status: status === "4" ? "5" : "4",
+      status: isActive ? "5" : "4",
     };
   }
 
@@ -264,9 +268,7 @@ const ButtonToAction = (props) => {
     );
     fieldsToUpdate = {
       kommentarer: `${kommentarer}
-          ${moment(new Date())
-            .locale("sv")
-            .format("YYYY-MM-DD HH:MM")}: <i>${comments}
+          ${moment(new Date()).format("YYYY-MM-DD HH:MM")}: <i>${comments}
           /${signature}</i> <br/><br/>`,
     };
   }

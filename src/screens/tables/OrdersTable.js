@@ -15,9 +15,7 @@ import { small, medium, large, xlarge } from "./CellSizes";
 
 import { groupStatusDropdown } from "./Dropdowns";
 
-const OrdersTable = (props) => {
-  const { isAdmin, tableData, groupData, refreshAction } = props;
-
+const OrdersTable = ({ isAdmin, tableData, groupData, refreshAction }) => {
   const [data, setData] = useState(tableData);
   const db = firebase.firestore();
 

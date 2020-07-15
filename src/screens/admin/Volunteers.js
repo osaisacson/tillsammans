@@ -10,7 +10,7 @@ import RefreshButton from "./../../components/RefreshButton";
 import VolunteerForm from "./../users/VolunteerForm";
 import Accordion from "./../../components/Accordion";
 
-const Volunteers = (props) => {
+const Volunteers = ({ dbData, refreshAction, groupData, groupId }) => {
   return (
     <div className="page-layout">
       <AddButtonHeader
@@ -19,120 +19,107 @@ const Volunteers = (props) => {
         formForModal={<VolunteerForm />}
       />
       <Accordion
-        title="Hur vi hanterar Volontärer"
-        content="<h5>Uppdatera i vårt system</h5>
-        <ol>
-        <li>Öppna redigering genom att klicka på pennan till vänster om volontären</li>
-        <li>Välj grupp under 'Grupp'</li>
-        <li>Ändra status till 'Fördelad till grupp' under 'Status'.</li>
-        <li>Klicka på spara symbolen för att spara ändringar - om inte ändringarna syns direkt klicka refresh-knappen till höger</li>
-        </ol>
+        title="Hur vi hanterar volontärer"
+        content="
+        <h5>Uppdatera i vårt system</h5>
+        <ul>
+        <li>Generellt: samordnaren ansvarar för att de första två (och om volontären har en email, tre) knapparna under 'status' blir gröna.</li>
+        </ul>
         <br/>
-        <h5>Kommunicera med volontär</h5>
+        <h5>Steg för hantering</h5>
         <ol>
-        <li>Under 'Bekräftelse till volontär' klicka 'Skicka bekräftelse' - detta öppnar din email med mailet och addressen redan klart.</li>
-        <li>Om det istället för ovan knapp står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta volontären.</li>
-        <li>När skickat - klicka knappen 'Kontaktad'</li>
-      </ol>
-      <br/>
-
-        <h5>Kommunicera ny volontär till grupp</h5>
-        <ol>
-        <li>Under 'Detaljer till grupp' klicka 'Skicka detaljer' - detta öppnar din email med mailet redan klart.</li>
-        <li>Kolla detaljerna så allt ser bra ut och lägg till emailen för gruppledaren det ska skickas till</li>
-        <li>När skickat - klicka knappen 'Skickad'</li>
+        <li>Under 'Status' klicka 'Välj grupp'</li>
+        <li>När detta är klart klicka 'Skicka till grupp'</li>
+        <li>Om volontären har registrerat en email så är det samordnarens jobb att skicka välkomstemailet till volontären via knappen 'Skicka bekräftelse'. Annars om det står ett telefonnummer så låt det vara. Då är det upp till gruppledaren att kontakta volontären.</li>
+        <li>Klart!</li>
       </ol>
       <br/>
       <p>Håll ett öga på volontären i systemet så gruppledaren så småningom markerar den som 'Aktiv', annars följ upp.</p>
       </br>"
       />
 
-      <RefreshButton refreshAction={props.refreshAction} />
+      <RefreshButton refreshAction={refreshAction} />
 
       <Tabs id="0">
-        {props.dbData.newVolunteers.length ? (
+        {dbData.newVolunteers.length ? (
           <Tab
             eventKey="nya"
             title={
               <span>
                 Nya {""}
                 <Badge pill variant="danger">
-                  {props.dbData.newVolunteers.length}
+                  {dbData.newVolunteers.length}
                 </Badge>
               </span>
             }
           >
             <VolunteersTable
               isAdmin
-              groupData={props.groupData}
-              groupId={props.groupId}
-              tableData={props.dbData.newVolunteers}
-              refreshAction={props.refreshAction}
+              groupData={groupData}
+              groupId={groupId}
+              tableData={dbData.newVolunteers}
+              refreshAction={refreshAction}
             />
           </Tab>
         ) : null}
         <Tab
           eventKey="fördelade"
           title={`Fördelade till grupper (${
-            props.dbData.distributedVolunteers.length
-              ? props.dbData.distributedVolunteers.length
+            dbData.distributedVolunteers.length
+              ? dbData.distributedVolunteers.length
               : 0
           })`}
         >
           <VolunteersTable
             isAdmin
-            groupData={props.groupData}
-            groupId={props.groupId}
-            tableData={props.dbData.distributedVolunteers}
-            refreshAction={props.refreshAction}
+            groupData={groupData}
+            groupId={groupId}
+            tableData={dbData.distributedVolunteers}
+            refreshAction={refreshAction}
           />
         </Tab>
         <Tab
           eventKey="Att tränas"
           title={`Att tränas (${
-            props.dbData.toBeTrainedVolunteers.length
-              ? props.dbData.toBeTrainedVolunteers.length
+            dbData.toBeTrainedVolunteers.length
+              ? dbData.toBeTrainedVolunteers.length
               : 0
           })`}
         >
           <VolunteersTable
             isAdmin
-            groupData={props.groupData}
-            groupId={props.groupId}
-            tableData={props.dbData.toBeTrainedVolunteers}
-            refreshAction={props.refreshAction}
+            groupData={groupData}
+            groupId={groupId}
+            tableData={dbData.toBeTrainedVolunteers}
+            refreshAction={refreshAction}
           />
         </Tab>
         <Tab
           eventKey="aktiva"
           title={`Aktiva(${
-            props.dbData.activeVolunteers.length
-              ? props.dbData.activeVolunteers.length
-              : 0
+            dbData.activeVolunteers.length ? dbData.activeVolunteers.length : 0
           })`}
         >
           <VolunteersTable
-            groupId={props.groupId}
+            groupId={groupId}
             isAdmin
-            groupData={props.groupData}
-            tableData={props.dbData.activeVolunteers}
-            refreshAction={props.refreshAction}
+            groupData={groupData}
+            tableData={dbData.activeVolunteers}
+            refreshAction={refreshAction}
           />
         </Tab>
         <Tab
           eventKey="pausade"
           title={`Pausade (${
-            props.dbData.pausedVolunteers.length
-              ? props.dbData.pausedVolunteers.length
-              : 0
+            dbData.pausedVolunteers.length ? dbData.pausedVolunteers.length : 0
           })`}
         >
           <VolunteersTable
             isAdmin
-            groupData={props.groupData}
-            groupId={props.groupId}
-            tableData={props.dbData.pausedVolunteers}
-            refreshAction={props.refreshAction}
+            groupData={groupData}
+            groupId={groupId}
+            tableData={dbData.pausedVolunteers}
+            refreshAction={refreshAction}
           />
         </Tab>
       </Tabs>
