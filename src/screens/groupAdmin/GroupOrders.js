@@ -21,40 +21,21 @@ const GroupOrders = (props) => {
       <h4>Hantera beställningar</h4>
       <ol>
         <li>
-          När ni får in en beställning, kolla först så 'Bekräftelse till
-          beställare' är 'Kontaktad'. Om inte, ring numret som står där och
-          klicka sen 'Kontaktad'.
+          Generellt sätt:{" "}
+          <strong>allt nedan under 'status' ska vara grönt :)</strong>
         </li>
-        <li>
-          Bestäm vem ska ta hand om beställningen och vidarebefodra dess
-          detaljer via knappen 'Skicka detaljer' under 'Detaljer till volontär'.
-        </li>
-        <li>
-          Skriv vilken volontär som tagit hand om beställningen under
-          'Kommentarer'
-        </li>
-        <li>
-          Slutligen, när beställningen är utförd - ändra fältet under 'Status'
-          till 'Klar'
-        </li>
-        <li>Klart! Ändringarna här syns nu också för samordnaren.</li>
       </ol>
       <br />
 
       <h5>TIPS</h5>
       <ul>
         <li>
-          Öppna redigering genom att klicka på pennan till vänster om
-          beställningen
-        </li>
-        <li>
-          Klicka på bocken till vänster om beställningen för att spara - om inte
-          ändringarna syns direkt, klicka den lila refresh-knappen nere till
+          Ser du inte dina ändringar? Klicka den lila refresh-knappen nere till
           höger
         </li>
         <li>
-          Använd gärna 'Kommentarer' för att skriva in något ni vill förmedla
-          antingen internt eller till samordnaren.
+          Använd 'Kommentarer' för att skriva in det ni vill förmedla antingen
+          internt eller till samordnaren.
         </li>
       </ul>
       <br />
