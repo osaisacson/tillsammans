@@ -10,8 +10,6 @@ import AddButtonHeader from "../../components/AddButtonHeader";
 import RefreshButton from "../../components/RefreshButton";
 
 const GroupOrders = (props) => {
-  console.log("GROUPDATA FROM UP ORDERS: ", props.groupData);
-
   return (
     <div className="page-layout">
       <AddButtonHeader

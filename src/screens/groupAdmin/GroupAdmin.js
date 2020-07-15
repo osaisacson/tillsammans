@@ -19,8 +19,6 @@ import GroupFikers from "../groupAdmin/GroupFikers";
 const GroupAdmin = (props) => {
   const firestore = firebase.firestore();
 
-  console.log("GROUPDATA FROM UP UP ORDERS: ", props.groupData);
-
   //Set up hooks
   const [groupData, setGroupData] = useState({
     currentGroup: [],

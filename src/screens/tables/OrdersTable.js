@@ -17,7 +17,6 @@ import { groupStatusDropdown } from "./Dropdowns";
 
 const OrdersTable = (props) => {
   const { isAdmin, tableData, groupData, refreshAction } = props;
-  console.log("GROUPDATA FROM ORDERS: ", groupData);
 
   const [data, setData] = useState(tableData);
   const db = firebase.firestore();
