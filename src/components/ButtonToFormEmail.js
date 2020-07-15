@@ -27,11 +27,13 @@ const ButtonToFormEmail = (props) => {
   const hasNoGroup = !formData.gruppId || formData.gruppId === "0";
   const conditionForDisabled = hasNoGroup;
 
+  const statusColor = hasNoGroup ? "red" : successKey ? `green` : `red`;
+
   if (isSendGroup) {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
       : successKey
-      ? `Skickad till grupp`
+      ? `Skickad till grupp!`
       : `Inte skickad till grupp ännu`;
     buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka till grupp`;
   }
@@ -40,7 +42,7 @@ const ButtonToFormEmail = (props) => {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
       : successKey
-      ? `Bekräftelse skickad`
+      ? `Bekräftelse skickad!`
       : `Ingen bekräftelse skickad`;
     buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka bekräftelse`;
   }
@@ -49,7 +51,7 @@ const ButtonToFormEmail = (props) => {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
       : successKey
-      ? `Skickad till volontär`
+      ? `Skickad till volontär!`
       : `Ingen volontär ännu`;
     buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka till volontär`;
   }
@@ -57,7 +59,7 @@ const ButtonToFormEmail = (props) => {
   return (
     <div className="status-field">
       <>
-        <div>{statusCopy}</div>
+        <div className={`status-copy ${statusColor}`}>{statusCopy}</div>
         <Button
           disabled={conditionForDisabled}
           className={`form-to-email-button ${

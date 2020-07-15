@@ -19,6 +19,7 @@ const ButtonToAction = (props) => {
   let currentGroup = "";
   let buttonCopy = "";
   let statusCopy = "";
+  let statusColor;
   let modalTitle;
   let modalContent;
 
@@ -158,6 +159,16 @@ const ButtonToAction = (props) => {
         : !email && telefon
         ? `Bekräfta via ${telefon}`
         : "Ingen email eller telefon";
+    statusColor =
+      !gruppId || gruppId === "0"
+        ? "red"
+        : status === "1"
+        ? "red"
+        : successKey
+        ? "green"
+        : !email && telefon
+        ? "red"
+        : "Ingen email eller telefon";
     buttonCopy = successKey ? "Beställare uppringd" : "Klicka när kontaktad";
     modalTitle = "Markera beställningen som bekräftad";
     modalContent =
@@ -178,6 +189,9 @@ const ButtonToAction = (props) => {
         ? "Beställningen utförd"
         : "Inte utförd ännu";
 
+    statusColor =
+      !gruppId || gruppId === "0" ? "red" : status === "4" ? "green" : "red";
+
     buttonCopy = status === "4" ? "Klar!" : "Klicka när klar";
     modalTitle = "Markera beställningen som klar";
     modalContent =
@@ -196,6 +210,8 @@ const ButtonToAction = (props) => {
         : status === "4"
         ? "Satt som aktiv"
         : "Klicka för att ändra till aktiv";
+    statusColor =
+      !gruppId || gruppId === "0" ? "red" : status === "4" ? "green" : "red";
 
     buttonCopy = status === "4" ? "Aktiv" : "Inte aktiv";
     modalTitle = "Sätt volontären som 'aktiv'";
@@ -254,7 +270,9 @@ const ButtonToAction = (props) => {
         <div>...sparar</div>
       ) : (
         <>
-          <div>{statusCopy ? statusCopy : localStatusCopy}</div>
+          <div className={`status-copy ${statusColor}`}>
+            {statusCopy ? statusCopy : localStatusCopy}
+          </div>
           <Button
             disabled={conditionForDisabled}
             className={`form-to-email-button ${

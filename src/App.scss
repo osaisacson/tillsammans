@@ -332,6 +332,17 @@ body {
   }
 }
 
+.status-copy {
+  font-weight: 600;
+  font-style: italic;
+  &.red {
+    color: #852727;
+  }
+  &.green {
+    color: #0f6b52;
+  }
+}
+
 .add-button {
   background-color: $primary-color;
   color: #fff;
