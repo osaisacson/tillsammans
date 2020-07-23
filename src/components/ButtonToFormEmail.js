@@ -23,41 +23,42 @@ const ButtonToFormEmail = (props) => {
   let statusCopy = "";
   let buttonCopy = "";
 
-  const conditionForGreen = successKey;
+  const isDone = formData.status === "4";
   const hasNoGroup = !formData.gruppId || formData.gruppId === "0";
-  const conditionForDisabled = hasNoGroup;
+  const conditionForGreen = successKey || isDone;
+  const conditionForDisabled = hasNoGroup || isDone;
 
-  const statusColor = hasNoGroup ? "red" : successKey ? `green` : `red`;
+  const statusColor = hasNoGroup ? "red" : conditionForGreen ? `green` : `red`;
 
   if (isSendGroup) {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
-      : successKey
+      : conditionForGreen
       ? `Skickad till grupp!`
       : `Inte skickad till grupp ännu`;
-    buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka till grupp`;
+    buttonCopy = conditionForGreen ? "Skickad!" : `Skicka till grupp`;
   }
 
   if (isSendToRecipient) {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
-      : successKey
+      : conditionForGreen
       ? actionInForm === "sendVolunteerWelcome"
         ? "Volontär välkomnad!"
         : `Bekräftelse skickad!`
       : actionInForm === "sendVolunteerWelcome"
       ? "Voluntär inte välkomnad ännu"
       : `Ingen bekräftelse skickad`;
-    buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka bekräftelse`;
+    buttonCopy = conditionForGreen ? "Skickad!" : `Skicka bekräftelse`;
   }
 
   if (isSendToVolunteer) {
     statusCopy = hasNoGroup
       ? "Välj grupp först"
-      : successKey
+      : conditionForGreen
       ? `Skickad till volontär!`
       : `Ingen volontär ännu`;
-    buttonCopy = successKey ? "Skickad! Skicka igen?" : `Skicka till volontär`;
+    buttonCopy = conditionForGreen ? "Skickad!" : `Skicka till volontär`;
   }
 
   return (

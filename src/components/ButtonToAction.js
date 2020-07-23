@@ -39,6 +39,7 @@ const ButtonToAction = ({
   let modalTitle;
   let modalContent;
 
+  const isDone = status === "4";
   const hasNoGroup = !gruppId || gruppId === "0";
 
   const db = firebase.firestore();
@@ -104,7 +105,8 @@ const ButtonToAction = ({
           : "Ingen grupp ännu";
       statusColor = currentGroup && currentGroup.gruppnamn ? "green" : "red";
     }
-    conditionForGreen = groupData && groupData !== "0";
+    conditionForGreen = (groupData && groupData !== "0") || isDone;
+    conditionForDisabled = isDone;
     buttonCopy = gruppId && gruppId !== "0" ? "Välj annan grupp" : "Välj grupp";
     modalTitle = "Fördela till grupp";
     modalContent = (
@@ -149,14 +151,14 @@ const ButtonToAction = ({
   //Actions if the button action is to set the order status as ready
   if (isSetConfirmed) {
     const isNew = status === "1";
-    conditionForDisabled = hasNoGroup || isNew || successKey;
-    conditionForGreen = successKey;
+    conditionForDisabled = hasNoGroup || isNew || successKey || isDone;
+    conditionForGreen = successKey || isDone;
 
     statusCopy = hasNoGroup
       ? "Välj grupp först"
       : isNew
       ? "Skicka till grupp först"
-      : successKey
+      : conditionForGreen
       ? isVolunteer
         ? "Volontär välkomnad!"
         : "Beställning bekräftad!"
@@ -167,12 +169,12 @@ const ButtonToAction = ({
       ? "red"
       : isNew
       ? "red"
-      : successKey
+      : conditionForGreen
       ? "green"
       : !email && telefon
       ? "red"
       : "Ingen email eller telefon";
-    buttonCopy = successKey
+    buttonCopy = conditionForGreen
       ? isVolunteer
         ? "Volontär uppringd"
         : "Beställare uppringd"
