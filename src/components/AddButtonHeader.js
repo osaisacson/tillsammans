@@ -14,7 +14,7 @@ const AddButtonHeader = ({
   const handleShow = () => setShow(true);
 
   return (
-    <div className="flex-spread">
+    <div className="add-section">
       {headerText ? <h2>{headerText}</h2> : null}
       <Button className="add-button" onClick={handleShow}>
         {buttonTextSimple ? buttonTextSimple : `+ Lägg till ny ${buttonText}`}

@@ -263,7 +263,15 @@ const Admin = (props) => {
             dbData={fikersData}
           />
         </Tab>
-        <Tab className="fat-tab" title="Grupper" eventKey="fourth">
+        <Tab
+          title={
+            <div className="flex-spread">
+              <div className="margin-right-5">Grupper</div>
+              <LoadingBadge allDataLength={props.groupData.length} />
+            </div>
+          }
+          eventKey="fourth"
+        >
           <Groups groupData={props.groupData} />
         </Tab>
       </Tabs>

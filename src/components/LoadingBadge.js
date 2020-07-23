@@ -13,7 +13,7 @@ const LoadingBadge = ({
   return (
     <>
       {allDataLength ? (
-        <>
+        <div>
           <Badge pill variant="light" className="margin-right-5">
             {allDataLength} TOTALT
           </Badge>
@@ -38,7 +38,7 @@ const LoadingBadge = ({
               {readyDataLength} {readyDataCopy}
             </Badge>
           ) : null}
-        </>
+        </div>
       ) : (
         <Badge pill variant={"light"}>
           ...Laddar

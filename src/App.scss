@@ -94,7 +94,7 @@ body {
   width: 100%;
   background-color: $page-background !important;
   border-radius: 2px;
-  padding: 20px;
+  padding: 10px;
   margin: 10px 0;
   border-radius: 2px;
 
@@ -714,6 +714,9 @@ ul {
 }
 
 @media only screen and (max-width: 980px) {
+  .nav-pills .nav-link {
+    width: 100%;
+  }
   .blurb {
     display: none;
   }
