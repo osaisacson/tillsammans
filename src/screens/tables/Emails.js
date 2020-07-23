@@ -148,7 +148,7 @@ export const sendConfirmationToRecipientEmail = (content, group) => {
   <p>${group.reserv}: ${group.reservEmail} ${group.reservTelefon}</p>
   ${orderInfo(content)}
   </br>
-  <p>Så snart vi har möjlighet kommer en volontär från gruppen att kontakta er för att utföra ärendet.</p>>
+  <p>Så snart vi har möjlighet kommer en volontär från gruppen att kontakta er för att utföra ärendet.</p>
   <p>&nbsp;</p>
   <p> Med vänliga hälsningar,</p>
   <div> Samordnaren</div>

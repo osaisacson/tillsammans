@@ -200,8 +200,10 @@ const ButtonToAction = ({
     buttonCopy = isReady ? "Klar!" : "Klicka när klar";
     modalTitle = "Markera beställningen som klar";
     modalContent =
-      "Har du bekräftat att beställningen är utförd och vill markera den som klar i systemet? Du kan inte ångra det efteråt.";
+      "Har du bekräftat att beställningen är utförd och vill markera den som klar i systemet? Du kan inte ångra det efteråt. Detta kommer sätta alla fält som klara.";
     fieldsToUpdate = {
+      skickadVolontär: true,
+      skickadBeställare: true,
       status: "4",
     };
   }
