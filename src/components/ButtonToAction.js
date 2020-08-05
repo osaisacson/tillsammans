@@ -20,13 +20,22 @@ const ButtonToAction = ({
   isSetConfirmed,
   isSetReady,
   isEditComments,
+  isEditDescription,
   isToggleActive,
   groupData,
   formData,
   refreshAction,
   successKey,
 }) => {
-  const { status, email, telefon, gruppId, id, kommentarer } = formData;
+  const {
+    status,
+    email,
+    telefon,
+    gruppId,
+    id,
+    kommentarer,
+    beskrivning,
+  } = formData;
 
   let conditionForGreen;
   let conditionForDisabled;
@@ -49,6 +58,7 @@ const ButtonToAction = ({
   const [groupID, setGroupID] = useState(gruppId ? gruppId : "");
   const [signature, setSignature] = useState("");
   const [comments, setComments] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -61,6 +71,9 @@ const ButtonToAction = ({
     if (name === "comments") {
       setComments(value);
     }
+    if (name === "description") {
+      setDescription(value);
+    }
     if (name === "signature") {
       setSignature(value);
     }
@@ -69,6 +82,7 @@ const ButtonToAction = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     setComments("");
+    setDescription("");
     dbUpdate();
   };
 
@@ -289,8 +303,50 @@ const ButtonToAction = ({
     };
   }
 
+  if (isEditDescription) {
+    buttonCopy = "Lägg till beskrivning/inköpslista";
+    modalTitle = "Lägg till beskrivning/inköpslista";
+    modalContent = (
+      <>
+        <form onSubmit={handleSubmit}>
+          <div>{ReactHtmlParser(beskrivning)}</div>
+          <FormInput
+            autoComplete="off"
+            name="description"
+            type="textarea"
+            handleChange={handleChange}
+            value={description}
+            label="Beskrivning/Inköpslista"
+            required
+          />
+          <FormInput
+            autoComplete="off"
+            name="signature"
+            type="text"
+            handleChange={handleChange}
+            value={signature}
+            label="Ditt namn"
+            required
+          />
+          <Button type="submit" block>
+            Spara beskrivning/inköpslista
+          </Button>
+        </form>
+      </>
+    );
+    fieldsToUpdate = {
+      beskrivning: `${beskrivning}
+          ${moment(new Date()).format("YYYY-MM-DD HH:MM")}: <i>${description}
+          /${signature}</i> <br/><br/>`,
+    };
+  }
+
   return (
-    <div className={isEditComments ? "flex-spread" : "status-field"}>
+    <div
+      className={
+        isEditComments || isEditDescription ? "flex-spread" : "status-field"
+      }
+    >
       {isLoading ? (
         <div>...sparar</div>
       ) : (
@@ -310,7 +366,7 @@ const ButtonToAction = ({
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>{modalTitle}</Modal.Header>
             <Modal.Body>{modalContent}</Modal.Body>
-            {isEditComments ? null : (
+            {isEditComments || isEditDescription ? null : (
               <Modal.Footer>
                 <Button variant="primary" onClick={dbUpdate}>
                   Ja, spara

@@ -126,11 +126,21 @@ const OrdersTable = ({ isAdmin, tableData, groupData, refreshAction }) => {
       ),
     },
     {
-      title: "Beskrivning",
+      title: "Beskrivning/Inköpslista",
       field: "beskrivning",
-      editable: "never",
       cellStyle: xlarge,
       headerStyle: xlarge,
+      render: (rowData) => (
+        <>
+          <div>{ReactHtmlParser(rowData.beskrivning)}</div>
+          <ButtonToAction
+            isOrder
+            isEditDescription
+            formData={rowData}
+            refreshAction={refreshAction}
+          />
+        </>
+      ),
     },
     {
       title: "Swish",
