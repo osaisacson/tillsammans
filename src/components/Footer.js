@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = (props) => (
   <div className="footer">
-    <p className="bold">TIPS:</p>
+    <p className="bold">Tips!</p>
     <p>
       Studiecirklar för Tjörnbor online: 'Våra dialekter' (start vecka 34),
       'Seniorsurfarna' (start vecka 34)

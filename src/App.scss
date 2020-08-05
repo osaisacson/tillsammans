@@ -260,9 +260,9 @@ body {
   z-index: 10;
 
   img {
-    width: 200px;
+    width: 210px;
     position: absolute;
-    left: 6%;
+    left: 10%;
     top: 30%;
   }
 }
@@ -288,16 +288,16 @@ body {
   flex-wrap: wrap;
   bottom: 0;
   width: 100%;
-  padding: 15px;
-  color: $highlight-color;
+  padding: 12px;
   background-color: $primary-color-dark;
 
   p {
+    font-style: italic;
     margin: 0;
   }
 
   a {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-left: 6px;
     color: $highlight-color;
     font-weight: 600;
