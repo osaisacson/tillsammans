@@ -10,26 +10,35 @@ export default function Partners() {
       <h2>Studiecirklar</h2>
 
       <p>
-        Nu planeras som bäst höstens studiecirklar i samarbete mellan Alla
-        Tillsammans,
+        I samarbete mellan Alla Tillsammans,{" "}
         <a href="https://www.spfseniorerna.se/distrikt/bohusdistriktet/foreningslista/Tjornveteranerna/">
           SPF Tjörnseniorerna
-        </a>
-        och Studieförbundet Vuxenskolan. Två studiecirklar online är nu öppna
-        för intresseanmälan:{" "}
+        </a>{" "}
+        och Studieförbundet Vuxenskolan är två online studiecirklar nu öppna för
+        intresseanmälan:{" "}
       </p>
       <ul>
         <li>
-          Våra dialekter (start vecka 34). En resa genom historiska dialekter
-          och uttryck till vår egen Tjörndialekt Tjörnbu. I cirkeln varvas
-          föredrag, klipp och samtal under ledning av Lars Rafstedt och med
-          inslag från Kenneth Larsson (årets Tjörnbo 2019).{" "}
+          <h6>Våra dialekter</h6> En resa genom historiska dialekter, särskilt
+          Bohusländska, och uttryck till vår egen Tjörndialekt Tjörnbu. Vi lär
+          oss också hur språket utvecklats från vikingatid till nutid genom att
+          titta på några runtexter och medeltida texter. I cirkeln varvas
+          föredrag, klipp och samtal under ledning av Lars Rafstedt. 5
+          tillfällen med 2 h per tillfälle.{" "}
         </li>
+        <br />
+
         <li>
-          Seniorsurfarna (start vecka 34). Lär dig att använda digitala verktyg
-          för att hålla kontakt med vänner och anhöriga och utföra ärenden. Vi
-          utgår från SV:s studiematerial seniorsurfarskolan. 6 tillfällen med
-          1,5 h per tillfälle.
+          <h6>Seniorsurfarna</h6> Allt mer i vår vardag styrs av teknik. Om man
+          inte hänger med i utvecklingen riskerar man att snabbt hamna på
+          efterkälken och i värsta fall i utanförskap. I SVT's UR-program
+          'Seniorsurfarna' hjälper Claes Malmberg, Marianne Mörck, Björn
+          Hellberg, Ewa Fröling samt programledaren Kattis Ahlström seniorer att
+          gå från mer eller mindre digitala oskulder till fullfjädrade
+          seniorsurfare. I vår kurs utgår vi från SVT:s studiematerial till
+          serien och lär oss att använda digitala verktyg för att hålla kontakt
+          med vänner och anhöriga och utföra ärenden. 6 tillfällen med 2 h per
+          tillfälle.
         </li>
       </ul>
 
