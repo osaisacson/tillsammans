@@ -2,7 +2,7 @@
 
 Organising assistance for self-isolated risk groups of corona/covid-19
 
-Uses React.js/Node.js/Redux, Firebase for db and deploys with Heroku.
+Uses React.js/Node.js/Redux, Firebase for db hosting.
 
 Find the latest live version at:
 
@@ -207,15 +207,31 @@ go to https://github.com/osaisacson/tillsammans and make a PR (just press the pr
 
 Done! Let someone know that you've done changes that they can merge, or do the merge yourself (see steps in the 'Building' section below).
 
-### Building
+### Code review
 
 This is for the person who will be approving that the changes you made above should indeed be merged into the main project. Best practice is that someone other than you merge it. Four eyes are better than two.
 
 1. Go to https://github.com/osaisacson/tillsammans
 
-2. Approve an existing PR (you'll see them clearly when you go to the above page, if there are any) and merge it to the master branch (press the 'merge' button...) - this will automatically build the app on Heroku (setup for this is in step 4-5 under the heroku deployment section above)
+2. Approve an existing PR (you'll see them clearly when you go to the above page, if there are any) and merge it to the master branch (press the 'merge' button...)
 
-3. Give it a minute, then check out the live version of your app to see that it built successfully with the changes from the PR.
+### Deploying
+
+When you're ready to release the changes:
+
+1. Go to the master branch
+
+```
+npm run build
+
+```
+
+```
+firebase deploy
+
+```
+
+Check out the changes at:
 
 ```
 
@@ -240,75 +256,6 @@ Check your git settings so all looks well.
 git config --list
 
 ```
-
-Use the git remote command to confirm that a remote named heroku has been set for your app:
-
-```
-
-git remote -v
-
-```
-
-### Heroku deployment - When using this project as a template
-
-ONLY if you're using this project as a template for a brand new project, otherwise this is already done (only once per project) so don't do it.
-
-##### Install Heroku
-
-First check if you've got Heroku installed already or not
-
-```
-
-heroku --version
-
-```
-
-Not? then:
-
-```
-
-brew tap heroku/brew && brew install heroku
-heroku login
-
-```
-
-##### Create Heroku instance and setup auto deployment
-
-1. Create Heroku instance
-   From root:
-
-```
-
-cd .. (to move to root)
-heroku create -b https://github.com/osaisacson/name-of-your-repository.git
-
-```
-
-2. Rename Heroku from the default to your project name
-
-```
-
-heroku apps:rename name-of-project
-
-```
-
-3. Clear buildpacks so Heroku autodetects when you push changes
-
-```
-
-heroku buildpacks:clear
-
-```
-
-...otherwise the first time you push to heroku you will get an error of 'App not compatible with buildpack'. Clearing it like this fixes that.
-
-4. Go to https://www.heroku.com and find your project, then - Deploy/Deployment Method/Github and connect to the name of your matching github repository.
-
-5. Go to Automatic Deploys just underneath where you just were. Keep the default master branch as the one to deploy, and then click 'Enable Automatic Deploys'.
-
-###### Now every push to master will automatically deploy a new version of the app. Yay.
-
-Note that the free version of heroku uses dynos that rest inbetween visits, so the app may take up to a minute to load when it's been sleeping. To fix this pay Heroku 7 USD/month for an upgraded, non sleeping dyno.
 
 ## Author
 
