@@ -48,9 +48,9 @@ export default function MainHeader(props) {
             <Link id="partners" to="/partners" className="nav-link">
               Partners
             </Link>
-            <Link id="tips" to="/tips" className="nav-link">
+            {/* <Link id="tips" to="/tips" className="nav-link">
               Sociala Aktiviteter
-            </Link>
+            </Link> */}
             {isAuthenticated && (
               <React.Fragment>
                 <Link className="nav-link" to="/admin/account">

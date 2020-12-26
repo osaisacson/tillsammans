@@ -35,8 +35,7 @@ html {
   width: 100vw;
   max-width: 100vw;
   font-family: "Roboto", sans-serif;
-  background: url("../src/images/47879864691_8f3d2266d0_k.jpg") no-repeat center
-    center fixed;
+  background: url("../src/images/winter_bg.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -293,7 +292,7 @@ body {
 
   p {
     font-style: italic;
-    margin: 0;
+    width: 90%;
   }
 
   a {

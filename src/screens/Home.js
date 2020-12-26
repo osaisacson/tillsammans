@@ -21,7 +21,7 @@ export default function Home() {
           <Link to={`/bestallning`}>
             <IconButton
               icon={Icon2}
-              text={"Jag vill beställa hjälp med yttre ärenden"}
+              text={"Jag vill beställa hjälp med ärenden"}
             />
           </Link>
           <Link to={`/bli-volontar`}>
