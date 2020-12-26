@@ -7,7 +7,7 @@ import Icon3 from "./../images/symbol3.png";
 import kaffe from "./../images/kaffe.png";
 
 import IconButton from "./../components/IconButton";
-import Footer from "./../components/Footer";
+
 
 export default function Home() {
   return (
@@ -32,7 +32,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

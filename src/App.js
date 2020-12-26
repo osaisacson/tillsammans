@@ -7,6 +7,7 @@ import MainHeader from "./components/MainHeader";
 
 //All screens
 import Home from "./screens/Home";
+import Footer from "./components/Footer";
 
 //User screens
 import Apply from "./screens/users/Apply";
@@ -147,6 +148,7 @@ function App(props) {
           </Route>
         </Switch>
       </div>
+      <Footer />
     </div>
   );
 }
