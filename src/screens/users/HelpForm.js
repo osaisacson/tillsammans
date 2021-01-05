@@ -191,20 +191,19 @@ const HelpForm = (props) => {
             required
           >
             <option value="inget val">Välj typ</option>
-            <option value="Handla/Hämta mat">Handla / Hämta matvaror</option>
+            <option disabled value="Handla/Hämta mat">NOTERA: Vi handlar inte längre mat</option>
             <option value="Handla/Hämta annat">
-              Handla / Hämta annat (exempelvis paket, post, mediciner...)
+              Hämta paket, post, mediciner
             </option>
             <option value="Rådgivning för att komma igång med digital teknik">
               Rådgivning för att komma igång med digital teknik
             </option>
             <option value="Prata">
-              Prata med någon (vi kan ta en telefonfika)
+              Prata med någon (telefonfika)
             </option>
             <option value="Annat ärende">
               Utföra annat ärende (exempelvis rasta hund)
             </option>
-            <option value="Övrigt">Övrigt / Annat</option>
           </Form.Control>
         </Form.Group>
 
