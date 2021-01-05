@@ -167,8 +167,7 @@ const HelpForm = (props) => {
         <p>
           Notera att tjänsten är {""}
           <span className="bold">GRATIS</span>, enda kostnaden är om din
-          beställning i sig självt innebär någon kostnad - till exempel om du
-          vill vi ska handla. I de fallen ersätts volontären för sina utgifter
+          beställning i sig självt innebär någon kostnad - till exempel kostnad för mediciner. I de fallen ersätts volontären för sina utgifter
           via antingen swish, kontanter eller faktura. Vi tar aldrig ut någon
           avgift för själva tjänsten.
         </p>
@@ -216,7 +215,7 @@ const HelpForm = (props) => {
             value={formState.inputValues.beskrivning}
             type="text"
             onChange={textChangeHandler.bind(this, "beskrivning")}
-            placeholder="Inköpslista eller annan information om din beställning."
+            placeholder="Information om din beställning"
           />
         </Form.Group>
         <h3>

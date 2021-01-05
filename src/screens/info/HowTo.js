@@ -51,8 +51,7 @@ export default function HowTo() {
           <ul>
           <li>
             Tjänsten kan användas för att beställa hjälp med de flesta
-            typer av ärenden. Det behöver alltså inte bara handla om att
-            köpa mat utan kan vara att hämta upp / lämna någonting, att
+            typer av ärenden. Det kan vara att hämta upp / lämna någonting, att
             rasta djur osv.
           </li>
           <li>

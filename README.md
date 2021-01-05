@@ -190,13 +190,14 @@ git checkout -b name-of-your-new-branch (creates a new branch identical to the l
 cd tillsammans (ls and cd .. until you're in the tillsammans folder)
 npm start (this opens up a http://localhost:3000 window in your browser)
 
-```
+``
 
 4. Make changes to the code in visual studio code.
 
 5. Once you're done with your changes to the code, push them to GitHub like this:
 
 ```
+
 git add .
 git commit -m "commit message"
 git push (you'll be prompted to set the upstream branch, use the given suggestion)
@@ -222,11 +223,13 @@ When you're ready to release the changes:
 1. Go to the master branch
 
 ```
+
 npm run build
 
 ```
 
 ```
+
 firebase deploy
 
 ```
@@ -264,3 +267,4 @@ git config --list
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+```

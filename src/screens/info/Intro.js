@@ -7,8 +7,7 @@ export default function Intro() {
       <ul>
         <li>
           Tjänsten kan användas för att beställa hjälp med de flesta typer av
-          ärenden. Det behöver alltså inte bara handla om att handla mat utan
-          kan vara att hämta upp / lämna någonting, att handla djurmat osv.
+          ärenden. Det kan vara att hämta upp / lämna någonting, att handla djurmat osv.
         </li>
         <li>
           Vi försöker efter bästa förmåga hantera och bistå alla beställningar.
