@@ -8,7 +8,6 @@ import kaffe from "./../images/kaffe.png";
 
 import IconButton from "./../components/IconButton";
 
-
 export default function Home() {
   return (
     <>
@@ -24,9 +23,9 @@ export default function Home() {
               text={"Jag vill beställa hjälp med ärenden"}
             />
           </Link>
-          <Link to={`/bli-volontar`}>
+          {/* <Link to={`/bli-volontar`}>
             <IconButton icon={Icon3} text={"Jag vill bli volontär"} />
-          </Link>
+          </Link> */}
           <Link to={`/corona-fika`}>
             <IconButton icon={kaffe} text={"Jag vill delta på Coronafika"} />
           </Link>
