@@ -74,6 +74,16 @@ body {
   align-items: center;
 }
 
+.flex-left {
+  display: flex;
+  justify-content: left;
+  align-items: baseline;
+}
+
+.full-width {
+  width: 100%;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -81,6 +91,10 @@ body {
 
 .margin-right-5 {
   margin-right: 5px;
+}
+
+.bottom-border {
+  border-bottom: 0.5px solid lightgray;
 }
 
 /**
@@ -255,17 +269,6 @@ body {
   }
 }
 
-.blurb {
-  z-index: 10;
-
-  img {
-    width: 280px;
-    position: absolute;
-    left: 10%;
-    top: 20%;
-  }
-}
-
 .header-label {
   position: fixed;
   top: 60px;
@@ -294,6 +297,121 @@ body {
     font-size: 1.2rem;
     font-style: italic;
     width: 92%;
+  }
+}
+
+/**
+ * ----------------------------------------
+ * Front page components
+ * ----------------------------------------
+ */
+
+.front-page-layout {
+  display: flex;
+  width: 110%;
+  justify-content: space-between;
+}
+
+.blurb {
+  z-index: 10;
+  width: 300px;
+
+  img {
+    width: 280px;
+    position: absolute;
+    top: 20%;
+  }
+}
+
+.large-button-container {
+  margin-top: 10%;
+  width: 26%;
+  display: flex;
+  flex-direction: column;
+
+  .large-icon-button {
+    padding: 20px 30px;
+    margin: 10px 0;
+    border-radius: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.4rem !important;
+  }
+  .icon {
+    width: 50px;
+    margin-right: 15px;
+  }
+}
+
+.schedule-container {
+  width: 29%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+
+  .schedule-item {
+    width: 100%;
+    background-color: $navigation-color;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 5px;
+
+    .flex-spread {
+      align-items: baseline;
+    }
+
+    .activity,
+    .date,
+    .month,
+    .time,
+    .partner,
+    p {
+      color: #000;
+    }
+
+    .activity {
+      font-size: 1.3rem;
+      text-align: left;
+    }
+
+    .date {
+      font-size: 2.2rem;
+    }
+
+    .month {
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-left: 5px;
+    }
+
+    .time {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .partner {
+      text-align: right;
+    }
+
+    p {
+      padding-top: 8px;
+      text-align: left;
+      font-size: 1rem;
+    }
+  }
+
+  .schedule-item:hover {
+    .activity,
+    .date,
+    .month,
+    .time,
+    .partner,
+    p {
+      color: #fff;
+    }
   }
 }
 
@@ -346,30 +464,6 @@ body {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
-}
-
-.large-button-container {
-  margin-top: 27%;
-  display: flex;
-  flex-direction: column;
-}
-
-.large-icon-button {
-  padding: 20px 30px;
-  width: 385px;
-  margin: 10px 0;
-  border-radius: 50px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-align: left;
-  font-weight: 600;
-  font-size: 1.4rem !important;
-}
-
-.icon {
-  width: 50px;
-  margin-right: 15px;
 }
 
 /**
