@@ -259,10 +259,10 @@ body {
   z-index: 10;
 
   img {
-    width: 210px;
+    width: 280px;
     position: absolute;
     left: 10%;
-    top: 27%;
+    top: 20%;
   }
 }
 
@@ -285,25 +285,15 @@ body {
   text-align: center;
   flex-wrap: wrap;
   width: 100%;
-  padding: 12px;
+  padding: 25px 10px 15px;
   background-color: $primary-color-dark;
   position: absolute;
   bottom: 0;
 
   p {
+    font-size: 1.2rem;
     font-style: italic;
     width: 92%;
-  }
-
-  a {
-    font-size: 0.8rem;
-    margin-left: 6px;
-    color: $highlight-color;
-    font-weight: 600;
-  }
-
-  a:hover {
-    color: darken($highlight-color, 10%);
   }
 }
 
@@ -374,7 +364,7 @@ body {
   align-items: center;
   text-align: left;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.4rem !important;
 }
 
 .icon {
