@@ -1,8 +1,18 @@
 import React from "react";
 // import { Link } from "react-router-dom";
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("footer").style.top = "0";
+  } else {
+    document.getElementById("footer").style.display = "none";
+  }
+  prevScrollpos = currentScrollPos;
+};
 
-const Footer = (props) => (
-  <div className="footer">
+const Footer = () => (
+  <div id="footer" className="footer">
     <p>
       Alla Tillsammans är ett ideellt initiativ som stöttar de som behöver
       temporär hjälp under Coronaepidemin.

@@ -280,6 +280,12 @@ body {
   font-size: 1.3rem;
 }
 
+#footer {
+  transition: top 0.3s;
+  position: fixed;
+  bottom: 0;
+}
+
 .footer {
   display: flex;
   flex-direction: column;
@@ -290,8 +296,7 @@ body {
   width: 100%;
   padding: 25px 10px 15px;
   background-color: $primary-color-dark;
-  position: absolute;
-  bottom: 0;
+  opacity: 0.9;
 
   p {
     font-size: 1.2rem;
@@ -314,20 +319,22 @@ body {
 
 .blurb {
   z-index: 10;
-  width: 300px;
 
   img {
     width: 280px;
-    position: absolute;
+    position: fixed;
+    left: 10%;
     top: 20%;
   }
 }
 
 .large-button-container {
-  margin-top: 10%;
+  margin-top: 8%;
   width: 26%;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  left: 32%;
 
   .large-icon-button {
     padding: 20px 30px;
@@ -347,10 +354,16 @@ body {
 }
 
 .schedule-container {
-  width: 29%;
+  width: 36%;
   display: flex;
   flex-direction: column;
   padding-bottom: 40px;
+  margin-top: -60px;
+  margin-right: -70px;
+
+  .schedule-greeting {
+    font-size: 1.3rem;
+  }
 
   .schedule-item {
     width: 100%;
@@ -378,7 +391,7 @@ body {
     }
 
     .date {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
 
     .month {
@@ -403,6 +416,16 @@ body {
     }
   }
 
+  .logo-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .logo {
+      max-height: 40px;
+      max-width: 190px;
+    }
+  }
+
   .schedule-item:hover {
     .activity,
     .date,
@@ -411,6 +434,10 @@ body {
     .partner,
     p {
       color: #fff;
+    }
+
+    .logo {
+      opacity: 0;
     }
   }
 }
