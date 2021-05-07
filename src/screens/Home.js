@@ -3,15 +3,36 @@ import { Link } from "react-router-dom";
 
 import School from "./../images/illustration-pointer-med-text.png";
 import Icon2 from "./../images/symbol1.png";
-// import Icon3 from "./../images/symbol3.png";
 import kaffe from "./../images/kaffe.png";
 import SPF from "./../images/SPF.png";
 import SvenskaKyrkan from "./../images/SvenskaKyrkan.png";
-import RodaKorset from "./../images/RodaKorset.svg";
 import StudieforbundetVuxenskolan from "./../images/StudieforbundetVuxenskolan.png";
 
 import IconButton from "./../components/IconButton";
 import ScheduleItem from "./../components/ScheduleItem";
+
+const Schedule = [
+  {
+    title: "Folkhälsovecka! - Aktiviteter",
+    date: "17-21 Maj",
+    details:
+      "Alla seniorer i kommunen är välkomna att delta i en eller flera arrangemang. Vi kommer bland annat att ha kulturhistoriska promenader runt Tjörn, prova på boule, seniorgympa och golf. Alla aktiviteter sker utomhus och med smittsäkra rutiner. De som deltar i flest utomhusaktiviteter har chans att vinna fina priser!",
+    link:
+      "https://www.spfseniorerna.se/globalassets/foreningar/tjornveteranerna/folkhalsoveckan-affisch.pdf",
+    icon: SPF,
+    partner: "SPF Seniorerna",
+  },
+  {
+    title: "Folkhälsovecka! - Föreläsningar",
+    date: "17-21 Maj",
+    details:
+      "Som en del av SPF Seniorernas Folkhälsovecka erbjuds digitala föreläsningar med fokus på ett hälsosamt liv och åldrande som träningstips, kostråd, hjärngympa och psykisk hälsa. Samtliga föreläsningar kommer att kunna ses på spfseniorerna.se/folkhalsovecka.",
+    link:
+      "https://www.spfseniorerna.se/globalassets/foreningar/tjornveteranerna/forelasningar-folkhalsoveckan.pdf",
+    icon: SPF,
+    partner: "SPF Seniorerna",
+  },
+];
 
 export default function Home() {
   return (
@@ -28,9 +49,6 @@ export default function Home() {
               text={"Jag vill beställa hjälp med ärenden"}
             />
           </Link>
-          {/* <Link to={`/bli-volontar`}>
-            <IconButton icon={Icon3} text={"Jag vill bli volontär"} />
-          </Link> */}
           <Link to={`/corona-fika`}>
             <IconButton icon={kaffe} text={"Jag vill delta på Coronafika"} />
           </Link>
@@ -40,36 +58,19 @@ export default function Home() {
           <div className="schedule-greeting bold">
             Varmt välkomna till våra partneraktiviteter!
           </div>
-          <ScheduleItem
-            title={"Digitala gudstjänster och andakter"}
-            date={"1-31"}
-            month={"Mars"}
-            details={
-              "Vi fortsätter sända en gudstjänst varje söndag 11.00 via vår hemsida och fram till 24 mars även en onsdagsandakt."
-            }
-            icon={SvenskaKyrkan}
-            partner={"Svenska Kyrkan"}
-          />
-          <ScheduleItem
-            title={"Bordtennis"}
-            date={"11,18,25"}
-            month={"April"}
-            details={
-              "Varje torsdag kl. 10.00. Florence Karlsson tel. 076-813 02 53. Bordtennislokalen (belägen nära Humlan, Kållekärr). Tag med racket och egna bollar."
-            }
-            icon={SPF}
-            partner={"SPF Seniorerna"}
-          />
-          <ScheduleItem
-            title={"Digitalt måndagscafé"}
-            date={"26"}
-            month={"April"}
-            details={
-              "Studieförbundet Vuxenskolan tillsammans med Stenungsunds kommun, ABF, SPF och PRO erbjuder ett digitalt café kl. 14-15. Caféet kommer att ha en hemlig gäst som deltar. Det blir en blandning av humor, underhållning, berättelser, nostalgi, historia och hälsa."
-            }
-            icon={StudieforbundetVuxenskolan}
-            partner={"Studieförbundet Vuxenskolan"}
-          />
+          {Schedule.map((item) => {
+            return (
+              <ScheduleItem
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                details={item.details}
+                icon={item.icon}
+                partner={item.partner}
+                link={item.link}
+              />
+            );
+          })}
         </div>
       </div>
     </>

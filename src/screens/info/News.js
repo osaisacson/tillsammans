@@ -8,23 +8,18 @@ export default function Partners() {
       <br />
 
       <p>
-
-        I år skickar vi en nyårspresent till hyresgäster på Tjörns äldreboenden samt till kunder/patienter som nyttjar kommunens omsorgstjänster inom hemtjänst/hemsjukvård. 
-        Den innehåller en nyinspelad film med Bengtåke Carlson, Hoga som läser kända dikter. 
-
-        </p>
-        <p>
-
-Ta gärna en nyårsfika och lyssna på dikterna i den här länken:
-
-
+        I år skickar vi en nyårspresent till hyresgäster på Tjörns äldreboenden
+        samt till kunder/patienter som nyttjar kommunens omsorgstjänster inom
+        hemtjänst/hemsjukvård. Den innehåller en nyinspelad film med Bengtåke
+        Carlson, Hoga som läser kända dikter.
       </p>
-<p>
-      <a href="https://www.youtube.com/watch?v=Uh4HgtZdh0g">
-SPF SENIORERNA TJÖRNVETERANERNA DIKTER
+      <p>Ta gärna en fika och lyssna på dikterna i den här länken:</p>
+      <p>
+        <a href="https://www.youtube.com/watch?v=Uh4HgtZdh0g">
+          SPF SENIORERNA TJÖRNVETERANERNA DIKTER
         </a>{" "}
-        </p>
-    
+      </p>
+
       <br />
       <br />
     </div>

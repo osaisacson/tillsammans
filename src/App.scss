@@ -425,21 +425,6 @@ body {
       max-width: 190px;
     }
   }
-
-  .schedule-item:hover {
-    .activity,
-    .date,
-    .month,
-    .time,
-    .partner,
-    p {
-      color: #fff;
-    }
-
-    .logo {
-      opacity: 0;
-    }
-  }
 }
 
 /**
@@ -664,6 +649,12 @@ a:hover {
   color: #000;
   padding-right: 10px;
   margin-right: 10px;
+}
+
+.marked-nav-link {
+  color: #fff !important;
+  background-color: $primary-color;
+  border-radius: 5px;
 }
 
 .nav-link:hover,

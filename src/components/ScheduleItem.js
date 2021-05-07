@@ -3,24 +3,22 @@ import React from "react";
 import { Button } from "reactstrap";
 
 const ScheduleItem = (props) => {
-  const { title, date, month, time, details, partner, icon } = props;
+  const { title, date, details, partner, icon, link } = props;
   return (
     <>
-      <Button className="schedule-item" color="light" outline type="button">
-        <div className="activity bold border-bottom">{title}</div>
+      <div className="schedule-item" color="light" outline type="button">
         <div className="flex-spread border-bottom">
           <div className="flex-left">
             <div className="date">{date}</div>
-            <div className="month bold">{month}</div>
           </div>
-          <div className="time">{time}</div>
+          <div className="logo-container">
+            <img src={icon} className="logo" alt={partner} />
+          </div>
         </div>
+        <div className="activity bold border-bottom">{title}</div>
         <p className="details">{details}</p>
-        <div className="logo-container">
-          <img src={icon} className="logo" alt={partner} />
-        </div>
-        {/* <div className="partner">/ {partner}</div> */}
-      </Button>
+        <Button href={link}>Läs mer info här</Button>
+      </div>
     </>
   );
 };
