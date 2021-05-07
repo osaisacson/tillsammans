@@ -17,7 +17,7 @@ const ScheduleItem = (props) => {
         </div>
         <div className="activity bold border-bottom">{title}</div>
         <p className="details">{details}</p>
-        <Button href={link}>Läs mer info här</Button>
+        <Button href={link}>Läs mer här</Button>
       </div>
     </>
   );

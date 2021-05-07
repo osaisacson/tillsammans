@@ -16,7 +16,7 @@ const Schedule = [
     title: "Folkhälsovecka! - Aktiviteter",
     date: "17-21 Maj",
     details:
-      "Alla seniorer i kommunen är välkomna att delta i en eller flera arrangemang. Vi kommer bland annat att ha kulturhistoriska promenader runt Tjörn, prova på boule, seniorgympa och golf. Alla aktiviteter sker utomhus och med smittsäkra rutiner. De som deltar i flest utomhusaktiviteter har chans att vinna fina priser!",
+      "Varmt välkomna på Folkhälsovecka! SPF kommer bland annat att ha kulturhistoriska promenader runt Tjörn, prova på boule, seniorgympa och golf. Alla aktiviteter sker utomhus och med smittsäkra rutiner. De som deltar i flest utomhusaktiviteter har chans att vinna fina priser!",
     link:
       "https://www.spfseniorerna.se/globalassets/foreningar/tjornveteranerna/folkhalsoveckan-affisch.pdf",
     icon: SPF,
