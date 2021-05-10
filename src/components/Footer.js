@@ -1,14 +1,14 @@
 import React from "react";
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("footer").style.top = "0";
-  } else {
-    document.getElementById("footer").style.display = "none";
-  }
-  prevScrollpos = currentScrollPos;
-};
+// var prevScrollpos = window.pageYOffset;
+// window.onscroll = function () {
+//   var currentScrollPos = window.pageYOffset;
+//   if (prevScrollpos > currentScrollPos) {
+//     document.getElementById("footer").style.top = "0";
+//   } else {
+//     document.getElementById("footer").style.display = "none";
+//   }
+//   prevScrollpos = currentScrollPos;
+// };
 
 const Footer = () => (
   <div id="footer" className="footer">

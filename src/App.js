@@ -152,7 +152,7 @@ function App(props) {
           </Route>
         </Switch>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
