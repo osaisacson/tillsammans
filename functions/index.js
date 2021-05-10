@@ -72,7 +72,7 @@ exports.submit = functions.https.onRequest((req, res) => {
 // Email to notify the administrator of a new order - content
 async function sendNewOrderEmail(orderData) {
   const mailOptions = {
-    from: `Alla Tillsammans - Tjörn`,
+    from: "noreply.allatillsammans@gmail.com",
     to: "tjorn@allatillsammans.se",
     subject: `Ny beställning mottagen från ${orderData.förnamn} ${orderData.efternamn}`,
     html: `<h2>Ny beställning mottagen</h2>
@@ -81,8 +81,8 @@ async function sendNewOrderEmail(orderData) {
           </p>
           <p>
             <b>Mottagen: </b>${moment(new Date(orderData.datum)).format(
-              "lll"
-            )}<br>
+      "lll"
+    )}<br>
             <b>Typ: </b>${orderData.typ}<br>
           </p>
           <p>
@@ -120,13 +120,14 @@ async function sendNewOrderEmail(orderData) {
 
   await mailTransport.sendMail(mailOptions);
   console.log("New order email notification sent!");
+
   return null;
 }
 
 // Email to notify the administrator of a new order - content
 async function sendNewVolunteerEmail(volunteerData) {
   const mailOptions = {
-    from: `Alla Tillsammans - Tjörn`,
+    from: "noreply.allatillsammans@gmail.com",
     to: "tjorn@allatillsammans.se",
     subject: `Ny volontär mottagen: ${volunteerData.förnamn} ${volunteerData.efternamn}`,
     html: `<h2>Ny volontär</h2>
@@ -135,8 +136,8 @@ async function sendNewVolunteerEmail(volunteerData) {
     </p>
     <p>
       <b>Mottagen: </b>${moment(new Date(volunteerData.datum)).format(
-        "lll"
-      )}<br>
+      "lll"
+    )}<br>
     </p>
     <p>
       <b>Telefon: </b>${volunteerData.telefon}<br>
