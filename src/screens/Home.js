@@ -12,7 +12,7 @@ import TjornsKommun from "./../images/TjornsKommun.png";
 import IconButton from "./../components/IconButton";
 import ScheduleItem from "./../components/ScheduleItem";
 
-var isStillMay = "2021-05-29";
+var isStillMay = "2021-05-25";
 var CurrentDate = new Date();
 isStillMay = new Date(isStillMay);
 console.log(CurrentDate);
