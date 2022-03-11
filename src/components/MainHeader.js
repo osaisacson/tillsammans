@@ -25,7 +25,7 @@ export default function MainHeader(props) {
             <div className="text-section">
               <div className="flex">
                 <h3 className="bold">Alla Tillsammans</h3>
-                <h3>mot Covid-19</h3>
+                <h3>för Ukraina</h3>
               </div>
               <h2>Civilsamhället i samverkan</h2>
             </div>
@@ -51,13 +51,13 @@ export default function MainHeader(props) {
             <Link id="tips" to="/tips" className="nav-link">
               Tips
             </Link>
-            <Link
+            {/* <Link
               id="digitalt-stod"
               to="/digitalt-stod"
               className="nav-link marked-nav-link"
             >
               Digitalt stöd
-            </Link>
+            </Link> */}
             {isAuthenticated && (
               <React.Fragment>
                 <Link className="nav-link" to="/admin/account">
