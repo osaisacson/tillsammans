@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import FormToEmail from "./FormToEmail";
-
 const ButtonToFormEmail = (props) => {
   const {
     isSendGroup,
@@ -11,8 +9,6 @@ const ButtonToFormEmail = (props) => {
     isSendToVolunteer,
     actionInForm,
     formData,
-    groupData,
-    refreshAction,
     successKey,
   } = props;
   const [show, setShow] = useState(false);
@@ -77,14 +73,7 @@ const ButtonToFormEmail = (props) => {
       </>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <FormToEmail
-            actionInForm={actionInForm}
-            formData={formData}
-            groupData={groupData}
-            refreshAction={refreshAction}
-          />
-        </Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Stäng

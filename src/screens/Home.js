@@ -1,11 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-import School from "./../images/illustration-pointer-med-text.png";
-import Icon2 from "./../images/symbol1.png";
-import kaffe from "./../images/kaffe.png";
-
-import IconButton from "./../components/IconButton";
 
 export default function Home() {
   return (

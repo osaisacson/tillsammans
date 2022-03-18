@@ -770,10 +770,6 @@ $btn-border-radius: 5px;
  * ----------------------------------------
  */
 
-.container {
-  padding-top: 10px;
-}
-
 a:hover {
   text-decoration: none;
 }
@@ -915,8 +911,19 @@ ul {
  */
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
-  .container {
-    padding-top: 40px;
+  .column-container {
+    flex-wrap: wrap;
+    margin: 0;
+  }
+
+  .text-column,
+  .button-column {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .button-column {
+    width: 80%;
   }
 
   .footer {
@@ -924,11 +931,6 @@ ul {
     padding: 5px;
   }
 
-  .form-button {
-    padding: 10px 15px;
-    width: 280px;
-    font-size: 1rem;
-  }
   .text-section {
     h3 {
       font-size: 0.6rem;
