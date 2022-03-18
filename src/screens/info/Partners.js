@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
 export default function Partners() {
   return (
     <div className="page-layout">
       <h2> Partners och samverkande organisationer</h2>
       <p>
-        Beställningstjänsten ALLA TILLSAMMANS drivs av frivilliga krafter i
-        civilsamhällets organisationer på Tjörn i dialog med Tjörns kommun och
-        med stöd från lokalt näringsliv.
+        Alla Tillsammans drivs av frivilliga krafter i civilsamhällets
+        organisationer på Tjörn i dialog med Tjörns kommun och med stöd från
+        lokalt näringsliv.
       </p>
       <p>Medverkande organisationer är:</p>
       <ul>
@@ -47,10 +47,14 @@ export default function Partners() {
 
       <p>
         Representerar du en organisation eller förening på Tjörn som vill bidra
-        till den lokala volontärsplattformen för stöd i samband med utbrottet av
-        Covid-19?
+        i tider av kris?
       </p>
-      <p>Kontakta oss på tjorn@allatillsammans.se</p>
+      <a
+        className="small-button draw meet"
+        href="https://forms.monday.com/forms/b3a169a6cb98cee80a3fad11ded9072d?r=use1"
+      >
+        Gå med som samarbetspartner
+      </a>
     </div>
   );
 }

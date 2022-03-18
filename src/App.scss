@@ -6,16 +6,18 @@
  * ----------------------------------------
  */
 
-$primary-color: #421e78;
+$primary-color: #0071ce;
 $primary-color-dark: darken($primary-color, 10%);
 $primary-color-medium: lighten($primary-color, 10%);
 $primary-color-light: lighten($primary-color, 35%);
 $primary-color-extra-light: lighten($primary-color, 45%);
 
+$accent-color: #fff024;
+
 $navigation-color: #fff;
 $navigation-text-color: #000;
 
-$page-background: rgba(17, 27, 64, 0.8);
+$page-background: $primary-color;
 $page-background-contrast: #fff;
 $page-background-contrast-hover: #c0c0c0;
 
@@ -35,7 +37,7 @@ html {
   width: 100vw;
   max-width: 100vw;
   font-family: "Roboto", sans-serif;
-  background: url("https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80")
+  background: url("https://images.unsplash.com/photo-1587027066597-e9b5dea8cbf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1767&q=80")
     no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -104,6 +106,37 @@ body {
  * ----------------------------------------
  */
 
+.column-container {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 2.5rem;
+  margin: 2rem;
+}
+
+.text-column,
+.button-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-column {
+  border-radius: 5px;
+  padding: 15px;
+  background-color: rgba(0, 113, 206, 0.8);
+  width: 55%;
+
+  .special-color {
+    color: $accent-color;
+  }
+}
+
+.button-column {
+  width: 45%;
+  flex-grow: 2;
+  align-items: center;
+  row-gap: 2rem;
+}
+
 .page-layout {
   width: 100%;
   background-color: $page-background !important;
@@ -161,6 +194,140 @@ body {
   padding: 20px;
   font-weight: 1.1rem;
   font-style: italic;
+}
+
+//Button variables
+$cyan: #60daaa;
+$button-end-color: $accent-color;
+$btn-start-color: $primary-color;
+$btn-border-radius: 5px;
+
+/**
+ * ----------------------------------------
+ * Button effects
+ * ----------------------------------------
+ */
+
+// Basic styles
+.large-button,
+.small-button {
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.6);
+  border: 0;
+  box-sizing: border-box;
+
+  // Using inset box-shadow instead of border for sizing simplicity
+  box-shadow: inset 0 0 0 2px $btn-start-color;
+  color: $btn-start-color;
+  font-weight: 600;
+  text-align: center;
+
+  // Required, since we're setting absolute on pseudo-elements
+  position: relative;
+  vertical-align: middle;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.large-button {
+  padding: 2em 3em;
+  width: 60%;
+}
+
+.small-button {
+  margin-left: -3px;
+  padding: 0.5em 1em;
+  font-size: 13px;
+  margin-top: 5px;
+  width: fit-content;
+}
+
+.draw {
+  transition: color 0.25s;
+
+  &::before,
+  &::after {
+    // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+  }
+
+  // This covers the top & right borders (expands right, then down)
+  &::before {
+    top: 0;
+    left: 0;
+  }
+
+  // And this the bottom & left borders (expands left, then up)
+  &::after {
+    bottom: 0;
+    right: 0;
+  }
+
+  &:hover {
+    color: $cyan;
+  }
+
+  // Hover styles
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover::before {
+    border-top-color: $cyan; // Make borders visible
+    border-right-color: $cyan;
+    transition: width 0.25s ease-out,
+      // Width expands first
+      height 0.25s ease-out 0.25s; // And then height
+  }
+
+  &:hover::after {
+    border-bottom-color: $cyan; // Make borders visible
+    border-left-color: $cyan;
+    transition: border-color 0s ease-out 0.5s,
+      // Wait for ::before to finish before showing border
+      width 0.25s ease-out 0.5s,
+      // And then exanding width
+      height 0.25s ease-out 0.75s; // And finally height
+  }
+}
+
+// Inherits from .draw
+.meet {
+  &:hover {
+    background: rgba(0, 113, 206, 0.8);
+    color: $button-end-color;
+    font-weight: 800;
+  }
+
+  // Start ::after in same position as ::before
+  &::after {
+    top: 0;
+    left: 0;
+  }
+
+  // Change colors
+  &:hover::before {
+    border-top-color: $button-end-color;
+    border-right-color: $button-end-color;
+  }
+
+  &:hover::after {
+    border-bottom-color: $button-end-color;
+    border-left-color: $button-end-color;
+    transition: // Animate height first, then width
+      height 0.25s ease-out, width 0.25s ease-out 0.25s;
+  }
 }
 
 /**
@@ -329,42 +496,6 @@ body {
   }
 }
 
-.large-text-container {
-  font-size: 21px;
-  font-weight: 800;
-  margin-top: -2%;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 15%;
-}
-
-.large-button-container {
-  margin-top: 5%;
-  width: 26%;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 41%;
-
-  .large-icon-button {
-    padding: 20px 30px;
-    margin: 10px 0;
-    border-radius: 50px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    font-weight: 600;
-    font-size: 1.4rem !important;
-  }
-  .icon {
-    width: 50px;
-    margin-right: 15px;
-  }
-}
-
 .schedule-container {
   width: 36%;
   display: flex;
@@ -444,6 +575,11 @@ body {
  * Buttons and Icons
  * ----------------------------------------
  */
+
+.simple-link {
+  color: #fff;
+  font-weight: 600;
+}
 
 .btn {
   &.form-to-email-button {
@@ -627,11 +763,7 @@ body {
  */
 
 .container {
-  padding: 80px 0 120px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-top: 10px;
 }
 
 a:hover {
@@ -776,7 +908,7 @@ ul {
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
   .container {
-    padding-top: 50px;
+    padding-top: 40px;
   }
 
   .footer {
@@ -784,13 +916,7 @@ ul {
     padding: 5px;
   }
 
-  .large-button-container {
-    margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .large-icon-button {
+  .form-button {
     padding: 10px 15px;
     width: 280px;
     font-size: 1rem;
