@@ -40,7 +40,7 @@ export default function MainHeader(props) {
               to="/sahar-funkar-det"
               className="nav-link"
             >
-              Såhär funkar det
+              Om Samarbetet
             </Link>
             <Link id="kontakt" to="/kontakt" className="nav-link">
               Kontakt

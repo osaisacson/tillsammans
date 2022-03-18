@@ -11,25 +11,26 @@ export default function Partners() {
       </p>
       <p>Medverkande organisationer är:</p>
       <ul>
+        {" "}
+        <li>
+          <a href="https://www.tjorn.se/">Tjörns Kommun</a>
+        </li>
         <li>
           <a href="https://www.svenskakyrkan.se/tjorn">Svenska Kyrkan Tjörn</a>
+        </li>
+        <li>
+          <a href="https://www.egnahemsfabriken.se">Egnahemsfabriken</a>
         </li>
         <li>
           <a href="https://kommun.redcross.se/tjorn/">Tjörns Röda Korskrets</a>
         </li>
         <li>
           <a href="https://www.facebook.com/raddabarnentjorn/">
-            Rädda Barnen Tjörns
+            Rädda Barnen Tjörn
           </a>
         </li>
         <li>
           <a href="https://www.spfseniorerna.se//">SPF Seniorerna</a>
-        </li>
-        <li>
-          <a href="https://www.egnahemsfabriken.se">Egnahemsfabriken</a>
-        </li>
-        <li>
-          <a href="https://www.omstallningtjorn.se/">Omställning Tjörn</a>
         </li>
         <li>
           <a href="https://www.facebook.com/Agapes-v%C3%A4nner-evenemang-STO-204569240323939/">
@@ -44,7 +45,6 @@ export default function Partners() {
         </li>
       </ul>
       <br />
-
       <p>
         Representerar du en organisation eller förening på Tjörn som vill bidra
         i tider av kris?

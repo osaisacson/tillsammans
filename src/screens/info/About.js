@@ -11,17 +11,13 @@ export default function About() {
           title="VILKA STÅR BAKOM ALLA TILLSAMMANS OCH VAD ÄR VÅRT SYFTE?"
           content=" <ul>
           <li>
-            'Alla Tillsammans'
-            drivs av frivilliga krafter i civilsamhällets organisationer
-            på Tjörn i samarbete med Tjörns Kommun. Se listan av samarbetsorganisationer på startsidan.
+        Alla tillsammans är en plattform där Tjörns kommun och civilsamhälle samordnar insatser och behov för olika målgrupper inom kommunen i extraordinära situationer, så som Covid-19, eller flyktingströmmar från kriget i Ukraina.
           </li>
+          <li> Vårt gemensamma mål är att snabbt sätta upp stödaktioner för utsatta och särskilt
+          sårbara grupper.</li>
           <li>
-            Syftet är att snabbt svara mot kriser och samordna civilsamhället i behövda aktioner.
-          </li>
-          <li>
-            Vårt gemensamma mål är  att skydda utsatta och särskilt
-            sårbara grupper i krissituationer som exempelvis epidemin Covid-19 eller kriget i Ukraina.
-          </li>
+          Se listan av samarbetsorganisationer på startsidan. Där kan man även gå med som samarbetspartner.          </li>
+
         </ul>"
         />
         <Accordion
@@ -44,7 +40,7 @@ export default function About() {
             Ju mer information du förser ditt bidrag med desto lättare blir det för oss att hantera.
           </li>
           <li>
-            Vår samordnaren tittar på ditt bidrag, matchar det med ett behov och fördelar det därefter vidare till en av våra aktiva
+            Vår samordnare tittar på ditt bidrag, matchar det med ett behov och fördelar det därefter vidare till en av våra aktiva
             samarbetspartners, exempelvis Svenska Kyrkan.
           </li>
           <li>
