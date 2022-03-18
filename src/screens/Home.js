@@ -90,7 +90,7 @@ export default function Home() {
           </a>
           <a
             href="https://forms.monday.com/forms/69fc84b9ea6633b87d33ee675c97f6c7?r=use1"
-            className="large-button draw meet"
+            className="large-button large-button-accent draw"
           >
             Anmäl ett behov
           </a>

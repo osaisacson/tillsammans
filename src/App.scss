@@ -197,7 +197,7 @@ body {
 }
 
 //Button variables
-$cyan: #60daaa;
+$draw-color: #fff;
 $button-end-color: $accent-color;
 $btn-start-color: $primary-color;
 $btn-border-radius: 5px;
@@ -241,6 +241,12 @@ $btn-border-radius: 5px;
   width: 60%;
 }
 
+.large-button-accent {
+  box-shadow: inset 0 0 0 2px #fff;
+  background: rgba(0, 113, 206, 0.7);
+  color: #fff;
+}
+
 .small-button {
   margin-left: -3px;
   padding: 0.5em 1em;
@@ -273,7 +279,9 @@ $btn-border-radius: 5px;
   }
 
   &:hover {
-    color: $cyan;
+    color: $accent-color;
+    font-weight: 800;
+    background: rgba(0, 113, 206, 0.7);
   }
 
   // Hover styles
@@ -284,16 +292,16 @@ $btn-border-radius: 5px;
   }
 
   &:hover::before {
-    border-top-color: $cyan; // Make borders visible
-    border-right-color: $cyan;
+    border-top-color: $accent-color; // Make borders visible
+    border-right-color: $accent-color;
     transition: width 0.25s ease-out,
       // Width expands first
       height 0.25s ease-out 0.25s; // And then height
   }
 
   &:hover::after {
-    border-bottom-color: $cyan; // Make borders visible
-    border-left-color: $cyan;
+    border-bottom-color: $accent-color; // Make borders visible
+    border-left-color: $accent-color;
     transition: border-color 0s ease-out 0.5s,
       // Wait for ::before to finish before showing border
       width 0.25s ease-out 0.5s,
