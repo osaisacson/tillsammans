@@ -13,8 +13,6 @@ import Apply from "./screens/users/Apply";
 import Partners from "./screens/info/Partners";
 import Volunteer from "./screens/users/Volunteer";
 import Fiker from "./screens/users/Fiker";
-import News from "./screens/info/News";
-import Support from "./screens/info/Support";
 
 //Admin screens
 import AdminRouter from "./screens/admin/AdminRouter";
@@ -27,7 +25,7 @@ import GrantAdminAccess from "./screens/admin/GrantAdminAccess";
 import Account from "./screens/admin/Account";
 
 //Info screens
-import HowTo from "./screens/info/HowTo";
+import About from "./screens/info/About";
 import Intro from "./screens/info/Intro";
 import Contact from "./screens/info/Contact";
 
@@ -60,7 +58,7 @@ function App(props) {
           </Route>
           <Route path="/byt-sprak"></Route>
           <Route path="/sahar-funkar-det">
-            <HowTo />
+            <About />
           </Route>
           <Route path="/intro">
             <Intro />
@@ -70,12 +68,6 @@ function App(props) {
           </Route>
           <Route path="/partners">
             <Partners />
-          </Route>
-          <Route path="/tips">
-            <News />
-          </Route>
-          <Route path="/digitalt-stod">
-            <Support />
           </Route>
           {/* For admin */}
           <ProtectedRoute
