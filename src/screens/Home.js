@@ -94,6 +94,13 @@ export default function Home() {
           >
             Anmäl ett behov
           </a>
+          <br />
+          <a
+            className="small-button draw meet"
+            href="https://forms.monday.com/forms/e8eb72b489db14da16d374516228f0bb?r=use1"
+          >
+            Kontakta oss/Ge feedback
+          </a>
         </div>
       </div>
     </>
