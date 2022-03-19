@@ -86,7 +86,7 @@ export default function Home() {
             href="https://forms.monday.com/forms/bc5947aba7715dff06035a9e7ea53994?r=use1"
             className="large-button draw meet"
           >
-            Donera resurser
+            Donera saker
           </a>
           <a
             href="https://forms.monday.com/forms/69fc84b9ea6633b87d33ee675c97f6c7?r=use1"
