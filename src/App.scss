@@ -918,7 +918,19 @@ ul {
 
   .text-column,
   .button-column {
+    width: 100%;
+  }
+
+  .text-column {
+    margin-top: 45px;
+  }
+
+  .button-column {
     margin-top: 20px;
+    row-gap: 1rem;
+  }
+
+  .large-button {
     width: 100%;
   }
 
