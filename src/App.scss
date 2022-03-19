@@ -910,10 +910,11 @@ ul {
  * ----------------------------------------
  */
 
-@media screen and (min-width: 0px) and (max-width: 400px) {
+@media screen and (min-width: 0px) and (max-width: 600px) {
   .column-container {
-    flex-wrap: wrap;
+    flex-wrap: wrap !important;
     margin: 0;
+    flex-direction: column;
   }
 
   .text-column,
@@ -928,14 +929,11 @@ ul {
   .button-column {
     margin-top: 20px;
     row-gap: 1rem;
+    width: 100%;
   }
 
   .large-button {
     width: 100%;
-  }
-
-  .button-column {
-    width: 80%;
   }
 
   .footer {

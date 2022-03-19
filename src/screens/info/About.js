@@ -40,7 +40,7 @@ export default function About() {
             Ju mer information du förser ditt bidrag med desto lättare blir det för oss att hantera.
           </li>
           <li>
-            Vår samordnare tittar på ditt bidrag, matchar det med ett behov och fördelar det därefter vidare till en av våra aktiva
+            Vår samordnare tittar på ditt bidrag, matchar det med ett behov och fördelar det därefter vidare till någon av våra aktiva
             samarbetspartners, exempelvis Svenska Kyrkan.
           </li>
           <li>
