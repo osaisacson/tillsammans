@@ -30,7 +30,9 @@ export default function Partners() {
           </a>
         </li>
         <li>
-          <a href="https://www.spfseniorerna.se//">SPF Seniorerna</a>
+          <a href="https://www.spfseniorerna.se//">
+            SPF Seniorerna Tjörnveteranerna
+          </a>
         </li>
         <li>
           <a href="https://www.facebook.com/Agapes-v%C3%A4nner-evenemang-STO-204569240323939/">

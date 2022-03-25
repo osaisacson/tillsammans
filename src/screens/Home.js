@@ -21,7 +21,7 @@ export default function Home() {
           <em>Naturskyddsföreningen</em>
           <em>Studieförbundet Vuxenskolan</em>
           <em>Frikyrkor på Tjörn</em>
-          <em>SPF Tjörn Veteranerna</em>
+          <em>SPF Seniorerna Tjörnveteranerna</em>
           <em>PRO Tjörn</em>
           <em>PRO Kaprifolen</em>
           <em>Guldkanten</em>
