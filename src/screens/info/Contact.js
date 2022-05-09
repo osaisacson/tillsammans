@@ -6,20 +6,13 @@ export default function Contact() {
       <h2>Kontaktpersoner</h2>
 
       <p>
-        Tjörns Kommun: Magdalena Romanov. Henne når du på
-        magdalena.romanov@tjorn.se
+        Samordnare: Fredrik Siladji Dahne (Tjörns Kommun): Honom når du på
+        fredrik.siladji.dahne@tjorn.se
       </p>
       <p>
-        Samordnare och utvecklare: Åsa Isacson (Egnahemsfabriken). Henne når du
-        på osa@egnahemsfabriken.se eller 0790 752 602
+        Utvecklare: Åsa Isacson (Egnahemsfabriken). Henne når du på
+        osa@egnahemsfabriken.se
       </p>
-      <p>
-        Volontärgrupper: Volontärsinsatserna bedrivs i volontärsgrupper. Varje
-        volontärsgrupp har 4-6 medlemmar och en gruppledare. Kontakta
-        gruppledaren om du har frågor - du får ett epostmeddelande med
-        kontaktdetaljer till din grupp när du blir indelad.
-      </p>
-
       <br />
       <h2>Feedback och förslag</h2>
 
