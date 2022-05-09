@@ -9,7 +9,13 @@ export default function Home() {
             Bli en del av civilsamhällets kamp med att stötta utsatta människor
             från Ukraina!
           </h4>
-           <p>Ett samarbete mellan:</p>
+          <a
+            className="special-color bold"
+            href="https://www.facebook.com/groups/allatillsammanstjorn"
+          >
+            Se löpande uppdateringar i vår Facebook grupp!
+          </a>
+           <em>Ett samarbete mellan:</em>
           Tjörns Kommun
           <em>Svenska Kyrkan</em>
           <em>Egnahemsfabriken</em>
@@ -65,6 +71,12 @@ export default function Home() {
 
         <div className="button-column">
           <a
+            href="https://forms.monday.com/forms/69fc84b9ea6633b87d33ee675c97f6c7?r=use1"
+            className="large-button large-button-accent draw"
+          >
+            Skicka in ett behov
+          </a>
+          <a
             href="https://forms.monday.com/forms/2a476e0840fe2bb10e71588f5fb27cc2?r=use1"
             className="large-button draw meet"
           >
@@ -82,18 +94,12 @@ export default function Home() {
           >
             Erbjud arbete
           </a>
-          <a
+          {/* <a
             href="https://forms.monday.com/forms/bc5947aba7715dff06035a9e7ea53994?r=use1"
             className="large-button draw meet"
           >
             Donera saker
-          </a>
-          <a
-            href="https://forms.monday.com/forms/69fc84b9ea6633b87d33ee675c97f6c7?r=use1"
-            className="large-button large-button-accent draw"
-          >
-            Anmäl ett behov
-          </a>
+          </a> */}
           <br />
           <a
             className="small-button draw meet"
