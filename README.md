@@ -2,7 +2,7 @@
 
 Organising assistance for self-isolated risk groups of corona/covid-19
 
-Uses React.js/Node.js/Redux, Firebase for db hosting.
+Uses React.js/Node.js, Firebase for deployment
 
 Find the latest live version at:
 

@@ -13,8 +13,6 @@ import Contact from "./screens/info/Contact";
 
 import "./App.scss";
 
-require("dotenv").config();
-
 function App(props) {
   return (
     <div>
@@ -33,7 +31,6 @@ function App(props) {
           <Route path="/partners">
             <Partners />
           </Route>
-          {/* For all */}
           <Route path="/">
             <Home />
           </Route>

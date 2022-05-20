@@ -27,6 +27,12 @@ $sub-color: grey;
 $main-text-color: #fff;
 $highlight-color: #ffff00;
 
+//Button variables
+$draw-color: #fff;
+$button-end-color: $accent-color;
+$btn-start-color: $primary-color;
+$btn-border-radius: 5px;
+
 /**
  * ----------------------------------------
  * Main
@@ -61,28 +67,6 @@ body {
   font-weight: 600;
 }
 
-.centered {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-spread {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.flex-left {
-  display: flex;
-  justify-content: left;
-  align-items: baseline;
-}
-
 .full-width {
   width: 100%;
 }
@@ -90,10 +74,6 @@ body {
 .flex-column {
   display: flex;
   flex-direction: column;
-}
-
-.margin-right-5 {
-  margin-right: 5px;
 }
 
 .bottom-border {
@@ -177,30 +157,6 @@ body {
     }
   }
 }
-
-.links-bottom-page {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin: auto;
-  margin-top: 80px;
-  flex-wrap: wrap;
-  position: relative;
-  bottom: 0;
-}
-
-.empty-state {
-  @extend .centered;
-  padding: 20px;
-  font-weight: 1.1rem;
-  font-style: italic;
-}
-
-//Button variables
-$draw-color: #fff;
-$button-end-color: $accent-color;
-$btn-start-color: $primary-color;
-$btn-border-radius: 5px;
 
 /**
  * ----------------------------------------
@@ -340,7 +296,7 @@ $btn-border-radius: 5px;
 
 /**
  * ----------------------------------------
- * Header, Footer
+ * Header
  * ----------------------------------------
  */
 
@@ -381,221 +337,9 @@ $btn-border-radius: 5px;
   font-size: 1.3rem;
 }
 
-#footer {
-  transition: top 0.3s;
-  position: fixed;
-  bottom: 0;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 25px 10px 15px;
-  background-color: $primary-color-dark;
-  opacity: 0.9;
-
-  p {
-    font-size: 1.2rem;
-    font-style: italic;
-    width: 92%;
-  }
-}
-
-/**
- * ----------------------------------------
- * Front page components
- * ----------------------------------------
- */
-
-.front-page-layout {
-  display: flex;
-  width: 110%;
-  justify-content: space-between;
-}
-
-.blurb {
-  z-index: 10;
-
-  img {
-    width: 280px;
-    position: fixed;
-    left: 10%;
-    top: 20%;
-  }
-}
-
-.schedule-container {
-  width: 36%;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 40px;
-  margin-top: -60px;
-  margin-right: -70px;
-
-  .schedule-greeting {
-    font-size: 1.3rem;
-  }
-
-  .schedule-item {
-    width: 100%;
-    background-color: $navigation-color;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 5px;
-
-    .flex-spread {
-      align-items: baseline;
-    }
-
-    .activity,
-    .date,
-    .month,
-    .time,
-    .partner,
-    p {
-      color: #000;
-    }
-
-    .activity {
-      font-size: 1.3rem;
-      text-align: left;
-    }
-
-    .date {
-      font-size: 1.8rem;
-    }
-
-    .month {
-      font-size: 1rem;
-      text-transform: uppercase;
-      margin-left: 5px;
-    }
-
-    .time {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-    }
-
-    .partner {
-      text-align: right;
-    }
-
-    p {
-      padding-top: 8px;
-      text-align: left;
-      font-size: 1rem;
-    }
-  }
-
-  .logo-container {
-    display: flex;
-    justify-content: flex-end;
-
-    .logo {
-      max-height: 40px;
-      max-width: 190px;
-    }
-  }
-}
-
-/**
- * ----------------------------------------
- * Buttons and Icons
- * ----------------------------------------
- */
-
 .simple-link {
   color: #fff;
   font-weight: 600;
-}
-
-.btn {
-  &.form-to-email-button {
-    font-size: 0.7rem;
-    padding: 3px 6px;
-    min-width: 120px;
-    margin: 0 5px;
-    color: #fff;
-    &.green {
-      background-color: #2e856e !important;
-      border-color: #2e856e !important;
-    }
-    &.red {
-      background-color: #6547e9 !important;
-      border-color: #6547e9 !important;
-    }
-  }
-}
-
-.status-copy {
-  font-weight: 600;
-  font-style: italic;
-  &.red {
-    color: #852727;
-  }
-  &.green {
-    color: #0f6b52;
-  }
-}
-
-.add-button {
-  background-color: $primary-color;
-  color: #fff;
-}
-
-.loader {
-  color: #000 !important;
-}
-
-//Wrapper around refresh button
-.refresh-wrapper {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/**
- * ----------------------------------------
- * Contact form
- * ----------------------------------------
- */
-
-.contact-form {
-  max-width: 360px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-}
-
-.contact-form > :not(:last-child) {
-  margin-bottom: 16px;
-}
-
-.contact-form .form-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-form .label-content {
-  margin-bottom: 4px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 100%;
-}
-
-.contact-form label {
-  text-align: left;
 }
 
 /**
@@ -652,40 +396,6 @@ $btn-border-radius: 5px;
 
   li {
     margin-bottom: 15px;
-  }
-}
-
-/**
- * ----------------------------------------
- * Forms
- * ----------------------------------------
- */
-
-.status-field {
-  @extend .flex-spread;
-  border-right: 1px solid rgba(224, 224, 224, 1);
-  border-left: 1px solid rgba(224, 224, 224, 1);
-  padding: 5px;
-}
-
-.form {
-  h3 {
-    margin-left: 2px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: $page-background-contrast;
-  }
-
-  h4 {
-    font-size: 1.1rem;
-    font-style: italic;
-    text-align: center;
-    font-weight: 600;
-    color: $page-background-contrast;
-  }
-
-  .error-text {
-    color: "red";
   }
 }
 
@@ -784,51 +494,6 @@ ul {
   background-color: $page-background;
 }
 
-// Overrides for tables
-.table {
-  text-align: left;
-  font-size: 0.8rem;
-  background-color: #fff;
-  color: #000;
-
-  .td,
-  th {
-    padding: 0.35rem;
-    white-space: nowrap;
-  }
-
-  .btn {
-    font-size: 0.7rem;
-    background-color: $primary-color-light !important;
-
-    &.active {
-      background-color: $primary-color !important;
-    }
-  }
-
-  a {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: $primary-color-light;
-  }
-
-  a:hover {
-    font-weight: 600;
-    color: $primary-color;
-  }
-}
-
-// Overrides for material-table
-.MuiTableCell-root {
-  padding: 4px 5px !important;
-  font-size: 11.5px !important;
-}
-
-.MuiTableCell-head {
-  font-weight: 600 !important;
-  line-height: 1.4rem !important;
-}
-
 /**
  * ----------------------------------------
  * Media Queries
@@ -859,11 +524,6 @@ ul {
 
   .large-button {
     width: 100%;
-  }
-
-  .footer {
-    font-size: 0.9rem;
-    padding: 5px;
   }
 
   .text-section {
@@ -900,8 +560,5 @@ ul {
 @media only screen and (max-width: 980px) {
   .nav-pills .nav-link {
     width: 100%;
-  }
-  .blurb {
-    display: none;
   }
 }
