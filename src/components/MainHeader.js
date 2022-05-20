@@ -29,13 +29,13 @@ export default function MainHeader(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
-            <Link id="om-samarbetet" to="/om-samarbetet" className="nav-link">
+            <Link to="/om-samarbetet" className="nav-link">
               Om Samarbetet
             </Link>
-            <Link id="kontakt" to="/kontakt" className="nav-link">
+            <Link to="/kontakt" className="nav-link">
               Kontakt
             </Link>
-            <Link id="partners" to="/partners" className="nav-link">
+            <Link to="/partners" className="nav-link">
               Partners
             </Link>
           </Nav>

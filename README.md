@@ -218,7 +218,9 @@ This is for the person who will be approving that the changes you made above sho
 
 ### Deploying
 
-When you're ready to release the changes:
+We are set up to deploy through firebase. If you are setting up a clone of Alla Tillsammans then this is how to do it from scratch: https://www.geeksforgeeks.org/hosting-a-static-website-on-firebase-for-free/
+
+After that is set up this is what you do to release the changes:
 
 1. Go to the master branch
 

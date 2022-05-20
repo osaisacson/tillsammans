@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 //Components
 import MainHeader from "./components/MainHeader";
@@ -13,28 +13,18 @@ import Contact from "./screens/info/Contact";
 
 import "./App.scss";
 
-function App(props) {
+function App() {
   return (
     <div>
       <MainHeader />
       <div className="container">
-        <Switch>
-          <Route path="/om-samarbetet">
-            <About />
-          </Route>
-          <Route path="/intro">
-            <Intro />
-          </Route>
-          <Route path="/kontakt">
-            <Contact />
-          </Route>
-          <Route path="/partners">
-            <Partners />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="om-samarbetet" element={<About />} />
+          <Route path="intro" element={<Intro />} />
+          <Route path="kontakt" element={<Contact />} />
+          <Route path="partners" element={<Partners />} />
+        </Routes>
       </div>
     </div>
   );
