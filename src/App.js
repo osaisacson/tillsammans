@@ -6,10 +6,12 @@ import MainHeader from "./components/MainHeader";
 
 //Screens
 import Home from "./screens/Home";
-import About from "./screens/info/About";
-import Partners from "./screens/info/Partners";
-import Intro from "./screens/info/Intro";
-import Contact from "./screens/info/Contact";
+import About from "./screens/About";
+import Partners from "./screens/Partners";
+import Intro from "./screens/Intro";
+import Contact from "./screens/Contact";
+import Donate from "./screens/Donate";
+import Volunteer from "./screens/Volunteer";
 
 import "./App.scss";
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="intro" element={<Intro />} />
           <Route path="kontakt" element={<Contact />} />
           <Route path="partners" element={<Partners />} />
+          <Route path="skank-saker" element={<Donate />} />
+          <Route path="bli-volontar" element={<Volunteer />} />
         </Routes>
       </div>
     </div>

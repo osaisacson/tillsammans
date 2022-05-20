@@ -394,6 +394,12 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 18px;
 
+  a {
+    color: $main-text-color;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
   li {
     margin-bottom: 15px;
   }
