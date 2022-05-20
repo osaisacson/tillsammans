@@ -2,14 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "../store/actions";
 
 export default function MainHeader(props) {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const dispatch = useDispatch();
-
   return (
     <>
       <Navbar sticky="top" bg="light" expand="lg">
@@ -35,11 +29,7 @@ export default function MainHeader(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
-            <Link
-              id="sahar-funkar-det"
-              to="/sahar-funkar-det"
-              className="nav-link"
-            >
+            <Link id="om-samarbetet" to="/om-samarbetet" className="nav-link">
               Om Samarbetet
             </Link>
             <Link id="kontakt" to="/kontakt" className="nav-link">
@@ -48,20 +38,6 @@ export default function MainHeader(props) {
             <Link id="partners" to="/partners" className="nav-link">
               Partners
             </Link>
-            {isAuthenticated && (
-              <React.Fragment>
-                <Link className="nav-link" to="/admin/account">
-                  användarkonto
-                </Link>
-                <Link
-                  to="/#"
-                  className="nav-link"
-                  onClick={() => dispatch(logoutUser())}
-                >
-                  Logga ut
-                </Link>
-              </React.Fragment>
-            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
