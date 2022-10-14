@@ -6,13 +6,13 @@
  * ----------------------------------------
  */
 
-$primary-color: #0071ce;
+$primary-color: #202e6a;
 $primary-color-dark: darken($primary-color, 10%);
 $primary-color-medium: lighten($primary-color, 10%);
 $primary-color-light: lighten($primary-color, 35%);
 $primary-color-extra-light: lighten($primary-color, 45%);
 
-$accent-color: #fff024;
+$accent-color: #d53eff;
 
 $navigation-color: #fff;
 $navigation-text-color: #000;
@@ -43,7 +43,7 @@ html {
   width: 100vw;
   max-width: 100vw;
   font-family: "Roboto", sans-serif;
-  background: url("https://images.unsplash.com/photo-1587027066597-e9b5dea8cbf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1767&q=80")
+  background: url("https://images.unsplash.com/photo-1451471016731-e963a8588be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2944&q=80")
     no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -105,7 +105,7 @@ body {
 .text-column {
   border-radius: 5px;
   padding: 15px;
-  background-color: rgba(0, 113, 206, 0.8);
+  background-color: rgba(32, 46, 106, 0.8);
   width: 55%;
 
   .special-color {
@@ -202,7 +202,7 @@ body {
 
 .large-button-accent {
   box-shadow: inset 0 0 0 2px #fff;
-  background: rgba(0, 113, 206, 0.7);
+  background: rgba(32, 46, 106, 0.8);
   color: #fff;
 }
 
@@ -240,7 +240,7 @@ body {
   &:hover {
     color: $accent-color;
     font-weight: 800;
-    background: rgba(0, 113, 206, 0.7);
+    background: rgba(32, 46, 106, 0.6);
   }
 
   // Hover styles
@@ -272,7 +272,7 @@ body {
 // Inherits from .draw
 .meet {
   &:hover {
-    background: rgba(0, 113, 206, 0.8);
+    background: rgba(32, 46, 106, 0.8);
     color: $button-end-color;
     font-weight: 800;
   }

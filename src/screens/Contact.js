@@ -20,15 +20,6 @@ export default function Contact() {
         Vi uppgraderar kontinuerligt siten för att möta behov, och tar gärna
         emot förslag om utökning och förbättringar!
       </p>
-      <p>Har du förslag på hur vi kan göra plattformen bättre?</p>
-
-      <a
-        className="small-button draw meet"
-        href="https://forms.monday.com/forms/e8eb72b489db14da16d374516228f0bb?r=use1"
-      >
-        Skicka oss din feedback!
-      </a>
-      <br />
     </div>
   );
 }

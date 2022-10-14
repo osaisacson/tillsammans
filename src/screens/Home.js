@@ -5,17 +5,21 @@ export default function Home() {
     <>
       <div className="column-container">
         <div className="text-column">
-          <h4>
-            Bli en del av civilsamhällets kamp med att stötta utsatta människor
-            från Ukraina!
-          </h4>
+          <h4>Civilsamhället i samverkan!</h4>
+          <p>
+            Alla tillsammans är en plattform där Tjörns kommun och civilsamhälle
+            samarbetar runt insatser i extraordinära situationer, så som
+            Covid-19 eller flyktingströmmar från kriget i Ukraina. Vårt
+            gemensamma mål är att snabbt möta behov från utsatta och särskilt
+            sårbara grupper.
+          </p>
           <a
             className="special-color bold"
             href="https://www.facebook.com/groups/allatillsammanstjorn"
           >
             Se löpande uppdateringar i vår Facebook grupp!
           </a>
-           <em>Ett samarbete mellan:</em>
+           <em>Ett samarbete mellan bland andra:</em>
           Tjörns Kommun
           <em>Svenska Kyrkan</em>
           <em>Egnahemsfabriken</em>
@@ -33,54 +37,25 @@ export default function Home() {
           <em>Guldkanten</em>
           <a
             className="small-button draw meet"
-            href="https://forms.monday.com/forms/b3a169a6cb98cee80a3fad11ded9072d?r=use1"
+            href="https://notionforms.io/forms/samarbetspartners"
           >
             Gå med som samarbetspartner
           </a>
-          <br />
-          <p>
-            Notera att det är här du anmäler dig, du behöver inte kontakta oss
-            på något annat sätt -{" "}
-            <span className="special-color">
-              vi samordnar våra resurser via den här plattformen.
-            </span>
-          </p>
-          <p>
-            Vill du donera pengar till Ukraina hänvisar vi dig till de
-            organisationer som är på plats:{" "}
-            <a className="simple-link" href="https://www.raddabarnen.se">
-              Rädda barnen
-            </a>
-            ,{" "}
-            <a className="simple-link" href="https://www.rodakorset.se">
-              Röda Korset
-            </a>
-            ,{" "}
-            <a
-              className="simple-link"
-              href="https://www.svenskakyrkan.se/act/ge-en-gava"
-            >
-              ACT
-            </a>
-            ,{" "}
-            <a className="simple-link" href="https://www.sverigeforunhcr.se">
-              UNHCR Ukraina
-            </a>
-          </p>
         </div>
 
         <div className="button-column">
           <a
-            href="https://forms.monday.com/forms/5b0dac58ecc9b48757dfecf2901a08d2?r=use1"
+            href="https://notionforms.io/forms/behov"
             className="large-button large-button-accent draw"
           >
             Skicka in ett behov
           </a>
+          {/* <p>Du kan också registrera dig en möjlig resurs:</p>
           <a
             href="https://forms.monday.com/forms/2a476e0840fe2bb10e71588f5fb27cc2?r=use1"
             className="large-button draw meet"
           >
-            Bli volontär
+            volontärbanken
           </a>
           <a
             href="https://forms.monday.com/forms/698901a41bcd076751d3fc34de7e4de7?r=use1"
@@ -93,7 +68,7 @@ export default function Home() {
             className="large-button draw meet"
           >
             Erbjud arbete
-          </a>
+          </a> */}
           {/* <a
             href="https://forms.monday.com/forms/bc5947aba7715dff06035a9e7ea53994?r=use1"
             className="large-button draw meet"
@@ -101,12 +76,12 @@ export default function Home() {
             Donera saker
           </a> */}
           <br />
-          <a
+          {/* <a
             className="small-button draw meet"
             href="https://forms.monday.com/forms/e8eb72b489db14da16d374516228f0bb?r=use1"
           >
             Kontakta oss/Ge feedback
-          </a>
+          </a> */}
         </div>
       </div>
     </>

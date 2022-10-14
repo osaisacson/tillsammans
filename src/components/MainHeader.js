@@ -19,7 +19,6 @@ export default function MainHeader(props) {
             <div className="text-section">
               <div className="flex">
                 <h3 className="bold">Alla Tillsammans</h3>
-                <h3>för Ukraina</h3>
               </div>
               <h2>Civilsamhället i samverkan</h2>
             </div>

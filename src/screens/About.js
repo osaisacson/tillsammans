@@ -29,22 +29,11 @@ export default function About() {
         </ul>"
         />
         <Accordion
-          title="VAD HÄNDER NÄR MAN ANMÄLT SITT BIDRAG?"
+          title="VAD HÄNDER NÄR DU ANMÄLT DITT BEHOV?"
           content="
           <ul>
           <li>
-            Efter att du skickat in ditt bidrag lagras den i någon av våra 'banker'. För närvarande har vi en volontärsbank, en arbetsbank, en boendebank och en resursbank.
-            Vi har också en behovsbank där man kan skicka in behov.
-          </li>
-          <li>
-            Ju mer information du förser ditt bidrag med desto lättare blir det för oss att hantera.
-          </li>
-          <li>
-            Vår samordnare tittar på ditt bidrag, matchar det med ett behov och fördelar det därefter vidare till någon av våra aktiva
-            samarbetspartners, exempelvis Svenska Kyrkan.
-          </li>
-          <li>
-          Du blir därefter kontaktad av denna samarbetspartner för vidare aktion.
+            När du skickar in ditt behov väljer du också vilken samarbetspartner du vill ska hantera det. Ett email med detaljerna om behovet skickas då direkt till huvudkontakt + reservkontakt för din valda samarbetspartner. Dessa kommer kontakta dig så fort de har hittat den lösning.
           </li>
         </ul>"
         />
