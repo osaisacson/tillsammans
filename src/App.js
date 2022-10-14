@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="om-samarbetet" element={<About />} />
-          <Route path="intro" element={<Intro />} />
+          <Route path="till-samarbetspartners" element={<Intro />} />
           <Route path="kontakt" element={<Contact />} />
           <Route path="partners" element={<Partners />} />
           <Route path="skank-saker" element={<Donate />} />

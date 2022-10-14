@@ -37,6 +37,9 @@ export default function MainHeader(props) {
             <Link to="/partners" className="nav-link">
               Partners
             </Link>
+            <Link to="/till-samarbetspartners" className="nav-link">
+              Till Samarbetspartners
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
