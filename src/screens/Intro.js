@@ -3,7 +3,7 @@ import React from "react";
 export default function Intro() {
   return (
     <div className="page-layout">
-      <h2> Hur gör jag som samarbetspartner?</h2>
+      <h2> Hur funkar det för aktiva samarbetspartners?</h2>
       <ul>
         <li>
           Du som redan är samarbetspartner hittar all information om hur

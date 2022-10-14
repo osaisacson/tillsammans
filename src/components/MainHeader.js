@@ -35,10 +35,10 @@ export default function MainHeader(props) {
               Kontakt
             </Link>
             <Link to="/partners" className="nav-link">
-              Partners
+              Samarbetspartners
             </Link>
             <Link to="/till-samarbetspartners" className="nav-link">
-              Till Samarbetspartners
+              Internt
             </Link>
           </Nav>
         </Navbar.Collapse>
