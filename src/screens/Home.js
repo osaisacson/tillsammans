@@ -50,31 +50,18 @@ export default function Home() {
           >
             Skicka in ett behov
           </a>
-          {/* <p>Du kan också registrera dig en möjlig resurs:</p>
           <a
-            href="https://forms.monday.com/forms/2a476e0840fe2bb10e71588f5fb27cc2?r=use1"
+            href="https://curmudgeon.notion.site/Bli-volont-r-002d065b73424923a8d982c20467bc10"
             className="large-button draw meet"
           >
-            volontärbanken
+            Bli volontär
           </a>
           <a
-            href="https://forms.monday.com/forms/698901a41bcd076751d3fc34de7e4de7?r=use1"
-            className="large-button draw meet"
-          >
-            Erbjud boende
-          </a>
-          <a
-            href="https://forms.monday.com/forms/7898103f8bf4694d8d5c3015ca887c37?r=use1"
-            className="large-button draw meet"
-          >
-            Erbjud arbete
-          </a> */}
-          {/* <a
-            href="https://forms.monday.com/forms/bc5947aba7715dff06035a9e7ea53994?r=use1"
+            href="https://curmudgeon.notion.site/Sk-nk-saker-468f157d619a45cbb4e128dcfc972dab"
             className="large-button draw meet"
           >
             Donera saker
-          </a> */}
+          </a>
           <br />
           {/* <a
             className="small-button draw meet"

@@ -28,18 +28,24 @@ export default function MainHeader(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
-            <Link to="/om-samarbetet" className="nav-link">
-              Om Samarbetet
-            </Link>
-            <Link to="/kontakt" className="nav-link">
-              Kontakt
-            </Link>
-            <Link to="/partners" className="nav-link">
+            <a
+              href="https://curmudgeon.notion.site/Samarbetspartners-7a22560101b44ff191a837cf588ffb61"
+              className="nav-link"
+            >
               Samarbetspartners
-            </Link>
-            <Link to="/till-samarbetspartners" className="nav-link">
-              Internt
-            </Link>
+            </a>
+            <a
+              href="https://curmudgeon.notion.site/Om-samarbetet-740df9c3c0fe4062b6a246c7d112be8e"
+              className="nav-link"
+            >
+              Vanliga frågor
+            </a>
+            <a
+              href="https://curmudgeon.notion.site/Kontakter-1977d104960749019da8cb4870e5f280"
+              className="nav-link"
+            >
+              Kontakt
+            </a>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
